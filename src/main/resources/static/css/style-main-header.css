@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+
+.main-header {
+	padding-left: 5px !important;
+	padding-right: 5px !important;
+	width: 100%;
+	background: #f4f4f4;
+	padding: 15px 0;
+/* 	min-height: 100px; */
+	margin-bottom: 15px;
+}
+
+ .page-title {
+	font-size: 22px;
+	font-weight: 700;
+	line-height: 40px;
+}
+
+.calendar-header .page-title:last-of-type {
+	float: left;
+}
+
+.calendar-header .page-title:last-of-type {
+	margin-right: 20px;
+}

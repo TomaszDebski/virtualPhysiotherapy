@@ -1,0 +1,178 @@
+<meta meta charset=utf-8>
+	<div class="main-header">
+		<div class="container">
+			<span class="page-title">Dodaj pacjenta</span>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-offset-3 col-md-7">
+				<form class="form-horizontal" name="addPatientForm">
+					<fieldset>
+						<div class="form-group row">
+								<label for="firstname" class="col-md-2 control-label">Imię:</label>
+								<div class="col-md-4"> 
+								<input
+									name="firstname"
+									class="form-control" 
+									required="required" 
+									placeholder="Imię*"
+									id="firstname" 
+									value=""
+									type="text" 
+									required
+									ng-model="patient.firstname"
+									ng-minlength="3" ng-maxlength="10"
+								>
+<!-- 									<span style="color:red" ng-show="addPatientForm.firstname.$dirty && addPatientForm.firstname.$invalid"></span> -->
+			        				<span ng-show="addPatientForm.firstname.$error.required && addPatientForm.submitted" style="color : #f00;">Imię jest wymagane</span>
+			        				<span ng-show="addPatientForm.firstname.$error.minlength && addPatientForm.submitted" style="color : #f00;">Za krótkie imię</span>
+			        				<span ng-show="addPatientForm.firstname.$error.maxlength && addPatientForm.submitted" style="color : #f00;">Za długie imię</span>
+			        			</div>
+						</div>
+						<div class="form-group row">
+								<label for="lastname" class="col-md-2 control-label">Nazwisko:</label> 
+							<div class="col-md-4"> 
+								<input
+									name="kc-postmeta[dane_podstawowe][req_surname]"
+									class="form-control" 
+									required="required"
+									placeholder="Nazwisko*" 
+									id="lastname" 
+									value="" 
+									type="text"
+									ng-model="patient.lastname">
+									<span ng-show="addPatientForm.lastname.$error.required && addPatientForm.submitted" style="color : #f00;">Nazwisko jest wymagane</span>
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="pesel" class="col-md-2 control-label">PESEL:</label> 
+							<div class="col-md-4"> 
+								<input
+									name=""
+									class="form-control" 
+									placeholder="PESEL" 
+									id="pesel" 
+									value=""
+									type="text"
+									ng-model="patient.pesel"
+								>
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="req_email" class="col-md-2 control-label">E-mail:</label> 
+							<div class="col-md-4"> 
+								<input
+									name="email"
+									class="form-control"  
+									required="required"
+									placeholder="E-mail*" 
+									id="req_email" 
+									value="" 
+									type="email"
+									ng-model="patient.email"
+								>
+									<span style="color:red" ng-show="addPatientForm.email.$invalid && addPatientForm.submitted">
+			        				<span ng-show="addPatientForm.email.$error.required && addPatientForm.submitted" style="color : #f00;">Email jest wymagany.</span>
+			        				<span ng-show="addPatientForm.email.$error.email && addPatientForm.submitted" style="color : #f00;">Invalid email address.</span>
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="phone" class="col-md-2 control-label">Telefon:</label> 
+							<div class="col-md-4">
+								<input
+									name="kc-postmeta[dane_podstawowe][phone]"
+									class="form-control"  
+									placeholder="Telefon" 
+									id="phone"
+									value="" 
+									type="text"
+									ng-model="patient.phone"
+								>
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="street" class="col-md-2 control-label">Ulica:</label> 
+							<div class="col-md-4"> 
+								<input
+									name="kc-postmeta[dane_podstawowe][street]"
+									class="form-control" 
+									placeholder="Ulica" 
+									id="street"
+									value="" 
+									type="text"
+									ng-model="patient.address"
+								>
+							</div>
+							<label for="number" class="col-md-3 control-label">Numer:</label> 
+							<div class="col-md-2"> 
+								<input
+									name="kc-postmeta[dane_podstawowe][house]" 
+									class="form-control"
+									placeholder="Numer" 
+									id="number" 
+									value="" 
+									type="text"
+									ng-model="patient.number"
+								>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="city" class="col-md-2 control-label">Miasto:</label> 
+							<div class="col-md-4"> 
+								<input
+									name="kc-postmeta[dane_podstawowe][city]"
+									class="form-control" 
+									placeholder="Miejscowość" 
+									id="city"
+									value="" type="text"
+									ng-model="patient.city"
+								>
+			
+							</div>
+							<label for="postcode" class="col-md-3 control-label">Kod pocztowy:</label> 
+							<div class="col-md-2"> 
+								<input
+									name="postcode"
+									class="form-control" 
+									placeholder="Kod pocztowy" 
+									id="postcode"
+									value="" type="text"
+									ng-model="patient.postcode"
+									ng-pattern="/^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] *\d[A-Z]\d)$/"
+								>
+									<span style="color:red" ng-show="addPatientForm.postcode.$dirty && addPatientForm.postcode.$invalid">
+			        				<span ng-show="addPatientForm.postcode.$error.required">Zip Code is required.</span>
+			        				<span ng-show="addPatientForm.postcode.$error.pattern">Please type a valid U.S. or Canadian zip code.</span>
+			      </span>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="description" class="col-md-2 control-label">Dodatkowe informacje:</label>
+							<div class="col-md-8"> 
+								<textarea name="kc-postmeta[dane_podstawowe][description]"
+									class="form-control" 
+									placeholder="Dodatkowe informacje"
+									id="description" 
+									style="height: 61px; background: #f6f9fc;"
+									ng-model="patient.description">
+								</textarea>
+								<p class="description">Możesz tu wpisać dodatkowe informacje o
+									pacjencie</p>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="text-center">
+			<!-- 			<button type="submit" ng-disabled="addPatientForm.$invalid"	 ng-click="addPatient(patient)">Zapisz</button> -->
+								<button type="submit" class="btn btn-primary" ng-click="addPatient(patient)">Zapisz</button>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>

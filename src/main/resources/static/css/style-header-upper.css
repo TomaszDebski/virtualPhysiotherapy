@@ -1,0 +1,246 @@
+* {
+	box-sizing: border-box;
+}
+
+html, body {
+    font-size: 14px;
+    font-family: "Roboto","Helvetica Nueue","Arial",sans-serif;
+    -webkit-text-size-adjust: 100%;
+	line-height: 1.42857143;
+}
+
+.header_top {
+    padding: 10px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+header .header_top .align-center {
+    position: absolute;
+/*     right: 30px; */
+	right :0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.header_top .centered-content {
+    position: relative;
+}
+
+.header_top .float-right .nav {
+    float: right;
+    clear: both;
+}
+header .header_top .float-right form {
+    float: right;
+    clear: both;
+    width: 100%;
+    max-width: 500px;
+}
+
+form.search {
+    margin-top: 20px;
+}
+
+form {
+    margin-bottom: 15px;
+/*     overflow: hidden; */
+}
+
+form.search .form-group:last-of-type {
+    margin-right: 0;
+}
+
+header .header_top .centered-content div {
+    margin-bottom: 0;
+}
+
+form .form-group, form .form-item {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+form.search [data-icon] {
+    position: absolute;
+    left: 15px;
+    top: 9px;
+    color: #00b6f2;
+    pointer-events: none;
+}
+
+.webaim-hidden {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+label {
+    color: #404040;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+form.search input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    padding-left: 35px;
+    padding-right: 95px;
+    border: 1px solid #ccc;
+    background: #f6f9fc;
+	left: 100px;
+/* 	position: relative; */
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    background: #f6f9fc;
+	margin-bottom: 10px;
+}
+
+input {
+    margin: 0;
+    -webkit-border-radius: 0px;
+    border: 1px solid #404040;
+}
+
+
+
+form.search input[type="submit"] {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 80%;
+    padding: 5px 20px;
+    font-size: 12px;
+    border-top: 1px solid #00b6f2;
+    border-bottom: 1px solid #115b7c;
+}
+
+.button, button, input[type="button"], input[type="submit"] {
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: inline-block;
+    text-decoration: none;
+    padding: 5px 10px;
+    background: #000;
+    color: #fff;
+    margin-bottom: 1em;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+input[type="submit"] {
+    background: #0078ad;
+    padding: 10px 30px;
+    border: none;
+}
+
+.centered-content { 
+    width: 100%;
+/*     max-width: 1260px; */
+    padding-left: 30px;
+    padding-right: 30px;
+    margin: 0 auto;
+}
+
+
+
+
+
+.col_md-9 {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 74.41059%;
+}
+
+.float-right {
+    float: right;
+}
+
+.menu_utility li:first-of-type a, .menu_utility li a {
+    padding: 10px 20px;
+    color: #0078ad;
+    font-weight: normal;
+}
+
+.menu li a.button {
+    background: #b5505a;
+    padding: 10px;
+    margin-right: 20px;
+    color: #fff;
+    text-transform: none;
+    border-top: 1px solid #f07779;
+    border-bottom: 1px solid #873b42;
+}
+
+nav ul li:first-of-type a.button {
+    padding-left: 10px;
+}
+
+nav ul li a {
+    display: block;
+    padding: 5px 10px;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+ul li, ol li {
+    font-size: 16px;
+}
+
+ul.menu li {
+    margin: 0;
+}
+
+ul.menu {
+    border: none;
+    list-style: none;
+    text-align: left;
+}
+
+li {
+    margin: 0;
+	display: inline-block;
+/* 	float: left; */
+}
+
+li:first-of-type a.button {
+    padding-left: 10px;
+}
+
+li a {
+    display: block;
+    padding: 5px 10px;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+li a.button {
+    background: #b5505a;
+    padding: 10px;
+    margin-right: 20px;
+    color: #fff;
+    text-transform: none;
+    border-top: 1px solid #f07779;
+    border-bottom: 1px solid #873b42;
+}

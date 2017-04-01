@@ -1,0 +1,217 @@
+<!DOCTYPE HTML>
+<html ng-app="app" ng-cloak class="ng-cloak">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+ <!--
+      IE8 support, see AngularJS Internet Explorer Compatibility https://docs.angularjs.org/guide/ie
+      For Firefox 3.6, you will also need to include jQuery and ECMAScript 5 shim
+    -->
+    <!--[if lt IE 9]>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.2.0/es5-shim.js"></script>
+      <script>
+        document.createElement('ui-select');
+        document.createElement('ui-select-match');
+        document.createElement('ui-select-choices');
+      </script>
+    <![endif]-->
+
+
+
+
+<link rel="stylesheet" href="resources/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href="resources/js/libraries/jquery-ui.css">
+<link rel="stylesheet" href="resources/js/libraries/fullcalendar.css">
+<!-- <link rel="stylesheet" href="resources/js/libraries/fullcalendar.print.css"> -->
+
+
+<script src="resources/js/libraries/jQuery.js"></script>
+<script src="resources/js/libraries/jquery-ui.min.js"></script>
+<script src="resources/js/libraries/angular.js"></script>
+<script src="resources/js/libraries/angular-resource.js"></script>
+<script src="resources/js/libraries/angular-animate.js"></script>
+<script src="resources/js/libraries/ui-bootstrap-tpls-2.5.0.js"></script>
+<script src="resources/js/libraries/angular-touch.js"></script>
+<script src="resources/js/libraries/calendar.js"></script>
+<script src="resources/js/libraries/angular-ui-router.js"></script>
+<script src="resources/js/libraries/ui-validate.js"></script>
+<script src="resources/js/libraries/angular-sanitize.js"></script>
+
+<script src="resources/js/libraries/moment.min.js"></script>
+<script src="resources/js/libraries/fullcalendar.js"></script>
+<script src="resources/js/libraries/locale-all.js"></script>
+
+<script src="resources/js/libraries/components/jquery.timepicker.js"></script>
+<script src="resources/js/libraries/components/select/select.js"></script>
+<script src="resources/js/libraries/components/uploader/uploader.js"></script>
+<link rel="stylesheet" href="css/components/select.css">
+<link rel="stylesheet" href="css/components/select2.css">
+
+<link rel="stylesheet" href="resources/js/libraries/components/jquery.timepicker.css">
+<link rel="stylesheet" href="css/components/selectize.default.css">
+
+
+<link rel="stylesheet" href="resources/bootstrap/bootstrap-theme.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="resources/bootstrap/bootstrap.js"></script>
+<link rel="stylesheet" href="css/style-header-upper.css">
+<link rel="stylesheet" href="css/style-header-bottom.css">
+<link rel="stylesheet" href="css/style-main.css">
+<link rel="stylesheet" href="css/grid.css">
+<link rel="stylesheet" href="css/style-main-header.css">
+<link rel="stylesheet" href="css/style-common.css">
+
+
+<!-- <link rel="stylesheet" href="css/allPhysiotherapist.css"> -->
+
+<!-- <link rel="stylesheet" href="css/login.css"> -->
+<!-- <link rel="stylesheet" href="css/terminarz-header.css"> -->
+<!-- <link rel="stylesheet" href="css/terminarz-bottom.css"> -->
+<!-- <base href="/"> -->
+</head>
+<body ng-controller="indexController" >
+	<header>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<img src="pics/icon.jpg" style="height: 150px; width: 150px; "
+						alt="ggggggg">
+				</div>
+				<div class="col-md-offset-2 col-md-7">
+					<div class="pull-right">
+				<div class="row">
+						<nav class="nav nav_utility">
+					
+							<ul class="menu menu_utility">
+							<li><p ng-if="authenticated" class="navbar-text">Welcome {{user}}</p> </li>
+								<li ng-if="!authenticated"><a ui-sref="register"
+									class="button desktop become_a_member">Jesteś specjalistą?</a></li>
+
+								<li class="en first active"><a href="/"
+									class="language-link active" xml:lang="en-CA" lang="en-CA">English</a></li>
+
+								<li class="first leaf menu-mlid-605"><a ui-sref="contact"
+									title="">Kontakt</a></li>
+
+								<li ng-if="!authenticated"><a ui-sref="login"><strong>Zaloguj</strong></a></li>
+								<li ng-if="authenticated"><a ui-sref="logout"><strong>Wyloguj</strong></a></li>
+							</ul>
+						</nav>
+						</div>
+					<div class="row">
+						<div class="col-md-6 pull-right">
+						<form  action="/search" method="get">
+<!-- 							<div class="form-group"> -->
+								<div class="input-group">
+							      <input type="text" class="form-control" placeholder="Wyszukiwarka">
+							      <span class="input-group-btn">
+							        <button class="btn btn-primary" type="button">Wyszukaj</button>
+							      </span>
+							    </div>
+<!-- 								<span data-icon="" aria-hidden="true"></span>  -->
+<!-- 								<label -->
+<!-- 									class="webaim-hidden"  -->
+<!-- 									for="search" -->
+<!-- 									>Wyszukaj -->
+<!-- 								</label>  -->
+<!-- 								<input -->
+<!-- 									id=""  -->
+<!-- 									name="keywords"  -->
+<!-- 									type="text" -->
+<!-- 								>  -->
+<!-- 								<a href="#" class="btn btn-primary"> -->
+<!-- 								<span class="glyphicon glyphicon-search"></span> dddddd</a> -->
+							</form>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<!-- Bottom  -->
+		<div class="header_bottom">
+			<div class="centered-content">
+				<nav class="nav nav_header-utility mobile">
+					<ul class="menu menu_header-utility">
+					</ul>
+				</nav>
+				<nav class="nav nav_main">
+
+					<ul class="menu menu_main">
+
+						<li class="first expanded menu-mlid-588 focus"
+							ng-show="authenticated"><a ui-sref="allPatients" title=""><span>Pacjenci</span></a></li>
+
+						<li class="expanded menu-mlid-589" ng-if="authenticated"><a
+							ui-sref="visits"><span>Wizyty</span></a></li>
+						<li class="expanded menu-mlid-590" ng-if="authenticated"><a
+							ui-sref="addVisit"><span>Dodaj wizyte</span></a></li>
+						<li class="expanded menu-mlid-591" ng-if="authenticated"><a
+							ui-sref="calendar({id: 2})"><span>Terminarz</span></a></li>
+						<li class="expanded menu-mlid-592" ng-if="authenticated"><a
+							ui-sref="account"><span>Konto</span></a></li>
+							
+						<li class="expanded menu-mlid-589"
+							ng-if="!authenticated"><a ui-sref="/" title=""><span style="border-left: none;">O
+									portalu</span></a></li>
+						<li class="expanded menu-mlid-589" ng-if="!authenticated"><a
+							ui-sref="/"><span>Fizjoterapia</span></a></li>
+						<li class="expanded menu-mlid-590" ng-if="!authenticated"><a
+							ui-sref="showAllPhysiotherapists"><span>Specjaliści</span></a></li>
+						<li class="expanded menu-mlid-592" ng-if="!authenticated"><a
+							ui-sref="/"><span>Porady</span></a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</header>
+	
+	<div ui-view></div>
+<!-- 	<div ng-view ></div> -->
+
+
+	<script src="resources/js/app.js"></script>
+	<script src="resources/js/config.js"></script>
+	<script src="resources/js/run.js"></script>
+	<script src="resources/js/controllers/navigationController.js"></script>
+	<script src="resources/js/controllers/loginController.js"></script>
+	<script src="resources/js/controllers/logoutController.js"></script>
+	<script src="resources/js/controllers/registerController.js"></script>
+	<script src="resources/js/controllers/allPhysiotherapistController.js"></script>
+	<script src="resources/js/controllers/contactController.js"></script>
+	<script src="resources/js/controllers/patientsController.js"></script>
+	<script src="resources/js/controllers/addPatientController.js"></script>
+	<script src="resources/js/controllers/visitController.js"></script>
+	<script src="resources/js/controllers/addVisitController.js"></script>
+	<script src="resources/js/controllers/patientController.js"></script>
+	<script src="resources/js/controllers/modal/interviewModalController.js"></script>
+	<script src="resources/js/controllers/modal/addVisitInCalendarModelController.js"></script>
+	<script src="resources/js/controllers/calendarController.js"></script>
+	<script src="resources/js/controllers/accountController.js"></script>
+	<script src="resources/js/controllers/indexController.js"></script>
+	
+
+	<script src="resources/js/services/physiotherapistService.js"></script>
+	<script src="resources/js/services/patientsService.js"></script>
+	<script src="resources/js/services/visitService.js"></script>
+	<script src="resources/js/services/patientPaginationService.js"></script>
+	<script src="resources/js/services/allPatientsForPhysiotherapist.js"></script>
+	<script src="resources/js/services/visitPaginationService.js"></script>
+	<script src="resources/js/services/getVisitsService.js"></script>
+	<script src="resources/js/services/getFileService.js"></script>
+	
+	<script src="resources/js/directives/usernameAvailableDirective.js"></script>
+	<script src="resources/js/directives/compareToDirective.js"></script>
+	<script src="resources/js/directives/dropdownDirective.js"></script>
+	
+	
+	<div ng-include="'resources/template/interviewModal.html'"></div>
+	<div ng-include="'resources/template/addVisitInCalendarModal.html'"></div>
+	<div ng-include="'resources/template/second.html'"></div>
+	
+</body>
+</html>

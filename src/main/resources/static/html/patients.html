@@ -1,0 +1,266 @@
+<meta meta charset=utf-8>
+<div class="main-header">
+    <div id="" class="container">
+        <div class="row vertical-align">
+        	<div class="col-md-1">
+        <span class="page-title">Pacjenci</span>
+            </div>
+<!--         <span id="searchbar_patients" class="patient-search-wrap"> -->
+<!--             <input ng-model="patientModel" value="" class="dynamic-search-field" data-action="flexi_search_patient" data-target="#patient-list" placeholder="Szukaj pacjentów..." type="search"> -->
+<!--             <a href="#" class="dynamic-search-reset" style="display: none" ;=""><img src=""></a> -->
+<!--         </span> -->
+			<div class="col-md-11">
+				<div class="pull-right">
+         <a id="add_patient_btn" class="btn btn-primary active" href="#/addPatient">Dodaj pacjenta</a>
+         </div>
+         	</div>
+        </div>
+    </div>
+</div>
+<div id="patient-list" class="ht-container flexi-container">
+
+<table id="patients-table_id" class="patients-table">
+    <thead>
+    <tr>
+        <th>Imię i nazwisko</th>
+        <th align="left">Płeć</th>
+        <th>Data urodzenia</th>
+        <th>Telefon</th>
+        <th>E-mail</th>
+        <th>Ostatnia wizyta</th>
+        <th>Akcje</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="patient in patients ">
+      <td><span class="table_span"><a href="#/patient/{{patient.id}}">{{patient.firstname}} {{patient.lastname}}</a></span></td>
+         <td><span class="table_span"><img src="">{{patient.sex}}</span></td>
+         <td><span class="table_span">{{patient.age}}</span></td>
+         <td><span class="table_span">{{patient.phone}}</span></td>
+         <td><span class="table_span">{{patient.email}}</span></td>
+         <td><span class="table_span">{{patient.lastVisit | date:'EEE, dd/MMM/yy, HH:mm' }}</span></td>
+                        <td class="actions-col">
+               <span class="masterTooltip table_span" title="Dodaj wizytę"> 
+	               <a ui-sref="addVisit({patientId:{{patient.id}}})" title="Dodaj wizytę" class="icon">
+	               		<img src="/pics/terminarz_szary.svg"
+	               		>
+	               </a>
+               </span>
+                <span class="masterTooltip table_span" title="Usuń pacjenta"><a ng-click="deletePatient(patient)" href="" class="icon"><img src="/pics/usun_szary.svg"></a></span> 
+                <span class="maste-rTooltip table_span" title="Wyślij email"><a href="#myModal" onclick="addData(event)" role="button" class="icon" data-toggle="modal" attr.item-patient="11111 22222" attr.item-email="1111@o2.pl"><img src="/pics/email.svg"></a></span>           
+            </td>
+            <script type="text/javascript">
+                   function confirm_click(){
+                   return confirm("Czy na pewno chcesz usunąć pacjenta? ");
+               }
+            </script>
+        </tr>
+        </tbody>
+</table>
+
+<div class="row">
+    <div class="col-md-5 col-md-offset-4">
+    	<ul  uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>
+    </div>
+</div>
+</div>
+<style>
+
+/* .calendar-header { */
+/*     padding-left: 5px !important; */
+/*     padding-right: 5px !important; */
+/*     width: 100%; */
+/* } */
+
+/* .calendar-header { */
+/*     background: #f4f4f4; */
+/*     padding: 15px 0; */
+/*     min-height: 100px; */
+/*     margin-bottom: 15px; */
+/* } */
+
+/* .ht-container { */
+/*     max-width: 1100px; */
+/*     margin: 0 auto; */
+/*     padding: 0 15px; */
+/* } */
+
+/* .ht-container { */
+/*     padding: 0 20px; */
+/* } */
+
+/* .ht-container, #page-header.ph-align-center .ht-container { */
+/*     max-width: 1170px; */
+/*     padding: 0; */
+/* } */
+
+/* .ht-container, #page-header.ph-align-center .ht-container { */
+/*     padding-left: 20px; */
+/*     padding-right: 20px; */
+/* } */
+
+/* .calendar-header .page-title { */
+/*     font-size: 22px; */
+/*     font-weight: 700; */
+/*     line-height: 40px; */
+/* } */
+
+/* .calendar-header .page-title:last-of-type { */
+/*     float: left; */
+/* } */
+
+/* .calendar-header .page-title:last-of-type { */
+/*     margin-right: 20px; */
+/* } */
+
+/* div.patients_header { */
+/*     float: right; */
+/* } */
+
+/* .patient-search-wrap { */
+/*     margin-left: 100px; */
+/*     display: inline-block; */
+/*     padding: 0 10px 0 2px; */
+/*     vertical-align: text-bottom; */
+/*     border-bottom: 1px solid #7d7d7d; */
+/*     color: #7d7d7d; */
+/*     font-size: 12px; */
+/* } */
+
+/* span.patient-search-wrap { */
+/*     float: right; */
+/*     margin-left: 0 !important; */
+/*     margin-right: 10px; */
+/* } */
+
+/* span#searchbar_patients.patient-search-wrap { */
+/*     margin-left: 10px !important; */
+/*     margin-top: 15px; */
+/* } */
+
+/* span#searchbar_patients.patient-search-wrap { */
+/*     float: left !important; */
+/* } */
+
+/* button, input, optgroup, select, textarea { */
+/*     margin: 0; */
+/*     font: inherit; */
+/*     color: inherit; */
+/* } */
+
+/* button, input, select, textarea { */
+/*     font-family: inherit; */
+/*     font-size: inherit; */
+/*     line-height: inherit; */
+/* } */
+
+/* .patient-search-wrap input { */
+/*     background: none; */
+/*     border: none; */
+/*     outline: none; */
+/* } */
+
+/* a { */
+/*     background: transparent; */
+/* } */
+
+/* a, a:visited { */
+/*     text-decoration: none; */
+/*     outline: 0; */
+/*     -moz-transition: color 0.15s ease-out; */
+/*     -o-transition: color 0.15s ease-out; */
+/*     -webkit-transition: color 0.15s ease-out; */
+/*     -ms-transition: color 0.15s ease-out; */
+/*     transition: color 0.15s ease-out; */
+/* } */
+
+/* a { */
+/*     background-color: transparent; */
+/* } */
+
+/* a { */
+/*     color: #337ab7; */
+/*     text-decoration: none; */
+/* } */
+
+/* img { */
+/*     border: 0; */
+/* } */
+
+/* img { */
+/*     vertical-align: middle; */
+/* } */
+
+/* form input[type="reset"], form input[type="submit"], a.button { */
+/*     width: 100%; */
+/*     border: 0; */
+/*     border-radius: 0; */
+/*     box-shadow: none; */
+/*     color: #fff !important; */
+/*     background: #024593 !important; */
+/*     text-transform: uppercase; */
+/*     font-size: 13px; */
+/*     padding: 7px 0; */
+/* /*     margin-top: 20px !important; */ */
+/* 	margin-top : 0px; */
+/* /*     border-radius: 15px; */ */
+/*     font-size: 15px; */
+/*     font-weight: 600; */
+/* } */
+
+.ht-pagination ul a, .ht-pagination ul span, form button, form input[type="reset"], form input[type="submit"], a.button {
+    padding: 6px 23px 6px;
+    border: none !important;
+}
+
+.ht-pagination ul a, .ht-pagination ul span, form button, form input[type="reset"], form input[type="submit"], nav ul > li a, #nav-primary ul > li a, a.button {
+    color: #7e7e7e !important;
+    font-family: 'Roboto Slab', serif;
+    text-transform: none;
+    font-weight: normal;
+    padding: 6px 16px 2px;
+    letter-spacing: 0.5px;
+}
+
+.ht-pagination ul a, .ht-pagination ul span, form button, form input[type="reset"], form input[type="submit"], nav ul > li.home a, nav ul > li a:hover, #nav-primary ul > li.home a, #nav-primary ul > li a:hover, a.button {
+    background: #b70068;
+/*     border-radius: 20px; */
+    color: #ffffff !important;
+    border: 3px solid #630039;
+    border-width: 0 0 3px 0;
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2);
+}
+
+.ht-pagination ul a, .ht-pagination ul span, form button, form input[type="reset"], form input[type="submit"], a.button {
+    font-size: 13px;
+    padding: 4px 23px 3px;
+    letter-spacing: 0;
+}
+
+/* a.button-large { */
+/*     padding-top: 7px; */
+/* } */
+
+/* a.button-large { */
+/*     height: 35px; */
+/*     display: inline-block; */
+/*     font-size: 13px; */
+/*     width: 165px; */
+/*     text-align: center; */
+/* } */
+
+.flexi-container {
+    padding-bottom: 50px;
+}
+
+
+
+.actions-col .icon img {
+    height: 20px;
+    width: auto;
+    max-width: 20px;
+}
+
+</style>

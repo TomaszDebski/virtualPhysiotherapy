@@ -1,0 +1,28 @@
+ <script type="text/ng-template" id="myModal.html">
+ <div class="modal-header">
+            <h3 class="modal-title">Modal title</h3>
+</div>
+        <div class="modal-body">
+      <div class="btn-group dropdown" uib-dropdown="" is-open="status.isopen" style="">
+      	<button id="single-button" type="button" class="btn btn-primary dropdown-toggle" uib-dropdown-toggle="" ng-disabled="disabled" aria-haspopup="true" aria-expanded="false">
+       	 Czêœæ cia³a<span class="caret"></span>
+      		</button>
+      		<ul class="dropdown-menu" uib-dropdown-menu="" role="menu" aria-labelledby="single-button" style="min-width: 120px;">
+        		<li ng-repeat="part in bodyPart">
+          		<a href>{{part}}</a>
+				</li>
+     		 </ul>
+   		 </div>
+
+
+
+
+       </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+
+
+</script>

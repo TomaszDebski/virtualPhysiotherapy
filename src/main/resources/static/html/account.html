@@ -1,0 +1,342 @@
+<meta meta charset=utf-8>
+	<div class="main-header">
+		<div class="container">
+			<div class="row vertical-align">
+				<div class="col-md-1">
+					<span class="page-title">Konto</span>
+				</div>
+				<div class="col-md-11">
+					<div class="pull-right">
+			        	<a id="edit_btn" class="btn btn-primary active" href="">Edytuj</a>
+			        </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container">
+	<div class="row">
+      <!-- left column -->
+      <div class="col-md-3 col-md-offset-2">
+        <div class="text-center">
+           <img alt="/pics/defaultAvatar.png" src="/download?object_id={{user.id}}" style="height:150px;width=100px;"/>
+          <h6>{{user.firstname}} {{user.lastname}}</h6>
+          
+         	
+        </div>
+        <div class="well" ng-show="editAccount" style="width:300px;">
+                        <div>
+                            <div style="float:left;">
+                                <button ng-click="btn_upload()">Upload</button>
+                                <button ng-click="btn_clean()">Remove all</button>
+                            </div>
+                            <input type="file" id="file1"/>
+                        </div>
+                        <div ng-repeat="file in files" style="margin-top: 20px;border-bottom-color: antiquewhite;border-bottom-style: double;">
+                            <div><span>{{file.name}}</span><div style="float:right;"><span>{{file.humanSize}}</span><a ng-click="btn_remove(file)" title="Remove from list to be uploaded"><i class="icon-remove"></i></a></div>
+                            </div>
+                            <progress style="width:250px;" value="{{file.loaded}}" max="{{file.size}}"></progress>
+                        </div>
+        </div>
+      </div>
+		<div class="row">
+			<div class=" col-md-5 col-md-offset-1">
+				<form  name="editUserForm" class="form-horizontal">
+					<fieldset>
+						<div class="form-group row">
+						  <label for="login" class="col-md-4 control-label">Login:</label>
+						  <div class="col-md-8">
+						    <input 
+						    	ng-if="editAccount"
+						    	class="form-control" 
+						    	type="text" 
+						    	value="" 
+						    	id="login"
+						    	name=""
+								required="required"
+								placeholder="login" 
+								ng-model="user.username"
+							>
+							<label 
+								for="" 
+								class="control-label"
+								ng-if="!editAccount"
+								>{{user.username}}</label>
+						  </div>
+						</div>
+						<div class="form-group row">
+						  <label for="password" class="col-md-4 control-label">Hasło:</label>
+						  <div class="col-md-8">
+						    <input
+						    	ng-show="editAccount" 
+						    	class="form-control" 
+						    	type="password" 
+						    	value="" 
+						    	id="password"
+						    	name=""
+								required="required"
+								placeholder="password" 
+								ng-model="user.password"
+						    	>
+						    <label 
+								for="" 
+								class="control-label"
+								ng-show="!editAccount"
+								>{{user.password}}</label>
+						  </div>
+						</div>		
+						<div class="form-group row">
+						  <label for="firstname" class="col-md-4 control-label">Imię:</label>
+						  <div class="col-md-8">
+						  	<input
+						  		ng-show="editAccount"
+						  		class="form-control"
+								name="firstname"
+								class="kcs-text kcs-input" 
+								required="required" 
+								placeholder="Imię*"
+								id="firstname" 
+								value=""
+								type="text" 
+								required
+								ng-model="user.firstname"
+								ng-minlength="3" ng-maxlength="10"
+							>
+								<label 
+								for="" 
+								class="control-label"
+								ng-show="!editAccount"
+								>{{user.firstname}}
+							</label>
+								<span style="color:red" ng-show="editUserForm.firstname.$dirty && editUserForm.firstname.$invalid">
+								<span ng-show="editUserForm.firstname.$error.required">Imię jest wymagane</span>
+								<span ng-show="editUserForm.firstname.$error.minlength">Za krótkie imię</span>
+								<span ng-show="editUserForm.firstname.$error.maxlength">Za długie imię</span>
+							
+						  </div>
+						</div>
+						
+						<div class="form-group row">
+						  <label for="lastname" class="col-md-4 control-label">Nazwisko:</label>
+						  <div class="col-md-8">
+						    <input 
+						    	ng-show="editAccount"
+						    	class="form-control" 
+						    	type="text" 
+						    	value="" 
+						    	id="lastname"
+						    	name=""
+								required="required"
+								placeholder="Nazwisko*" 
+								ng-model="user.lastname"
+							>
+							<label 
+								for="" 
+								class="control-label"
+								ng-show="!editAccount"
+								>{{user.lastname}}
+							</label>
+						  </div>
+						</div>
+						
+						<div class="form-group row">
+						  <label for="pesel" class="col-md-4 control-label">PESEL:</label>
+						  <div class="col-md-8">
+						    <input 
+						    	ng-show="editAccount"
+						    	class="form-control" 
+						    	type="text" 
+						    	value="" 
+						    	id="pesel"
+						    	name=""
+								required="required"
+								placeholder="PESEL" 
+								ng-model="user.pesel"
+							>
+							<label 
+								for="" 
+								class="control-label"
+								ng-show="!editAccount"
+								>{{user.pesel}}
+							</label>
+						  </div>
+						</div>
+						
+						<div class="form-group row">
+						  <label for="email" class="col-md-4 control-label">Email:</label>
+						  <div class="col-md-8">
+						    <input 
+						    	ng-show="editAccount"
+						    	class="form-control" 
+						    	type="email" 
+						    	value="" 
+						    	id="email"
+						    	name="email"
+								required="required"
+								placeholder="E-mail*" 
+								ng-model="user.email"
+							>
+							<label 
+								for="" 
+								class="control-label"
+								ng-show="!editAccount"
+								>{{user.email}}
+							</label>
+								<span style="color:red" ng-show="editUserForm.email.$dirty && editUserForm.email.$invalid">
+								<span ng-show="editUserForm.email.$error.required">Email is required.</span>
+								<span ng-show="editUserForm.email.$error.email">Invalid email address.</span>
+						    	>
+						    
+						  </div>
+						</div>
+				
+						<div class="form-group row">
+						  <label for="phone" class="col-md-4 control-label">Telefon:</label>
+						  <div class="col-md-8">
+						    <input 
+						    	ng-show="editAccount"
+						    	class="form-control" 
+						    	type="text" 
+						    	value="" 
+						    	id="phone"
+						    	name=""
+								required="required"
+								placeholder="telefon" 
+								ng-model="user.phone"
+							>
+							<label 
+								for="" 
+								class="control-label"
+								ng-show="!editAccount"
+								>{{user.phone}}
+							</label>
+						  </div>
+						</div>
+				
+						<div class="form-group row">
+						  <label for="city" class="col-md-4 control-label">Miasto:</label>
+						  <div class="col-md-8">
+						    <input 
+						    	ng-show="editAccount"
+						    	class="form-control" 
+						    	type="text" 
+						    	value="" 
+						    	id="city"
+						    	name=""
+								required="required"
+								placeholder="miasto" 
+								ng-model="user.city"
+							>
+							<label 
+								for="" 
+								class="control-label"
+								ng-show="!editAccount"
+								>{{user.city}}
+							</label>
+						  </div>
+						</div>
+				
+						<div class="form-group row">
+						  <label for="street" class="col-md-4 control-label">Ulica:</label>
+						  <div class="col-md-8">
+						    <input 
+						    	ng-show="editAccount"
+						    	class="form-control" 
+						    	type="text" 
+						    	value="" 
+						    	id="street"
+						    	name=""
+								required="required"
+								placeholder="ulica" 
+								ng-model="user.address"
+							>
+							<label 
+								for="" 
+								class="control-label"
+								ng-show="!editAccount"
+								>{{user.address}}
+							</label>
+						  </div>
+						</div>
+				
+						<div class="form-group row">
+						  <label for="number" class="col-md-4 control-label">Numer:</label>
+						  <div class="col-md-8">
+						    <input 
+						    	ng-show="editAccount"
+						    	class="form-control" 
+						    	type="text" 
+						    	value="" 
+						    	id="number"
+						    	name=""
+								required="required"
+								placeholder="Numer" 
+								ng-model="user.number"
+							>
+							<label 
+								for="" 
+								class="control-label"
+								ng-show="!editAccount"
+								>{{user.number}}
+							</label>
+						  </div>
+						</div>
+				
+						<div class="form-group row">
+						  <label for="postcode" class="col-md-4 control-label">Kod pocztowy:</label>
+						  <div class="col-md-8">
+						    <input 
+						    	ng-show="editAccount"
+						    	class="form-control" 
+						    	type="text" 
+						    	value="" 
+						    	id="postcode"
+						    	name="postcode"
+								required="required"
+								placeholder="Kod pocztowy" 
+								ng-model="user.postCode"
+								ng-pattern="/^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] *\d[A-Z]\d)$/"
+							>
+							<label 
+								for="" 
+								class="control-label"
+								ng-show="!editAccount"
+								>{{user.postCode}}
+							</label>
+								<span style="color:red" ng-show="editUserForm.postcode.$dirty && editUserForm.postcode.$invalid">
+								<span ng-show="editUserForm.postcode.$error.required">Zip Code is required.</span>
+								<span ng-show="editUserForm.postcode.$error.pattern">Please type a valid U.S. or Canadian zip code.</span>
+						      </span>
+						  </div>
+						</div>
+						
+						<div class="form-group row">
+					      <div class="offset-sm-2 col-sm-10">
+					      	<div class="pull-right">
+					        	<button 
+					        		ng-show="editAccount"
+					        		type="button" 
+					        		class="btn btn-primary" 
+					        		ng-click="editUser(user)"
+					        		>Zmień</button>
+					        	<button 
+					        		ng-show="editAccount"
+					        		type="button" 
+					        		class="btn btn-primary" 
+					        		ng-click="changeToEdit(false)"
+					        		>Zakończ</button>
+					        	<button 
+					        		ng-hide="editAccount"
+						        	type="button"
+						        	class="btn btn-primary" 
+						        	ng-click="changeToEdit(true)"
+						        	>Edytuj</button>
+					        </div>	
+					      </div>
+				    	</div>
+				    </fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+

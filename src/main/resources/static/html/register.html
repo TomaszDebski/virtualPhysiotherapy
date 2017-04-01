@@ -1,0 +1,151 @@
+<meta meta charset=utf-8>
+	<section class="page-content">
+		<div class="centered-content widget_content">
+			<div class="row">
+				<div class="col_md-3 sidebar_left">
+					<div class="key-topics sidebar_menu"></div>
+				</div>
+				<div class="col-md-6">
+					<div class="tabs"></div>
+					<form method="post" 
+					name="registerForm"
+					id="registerForm"
+					novalidate>
+						<h1>Utwórz nowe konto</h1>
+						<p>Aby korzystać z aplikacji należy rozpocząć od utworzenia
+							konta logowania.</p>
+						<p>
+							<span class="required">* Oznaczenie wymaganych pól</span>
+						</p>
+<!-- 						<ng-form name="userForm">  -->
+						<div class="row">
+							<label for="field_given_name">
+							Imię
+								<span class="required">*</span>
+							</label> 
+							<input 
+							
+							id="name" 
+							name="name"
+							value="" type="text" 
+							ng-model="user.firstName"
+							ng-class="{submitted:registerForm.submitted}"
+							required
+							>
+							<span ng-show="registerForm.name.$error.required  && registerForm.submitted" style="color : #f00;">imię jest wymagane</span>
+						</div>
+						
+						
+						<div class="row">
+							<label for="field_family_name">Nazwisko <span
+								class="required">*</span>
+							</label>
+							<input 
+							required 
+							id="field_family_name" 
+							name="lastName"
+							value="" 
+							type="text" 
+							ng-model="user.lastName"
+							ng-class="{submitted:registerForm.submitted}"
+							>
+							<span ng-show="registerForm.lastName.$error.required && registerForm.submitted" style="color : #f00;">Nazwisko jest wymagane</span>
+						</div>
+						
+						
+						<div class="row">
+							<label for="field_address">Email <span class="required">*</span>
+							</label>
+							<input 
+							required 
+							id="field_address" 
+							name="email" 
+							value=""
+							type="email" 
+							ng-model="user.email"
+							ng-class="{submitted:registerForm.submitted}"
+							>
+							<span ng-show="registerForm.email.$error.required && registerForm.submitted" style="color : #f00;">Email jest wymagany</span>
+						</div>
+						
+						
+						<div class="row">
+							<label for="field_given_name">login
+								<span class="required">*</span>
+							</label> 
+							<input required="" 
+							id="field_given_name" 
+							name="username"
+							value="" 
+							type="text" 
+							ng-model="user.username"
+							ng-class="{submitted:registerForm.submitted}"
+							username-available-directive
+							>	
+							<span 
+							ng-show="registerForm.username.$error.required && registerForm.submitted" style="color : #f00;">
+							Login jest wymagany</span>
+							<span 
+							ng-show="registerForm.$error.usernameExists && registerForm.submitted" style="color : #f00;">
+							Nazwa usera została już zarezerwowana</span>
+						</div>
+						
+						
+						<div class="row">
+							<label for="field_password">
+								Hasło 
+								<span class="required">*</span>
+							</label>
+							<input 
+							required 
+							id="field_password" 
+							name="password" 
+							value=""
+							type="password" 
+							ng-model="user.password"
+							ng-class="{submitted:registerForm.submitted}"
+							>
+							<span ng-show="registerForm.password.$error.required && registerForm.submitted" style="color : #f00;">Hasło jest wymagane</span>
+						</div>
+						
+						<div class="row">
+							<label for="field_password_confirmation">Potwierdź hasło <span
+								class="required">*</span>
+							</label>
+							<input 
+							required 
+							id="field_password_confirmation"
+							name="field_password_confirmation" 
+							value="" 
+							type="password" 
+							ng-model="user.password_verify"
+							ng-class="{submitted:registerForm.submitted}"
+							equals-directive="{{value1}}"/>
+							>
+							<div class="row">
+								<span 
+								ng-show="registerForm.passwordConfirm.$error.required && registerForm.submitted" 
+								 style="color : #f00;">Potwierdzenie hasła jest wymagane</span>
+							 </div>
+							 <div class="row">
+							 <div ng-show="registerForm.field_password_confirmation.$error.equals">
+        								Fields are not equal!</div>
+<!-- 							<span  -->
+<!-- 							ng-show="user.password != passwordConfirm && registerForm.submitted"  -->
+<!-- 							 style="color : #f00;">Hasła nie są takie same</span>  -->
+<!-- 							 </div> -->
+						</div>
+						
+						<div class="row">
+							<input value="Stwórz" type="submit" ng-click="createUser(user)"> 
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+	<style>
+input.submitted.ng-invalid{
+  border:2px solid #f00;
+}
+	</style>

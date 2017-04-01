@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="bootstrap\css\bootstrap.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="bootstrap\css\bootstrap-theme.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="bootstrap\js\bootstrap.js"></script>
+<link rel="stylesheet" href="css/style-header-upper.css">
+<link rel="stylesheet" href="css/style-header-bottom.css">
+<link rel="stylesheet" href="css/style-main.css">
+<link rel="stylesheet" href="css/allPhysiotherapist.css">
+</head>
+<body>
+
+<div id="search-listing-container">
+
+		<div class="row">
+
+						<div class="col-md-9" id="search-content" data-id="search-content" style="min-height: 0px;">
+
+													
+<div class="row affix-top" id="calendar-bluebar">
+	<div class="col-md-7 slogan">
+		<p>Znajdź lekarza i umów wizytę</p>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="search-results-container">
+				<ul class="search-list list-unstyled" data-loc="">
+					<li ng-repeat="physiotherapist in allPhysiotherapists">
+						<div class="row rank-element ">
+							<div class="rank-element-left col-md-7">
+								<div class="row">
+									<div class="col-md-3 left">
+										<span data-id="js-link"
+											data-href="https://www.znanylekarz.pl/arkadiusz-adamczyk/ginekolog/katowice"
+											class="avatar-style">
+											<i class="sprite-rwd-doctor-default-80-80"></i> 
+											<img src="//s3-eu-west-1.amazonaws.com/znanylekarz.pl/doctor/162036/162036c317e00253bd676c7d8894ddf6_80_square.jpg"
+											style="width: 80px; height: 80px"
+											alt="Arkadiusz Adamczyk - ginekolog"></span><span
+											class="verified"><i
+											class="sprite-retina-badge-verified"
+											title="Ten lekarz potwierdził wiarygodność danych na swoim profilu"></i></span>
+									</div>
+									<div class="col-md-9 content">
+										<h4 class="rank-element-name">
+											<a
+												href="https://www.znanylekarz.pl/arkadiusz-adamczyk/ginekolog/katowice"><span
+												itemprop="name">{{physiotherapist.firstname}} {{physiotherapist.lastname}}</span></a>
+											<div class="rank-element-rating clearfix"
+												itemprop="aggregateRating" itemscope=""
+												itemtype="http://schema.org/AggregateRating">
+												<div class="rating small" data-score="5">
+													<div class="score"></div>
+												</div>
+												<a class="opinion-count"
+													href="https://www.znanylekarz.pl/arkadiusz-adamczyk/ginekolog/katowice#opinions">
+													(24 opinii) </a>
+											</div>
+										</h4>
+										<h4 class="rank-element-specializations">ginekolog</h4>
+										<ul class="list-unstyled rank-element-addresses">
+											<li itemprop="address" itemscope=""
+												itemtype="http://schema.org/PostalAddress"><p>
+													<span class="street">{{physiotherapist.address}}
+										</ul>
+										<blockquote class="last-opinion country-quotes">O
+											ile dobrze pamietam, jakieś 2 lata temu Pan Doktor przyjmował
+											w Katowicach w przychodni na Zadolu....</blockquote>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+
+</div>

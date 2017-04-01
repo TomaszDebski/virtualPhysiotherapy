@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd 
+       http://www.springframework.org/schema/util 
+       http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+
+	<util:map id="kindOfPain" value-type="java.lang.String">
+		<entry key="0" value="miejscowy" />
+		<entry key="1" value="promieniujący" />
+		<entry key="2" value="miejscowy" />
+		<entry key="3" value="boczny" />
+	</util:map>
+	
+	<util:map id="bodyPart" value-type="java.lang.String">
+		<entry key="0" value="Głowa		" />
+		<entry key="1" value="tułów		" />
+		<entry key="2" value="plecy		" />
+		<entry key="3" value="ręce		" />
+		<entry key="4" value="nogi		" />
+	</util:map>
+
+</beans>

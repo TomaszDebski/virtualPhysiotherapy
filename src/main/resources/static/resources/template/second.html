@@ -1,0 +1,226 @@
+<meta meta charset=utf-8>
+<script type="text/ng-template" id="addVisitModal2.html">
+
+
+<link href="css/fonts/font-awesome.min.css" rel="stylesheet">
+
+   <!-- <div id="login-overlay" class="modal-dialog">-->
+      <div class="modal-content">
+		<!-------------------------header----------------------->
+          <div class="modal-header" style="">
+				<div class="row vertical-align">
+					<div class="col-xs-4">
+              			<h3 class="modal-title">Dodaj wizyte </h3>
+					</div>
+					<div class="col-xs-6">
+				<!-------------------------ui-select----------------------->
+							<ui-select 
+					id="selectedPatientId"
+					ng-model="visit.patientId" 
+					theme="select2" 
+					ng-disabled="disabled" 
+					style="min-width: 300px;" 
+					title="Choose a person" 
+					on-select="ctrl.onSelectPatient($item, $model)" 
+					required
+					name="selectPatientId"
+					ng-class="{submitted:addVisitForm.submitted}"
+				>
+    			<ui-select-match 
+					placeholder="Wybierz pacjenta z listy" >{{$select.selected.firstname}} {{$select.selected.lastname}}
+				</ui-select-match>
+    			<ui-select-choices 
+					repeat="person in ctrl.people | propsFilter: {firstname: $select.search, lastname: $select.search, age: $select.search}" >
+      				<div ng-bind-html="person.firstname + ' ' + person.lastname | highlight: $select.search"></div>
+      				<small>
+        				email: {{person.email}}
+        				age: <span ng-bind-html="''+person.age | highlight: $select.search"></span>
+      				</small>
+    			</ui-select-choices>
+  				</ui-select> 
+					<!-------------------------/ui-select----------------------->
+					</div>
+				</div>
+          </div>
+		<!-------------------------/header----------------------->
+	
+          <div style="margin-top: 1px; background-color: #2e77bc; height: 1px; width: 100%;"></div>
+
+		<!-------------------------body----------------------->
+         <form name="addVisitForm">
+          <div class="modal-body">
+              <div class="row">
+					<!-------------------------left----------------------->
+                 <div class="col-xs-6">
+              <h4>Dane pacjenta</h4>
+                       <div class="row">
+							<div class="col-xs-5">
+								<span style="color: #acacac; font-size: 9pt; text-align: left;"
+								>Imię i nazwisko: 
+								</span>  
+							</div>
+							<div class="col-xs-7">
+								<span style="font-size: 9pt; text-align: left;"
+								>{{ctrl.choosedPatient.firstname}} {{ctrl.choosedPatient.lastname}}
+								</span>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-5">
+								<span style="color: #acacac; font-size: 9pt; text-align: left;"
+								>Email: 
+								</span>  
+							</div>
+							<div class="col-xs-7">
+								<span style="font-size: 9pt; text-align: left;"
+								>{{ctrl.choosedPatient.email}}
+								</span>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-5">
+								<span style="color: #acacac; font-size: 9pt; text-align: left;"
+								>Data urodzenia:
+								</span>  
+							</div>
+							<div class="col-xs-7">
+								<span style="font-size: 9pt; text-align: left;"
+								>{{ctrl.choosedPatient.birthDate}}
+								</span>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<a href="#"><span class="label label-primary">View Spring record</span></a> <a href="#"><span class="label label-primary">View on EIP</span></a>
+							</div>
+						</div>
+                          <div style="margin-top: 8px; margin-bottom: 8px; width: 100%; height: 1px; background-color: #d9d9d9;"></div>
+                      	
+						<h4>Opis Pacjenta</h4>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div style="word-wrap: break-word;">
+									<span style="font-size: 7pt; text-align: left;"
+										>{{ctrl.choosedPatient.description}}
+									</span>
+									
+								</div>
+								
+							</div>
+						</div>
+                  </div>
+							<!-------------------------left----------------------->
+
+							<!-------------------------right----------------------->
+                  <div class="col-xs-6">
+                      <div class="well">
+                            <div style="color: #acacac; font-size: 9pt; text-align: center; padding: 0px; margin-bottom: 6px;">Ustal wizyte</div>
+									<div class="row vertical-align">
+										<div class="col-xs-4">
+											<span style="color: #acacac; font-size: 9pt; text-align: left;"
+												>Data wizyty:
+											</span>  
+										</div>
+										<div class="col-xs-8">
+											<p class="input-group">
+			          							<input type="text" 
+													class="form-control" 
+													ng-change="getDate()" 
+													uib-datepicker-popup="{{format}}"
+													ng-model="ctrl.visit.startDate" 
+													is-open="popup1.opened" 
+													ng-model-options="{timezone: 'utc'}"
+													datepicker-options="dateOptions" 
+													ng-required="true" 
+													close-text="Close" 
+													alt-input-formats="altInputFormats" 
+													required
+													name="dateField"
+													ng-class="{submitted:addVisitForm.submitted}"
+												/>
+			          							<span class="input-group-btn">
+			            							<button 
+														type="button" 
+														class="btn btn-default" 
+														ng-click="open1()">
+														<i class="glyphicon glyphicon-calendar"></i>
+													</button>
+			          							</span>
+			        						</p>
+										</div>
+									</div>
+									<div class="row ">
+										<div class="col-xs-4">
+											<span style="color: #acacac; font-size: 9pt; text-align: left;"
+												>Godzina:
+											</span>  
+										</div>
+										<div class="col-xs-8">
+											<ui-select 
+												ng-model="visit.hour" 
+												theme="selectize" 
+												ng-disabled="ctrl.disabled"  
+												title="Choose a country"
+												on-select="ctrl.onSelectHour($item, $model)"
+												name="hourField"
+												id="hourField"
+												required
+												ng-class="{submitted:addVisitForm.submitted}"
+							 				>
+    											<ui-select-match placeholder="Wybierz godzinę">{{$select.selected.name}}</ui-select-match>
+    											<ui-select-choices repeat="country in ctrl.countries | filter: $select.search">
+      												<span ng-bind-html="country.name | highlight: $select.search"></span>
+      												<small ng-bind-html="country.code | highlight: $select.search"></small>
+    											</ui-select-choices>
+  											</ui-select>
+							</div>
+						</div>
+						<div class="row vertical-align">
+							<div class="col-xs-4">
+								<span style="color: #acacac; font-size: 9pt; text-align: left;"
+								>Długość wizyty:
+								</span>  
+							</div>
+							<div class="col-xs-8">
+								<input
+								name="lengthField"
+								class="form-control" 
+								ng-model="ctrl.visit.length"
+								required
+								ng-class="{submitted:addVisitForm.submitted}"
+								>
+							</div>
+						</div>
+
+
+                     </div>
+                  </div>
+							<!-------------------------right----------------------->
+              </div>
+          	</div>
+
+		<!-------------------------body----------------------->
+
+			<div class="modal-footer">
+            <button type="button" class="btn btn-primary" ng-click="ok(visit)">OK</button>
+            <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        	</div>
+			</form> 
+      </div>
+  </div>
+<style>
+.app-modal-window .modal-dialog {
+  	width: 800px;
+	height: 600px;
+}
+
+#selectedPatientId.submitted.ng-invalid, input.submitted.ng-invalid{
+  border:2px solid #f00;
+	border-radius: 4px;
+}
+</style>
+  </script>

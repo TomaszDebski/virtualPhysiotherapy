@@ -1,0 +1,50 @@
+.centered-content {
+    width: 100%;
+    max-width: 1260px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin: 0 auto;
+}
+
+.nav_main {
+    display: table;
+    width: 100%;
+    position: relative;
+}
+
+.menu_main {
+    display: table-row;
+}
+
+.menu_main > li {
+    float: none;
+    display: table-cell;
+    text-align: center;
+    position: relative;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+li.expanded, li.collapsed, li.leaf {
+    padding: 0;
+}
+
+.menu_main > li > a {
+    padding: 15px 0;
+}
+
+.menu_main > li > a span {
+    display: block;
+    padding: 5px 15px;
+    border-left: 1px solid #ccc;
+}
+
+.menu_main > li:first-of-type > a span {
+    border-left: none;
+}
+
+:last-child {
+    margin-bottom: 0;
+}

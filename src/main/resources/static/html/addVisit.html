@@ -1,0 +1,226 @@
+<meta meta charset=utf-8>
+	<div class="main-header">
+		<div class="container">
+			<span class="page-title">Dodaj nową wizytę</span>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	<!-- ///////////////////////////////////////// -->
+	
+	
+<div class="container">
+	<form class="form-horizontal" name="addVisitForm">
+		<fieldset>
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="Pacjent">Pacjent:</label>  
+			  <div class="col-md-4">
+			  	<ui-select 
+					ng-model="ctrl.people.patientId" 
+					theme="select2" 
+					ng-disabled="disabled" 
+					style="width: 100%;" 
+					title="Choose a person" 
+					on-select="ctrl.onSelectPatient($item, $model)" 
+					ng-required="true"
+					name="selectPatientId"
+					id="selectedPatientId"
+					ng-class="{submitted:addVisitForm.submitted}"
+				>
+    			<ui-select-match 
+					placeholder="Wybierz pacjenta z listy" >{{$select.selected.firstname}} {{$select.selected.lastname}}
+				</ui-select-match>
+    			<ui-select-choices 
+					repeat="person in ctrl.people | propsFilter: {firstname: $select.search, lastname: $select.search, age: $select.search}" >
+      				<div ng-bind-html="person.firstname + ' ' + person.lastname | highlight: $select.search"></div>
+      				<small>
+        				email: {{person.email}}
+        				age: <span ng-bind-html="''+person.age | highlight: $select.search"></span>
+      				</small>
+    			</ui-select-choices>
+				</ui-select>
+			  </div>
+			</div>
+			
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="datapicker">Data:</label>  
+			  <div class="col-md-4">
+			  	 <div class="input-group">
+			  	<input type="text" 
+													class="form-control" 
+													ng-change="getDate()" 
+													uib-datepicker-popup="{{format}}"
+													ng-model="ctrl.visit.startDate" 
+													is-open="popup1.opened" 
+													ng-model-options="{timezone: 'utc'}"
+													datepicker-options="dateOptions" 
+													ng-required="true" 
+													close-text="Close" 
+													alt-input-formats="altInputFormats" 
+													required
+													name="dateField"
+													ng-class="{submitted:addVisitForm.submitted}"
+												/>
+			          <span class="input-group-btn" id="spanDate">
+			            <button 
+			            	type="button" 
+			            	class="btn btn-default" 
+			            	ng-click="open1()">
+			            	<i class="glyphicon glyphicon-calendar"></i>
+			            </button>
+			          </span>
+				</div>
+			  </div>
+			</div>
+			
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="hour">Godzina:</label>  
+			  <div class="col-md-4">
+			  <ui-select 
+					ng-model="visit.hour" 
+					theme="selectize" 
+					ng-disabled="ctrl.disabled"  
+					title="Choose a country"
+					on-select="ctrl.onSelectHour($item, $model)"
+					name="hourField"
+					id="hourField"
+					required
+					ng-class="{submitted:addVisitForm.submitted}"
+					>
+					<ui-select-match id="hourField2" placeholder="Wybierz godzinę">{{$select.selected.name}}</ui-select-match>
+					<ui-select-choices repeat="country in ctrl.countries | filter: $select.search">
+								<span ng-bind-html="country.name | highlight: $select.search"></span>
+								<small ng-bind-html="country.code | highlight: $select.search"></small>
+					</ui-select-choices>
+						</ui-select>
+			  </div>
+			</div>
+			
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="textinput">Czas trwania:</label>  
+			  <div class="col-md-4">
+			  <input id="textinput" 
+			  	ng-class="{submitted:addVisitForm.submitted}"  
+			  	name="textinput" 
+			  	placeholder="placeholder" 
+			  	class="form-control" 
+			  	required
+			  	ng-model="visit.length"
+			  	type="text">
+			  </div>
+			</div>
+			
+			<!-- Textarea -->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="description">Opis wizyty:</label>
+			  <div class="col-md-4">                     
+			    <textarea 
+			    	name="description"
+					class="form-control"
+					placeholder="Opisz wizytę*" 
+					id="description" 
+					style="height: 61px; background: #f6f9fc;"
+					ng-model="visit.description"
+					>
+				</textarea>
+			  </div>
+			</div>
+			
+			<!-- Textarea -->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="recommendations">Zalecenia po wizycie:</label>
+			  <div class="col-md-4">                     
+			    <textarea 
+			    	name="recommendations"
+			    	type="text" 
+					class="form-control"
+					placeholder="Zalecenia po wizycie" 
+					id="recommendations"
+					style="height: 61px; background: #f6f9fc;"
+					ng-model="visit.recommendation"
+					>
+				</textarea>
+			  </div>
+			</div>
+			
+			<!-- Button (Double) -->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="button1id"></label>
+			  <div class="col-md-8">
+			    <button 
+			    	id="button1id" 
+			    	name="button1id" 
+			    	class="btn btn-primary"
+			    	type="button"
+			    	ng-required="true"
+			    	ng-click="addVisit(visit)"
+			    	>Zapisz
+			    </button>
+			    <button id="button2id" name="button2id" class="btn btn-danger">Scary Button</button>
+			  </div>
+			</div>
+
+		</fieldset>
+	</form>
+</div>
+	
+	
+	
+	
+	
+	<style>
+.overlay { background:transparent; width:100%; height:100%; position:absolute; top:0; left:0; }
+
+input.submitted.ng-invalid{
+  border:2px solid #f00;
+}
+
+textarea.submitted.ng-invalid{
+  border:2px solid #f00;
+}
+
+/* ui-select .submitted.ng-invalid{ */
+/*   border:2px solid #f00; */
+/* } */
+
+.selectize-input.submitted.ng-invalid{
+  border:2px solid #f00;
+}
+
+#selectedPatientId.submitted.ng-invalid, input.submitted.ng-invalid{
+  border:2px solid #f00;
+	border-radius: 4px;
+}
+</style>
+ <style>
+        body {
+            padding: 15px;
+        }
+
+        .select2 > .select2-choice.ui-select-match {
+            /* Because of the inclusion of Bootstrap */
+            height: 29px;
+        }
+
+        .selectize-control > .selectize-dropdown {
+            top: 36px;
+        }
+        /* Some additional styling to demonstrate that append-to-body helps achieve the proper z-index layering. */
+        .select-box {
+          background: #fff;
+          position: relative;
+          z-index: 1;
+        }
+        .alert-info.positioned {
+          margin-top: 1em;
+          position: relative;
+          z-index: 10000; /* The select2 dropdown has a z-index of 9999 */
+        }
+    </style>

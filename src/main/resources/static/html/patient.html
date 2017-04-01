@@ -1,0 +1,355 @@
+<meta meta charset=utf-8>
+	<div class="calendar-header">
+		<div class="ht-container">
+			<div class="pull-left">
+				<span class="page-title">{{patient.firstname}}
+					{{patient.lastname}}</span> <span class="page-title"><a
+					href="">Pacjenci</a></span> <a
+					href=""
+					class="patient-edit icon"><img
+					src="https://flexiforum.pl/wp-content/themes/flexiforum/images/edytuj.svg"></a>
+				<a href="" class="patient-remove icon"><img
+					src="https://flexiforum.pl/wp-content/themes/flexiforum/images/usun.svg"></a>
+			</div>
+			<div id="patients-card">
+				<span class="appointment-ended-text"><a
+					href="https://flexiforum.pl/wizyta/2017-02-19-15/"
+					class="appointment-patient-link">Ostatnia wizyta: 2017-02-19,
+						15</a></span> <a class="button button-blue button-large"
+					ui-sref="#/visits?id={{patient.id}}">Zobacz wizyty</a> <a
+					class="button button-large"
+					href="https://flexiforum.pl/dodaj-nowa-wizyte/?pt=1066">Dodaj
+					rezerwację</a>
+			</div>
+		</div>
+	</div>
+	<div class="ht-container flexi-container">
+		<div class="ht-grid ht-grid-gutter-20">
+			<div class="ht-grid-col ht-grid-6">
+				<div class="input-wrapper">
+					<div class="single-field">
+						<label>Pacjent</label> {{patient.firstname}} {{patient.lastname}}
+					</div>
+				</div>
+				<div class="input-wrapper">
+					<div class="single-field">
+						<label>PESEL</label>  {{patient.pesel}}
+					</div>
+				</div>
+				<div class="input-wrapper">
+					<div class="single-field">
+						<label>E-mail</label>  {{patient.email}}
+					</div>
+				</div>
+				<div class="input-wrapper">
+					<div class="single-field">
+						<label>Telefon</label>  {{patient.phone}}
+					</div>
+				</div>
+				<div class="input-wrapper">
+					<div class="single-field">
+						<label>Ulica</label>  {{patient.street}}
+					</div>
+					<div class="single-field">
+						<label>Numer</label> 1
+					</div>
+				</div>
+				<div class="input-wrapper">
+					<div class="single-field">
+						<label>Miejscowość</label>  {{patient.city}}
+					</div>
+					<div class="single-field">
+						<label>Kod pocztowy</label>  {{patient.postcode}}
+					</div>
+				</div>
+				<div class="input-wrapper">
+					<div class="single-field">
+						<label>Dodatkowe informacje</label>  {{patient.description}}
+					</div>
+				</div>
+			</div>
+			<div class="ht-grid-col ht-grid-6">
+<!-- 				<div class="input-wrapper clearfix flexi-multiinput"> -->
+                    <label>Wywiady</label> 
+                    <br>  
+                    <a
+					class="button button-large"
+					ng-click="showModal()">Dodaj
+					wywiad</a>                                                         
+                    <input class="new-note-trigger" 
+                    	placeholder="Wpisz treść i wciśnij ENTER" 
+                    	data-section="pliki_notatki" 
+                        type="text">
+                    <div id="pliki_notatki" class="nano multi-scrolled has-scrollbar">
+                                <p class="info"><em>Info: Drag &amp; drop to reorder.</em></p>
+						<ul id="kc-rows-parent-attachment" class="kc-rows kcs-multiinput" 
+							tabindex="0" style="margin-right: -17px;">
+						</ul>
+                     	<div class="nano-pane" style="display: none; opacity: 1; visibility: visible;">
+                     		<div class="nano-slider" style="height: 46px; transform: translate(0px, 0px);">
+                     		</div>
+                     	</div>
+                    </div>
+<!--                </div> -->
+
+			</div>
+			
+		</div>
+	</div>
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<style>
+.calendar-header {
+	padding-left: 5px !important;
+	padding-right: 5px !important;
+	width: 100%;
+}
+
+calendar-header {
+	background: #f4f4f4;
+	padding: 15px 0;
+	min-height: 100px;
+	margin-bottom: 15px;
+}
+
+.ht-container {
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
+.ht-container, #page-header.ph-align-center .ht-container {
+	max-width: 1170px;
+	padding: 0;
+}
+
+.ht-container, #page-header.ph-align-center .ht-container {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.pull-left {
+	float: left;
+}
+
+.calendar-header .page-title {
+	font-size: 22px;
+	font-weight: 700;
+	line-height: 40px;
+}
+
+.calendar-header .page-title:last-of-type {
+	float: left;
+}
+
+.calendar-header .page-title:last-of-type {
+	margin-right: 20px;
+}
+
+.calendar-header .page-title+.page-title::before {
+	content: '';
+	background: url(images/calendar-arrow.svg) no-repeat center;
+	width: 5px;
+	height: 18px;
+	display: inline-block;
+	margin: 0 10px;
+}
+
+a {
+	background: transparent;
+}
+
+a, a:visited {
+	text-decoration: none;
+	outline: 0;
+	-moz-transition: color 0.15s ease-out;
+	-o-transition: color 0.15s ease-out;
+	-webkit-transition: color 0.15s ease-out;
+	-ms-transition: color 0.15s ease-out;
+	transition: color 0.15s ease-out;
+}
+
+.calendar-header .page-title a {
+	color: #014592;
+	text-decoration: underline;
+}
+
+a, a:visited, .bbp-author-name {
+	color: #32a3cb;
+}
+
+.calendar-header .icon {
+	margin-left: 15px;
+}
+
+.calendar-header .icon {
+	vertical-align: text-bottom;
+	margin-right: 15px;
+}
+
+img {
+	border: 0;
+}
+
+.calendar-header .icon img {
+	height: 20px;
+	width: auto;
+	vertical-align: middle;
+}
+
+.appointment-ended-text {
+	color: #000000;
+	font-size: 14px;
+	margin-right: 40px;
+}
+
+form input[type="reset"], form input[type="submit"], a.button {
+	width: 100%;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+	color: #fff !important;
+	background: #024593 !important;
+	text-transform: uppercase;
+	font-size: 13px;
+	padding: 7px 0;
+	margin-top: 20px !important;
+	border-radius: 15px;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.ht-pagination ul a, .ht-pagination ul span, form button, form input[type="reset"],
+	form input[type="submit"], a.button {
+	padding: 6px 23px 6px;
+	border: none !important;
+}
+
+.ht-pagination ul a, .ht-pagination ul span, form button, form input[type="reset"],
+	form input[type="submit"], nav ul>li a, #nav-primary ul>li a, a.button
+	{
+	color: #7e7e7e !important;
+	font-family: 'Roboto Slab', serif;
+	text-transform: none;
+	font-weight: normal;
+	padding: 6px 16px 2px;
+	letter-spacing: 0.5px;
+}
+
+.ht-pagination ul a, .ht-pagination ul span, form button, form input[type="reset"],
+	form input[type="submit"], nav ul>li.home a, nav ul>li a:hover,
+	#nav-primary ul>li.home a, #nav-primary ul>li a:hover, a.button {
+	background: #b70068;
+	border-radius: 20px;
+	color: #ffffff !important;
+	border: 3px solid #630039;
+	border-width: 0 0 3px 0;
+	-webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2);
+	box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2);
+}
+
+.ht-pagination ul a, .ht-pagination ul span, form button, form input[type="reset"],
+	form input[type="submit"], a.button {
+	font-size: 13px;
+	padding: 4px 23px 3px;
+	letter-spacing: 0;
+}
+
+a.button-large {
+	padding-top: 7px;
+}
+
+a.button-large {
+	height: 35px;
+	display: inline-block;
+	font-size: 13px;
+	width: 165px;
+	text-align: center;
+}
+
+.calendar-header .button+.button {
+	margin-left: 30px;
+}
+
+.ht-container {
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
+.ht-container, #page-header.ph-align-center .ht-container {
+	max-width: 1170px;
+	padding: 0;
+}
+
+.ht-container, #page-header.ph-align-center .ht-container {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.flexi-container {
+	padding-bottom: 50px;
+}
+
+.ht-grid.ht-grid-gutter-20 {
+	margin: 0 -20px;
+}
+
+.ht-grid.ht-grid-gutter-20 {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.ht-grid .ht-grid-col {
+	float: left;
+}
+
+.ht-grid .ht-grid-8 {
+	width: 66.666%;
+}
+
+.ht-grid.ht-grid-gutter-20 .ht-grid-col {
+	padding: 0 20px;
+}
+
+.input-wrapper {
+	font-size: 14px;
+}
+
+.input-wrapper .single-field {
+	display: inline-block;
+	color: #000;
+	min-width: 195px;
+	margin-bottom: 35px;
+	position: relative;
+}
+
+.input-wrapper label {
+	display: block;
+	color: #7d7d7d;
+	font-size: 12px;
+}
+
+ht-grid .ht-grid-col {
+	float: left;
+}
+
+.ht-grid .ht-grid-4 {
+	width: 33.333%;
+}
+
+.ht-grid.ht-grid-gutter-20 .ht-grid-col {
+	padding: 0 20px;
+}
+</style>

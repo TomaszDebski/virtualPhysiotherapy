@@ -1,0 +1,130 @@
+.calendar-header {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    width: 100%;
+}
+
+.calendar-header {
+    background: #08c3da;
+    padding: 15px 0;
+    min-height: 100px;
+    margin-bottom: 15px;
+}
+
+.ht-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.ht-container, #page-header.ph-align-center .ht-container {
+    max-width: 1170px;
+    padding: 0;
+}
+
+.ht-container, #page-header.ph-align-center .ht-container {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.calendar-header .page-title {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 40px;
+	    color: #fff;
+}
+}
+
+.calendar-header .page-title:last-of-type {
+    float: left;
+}
+
+.calendar-header .page-title:last-of-type {
+    margin-right: 20px;
+}
+
+.calendar-header .calendar-date-wrapper {
+    margin: 0 auto !important;
+    margin-left: 0 !important;
+    padding-left: 0;
+}
+
+.calendar-header .calendar-date-wrapper {
+    margin-left: 45px;
+    display: inline-block;
+}
+
+.calendar-date {
+	color : #fff;
+}
+
+a {
+    background: transparent;
+}
+
+a, a:visited {
+    text-decoration: none;
+    outline: 0;
+    -moz-transition: color 0.15s ease-out;
+    -o-transition: color 0.15s ease-out;
+    -webkit-transition: color 0.15s ease-out;
+    -ms-transition: color 0.15s ease-out;
+    transition: color 0.15s ease-out;
+}
+
+a, a:visited, .bbp-author-name {
+    color: #32a3cb;
+}
+
+.calendar-header .calendar-arrow {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 10px;
+}
+
+.calendar-header .calendar-arrow.left {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+img {
+    border: 0;
+}
+
+.calendar-header .ui-datepicker-trigger {
+    height: 30px;
+    width: auto;
+    vertical-align: middle;
+}
+
+.calendar-header .calendar-legend {
+    float: right;
+    line-height: 44px;
+}
+
+
+.calendar-header .calendar-legend .appointments::before 
+{content: '';display: inline-block;width: 20px;height: 20px;background: #dbe2ea;vertical-align: text-top;margin-right: 8px;}
+
+.calendar-header .calendar-legend .appointments.finished::before {
+    background: #eddbe6;
+}
+
+.calendar-header .calendar-legend .appointments {
+    margin-left: 20px;
+    color: #000000;
+    font-size: 13px;
+    font-weight: 400;
+    text-align: left;
+}
+
+.calendar-header .calendar-set-days {
+    float: right;
+    margin: 0 90px;
+    line-height: 44px;
+	color: #fff;
+	font-size: 18px;
+}
