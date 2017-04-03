@@ -63,14 +63,6 @@
 <link rel="stylesheet" href="css/grid.css">
 <link rel="stylesheet" href="css/style-main-header.css">
 <link rel="stylesheet" href="css/style-common.css">
-
-
-<!-- <link rel="stylesheet" href="css/allPhysiotherapist.css"> -->
-
-<!-- <link rel="stylesheet" href="css/login.css"> -->
-<!-- <link rel="stylesheet" href="css/terminarz-header.css"> -->
-<!-- <link rel="stylesheet" href="css/terminarz-bottom.css"> -->
-<!-- <base href="/"> -->
 </head>
 <body ng-controller="indexController" >
 	<header>
@@ -89,7 +81,6 @@
 							<li><p ng-if="authenticated" class="navbar-text">Welcome {{user}}</p> </li>
 								<li ng-if="!authenticated"><a ui-sref="register"
 									class="button desktop become_a_member">Jesteś specjalistą?</a></li>
-
 								<li class="en first active"><a href="/"
 									class="language-link active" xml:lang="en-CA" lang="en-CA">English</a></li>
 
@@ -97,7 +88,8 @@
 									title="">Kontakt</a></li>
 
 								<li ng-if="!authenticated"><a ui-sref="login"><strong>Zaloguj</strong></a></li>
-								<li ng-if="authenticated"><a ui-sref="logout"><strong>Wyloguj</strong></a></li>
+<!-- 								<li ng-if="authenticated"><a ui-sref="logout"><strong>Wyloguj</strong></a></li> -->
+								<li ng-if="authenticated"><a ng-click="logout(authenticated)" href="#"><strong>Wyloguj</strong></a></li>
 							</ul>
 						</nav>
 						</div>
@@ -133,41 +125,26 @@
 			</div>
 		</div>
 		<!-- Bottom  -->
-		<div class="header_bottom">
-			<div class="centered-content">
-				<nav class="nav nav_header-utility mobile">
-					<ul class="menu menu_header-utility">
-					</ul>
-				</nav>
-				<nav class="nav nav_main">
-
-					<ul class="menu menu_main">
-
-						<li class="first expanded menu-mlid-588 focus"
-							ng-show="authenticated"><a ui-sref="allPatients" title=""><span>Pacjenci</span></a></li>
-
-						<li class="expanded menu-mlid-589" ng-if="authenticated"><a
-							ui-sref="visits"><span>Wizyty</span></a></li>
-						<li class="expanded menu-mlid-590" ng-if="authenticated"><a
-							ui-sref="addVisit"><span>Dodaj wizyte</span></a></li>
-						<li class="expanded menu-mlid-591" ng-if="authenticated"><a
-							ui-sref="calendar({id: 2})"><span>Terminarz</span></a></li>
-						<li class="expanded menu-mlid-592" ng-if="authenticated"><a
-							ui-sref="account"><span>Konto</span></a></li>
-							
-						<li class="expanded menu-mlid-589"
-							ng-if="!authenticated"><a ui-sref="/" title=""><span style="border-left: none;">O
-									portalu</span></a></li>
-						<li class="expanded menu-mlid-589" ng-if="!authenticated"><a
-							ui-sref="/"><span>Fizjoterapia</span></a></li>
-						<li class="expanded menu-mlid-590" ng-if="!authenticated"><a
-							ui-sref="showAllPhysiotherapists"><span>Specjaliści</span></a></li>
-						<li class="expanded menu-mlid-592" ng-if="!authenticated"><a
-							ui-sref="/"><span>Porady</span></a></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
+		
+		<style>
+			
+		</style>
+<!-- 		<div class="navbar navbar-default navbar-fixed" role="navigation"> -->
+<div class="container">
+<!--    	<nav> -->
+          <ul class="nav nav-justified">
+           	<li ng-if="authenticated" class="active"><a ui-sref="allPatients" title=""><span>Pacjenci</span></a></li>
+            <li ng-if="authenticated"><a ui-sref="visits"><span>Wizyty</span></a></li>
+            <li ng-if="authenticated"><a ui-sref="addVisit"><span>Dodaj wizyte</span></a></li>
+            <li ng-if="authenticated"><a ui-sref="calendar({id: 2})"><span>Terminarz</span></a></li>
+            <li ng-if="authenticated"><a ui-sref="account"><span>Konto</span></a></li>
+            <li ng-if="!authenticated"><a ui-sref="/" title=""><span style="border-left: none;">O portalu</span></a></li>
+            <li ng-if="!authenticated"><a ui-sref="/"><span>Fizjoterapia</span></a></li>
+            <li ng-if="!authenticated"><a ui-sref="showAllPhysiotherapists"><span>Specjaliści</span></a></li>
+            <li ng-if="!authenticated"><a ui-sref="/"><span>Porady</span></a></li>
+          </ul>
+<!--    </nav> -->
+</div>
 	</header>
 	
 	<div ui-view></div>
@@ -190,11 +167,12 @@
 	<script src="resources/js/controllers/patientController.js"></script>
 	<script src="resources/js/controllers/modal/interviewModalController.js"></script>
 	<script src="resources/js/controllers/modal/addVisitInCalendarModelController.js"></script>
+	<script src="resources/js/controllers/modal/addHolidayInCalendarModelController.js"></script>
 	<script src="resources/js/controllers/calendarController.js"></script>
 	<script src="resources/js/controllers/accountController.js"></script>
 	<script src="resources/js/controllers/indexController.js"></script>
 	
-
+	<script src="resources/js/services/authService.js"></script>
 	<script src="resources/js/services/physiotherapistService.js"></script>
 	<script src="resources/js/services/patientsService.js"></script>
 	<script src="resources/js/services/visitService.js"></script>
@@ -208,9 +186,10 @@
 	<script src="resources/js/directives/compareToDirective.js"></script>
 	<script src="resources/js/directives/dropdownDirective.js"></script>
 	
-	
+	<!-- Modals -->
 	<div ng-include="'resources/template/interviewModal.html'"></div>
 	<div ng-include="'resources/template/addVisitInCalendarModal.html'"></div>
+	<div ng-include="'resources/template/addHolidayInCalendarModal.html'"></div>
 	<div ng-include="'resources/template/second.html'"></div>
 	
 </body>

@@ -38,6 +38,14 @@ public class Visit implements Serializable {
 	public Date date;
 	
 	@JsonView(Views.Visits.class)
+	@Column(name="endDate")
+	public Date endDate;
+	
+	@JsonView(Views.Visits.class)
+	@Column(name="isHoliday")
+	public String isHoliday;
+	
+	@JsonView(Views.Visits.class)
 	@Column(name="hour")
 	public String hour;
 	
@@ -154,5 +162,29 @@ public class Visit implements Serializable {
 	public void setPhysiotherapist(Physiotherapist physiotherapist) {
 		this.physiotherapist = physiotherapist;
 	}
+
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+
+	public String getIsHoliday() {
+		return isHoliday;
+	}
+
+
+	public void setIsHoliday(String isHoliday) {
+		this.isHoliday = isHoliday;
+	}
+
+	
+	
+	
 	
 }

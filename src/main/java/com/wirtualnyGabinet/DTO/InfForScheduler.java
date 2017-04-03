@@ -10,7 +10,13 @@ public class InfForScheduler {
 	
 	private String title;
 	
+	private String color;
+	
 	private boolean allDay;
+	
+	private String backgroundColor;
+	
+	private String rendering;
 
 	public long getId() {
 		return id;
@@ -52,8 +58,33 @@ public class InfForScheduler {
 	public void setEnd(String end) {
 		this.end = end;
 	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public String getBackgroundColor() {
+		return backgroundColor;
+	}
+
+	public void setBackgroundColor(String backgroundColor) {
+		this.backgroundColor = backgroundColor;
+	}
+
+	public String getRendering() {
+		return rendering;
+	}
+
+	public void setRendering(String rendering) {
+		this.rendering = rendering;
+	}
+	
+	
+	
 	
 		
-	
-
 }

@@ -1,0 +1,94 @@
+<meta meta charset=utf-8>
+
+<script type="text/ng-template" id="addHolidayModal.html">
+<div class="modal-content">
+			    <div class="modal-header">
+			        <h3>Ustal wakacje</h3>
+			    </div>
+			        <div class="modal-body" style="text-align:center;">
+			        <div class="row-fluid">
+			            <div class="span10 offset1">
+			                <div id="modalTab">
+			                    <div class="tab-content">
+			                        <div class="tab-pane active" id="login">
+			                            <form name="holidayForm">
+											<div class="row vertical-align">
+												<div class="col-md-1">
+													<span>Od:</span>
+												</div>
+												<div class="col-md-4">
+
+												<p class="input-group">
+												<input type="text" 
+													class="form-control" 
+													ng-change="getStartDate()" 
+													uib-datepicker-popup="{{format}}"
+													ng-model="ctrl.holiday.startDate" 
+													is-open="popup1.opened" 
+													ng-model-options="{timezone: 'utc'}"
+													datepicker-options="dateOptions" 
+													ng-required="true" 
+													close-text="Close" 
+													alt-input-formats="altInputFormats" 
+													required
+													name="dateField"
+													ng-class="{submitted:addVisitForm.submitted}"
+												/>
+			          							<span class="input-group-btn">
+			            							<button 
+														type="button" 
+														class="btn btn-default" 
+														ng-click="open1()">
+														<i class="glyphicon glyphicon-calendar"></i>
+													</button>
+			          							</span>
+
+												</p>
+												</div>
+
+												<div class="col-md-1">
+													<span>Do:</span>
+												</div>
+												<div class="col-md-4">
+
+												<p class="input-group">
+												<input type="text" 
+													class="form-control" 
+													ng-change="getEndDate()" 
+													uib-datepicker-popup="{{format}}"
+													ng-model="ctrl.holiday.endDate" 
+													is-open="popup2.opened" 
+													ng-model-options="{timezone: 'utc'}"
+													datepicker-options="dateOptions" 
+													ng-required="true" 
+													close-text="Close" 
+													alt-input-formats="altInputFormats" 
+													required
+													name="dateField"
+													ng-class="{submitted:addVisitForm.submitted}"
+												/>
+			          							<span class="input-group-btn">
+			            							<button 
+														type="button" 
+														class="btn btn-default" 
+														ng-click="open2()">
+														<i class="glyphicon glyphicon-calendar"></i>
+													</button>
+			          							</span>
+
+												</p>
+												</div>
+											</div>
+										<br>
+			                        </div>
+			                       		<div class="modal-footer">
+            							<button type="button" class="btn btn-primary" ng-click="ok()">OK</button>
+            							<button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        								</div>
+			                       </form>
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+</div>
+</script>

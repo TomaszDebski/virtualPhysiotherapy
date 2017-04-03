@@ -7,13 +7,17 @@ angular.module('app.controller.calendar', [])
 		$window,$uibModal,$log,visitService) {
 	
 	$scope.addVisit = function(){
-		$scope.showModal();
+		$scope.showModalVisit();
+	}
+	
+	$scope.addHoliday = function(){
+		$scope.showModalHoliday();
 	}
 
-	////////////////////////modal//////////////////////////////////
+	////////////////////////modals//////////////////////////////////
 	
-//	console.log("session " , $window.sessionStorage);
-	$scope.showModal = function(){
+	/////////////////////////////////addVisit//////////////////
+	$scope.showModalVisit = function(){
 		$uibModal.open({
               templateUrl: 'addVisitModal2.html',
               controller: 'addVisitInCalendarModelController as ctrl', 
@@ -43,7 +47,41 @@ angular.module('app.controller.calendar', [])
         );
     };
     
+///////////////////////////////////////////////////////
+///////////////////addHoliday/////////////////////////
+    $scope.showModalHoliday = function(){
+		$uibModal.open({
+              templateUrl: 'addHolidayModal.html',
+              controller: 'addHolidayInCalendarModelController as ctrl', 
+              windowClass: 'app-modal-window',
+              resolve :{
+//            	  patients : function(allPatientsForPhysiotherapistService,$rootScope){
+//            		  return allPatientsForPhysiotherapistService.getPatients($rootScope.user)
+//            		  .then(function(result){
+////            	    	console.log('result addVisitInCalendarModelController: ' , result);
+//            	    	return result;
+//            	    })
+//            	  },
+//            	  myParam : function(){
+//            		  return 'myParam'
+//            	  }
+              }
+         })
+        .result.then(
+            function () {
+                alert("OK");
+                $('#calendar').fullCalendar('refetchEvents')
+            	
+            }, 
+            function () {
+//                alert("Cancel");
+            }
+        );
+    };
+///////////////////////////////////////////////////////
+    
     ///////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
     
     
     ////////////////////////////FullCalendar/////////////////////
@@ -54,7 +92,6 @@ angular.module('app.controller.calendar', [])
         var y = date.getFullYear();
         
         $scope.changeTo = 'Hungarian';
-        /* event source that pulls from google.com */
         $scope.eventSource = {
 //                url: "http://www.google.com/calendar/feeds/usa__en%40holiday.calendar.google.com/public/basic",
 //                className: 'gcal-event',           // an option!

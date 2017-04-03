@@ -50,6 +50,24 @@ public class VisitController {
 
 	@RequestMapping(method= RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void addVisit(@RequestBody Visit visit,@RequestParam long patientId, Principal principal){
+		
+		if (visit.getIsHoliday().equals("true")){
+			Physiotherapist physiotherapist = physiotherapisRepository.findTop1ByUsername(principal.getName());
+			visit.setPhysiotherapist(physiotherapist);
+			try {
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				String stringDate = dateFormat.format(visit.getDate());
+				visit.setDate(dateFormat.parse(stringDate));
+				visit.setEndDate( dateFormat.parse(dateFormat.format(visit.getEndDate())));
+				System.out.println("EndDate " + visit.getEndDate());
+				visitRepository.saveAndFlush(visit);
+				return;
+			} catch (ParseException e) {
+				log.error("Problem z parsowaniem daty w addVisit method w VisitController");
+				e.printStackTrace();
+			}
+		}
+		
 		Patient patient = patientRepository.findOne(patientId);
 		if (patient != null){
 			visit.setPatient(patient);
@@ -163,17 +181,26 @@ public class VisitController {
 		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		for (Visit visit : lista) {
 			InfForScheduler inf = new InfForScheduler();
+			if (visit.getIsHoliday() != null && visit.getIsHoliday().equals("true")){
+				inf.setStart(formatter.format(visit.getDate()));
+				inf.setEnd(formatter.format(DateUtils.addHours(visit.getEndDate(), 24)));
+//				inf.setColor("green");
+				inf.setAllDay(true);
+				inf.setTitle("Wakacje");
+				inf.setBackgroundColor("green");
+				inf.setRendering("background");
+				infForScheduler.add(inf);
+				continue;
+			}else{				
+				inf.setAllDay(false);
+			}
 			inf.setId(visit.getId());
 			inf.setStart(formatter.format(visit.getDate()));
 			inf.setEnd(formatter.format(DateUtils.addMinutes(visit.getDate(), Integer.parseInt(visit.getLength()))));
-//			System.out.println(inf.getStart());
 			inf.setTitle(visit.getPatient().getFirstname() + " " + visit.getPatient().getLastname());
-			inf.setAllDay(false);
 			infForScheduler.add(inf);
 		}
 		InfForScheduler[] array = infForScheduler.toArray(new InfForScheduler[infForScheduler.size()]);
-		for (InfForScheduler infForScheduler2 : infForScheduler) {
-		}
 		return array;
 	}
 	

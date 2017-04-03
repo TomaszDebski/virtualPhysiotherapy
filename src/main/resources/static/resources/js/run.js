@@ -56,7 +56,7 @@ angular.module('app.run', [])
 	})
 	$rootScope.$on('$stateChangeSuccess', 
 					function(event, toState, toParams, fromState, fromParams){ 
-		if ($window.sessionStorage.authenticated){
+		if ($window.sessionStorage.authenticated == 'true'){
 			console.log("zalogowany")
 		}else{
 			console.log("niezalogowany")

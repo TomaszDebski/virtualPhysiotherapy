@@ -29,6 +29,7 @@
                             	placeholder="Wpisz imię" 
                             	required
                             	ng-model="sender.name" 
+                            	ng-class="{submitted:sendEmailForm.submitted}"
                             />
                             <span 
                             	ng-show="sendEmailForm.name.$error.required  && sendEmailForm.submitted" 
@@ -49,6 +50,7 @@
                                 	placeholder="Wpisz e-mail"
                                 	required="required" 
                                 	ng-model="sender.email"
+                                	ng-class="{submitted:sendEmailForm.submitted}"
                                 />
                            </div>
                                 <span 
@@ -65,6 +67,7 @@
                             	class="form-control" 
                             	required="required"
                             	ng-model="sender.subject"
+                            	ng-class="{submitted:sendEmailForm.submitted}"
                             >
                                 <option value="na" selected disabled>Wybierz temat:</option>
                                 <option value="service">Ogólna</option>
@@ -93,6 +96,7 @@
                             	required="required"
                                 placeholder="Treść wiadomości"
                                 ng-model="sender.message"
+                                ng-class="{submitted:sendEmailForm.submitted}"
                             ></textarea>
                             <span 
                                 ng-show="sendEmailForm.message.$error.required && sendEmailForm.submitted" 
@@ -131,7 +135,7 @@
 </div>
 
 	<style>
-input.submitted.ng-invalid{
+input.submitted.ng-invalid,textarea.submitted.ng-invalid,select.submitted.ng-invalid{
   border:2px solid #f00;
 }
 	</style>

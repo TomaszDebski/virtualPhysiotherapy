@@ -7,8 +7,8 @@ angular.module('app.controller.login', [])
 	$rootScope.authenticated = $window.sessionStorage.authenticated;
 	console.log("jestem w loginie");
 	var self = this;
-	$scope.login = function() {
-		
+	$scope.login = function(event) {
+		event.preventDefault();
 		if ($scope.fm1.$valid) {      
 		      //form is valid
 	    }
@@ -29,7 +29,6 @@ angular.module('app.controller.login', [])
 //		,
 //        xsrfHeaderName: 'X-XSRF-TOKEN'
         }).success(function(data, status, headers, config){
-//        	console.log("udało się")
         		$http({
         	        url: 'findUser',
         	        method: "GET",
@@ -46,7 +45,7 @@ angular.module('app.controller.login', [])
         	    	    		$window.sessionStorage.id = $rootScope.id;
 //        	    	    		$rootScope.userModel = result.data;
 //        	    	    		$window.sessionStorage.userModel = result.data;
-        	    	    	
+        	    	    	$scope.$parent.authenticated = true;
         	    	    	$rootScope.authenticated = true;
             	    		$scope.error = false;
             	    		console.log("aktualny user " , response);
@@ -66,7 +65,7 @@ angular.module('app.controller.login', [])
 //            					$rootScope.isUser = false;
 //            				};
                             
-//            	    		$state.go("home");
+            	    		$state.go("home");
         	    	    })
         	    		
         	    		
