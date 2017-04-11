@@ -1,355 +1,871 @@
 <meta meta charset=utf-8>
-	<div class="calendar-header">
-		<div class="ht-container">
-			<div class="pull-left">
-				<span class="page-title">{{patient.firstname}}
-					{{patient.lastname}}</span> <span class="page-title"><a
-					href="">Pacjenci</a></span> <a
-					href=""
-					class="patient-edit icon"><img
-					src="https://flexiforum.pl/wp-content/themes/flexiforum/images/edytuj.svg"></a>
-				<a href="" class="patient-remove icon"><img
-					src="https://flexiforum.pl/wp-content/themes/flexiforum/images/usun.svg"></a>
-			</div>
-			<div id="patients-card">
-				<span class="appointment-ended-text"><a
-					href="https://flexiforum.pl/wizyta/2017-02-19-15/"
-					class="appointment-patient-link">Ostatnia wizyta: 2017-02-19,
-						15</a></span> <a class="button button-blue button-large"
-					ui-sref="#/visits?id={{patient.id}}">Zobacz wizyty</a> <a
-					class="button button-large"
+<div class="main-header">
+    <div id="" class="container">
+        <div class="row vertical-align">
+        	<div class="col-md-4">
+		        <span class="page-title">{{patient.firstname}} {{patient.lastname}}</span>
+		        <a href="" class="patient-edit icon" >
+		        	<img src="pics/edytuj.svg" style="height: 20px;">
+		        </a>
+		        <a href="" class="" >
+		        	<img src="pics/usun.svg" style="height: 20px;">
+		        </a>
+            </div>
+            <div class="col-md-4">
+            	<span class="appointment-ended-text"><a
+							href="https://flexiforum.pl/wizyta/2017-02-19-15/"
+							class="appointment-patient-link">Ostatnia wizyta: {{patient.lastVisit | date:'dd/MMM/yy, HH:mm' }}</a></span> 
+            </div>
+			<div class="col-md-4">
+				<div class="pull-right">
+					 <button  class="btn btn-primary active" ng-click="goToVisit()"
+					>Zobacz wizyty</button>
+					<a
+					class="btn btn-primary active"
 					href="https://flexiforum.pl/dodaj-nowa-wizyte/?pt=1066">Dodaj
 					rezerwację</a>
-			</div>
-		</div>
+         		</div>
+         	</div>
+        </div>
+    </div>
+</div>
+
+	
+	
+   <title>User profile form requirement</title>
+    <style>
+    body {
+        padding-top: 70px;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    }
+
+    .othertop{margin-top:10px;}
+    </style>
+
+
+
+   <div class="container">
+<div class="row">
+<div class="col-md-6 ">
+<form class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Profil pacjenta</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="firstName">Imię</label>  
+  <div class="col-md-6">
+ <div class="input-group">
+       <div class="input-group-addon">
+        <i class="fa fa-user">
+        </i>
+       </div>
+       <input 
+       	id="firstName" 
+       	name="firstName" 
+       	type="text" 
+       	placeholder="Imię" 
+       	class="form-control input-md"
+       	ng-model="patient.firstname"
+       	required
+       >
+      </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="lastName">Nazwisko</label>  
+  <div class="col-md-6">
+ <div class="input-group">
+       <div class="input-group-addon">
+        <i class="fa fa-user">
+        </i>
+       </div>
+       <input 
+       		id="lastName" 
+       		name="lastName" 
+       		type="text" 
+       		placeholder="Nazwisko" 
+       		class="form-control input-md"
+       		ng-model="patient.lastname"
+       		required
+       	>
+      </div>
+  </div>
+</div>
+
+<!-- File Button --> 
+<!-- <div class="form-group"> -->
+<!--   <label class="col-md-4 control-label" for="Upload photo">Upload photo</label> -->
+<!--   <div class="col-md-4"> -->
+<!--     <input id="Upload photo" name="Upload photo" class="input-file" type="file"> -->
+<!--   </div> -->
+<!-- </div> -->
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="birthDate">Data urodzenia:</label>  
+  <div class="col-md-6">
+
+  <div class="input-group">
+       <div class="input-group-addon">
+     <i class="fa fa-birthday-cake"></i>
+        
+       </div>
+       <input 
+       		id="birthDate"
+			name="birthDate" 
+			type="text" 
+			placeholder="Data urodzenia" 
+			class="form-control input-md"
+			ng-model="patient.birthDate"
+       		required
+		>
+      </div>
+  </div>
+</div>
+
+<!-- Multiple Radios (inline) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="gender">Płeć</label>
+  <div class="col-md-6"> 
+    <label class="radio-inline" for="gender1">
+      <input type="radio" name="gender1" id="gender1" value="M" checked="checked">
+      Male
+    </label> 
+    <label class="radio-inline" for="gender2">
+      <input type="radio" name="gender2" id="gender2" value="K">
+      Female
+    </label> 
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label col-xs-12" for="adres">Adres</label>  
+  <div class="col-md-4  col-xs-4">
+  <input 
+  		id="adres" 
+  		name="adres" 
+  		type="text" 
+  		placeholder="Miasto" 
+  		class="form-control input-md "
+  		ng-model="patient.city"
+       	required>
+  </div>
+
+ 
+
+  
+</div>
+<div class="row">
+	<div class="form-group">
+	  <label class="col-md-4 control-label" for="street"></label>  
+	  <div class="col-md-3  col-xs-4">
+	  <input 
+	  	id="street" 
+	  	name="street" 
+	  	type="text" 
+	  	placeholder="Ulica" 
+	  	class="form-control input-md "
+	  	ng-model="patient.address"
+       	required
+	  	>
+	  
+	  </div>
+	   <div class="col-md-2 col-xs-4">
+
+  <input 
+  		id="number" 
+  		name="number" 
+  		type="text" 
+  		placeholder="Numer" 
+  		class="form-control input-md "
+  		ng-model="patient.number"
+       	required>
+  </div>
+</div>
+</div>
+
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="phone">Numer telefonu</label>  
+  <div class="col-md-6">
+  <div class="input-group">
+       <div class="input-group-addon">
+     <i class="fa fa-phone"></i>
+        
+       </div>
+    <input 
+    	id="phone" 
+    	name="phone" 
+    	type="text" 
+    	placeholder="Telefon" 
+    	class="form-control input-md"
+    	ng-model="patient.phone"
+    	>
+      </div>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="email">Email</label>  
+  <div class="col-md-6">
+  <div class="input-group">
+       <div class="input-group-addon">
+     <i class="fa fa-envelope-o"></i>
+        
+       </div>
+    <input 
+    	id="email" 
+    	name="email" 
+    	type="text" 
+    	placeholder="Email" 
+    	class="form-control input-md"
+    	ng-model="patient.email"
+       	required
+    	>
+    
+      </div>
+  
+  </div>
+</div>
+
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="pesel">Pesel</label>  
+  <div class="col-md-6">
+  <div class="input-group">
+       <div class="input-group-addon">
+     <i class="fa fa-sticky-note-o"></i>
+        
+       </div>
+   <input 
+   		id="pesel" 
+   		name="pesel" 
+   		type="text" 
+   		placeholder="Pesel" 
+   		class="form-control input-md"
+   		ng-model="patient.pesel"
+       	required
+   		>
+      </div>
+  </div>
+</div>
+
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="postcode">Kod pocztowy</label>  
+  <div class="col-md-6">
+  <div class="input-group">
+       <div class="input-group-addon">
+     <i class="fa fa-sticky-note-o"></i>
+        
+       </div>
+   <input 
+   		id="postcode" 
+   		name="postcode" 
+   		type="text" 
+   		placeholder="Kod pocztowy" 
+   		class="form-control input-md"
+   		ng-model="patient.postcode"
+       	required
+   		>
+      </div>
+  </div>
+</div>
+
+
+
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="description">Opis pacjenta</label>
+  <div class="col-md-6">                     
+    <textarea 
+    	class="form-control" 
+    	rows="10"  
+    	id="description" 
+    	name="description"
+    	ng-model="patient.description"
+    	>Opis
+    </textarea>
+  </div>
+</div>
+
+
+<div class="form-group">
+  <label class="col-md-4 control-label" ></label>  
+  <div class="col-md-6">
+  <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> Zapisz</a>
+  <a href="#" class="btn btn-danger" value=""><span class="glyphicon glyphicon-remove-sign"></span> Wyczyść</a>
+    
+  </div>
+</div>
+
+</fieldset>
+</form>
+</div>
+<div class="col-md-6 hidden-xs">
+	<div class="row">
+		<img src="pics/avatar.jpg" class="img-responsive img-thumbnail ">
 	</div>
-	<div class="ht-container flexi-container">
-		<div class="ht-grid ht-grid-gutter-20">
-			<div class="ht-grid-col ht-grid-6">
-				<div class="input-wrapper">
-					<div class="single-field">
-						<label>Pacjent</label> {{patient.firstname}} {{patient.lastname}}
-					</div>
-				</div>
-				<div class="input-wrapper">
-					<div class="single-field">
-						<label>PESEL</label>  {{patient.pesel}}
-					</div>
-				</div>
-				<div class="input-wrapper">
-					<div class="single-field">
-						<label>E-mail</label>  {{patient.email}}
-					</div>
-				</div>
-				<div class="input-wrapper">
-					<div class="single-field">
-						<label>Telefon</label>  {{patient.phone}}
-					</div>
-				</div>
-				<div class="input-wrapper">
-					<div class="single-field">
-						<label>Ulica</label>  {{patient.street}}
-					</div>
-					<div class="single-field">
-						<label>Numer</label> 1
-					</div>
-				</div>
-				<div class="input-wrapper">
-					<div class="single-field">
-						<label>Miejscowość</label>  {{patient.city}}
-					</div>
-					<div class="single-field">
-						<label>Kod pocztowy</label>  {{patient.postcode}}
-					</div>
-				</div>
-				<div class="input-wrapper">
-					<div class="single-field">
-						<label>Dodatkowe informacje</label>  {{patient.description}}
-					</div>
-				</div>
-			</div>
-			<div class="ht-grid-col ht-grid-6">
-<!-- 				<div class="input-wrapper clearfix flexi-multiinput"> -->
-                    <label>Wywiady</label> 
-                    <br>  
-                    <a
+<!-- 	<div class="row"> -->
+		<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+		
+		 <a
 					class="button button-large"
 					ng-click="showModal()">Dodaj
-					wywiad</a>                                                         
-                    <input class="new-note-trigger" 
-                    	placeholder="Wpisz treść i wciśnij ENTER" 
-                    	data-section="pliki_notatki" 
-                        type="text">
-                    <div id="pliki_notatki" class="nano multi-scrolled has-scrollbar">
-                                <p class="info"><em>Info: Drag &amp; drop to reorder.</em></p>
-						<ul id="kc-rows-parent-attachment" class="kc-rows kcs-multiinput" 
-							tabindex="0" style="margin-right: -17px;">
-						</ul>
-                     	<div class="nano-pane" style="display: none; opacity: 1; visibility: visible;">
-                     		<div class="nano-slider" style="height: 46px; transform: translate(0px, 0px);">
-                     		</div>
-                     	</div>
-                    </div>
-<!--                </div> -->
-
-			</div>
-			
-		</div>
+wywiad</a> 
+		
+		
+		
+		
+  <div class="row">
+    <div class="col-sm-11" id="logout">
+        <div class="page-header">
+            <h3 class="reviews">Wywiady</h3>
+        </div>
+        <div class="comment-tabs">
+            <div class="tab-content">
+                <div class="tab-pane active" id="comments-logout">                
+                    <ul class="media-list">
+                      <li class="media">
+                        <a class="pull-left" href="#">
+<!--                           <img class="media-object img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/dancounsell/128.jpg" alt="profile"> -->
+                        </a>
+                        <div class="media-body">
+                          <div class="well well-lg">
+                              <h4 class="media-heading text-uppercase reviews">Marco </h4>
+                              <ul class="media-date text-uppercase reviews list-inline">
+                                <li class="dd">22</li>
+                                <li class="mm">09</li>
+                                <li class="aaaa">2014</li>
+                              </ul>
+                              <p class="media-comment">
+                                Great snippet! Thanks for sharing.
+                              </p>
+                              <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
+                              <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#replyOne"><span class="glyphicon glyphicon-comment"></span> 2 comments</a>
+                          </div>              
+                        </div>
+                        <div class="collapse" id="replyOne">
+                            <ul class="media-list">
+                                <li class="media media-replied">
+                                    <a class="pull-left" href="#">
+                                      <img class="media-object img-circle" src="" alt="profile">
+                                    </a>
+                                    <div class="media-body">
+                                      <div class="well well-lg">
+                                          <h4 class="media-heading text-uppercase reviews"><span class="glyphicon glyphicon-share-alt"></span> The Hipster</h4>
+                                          <ul class="media-date text-uppercase reviews list-inline">
+                                            <li class="dd">22</li>
+                                            <li class="mm">09</li>
+                                            <li class="aaaa">2014</li>
+                                          </ul>
+                                          <p class="media-comment">
+                                            Nice job Maria.
+                                          </p>
+                                          <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
+                                      </div>              
+                                    </div>
+                                </li>
+                                <li class="media media-replied" id="replied">
+                                    <a class="pull-left" href="#">
+                                      <img class="media-object img-circle" src="" alt="profile">
+                                    </a>
+                                    <div class="media-body">
+                                      <div class="well well-lg">
+                                          <h4 class="media-heading text-uppercase reviews"><span class="glyphicon glyphicon-share-alt"></span> Mary</h4></h4>
+                                          <ul class="media-date text-uppercase reviews list-inline">
+                                            <li class="dd">22</li>
+                                            <li class="mm">09</li>
+                                            <li class="aaaa">2014</li>
+                                          </ul>
+                                          <p class="media-comment">
+                                            Thank you Guys!
+                                          </p>
+                                          <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
+                                      </div>              
+                                    </div>
+                                </li>
+                            </ul>  
+                        </div>
+                      </li>          
+                      <li class="media">
+                        <a class="pull-left" href="#">
+<!--                           <img class="media-object img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/kurafire/128.jpg" alt="profile"> -->
+                        </a>
+                        <div class="media-body">
+                          <div class="well well-lg">
+                              <h4 class="media-heading text-uppercase reviews">Nico</h4>
+                              <ul class="media-date text-uppercase reviews list-inline">
+                                <li class="dd">22</li>
+                                <li class="mm">09</li>
+                                <li class="aaaa">2014</li>
+                              </ul>
+                              <p class="media-comment">
+                                I'm looking for that. Thanks!
+                              </p>
+                              <div class="embed-responsive embed-responsive-16by9">
+<!--                                   <iframe class="embed-responsive-item" src="" allowfullscreen></iframe> -->
+                              </div>
+                              <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
+                          </div>              
+                        </div>
+                      </li>
+                      <li class="media">
+                        <a class="pull-left" href="#">
+<!--                           <img class="media-object img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/lady_katherine/128.jpg" alt="profile"> -->
+                        </a>
+                        <div class="media-body">
+                          <div class="well well-lg">
+                              <h4 class="media-heading text-uppercase reviews">Kriztine</h4>
+                              <ul class="media-date text-uppercase reviews list-inline">
+                                <li class="dd">22</li>
+                                <li class="mm">09</li>
+                                <li class="aaaa">2014</li>
+                              </ul>
+                              <p class="media-comment">
+                                Yehhhh... Thanks for sharing.
+                              </p>
+                              <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
+                              <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#replyTwo"><span class="glyphicon glyphicon-comment"></span> 1 comment</a>
+                          </div>              
+                        </div>
+                        <div class="collapse" id="replyTwo">
+                            <ul class="media-list">
+                                <li class="media media-replied">
+                                    <a class="pull-left" href="#">
+<!--                                       <img class="media-object img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/jackiesaik/128.jpg" alt="profile"> -->
+                                    </a>
+                                    <div class="media-body">
+                                      <div class="well well-lg">
+                                          <h4 class="media-heading text-uppercase reviews"><span class="glyphicon glyphicon-share-alt"></span> Lizz</h4>
+                                          <ul class="media-date text-uppercase reviews list-inline">
+                                            <li class="dd">22</li>
+                                            <li class="mm">09</li>
+                                            <li class="aaaa">2014</li>
+                                          </ul>
+                                          <p class="media-comment">
+                                            Classy!
+                                          </p>
+                                          <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
+                                      </div>              
+                                    </div>
+                                </li>
+                            </ul>  
+                        </div>
+                      </li>
+                    </ul> 
+                </div>
+                <div class="tab-pane" id="add-comment">
+                    <form action="#" method="post" class="form-horizontal" id="commentForm" role="form"> 
+                        <div class="form-group">
+                            <label for="email" class="col-sm-2 control-label">Comment</label>
+                            <div class="col-sm-10">
+                              <textarea class="form-control" name="addComment" id="addComment" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="uploadMedia" class="col-sm-2 control-label">Upload media</label>
+                            <div class="col-sm-10">                    
+                                <div class="input-group">
+                                  <div class="input-group-addon">http://</div>
+                                  <input type="text" class="form-control" name="uploadMedia" id="uploadMedia">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">                    
+                                <button class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment"><span class="glyphicon glyphicon-send"></span> Summit comment</button>
+                            </div>
+                        </div>            
+                    </form>
+                </div>
+                <div class="tab-pane" id="account-settings">
+                    <form action="#" method="post" class="form-horizontal" id="accountSetForm" role="form">
+                        <div class="form-group">
+                            <label for="avatar" class="col-sm-2 control-label">Avatar</label>
+                            <div class="col-sm-10">                                
+                                <div class="custom-input-file">
+                                    <label class="uploadPhoto">
+                                        Edit
+                                        <input type="file" class="change-avatar" name="avatar" id="avatar">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control" name="name" id="name" placeholder="Vilma palma">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nickName" class="col-sm-2 control-label">Nick name</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control" name="nickName" id="nickName" placeholder="Vilma">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-10">
+                              <input type="email" class="form-control" name="email" id="email" placeholder="vilma@mail.com">
+                            </div>
+                        </div>  
+                        <div class="form-group">
+                            <label for="newPassword" class="col-sm-2 control-label">New password</label>
+                            <div class="col-sm-10">
+                              <input type="password" class="form-control" name="newPassword" id="newPassword">
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <label for="confirmPassword" class="col-sm-2 control-label">Confirm password</label>
+                            <div class="col-sm-10">
+                              <input type="password" class="form-control" name="confirmPassword" id="confirmPassword">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">                    
+                                <button class="btn btn-primary btn-circle text-uppercase" type="submit" id="submit">Save changes</button>
+                            </div>
+                        </div>            
+                    </form>
+                </div>
+            </div>
+        </div>
 	</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1" id="login">
+        <div class="page-header">
+            <h3 class="reviews">Leave your comment</h3>
+            <div class="logout">
+                <button class="btn btn-default btn-circle text-uppercase" type="button" onclick="$('#login').hide(); $('#logout').show()">
+                    <span class="glyphicon glyphicon-off"></span> Login                    
+                </button>                
+            </div>
+        </div>
+        <div class="comment-tabs">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="active"><a href="#comments-login" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">Comments</h4></a></li>
+                <li><a href="#add-comment-disabled" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">Add comment</h4></a></li>
+                <li><a href="#new-account" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">Create an account</h4></a></li>
+            </ul>            
+            <div class="tab-content">
+                <div class="tab-pane active" id="comments-login">                
+                    <ul class="media-list">
+                      <li class="media">
+                        <a class="pull-left" href="#">
+                          <img class="media-object img-circle" src="" alt="profile">
+                        </a>
+                        <div class="media-body">
+                          <div class="well well-lg">
+                              <h4 class="media-heading text-uppercase reviews">Marco</h4>
+                              <ul class="media-date text-uppercase reviews list-inline">
+                                <li class="dd">22</li>
+                                <li class="mm">09</li>
+                                <li class="aaaa">2014</li>
+                              </ul>
+                              <p class="media-comment">
+                                Great snippet! Thanks for sharing.
+                              </p>
+                              <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
+                              <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#replyThree"><span class="glyphicon glyphicon-comment"></span> 2 comments</a>
+                          </div>              
+                        </div>
+                        <div class="collapse" id="replyThree">
+                            <ul class="media-list">
+                                <li class="media media-replied">
+                                    <a class="pull-left" href="#">
+                                      <img class="media-object img-circle" src="" alt="profile">
+                                    </a>
+                                    <div class="media-body">
+                                      <div class="well well-lg">
+                                          <h4 class="media-heading text-uppercase reviews"><span class="glyphicon glyphicon-share-alt"></span> The Hipster</h4>
+                                          <ul class="media-date text-uppercase reviews list-inline">
+                                            <li class="dd">22</li>
+                                            <li class="mm">09</li>
+                                            <li class="aaaa">2014</li>
+                                          </ul>
+                                          <p class="media-comment">
+                                            Nice job Maria.
+                                          </p>
+                                          <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
+                                      </div>              
+                                    </div>
+                                </li>
+                                <li class="media media-replied" id="replied">
+                                    <a class="pull-left" href="#">
+                                      <img class="media-object img-circle" src="" alt="profile">
+                                    </a>
+                                    <div class="media-body">
+                                      <div class="well well-lg">
+                                          <h4 class="media-heading text-uppercase reviews"><span class="glyphicon glyphicon-share-alt"></span> Mary</h4></h4>
+                                          <ul class="media-date text-uppercase reviews list-inline">
+                                            <li class="dd">22</li>
+                                            <li class="mm">09</li>
+                                            <li class="aaaa">2014</li>
+                                          </ul>
+                                          <p class="media-comment">
+                                            Thank you Guys!
+                                          </p>
+                                          <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
+                                      </div>              
+                                    </div>
+                                </li>
+                            </ul>  
+                        </div>
+                      </li>          
+                      <li class="media">
+                        <a class="pull-left" href="#">
+                          <img class="media-object img-circle" src="" alt="profile">
+                        </a>
+                        <div class="media-body">
+                          <div class="well well-lg">
+                              <h4 class="media-heading text-uppercase reviews">Nico</h4>
+                              <ul class="media-date text-uppercase reviews list-inline">
+                                <li class="dd">22</li>
+                                <li class="mm">09</li>
+                                <li class="aaaa">2014</li>
+                              </ul>
+                              <p class="media-comment">
+                                I'm looking for that. Thanks!
+                              </p>
+                              <div class="embed-responsive embed-responsive-16by9">
+                                  <iframe class="embed-responsive-item" src="" allowfullscreen></iframe>
+                              </div>
+                              <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
+                          </div>              
+                        </div>
+                      </li>
+                      <li class="media">
+                        <a class="pull-left" href="#">
+                          <img class="media-object img-circle" src="" alt="profile">
+                        </a>
+                        <div class="media-body">
+                          <div class="well well-lg">
+                              <h4 class="media-heading text-uppercase reviews">Kriztine</h4>
+                              <ul class="media-date text-uppercase reviews list-inline">
+                                <li class="dd">22</li>
+                                <li class="mm">09</li>
+                                <li class="aaaa">2014</li>
+                              </ul>
+                              <p class="media-comment">
+                                Yehhhh... Thanks for sharing.
+                              </p>
+                              <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
+                              <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#replyFour"><span class="glyphicon glyphicon-comment"></span> 1 comment</a>
+                          </div>              
+                        </div>
+                        <div class="collapse" id="replyFour">
+                            <ul class="media-list">
+                                <li class="media media-replied">
+                                    <a class="pull-left" href="#">
+                                      <img class="media-object img-circle" src="" alt="profile">
+                                    </a>
+                                    <div class="media-body">
+                                      <div class="well well-lg">
+                                          <h4 class="media-heading text-uppercase reviews"><span class="glyphicon glyphicon-share-alt"></span> Lizz</h4>
+                                          <ul class="media-date text-uppercase reviews list-inline">
+                                            <li class="dd">22</li>
+                                            <li class="mm">09</li>
+                                            <li class="aaaa">2014</li>
+                                          </ul>
+                                          <p class="media-comment">
+                                            Classy!
+                                          </p>
+                                          <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
+                                      </div>              
+                                    </div>
+                                </li>
+                            </ul>  
+                        </div>
+                      </li>
+                    </ul> 
+                </div>
+                <div class="tab-pane" id="add-comment-disabled">
+                    <div class="alert alert-info alert-dismissible" role="alert">
+                      <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">×</span><span class="sr-only">Close</span>                        
+                      </button>
+                      <strong>Hey!</strong> If you already have an account <a href="#" class="alert-link">Login</a> now to make the comments you want. If you do not have an account yet you're welcome to <a href="#" class="alert-link"> create an account.</a>
+                    </div>
+                    <form action="#" method="post" class="form-horizontal" id="commentForm" role="form"> 
+                        <div class="form-group">
+                            <label for="email" class="col-sm-2 control-label">Comment</label>
+                            <div class="col-sm-10">
+                              <textarea class="form-control" name="addComment" id="addComment" rows="5" disabled></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="uploadMedia" class="col-sm-2 control-label">Upload media</label>
+                            <div class="col-sm-10">                    
+                                <div class="input-group">
+                                  <div class="input-group-addon">http://</div>
+                                  <input type="text" class="form-control" name="uploadMedia" id="uploadMedia" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">                    
+                                <button class="btn btn-success btn-circle text-uppercase disabled" type="submit" id="submitComment"><span class="glyphicon glyphicon-send"></span> Summit comment</button>
+                            </div>
+                        </div>            
+                    </form>
+                </div>
+                <div class="tab-pane" id="new-account">
+                    <form action="#" method="post" class="form-horizontal" id="commentForm" role="form">
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control" name="name" id="name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-10">
+                              <input type="email" class="form-control" name="email" id="email" required>
+                            </div>
+                        </div>  
+                        <div class="form-group">
+                            <label for="password" class="col-sm-2 control-label">Password</label>
+                            <div class="col-sm-10">
+                              <input type="password" class="form-control" name="password" id="password">
+                            </div>
+                        </div>                         
+                        <div class="form-group">
+                            <div class="checkbox">                
+                                <label for="agreeTerms" class="col-sm-offset-2 col-sm-10">
+                                    <input type="checkbox" name="agreeTerms" id="agreeTerms"> I agree all <a href="#">Terms & Conditions</a>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">                    
+                                <button class="btn btn-primary btn-circle text-uppercase" type="submit" id="submit">Create an account</button>
+                            </div>
+                        </div>            
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+		
+		
+		
+		
+		
+<!-- 	</div> -->
+  </div>
+
+
+</div>
+   </div>
 	
 	
-
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	<style>
-.calendar-header {
-	padding-left: 5px !important;
-	padding-right: 5px !important;
-	width: 100%;
-}
 
-calendar-header {
-	background: #f4f4f4;
-	padding: 15px 0;
-	min-height: 100px;
-	margin-bottom: 15px;
-}
 
-.ht-container {
-	max-width: 1100px;
-	margin: 0 auto;
-	padding: 0 15px;
-}
+<style>
+/*
+    Image credits:
+    uifaces.com (http://uifaces.com/authorized)
+*/
 
-.ht-container, #page-header.ph-align-center .ht-container {
-	max-width: 1170px;
-	padding: 0;
+#login { display: none; }
+.login,
+.logout { 
+    position: absolute; 
+    top: -3px;
+    right: 0;
 }
+.page-header { position: relative; }
+.reviews {
+    color: #555;    
+    font-weight: bold;
+    margin: 10px auto 20px;
+}
+.notes {
+    color: #999;
+    font-size: 12px;
+}
+.media .media-object { max-width: 120px; }
+.media-body { position: relative; }
+.media-date { 
+    position: absolute; 
+    right: 25px;
+    top: 25px;
+}
+.media-date li { padding: 0; }
+.media-date li:first-child:before { content: ''; }
+.media-date li:before { 
+    content: '.'; 
+    margin-left: -2px; 
+    margin-right: 2px;
+}
+.media-comment { margin-bottom: 20px; }
+.media-replied { margin: 0 0 20px 50px; }
+.media-replied .media-heading { padding-left: 6px; }
 
-.ht-container, #page-header.ph-align-center .ht-container {
-	padding-left: 20px;
-	padding-right: 20px;
+.btn-circle {
+    font-weight: bold;
+    font-size: 12px;
+    padding: 6px 15px;
+    border-radius: 20px;
 }
-
-.pull-left {
-	float: left;
+.btn-circle span { padding-right: 6px; }
+.embed-responsive { margin-bottom: 20px; }
+.tab-content {
+    padding: 50px 15px;
+    border: 1px solid #ddd;
+    border-top: 0;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
 }
-
-.calendar-header .page-title {
-	font-size: 22px;
-	font-weight: 700;
-	line-height: 40px;
+.custom-input-file {
+    overflow: hidden;
+    position: relative;
+    width: 120px;
+    height: 120px;
+    background: #eee url('');    
+    background-size: 120px;
+    border-radius: 120px;
 }
-
-.calendar-header .page-title:last-of-type {
-	float: left;
+input[type="file"]{
+    z-index: 999;
+    line-height: 0;
+    font-size: 0;
+    position: absolute;
+    opacity: 0;
+    filter: alpha(opacity = 0);-ms-filter: "alpha(opacity=0)";
+    margin: 0;
+    padding:0;
+    left:0;
 }
-
-.calendar-header .page-title:last-of-type {
-	margin-right: 20px;
+.uploadPhoto {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    display: none;
+    width: 50%;
+    height: 50%;
+    color: #fff;    
+    text-align: center;
+    line-height: 60px;
+    text-transform: uppercase;    
+    background-color: rgba(0,0,0,.3);
+    border-radius: 50px;
+    cursor: pointer;
 }
-
-.calendar-header .page-title+.page-title::before {
-	content: '';
-	background: url(images/calendar-arrow.svg) no-repeat center;
-	width: 5px;
-	height: 18px;
-	display: inline-block;
-	margin: 0 10px;
-}
-
-a {
-	background: transparent;
-}
-
-a, a:visited {
-	text-decoration: none;
-	outline: 0;
-	-moz-transition: color 0.15s ease-out;
-	-o-transition: color 0.15s ease-out;
-	-webkit-transition: color 0.15s ease-out;
-	-ms-transition: color 0.15s ease-out;
-	transition: color 0.15s ease-out;
-}
-
-.calendar-header .page-title a {
-	color: #014592;
-	text-decoration: underline;
-}
-
-a, a:visited, .bbp-author-name {
-	color: #32a3cb;
-}
-
-.calendar-header .icon {
-	margin-left: 15px;
-}
-
-.calendar-header .icon {
-	vertical-align: text-bottom;
-	margin-right: 15px;
-}
-
-img {
-	border: 0;
-}
-
-.calendar-header .icon img {
-	height: 20px;
-	width: auto;
-	vertical-align: middle;
-}
-
-.appointment-ended-text {
-	color: #000000;
-	font-size: 14px;
-	margin-right: 40px;
-}
-
-form input[type="reset"], form input[type="submit"], a.button {
-	width: 100%;
-	border: 0;
-	border-radius: 0;
-	box-shadow: none;
-	color: #fff !important;
-	background: #024593 !important;
-	text-transform: uppercase;
-	font-size: 13px;
-	padding: 7px 0;
-	margin-top: 20px !important;
-	border-radius: 15px;
-	font-size: 15px;
-	font-weight: 600;
-}
-
-.ht-pagination ul a, .ht-pagination ul span, form button, form input[type="reset"],
-	form input[type="submit"], a.button {
-	padding: 6px 23px 6px;
-	border: none !important;
-}
-
-.ht-pagination ul a, .ht-pagination ul span, form button, form input[type="reset"],
-	form input[type="submit"], nav ul>li a, #nav-primary ul>li a, a.button
-	{
-	color: #7e7e7e !important;
-	font-family: 'Roboto Slab', serif;
-	text-transform: none;
-	font-weight: normal;
-	padding: 6px 16px 2px;
-	letter-spacing: 0.5px;
-}
-
-.ht-pagination ul a, .ht-pagination ul span, form button, form input[type="reset"],
-	form input[type="submit"], nav ul>li.home a, nav ul>li a:hover,
-	#nav-primary ul>li.home a, #nav-primary ul>li a:hover, a.button {
-	background: #b70068;
-	border-radius: 20px;
-	color: #ffffff !important;
-	border: 3px solid #630039;
-	border-width: 0 0 3px 0;
-	-webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2);
-	-moz-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2);
-	box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2);
-}
-
-.ht-pagination ul a, .ht-pagination ul span, form button, form input[type="reset"],
-	form input[type="submit"], a.button {
-	font-size: 13px;
-	padding: 4px 23px 3px;
-	letter-spacing: 0;
-}
-
-a.button-large {
-	padding-top: 7px;
-}
-
-a.button-large {
-	height: 35px;
-	display: inline-block;
-	font-size: 13px;
-	width: 165px;
-	text-align: center;
-}
-
-.calendar-header .button+.button {
-	margin-left: 30px;
-}
-
-.ht-container {
-	max-width: 1100px;
-	margin: 0 auto;
-	padding: 0 15px;
-}
-
-.ht-container, #page-header.ph-align-center .ht-container {
-	max-width: 1170px;
-	padding: 0;
-}
-
-.ht-container, #page-header.ph-align-center .ht-container {
-	padding-left: 20px;
-	padding-right: 20px;
-}
-
-.flexi-container {
-	padding-bottom: 50px;
-}
-
-.ht-grid.ht-grid-gutter-20 {
-	margin: 0 -20px;
-}
-
-.ht-grid.ht-grid-gutter-20 {
-	padding-left: 20px;
-	padding-right: 20px;
-}
-
-.ht-grid .ht-grid-col {
-	float: left;
-}
-
-.ht-grid .ht-grid-8 {
-	width: 66.666%;
-}
-
-.ht-grid.ht-grid-gutter-20 .ht-grid-col {
-	padding: 0 20px;
-}
-
-.input-wrapper {
-	font-size: 14px;
-}
-
-.input-wrapper .single-field {
-	display: inline-block;
-	color: #000;
-	min-width: 195px;
-	margin-bottom: 35px;
-	position: relative;
-}
-
-.input-wrapper label {
-	display: block;
-	color: #7d7d7d;
-	font-size: 12px;
-}
-
-ht-grid .ht-grid-col {
-	float: left;
-}
-
-.ht-grid .ht-grid-4 {
-	width: 33.333%;
-}
-
-.ht-grid.ht-grid-gutter-20 .ht-grid-col {
-	padding: 0 20px;
-}
+.custom-input-file:hover .uploadPhoto { display: block; }
 </style>

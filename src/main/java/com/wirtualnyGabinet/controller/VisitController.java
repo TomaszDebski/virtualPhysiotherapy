@@ -94,7 +94,6 @@ public class VisitController {
 	@RequestMapping(value="/{id}")
 	public Visit getVisitById(@PathVariable("id") long id){
 		Visit visit = visitRepository.findOne(id);
-		//Hibernate.initialize(visit.getPatient());
 		return visit;
 	}
 	
@@ -126,10 +125,14 @@ public class VisitController {
 //	@JsonView(Views.VisitsPatient.class)
 	@RequestMapping("/byDateBetween")
 	public Page<Visit> getVisitsByPhysiotherapistIAndDate(Pageable pageable,@RequestParam("startDate") String startDate,
-			@RequestParam("endDate") String endDate,@RequestParam("id") long id){
-//		Physiotherapist physiotherapist = physiotherapisRepository.findTop1ByUsername(name);
+			@RequestParam("endDate") String endDate,@RequestParam("patient_id") long patient_id,Principal principal){
+		Physiotherapist phys= null;
+		if (principal != null){
+			phys = physiotherapisRepository.findTop1ByUsername(principal.getName());
+		}
 		System.out.println(new Date(Long.valueOf(startDate)));
-		Page<Visit> visits = visitRepository.findByPhysiotherapist_idAndDateBetween(pageable,id,new Date(Long.valueOf(startDate)),new Date(Long.valueOf(endDate)));
+//		Page<Visit> visits = visitRepository.findByPhysiotherapist_idAndDateBetween(pageable,id,new Date(Long.valueOf(startDate)),new Date(Long.valueOf(endDate)));
+		Page<Visit> visits = visitRepository.findByPhysiotherapist_idAndDateBetweenAndPatient_id(pageable,phys.getId(),new Date(Long.valueOf(startDate)),new Date(Long.valueOf(endDate)),patient_id);
 		return visits;
 	}
 	

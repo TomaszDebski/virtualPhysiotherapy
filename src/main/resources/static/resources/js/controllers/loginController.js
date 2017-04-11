@@ -19,8 +19,8 @@ angular.module('app.controller.login', [])
 //	    	$scope.error = false;
 	    };
 		
-		var data2 = 'username=' + encodeURIComponent($scope.data.credentials.username) +
-        '&password=' + encodeURIComponent($scope.data.credentials.password);
+		var data2 = 'j_username=' + encodeURIComponent($scope.data.credentials.username) +
+        '&j_password=' + encodeURIComponent($scope.data.credentials.password);
 
 		$http.post('/login', data2, {
         headers : {

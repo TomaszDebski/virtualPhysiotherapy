@@ -39,8 +39,6 @@ angular.module('app.config', [])
 		url: '/addPatient',
 		templateUrl : 'html/addPatient.html',
 		controller : 'addPatientController'
-		
-		
 	})
 	.state('allPatients', {
 	url: '/allPatients',
@@ -64,18 +62,29 @@ angular.module('app.config', [])
 	.state('visits', {
 		url: '/visits',
 		templateUrl : 'html/visits.html',
-		controller : 'visitController',
+		controller : 'visitController as ctrl',
 		resolve: {
-			visits : function($rootScope,visitPaginationService){
+			visits : function($rootScope,visitPaginationService,$stateParams){
 				var curr = new Date; 
 				var earlierDay = curr.setDate(curr.getDate()-7);
 				console.log('earlierDay ',earlierDay)
-				visitPaginationService.getVisit(0,10,earlierDay,new Date(),$rootScope.id)
+				return visitPaginationService.getVisit(0,10,earlierDay,new Date(),$stateParams.patient_id)
 				.then(function(result){
 			    	console.log('result: ' , result);
-			    	return result;
+			    	return result.content;
 			    })
-			}
+			},
+			patients : function(allPatientsForPhysiotherapistService,$rootScope,$window){
+				$rootScope.user = $window.sessionStorage.user;
+      		  return allPatientsForPhysiotherapistService.getPatients($rootScope.user)
+      		  .then(function(result){
+      	    	console.log('result addVisitController: ' , result);
+      	    	return result;
+      	    })
+      	  }
+		},
+		params : {
+			patient_id : 1
 		}
 	})
 	.state('addVisit', {

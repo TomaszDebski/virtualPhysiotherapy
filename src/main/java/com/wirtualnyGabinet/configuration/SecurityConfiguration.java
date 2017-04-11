@@ -15,6 +15,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import io.github.jhipster.security.AjaxAuthenticationFailureHandler;
+import io.github.jhipster.security.AjaxAuthenticationSuccessHandler;
+import io.github.jhipster.security.AjaxLogoutSuccessHandler;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled=true)
@@ -26,6 +30,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	DataSource dataSource;
+	
+	@Bean
+    public AjaxAuthenticationSuccessHandler ajaxAuthenticationSuccessHandler() {
+        return new AjaxAuthenticationSuccessHandler();
+    }
+
+    @Bean
+    public AjaxAuthenticationFailureHandler ajaxAuthenticationFailureHandler() {
+        return new AjaxAuthenticationFailureHandler();
+    }
+    
+    @Bean
+    public AjaxLogoutSuccessHandler ajaxLogoutSuccessHandler() {
+        return new AjaxLogoutSuccessHandler();
+    }
 
 	 @Autowired
 	    public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
@@ -45,10 +64,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	      http
 	      .authorizeRequests()
 	        .antMatchers("/index.html", "/home.html", "/login.html", "/").permitAll()
+	        .antMatchers("/register").permitAll()
+	        .antMatchers("/login").permitAll()
+//	        .antMatchers("/api/**").authenticated()
 //	        .antMatchers("/physiotherapist/**").access("hasRole('ROLE_USER')")
 	        	.and()
 	        .formLogin()
-//	        	.and()
+	        	.loginProcessingUrl("/login")
+	        	.successHandler(ajaxAuthenticationSuccessHandler())
+	            .failureHandler(ajaxAuthenticationFailureHandler())
+	            .usernameParameter("j_username")
+	            .passwordParameter("j_password")
+	            .permitAll()
+	        .and()
+		        .logout()
+	            .logoutUrl("/logout")
+	            .logoutSuccessHandler(ajaxLogoutSuccessHandler())
+	            .permitAll()
 //	        .exceptionHandling().accessDeniedPage("/Access_Denied")
 	        	.and().csrf().disable();
 //	        .addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class)

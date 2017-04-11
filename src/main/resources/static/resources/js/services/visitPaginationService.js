@@ -13,7 +13,7 @@ angular.module('app.service.visitPagination',[])
     	    		startDate = Date.parse(startDate);
     	    	}
     	    	var url = "startDate=" + startDate + '&endDate=' + Date.parse(endDate);
-    	      return $http.get('visit/byDateBetween?page=' + page+'&size=' +size+ '&' + url + '&id='+ id)
+    	      return $http.get('visit/byDateBetween?page=' + page+'&size=' +size+ '&' + url + '&patient_id='+ id)
     	      .then(function(result){
     	    	  	console.log("result.data 	" ,result.data.content)
     	    	  	return result.data;

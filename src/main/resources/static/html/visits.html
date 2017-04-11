@@ -9,7 +9,37 @@
 				 <div class="row vertical-align">
 			      <div class="col-md-1">
 				 <span class="page-title">Wizyty</span>
-<!-- 				 <span class="">Wizyty</span> -->
+				 </div>
+				 <div class="col-md-4">
+				 Pacjent: 
+				 
+				 	<ui-select 
+					ng-model="ctrl.people.patientId" 
+					theme="select2" 
+					ng-disabled="disabled" 
+					style="width: 100%;" 
+					title="Choose a person" 
+					on-select="ctrl.onSelectPatient($item, $model)" 
+					ng-required="true"
+					name="selectPatientId"
+					id="selectedPatientId"
+					ng-class="{submitted:addVisitForm.submitted}"
+				>
+    			<ui-select-match 
+					placeholder="Wybierz pacjenta z listy" >{{$select.selected.firstname}} {{$select.selected.lastname}}
+				</ui-select-match>
+    			<ui-select-choices 
+					repeat="person in ctrl.people | propsFilter: {firstname: $select.search, lastname: $select.search, age: $select.search}" >
+      				<div ng-bind-html="person.firstname + ' ' + person.lastname | highlight: $select.search"></div>
+      				<small>
+        				email: {{person.email}}
+        				age: <span ng-bind-html="''+person.age | highlight: $select.search"></span>
+      				</small>
+    			</ui-select-choices>
+				</ui-select>
+				 
+				 
+				 
 				 </div>
 				 <div class="col-md-2">
 			        <div class="input-group">
@@ -28,7 +58,7 @@
 			        </p>
 			      </div>
 <!-- 			    </Cdiv> -->
-		<div class="col-md-offset-5 col-md-2">
+		<div class="col-md-offset-1 col-md-2">
 			<div class="pull-right">
 				<a id="" class="btn btn-primary active"
 							href="#/addVisit">Dodaj wizytę</a>	
@@ -70,28 +100,27 @@
 				class=" patients-table ">
 				<thead>
 					<tr>
-						<th>Typ</th>
-						<th>Data</th>
-						<th>Pacjent</th>
+						<th style="width: 200px;">Typ</th>
+						<th style="width:200px;">Data</th>
+<!-- 						<th>Pacjent</th> -->
 						<th>Treść</th>
-						<th>E-mail</th>
-						<th>Telefon</th>
-						<th>Akcje</th>
+<!-- 						<th>E-mail</th> -->
+<!-- 						<th>Telefon</th> -->
+						<th style="width:150px;">Akcje</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="visit in visits">
 						<td class=""><div
 								class="">Rezerwacja</div></td>
-						<td><span class="table_span"><a
-								href="">{{visit.date | date:'EEE, dd/MMM/yy, HH:mm' }}</a></span></td>
-						<td><span class="table_span"><a
-								href="#/patient/{{visit.patient.id}}"
-								name="11111 22222" class="">{{visit.patient.firstname}}
-									{{visit.patient.lastname}}</a></span></td>
+						<td><span class="table_span">{{visit.date | date:'EEE, dd/MMM/yy, HH:mm' }}</span></td>
+<!-- 						<td><span class="table_span"><a -->
+<!-- 								href="#/patient/{{visit.patient.id}}" -->
+<!-- 								name="11111 22222" class="">{{visit.patient.firstname}} -->
+<!-- 									{{visit.patient.lastname}}</a></span></td> -->
+<!-- 						<td><span class="table_span">{{visit.patient.email}}</span></td> -->
 						<td><span class="table_span">{{visit.description}}</span></td>
-						<td><span class="table_span">{{visit.patient.email}}</span></td>
-						<td><span class="table_span">{{visit.patient.phone}}</span></td>
+<!-- 						<td><span class="table_span">{{visit.patient.phone}}</span></td> -->
 						<td class="actions-col"><span
 							class="masterTooltip table_span" title="Zakończ wizytę"><a
 								href="?end=1068" class="icon"><img
@@ -131,111 +160,6 @@
 
 
 
-<!-- 			<!-- Modal --> -->
-<!-- 			<div id="myModal" class="modal fade" tabindex="-1" role="dialog" -->
-<!-- 				aria-labelledby="myModalLabel" aria-hidden="true"> -->
-<!-- 				<div class="modal-dialog"> -->
-<!-- 					<div class="modal-content"> -->
-<!-- 						<div class="modal-header" id="modal-header-popup"> -->
-<!-- 							<a href="#" class="pull-right modal-close"><img -->
-<!-- 								data-dismiss="modal" -->
-<!-- 								src="/pics/close-btn.svg"></a> -->
-<!-- 							Wyślij E-mail -->
-<!-- 						</div> -->
-<!-- 						<div class="modal-body"> -->
-
-<!-- 							<form class="form-horizontal" name="commentform" method="post" -->
-<!-- 								action=""> -->
-<!-- 								<div class="form-group"> -->
-<!-- 									<label class="control-label col-md-4" for="pacjent">Pacjent</label> -->
-<!-- 									<div class="col-md-6"> -->
-<!-- 										<input class="form-control" id="pacjent" name="pacjent" -->
-<!-- 											placeholder="Pacjent" type="text"> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-
-<!-- 								<div class="form-group"> -->
-<!-- 									<label class="control-label col-md-4" for="email-to">Email</label> -->
-<!-- 									<div class="col-md-6"> -->
-<!-- 										<input class="form-control" id="mmail" name="email-to" -->
-<!-- 											placeholder="" type="email"> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-
-<!-- 								<div class="form-group"> -->
-<!-- 									<label class="control-label col-md-4" for="email-subject">Tytuł -->
-<!-- 										wiadomości</label> -->
-<!-- 									<div class="col-md-6"> -->
-<!-- 										<textarea type="text" class="form-control" id="email-subject" -->
-<!-- 											name="email-subject" placeholder="Tytuł wiadomości" rows="1" -->
-<!-- 											style="height: 14px;"></textarea> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-
-<!-- 								<div class="form-group"> -->
-<!-- 									<label class="control-label col-md-4" for="text_message">Treść -->
-<!-- 										wiadomości</label> -->
-<!-- 									<div class="col-md-6"> -->
-<!-- 										<textarea type="text" class="form-control" id="text_message" -->
-<!-- 											name="text_message" placeholder="Treść wiadomości" rows="4" -->
-<!-- 											style="height: 14px;"></textarea> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-
-<!-- 								<div class="form-group"> -->
-<!-- 									<label class="control-label col-md-4" for="opisz_wizyte"><input -->
-<!-- 										style="margin-right: 10px;" id="opisz_wizyte" -->
-<!-- 										value="opisz_wizyte" type="checkbox"><b>Opisz -->
-<!-- 											wizytę</b></label> -->
-<!-- 									<div class="col-md-6"> -->
-<!-- 										<textarea style="display: none; height: 14px;" -->
-<!-- 											id="opisz_wizyte_text" name="opisz_wizyte_text" rows="2" -->
-<!-- 											class="form-control" placeholder="Opisz wizytę"></textarea> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-
-<!-- 								<div class="form-group"> -->
-<!-- 									<label class="control-label col-md-4" for="zabiegi"><input -->
-<!-- 										style="margin-right: 10px;" id="zabiegi" value="zabiegi" -->
-<!-- 										type="checkbox"><b>Zabiegi</b></label> -->
-<!-- 									<div class="col-md-6"> -->
-<!-- 										<textarea style="display: none; height: 14px;" -->
-<!-- 											id="zabiegi_text" name="zabiegi_text" rows="2" -->
-<!-- 											class="form-control" placeholder="Zabiegi"></textarea> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-
-<!-- 								<div class="form-group"> -->
-<!-- 									<label class="control-label col-md-4" -->
-<!-- 										for="zalecenia_po_wizycie"><input -->
-<!-- 										style="margin-right: 10px;" id="zalecenia_po_wizycie" -->
-<!-- 										value="zalecenia_po_wizycie" type="checkbox"><b>Zalecenia -->
-<!-- 											po wizycie</b></label> -->
-<!-- 									<div class="col-md-6"> -->
-<!-- 										<textarea style="display: none; height: 14px;" -->
-<!-- 											id="zalecenia_po_wizycie_text" -->
-<!-- 											name="zalecenia_po_wizycie_text" rows="2" -->
-<!-- 											class="form-control" placeholder="Zalecenia po wizycie"></textarea> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-
-<!-- 								<div class="form-group"> -->
-<!-- 									<div class="col-md-10"> -->
-<!-- 										<input name="email-submission" value="1" type="hidden"> -->
-<!-- 										<button type="submit" name="save" value="Submit" -->
-<!-- 											id="send_mail_button" class="btn btn-custom pull-right">Wyślij -->
-<!-- 										</button> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</form> -->
-<!-- 						</div> -->
-<!-- 						End of Modal body -->
-<!-- 					</div> -->
-<!-- 					End of Modal content -->
-<!-- 				</div> -->
-<!-- 				End of Modal dialog -->
-<!-- 			</div> -->
-			<!-- End of Modal -->
 		</div>
 
 		<style>
@@ -274,9 +198,9 @@
 /* 	margin-right: 20px; */
 /* } */
 
-div.patients_header {
-	float: right;
-}
+/* div.patients_header { */
+/* 	float: right; */
+/* } */
 
 /* .patient-search-wrap { */
 /* 	margin-left: 100px; */

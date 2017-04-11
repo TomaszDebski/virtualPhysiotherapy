@@ -96,7 +96,7 @@ public class Patient implements Serializable{
 	
 	public Patient(){}
 	
-//	@JsonView(Views.Patient.class)
+	@JsonView(Views.Patient.class)
 	@Transient
 	public Date lastVisit;
 	

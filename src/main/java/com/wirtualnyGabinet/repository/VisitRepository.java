@@ -28,5 +28,7 @@ public interface VisitRepository extends CrudRepository<Visit,Long>,JpaRepositor
 	List<Visit> findByPhysiotherapist_idAndDateBetween(long id, Date startDate, Date endDate);
 	
 	Page<Visit> findByPhysiotherapist_idAndDateBetween(Pageable pageable,long id,Date startDate,Date endDate);
+	
+	Page<Visit> findByPhysiotherapist_idAndDateBetweenAndPatient_id(Pageable pageable,long phys_id,Date startDate,Date endDate,long patient_id);
 
 }
