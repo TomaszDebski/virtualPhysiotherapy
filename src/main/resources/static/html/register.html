@@ -18,7 +18,7 @@
 							<span class="required">* Oznaczenie wymaganych pól</span>
 						</p>
 <!-- 						<ng-form name="userForm">  -->
-						<div class="row">
+						<div class="form-group">
 							<label for="field_given_name">
 							Imię
 								<span class="required">*</span>
@@ -32,11 +32,13 @@
 							ng-class="{submitted:registerForm.submitted}"
 							required
 							>
-							<span ng-show="registerForm.name.$error.required  && registerForm.submitted" style="color : #f00;">imię jest wymagane</span>
+							<span 
+								ng-show="registerForm.name.$error.required  && registerForm.submitted" 
+								style="color : #f00; float:left;">imię jest wymagane</span>
 						</div>
 						
 						
-						<div class="row">
+						<div class="form-group" style="padding-top:15px;">
 							<label for="field_family_name">Nazwisko <span
 								class="required">*</span>
 							</label>
@@ -49,11 +51,13 @@
 							ng-model="user.lastName"
 							ng-class="{submitted:registerForm.submitted}"
 							>
-							<span ng-show="registerForm.lastName.$error.required && registerForm.submitted" style="color : #f00;">Nazwisko jest wymagane</span>
+							<span 
+								ng-show="registerForm.lastName.$error.required && registerForm.submitted" 
+								style="color : #f00; float:left;">Nazwisko jest wymagane</span>
 						</div>
 						
 						
-						<div class="row">
+						<div class="form-group" style="padding-top:15px;">
 							<label for="field_address">Email <span class="required">*</span>
 							</label>
 							<input 
@@ -65,11 +69,13 @@
 							ng-model="user.email"
 							ng-class="{submitted:registerForm.submitted}"
 							>
-							<span ng-show="registerForm.email.$error.required && registerForm.submitted" style="color : #f00;">Email jest wymagany</span>
+							<span 
+								ng-show="registerForm.email.$error.required && registerForm.submitted" 
+								style="color : #f00; float:left;">Email jest wymagany</span>
 						</div>
 						
 						
-						<div class="row">
+						<div class="form-group" style="padding-top:15px;">
 							<label for="field_given_name">login
 								<span class="required">*</span>
 							</label> 
@@ -83,15 +89,17 @@
 							username-available-directive
 							>	
 							<span 
-							ng-show="registerForm.username.$error.required && registerForm.submitted" style="color : #f00;">
+								ng-if="registerForm.username.$error.required && registerForm.submitted" 
+								style="color : #f00; float:left;">
 							Login jest wymagany</span>
 							<span 
-							ng-show="registerForm.$error.usernameExists && registerForm.submitted" style="color : #f00;">
+								ng-if="registerForm.$error.usernameExists && registerForm.submitted" 
+								style="color : #f00; float:left;">
 							Nazwa usera została już zarezerwowana</span>
 						</div>
 						
 						
-						<div class="row">
+						<div class="form-group" style="padding-top:15px;">
 							<label for="field_password">
 								Hasło 
 								<span class="required">*</span>
@@ -105,38 +113,39 @@
 							ng-model="user.password"
 							ng-class="{submitted:registerForm.submitted}"
 							>
-							<span ng-show="registerForm.password.$error.required && registerForm.submitted" style="color : #f00;">Hasło jest wymagane</span>
+							<span 
+								ng-show="registerForm.password.$error.required && registerForm.submitted" 
+								style="color : #f00; float:left;">Hasło jest wymagane</span>
 						</div>
 						
-						<div class="row">
-							<label for="field_password_confirmation">Potwierdź hasło <span
+						<div class="form-group" style="padding-top:15px;">
+							<label for="password_confirmation">Potwierdź hasło <span
 								class="required">*</span>
 							</label>
 							<input 
 							required 
-							id="field_password_confirmation"
-							name="field_password_confirmation" 
+							id="password_confirmation"
+							name="password_confirmation" 
 							value="" 
 							type="password" 
 							ng-model="user.password_verify"
 							ng-class="{submitted:registerForm.submitted}"
 							equals-directive="{{value1}}"/>
-							>
-							<div class="row">
 								<span 
-								ng-show="registerForm.passwordConfirm.$error.required && registerForm.submitted" 
-								 style="color : #f00;">Potwierdzenie hasła jest wymagane</span>
-							 </div>
-							 <div class="row">
-							 <div ng-show="registerForm.field_password_confirmation.$error.equals">
-        								Fields are not equal!</div>
+								ng-show="registerForm.password_confirmation.$error.required && registerForm.submitted" 
+								 style="color : #f00; float:left;">Potwierdzenie hasła jest wymagane</span>
+<!-- 							 <div class="row"> -->
+							 <span 
+							 	ng-show="registerForm.password_confirmation.$error.equals && registerForm.submitted"
+							 	style="color : #f00; float:left;">
+        								Hasłą nie są identyczne</span>
 <!-- 							<span  -->
 <!-- 							ng-show="user.password != passwordConfirm && registerForm.submitted"  -->
 <!-- 							 style="color : #f00;">Hasła nie są takie same</span>  -->
 <!-- 							 </div> -->
 						</div>
 						
-						<div class="row">
+						<div class="form-group" style="padding-top:15px;">
 							<input value="Stwórz" type="submit" ng-click="createUser(user)"> 
 						</div>
 					</form>

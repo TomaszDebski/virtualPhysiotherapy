@@ -5,11 +5,15 @@
         	<div class="col-md-1">
         <span class="page-title">Pacjenci</span>
             </div>
+            <div class="col-md-offset-1 col-md-3">
+            	Wyszukaj pacjenta:
+            	<input type="text" name="wyszukaj" ng-model="patientSearch">
+            </div>
 <!--         <span id="searchbar_patients" class="patient-search-wrap"> -->
 <!--             <input ng-model="patientModel" value="" class="dynamic-search-field" data-action="flexi_search_patient" data-target="#patient-list" placeholder="Szukaj pacjentów..." type="search"> -->
 <!--             <a href="#" class="dynamic-search-reset" style="display: none" ;=""><img src=""></a> -->
 <!--         </span> -->
-			<div class="col-md-11">
+			<div class="col-md-offset-5 col-md-2">
 				<div class="pull-right">
          <a id="add_patient_btn" class="btn btn-primary active" href="#/addPatient">Dodaj pacjenta</a>
          </div>
@@ -32,13 +36,16 @@
     </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="patient in patients ">
-      <td><span class="table_span"><a href="#/patient/{{patient.id}}">{{patient.firstname}} {{patient.lastname}}</a></span></td>
+      <tr ng-repeat="patient in patients | searchPatientFilter:patientSearch">
+      	<td><span class="table_span">
+	      	<a ui-sref="patient({id:{{patient.id}}})">{{patient.firstname}} {{patient.lastname}}</a>
+	      	</span>
+      	</td>
          <td><span class="table_span"><img src="">{{patient.sex}}</span></td>
          <td><span class="table_span">{{patient.age}}</span></td>
          <td><span class="table_span">{{patient.phone}}</span></td>
          <td><span class="table_span">{{patient.email}}</span></td>
-         <td><span class="table_span">{{patient.lastVisit | date:'EEE, dd/MMM/yy, HH:mm' }}</span></td>
+         <td><span class="table_span">{{patient.lastVisit | date:'dd/MMM/yy, HH:mm' }}</span></td>
                         <td class="actions-col">
                <span class="masterTooltip table_span" title="Dodaj wizytę"> 
 	               <a ui-sref="addVisit({patientId:{{patient.id}}})" title="Dodaj wizytę" class="icon">

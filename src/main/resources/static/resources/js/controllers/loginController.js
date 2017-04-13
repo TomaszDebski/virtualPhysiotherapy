@@ -65,7 +65,7 @@ angular.module('app.controller.login', [])
 //            					$rootScope.isUser = false;
 //            				};
                             
-            	    		$state.go("home");
+            	    		$state.go("allPatients");
         	    	    })
         	    		
         	    		

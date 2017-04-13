@@ -18,14 +18,16 @@ angular.module('app.controller.addVisit', [])
 //		}
 //		//console.log(data[0].firstname);
 //	});
-	
+	$scope.success = false;
 	$scope.addVisit = function(visit){
 		console.log("vm.visit.hour" , vm.visit.hour)
 		if ($scope.addVisitForm.$valid){
 			visit.hour = vm.visit.hour;
 			visit.date = vm.visit.date;
+			visit.isHoliday = false;
 			visitService.save({patientId:vm.visit.selectedPatientId},visit,function(){
 				console.log("udało się");
+				$scope.success = true;
 			})
 		}else{
 			$(".selectize-input").css(
@@ -33,7 +35,18 @@ angular.module('app.controller.addVisit', [])
 		             "border-width":"2px", 
 		             "border-style":"solid"})
 			  $scope.addVisitForm.submitted=true;
+			$scope.success = false;
 		}
+	}
+	
+	$scope.clear = function(){
+		$scope.visit = {};
+		vm.people.patientId = {};
+		vm.visit.hour = undefined;
+//		vm.visit = {};
+//		vm.clear();
+//		vm.visit.selectedPatientId = {};
+//		visit.length = '';
 	}
 	
 ////////////////////////Select Patient///////////////////////
@@ -210,22 +223,6 @@ angular.module('app.controller.addVisit', [])
 			  }
 			  
 			  ////////////////////////////////////////////////////////////////////	
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			
 		////////////////////////////////////////Datepicker//////////////////////////////////////////
 			

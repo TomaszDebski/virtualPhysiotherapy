@@ -14,10 +14,10 @@
 	
 	
 <div class="container">
-	<form class="form-horizontal" name="addVisitForm">
+	<form class="form-horizontal" name="addVisitForm" novalidate>
 		<fieldset>
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="Pacjent">Pacjent:</label>  
+			  <label class="col-md-4 control-label" for="Pacjent">Pacjent:<span style="color:red;">*</span></label>  
 			  <div class="col-md-4">
 			  	<ui-select 
 					ng-model="ctrl.people.patientId" 
@@ -48,7 +48,7 @@
 			
 			<!-- Text input-->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="datapicker">Data:</label>  
+			  <label class="col-md-4 control-label" for="datapicker">Data:<span style="color:red;">*</span></label>  
 			  <div class="col-md-4">
 			  	 <div class="input-group">
 			  	<input type="text" 
@@ -80,7 +80,7 @@
 			
 			<!-- Text input-->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="hour">Godzina:</label>  
+			  <label class="col-md-4 control-label" for="hour">Godzina:<span style="color:red;">*</span></label>  
 			  <div class="col-md-4">
 			  <ui-select 
 					ng-model="visit.hour" 
@@ -93,7 +93,12 @@
 					required
 					ng-class="{submitted:addVisitForm.submitted}"
 					>
-					<ui-select-match id="hourField2" placeholder="Wybierz godzinę">{{$select.selected.name}}</ui-select-match>
+					<ui-select-match 
+						id="hourField2" 
+						placeholder="Wybierz godzinę"
+						allow-clear="true"
+						>{{$select.selected.name}}
+					</ui-select-match>
 					<ui-select-choices repeat="country in ctrl.countries | filter: $select.search">
 								<span ng-bind-html="country.name | highlight: $select.search"></span>
 								<small ng-bind-html="country.code | highlight: $select.search"></small>
@@ -104,12 +109,12 @@
 			
 			<!-- Text input-->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="textinput">Czas trwania:</label>  
+			  <label class="col-md-4 control-label" for="textinput">Czas trwania:<span style="color:red;">*</span></label>  
 			  <div class="col-md-4">
 			  <input id="textinput" 
 			  	ng-class="{submitted:addVisitForm.submitted}"  
 			  	name="textinput" 
-			  	placeholder="placeholder" 
+			  	placeholder="Czas trwania" 
 			  	class="form-control" 
 			  	required
 			  	ng-model="visit.length"
@@ -119,7 +124,7 @@
 			
 			<!-- Textarea -->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="description">Opis wizyty:</label>
+			  <label class="col-md-4 control-label" for="description">Opis wizyty: </label>
 			  <div class="col-md-4">                     
 			    <textarea 
 			    	name="description"
@@ -135,7 +140,7 @@
 			
 			<!-- Textarea -->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="recommendations">Zalecenia po wizycie:</label>
+			  <label class="col-md-4 control-label" for="recommendations">Zalecenia po wizycie: </label>
 			  <div class="col-md-4">                     
 			    <textarea 
 			    	name="recommendations"
@@ -163,12 +168,17 @@
 			    	ng-click="addVisit(visit)"
 			    	>Zapisz
 			    </button>
-			    <button id="button2id" name="button2id" class="btn btn-danger">Scary Button</button>
+			    <button type="button" id="button2id" name="button2id" class="btn btn-danger" ng-click="clear()">Wyczyść</button>
 			  </div>
 			</div>
 
 		</fieldset>
 	</form>
+	<div class="row">
+		<div class="alert alert-success" ng-show="success">
+		    <strong>Success!</strong> This alert box could indicate a successful or positive action.
+		</div>
+	</div>
 </div>
 	
 	
@@ -201,7 +211,7 @@ textarea.submitted.ng-invalid{
 </style>
  <style>
         body {
-            padding: 15px;
+/*             padding: 15px; */
         }
 
         .select2 > .select2-choice.ui-select-match {

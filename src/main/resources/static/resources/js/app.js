@@ -54,6 +54,8 @@ angular.module('app',
 		  'app.directive.usernameAvailable',
 		  'app.directive.equals',
 		  'app.directive.dropdown',
+		  
+		  'app.filter.searchPatient'
 //		  'app.service.returnBook',
 //		  'app.service.controller',
 //		  'app.directive.usernameAvailable'
