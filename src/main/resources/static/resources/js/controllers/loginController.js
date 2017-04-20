@@ -7,6 +7,7 @@ angular.module('app.controller.login', [])
 	$rootScope.authenticated = $window.sessionStorage.authenticated;
 	console.log("jestem w loginie");
 	var self = this;
+	$scope.error = false;
 	$scope.login = function(event) {
 		event.preventDefault();
 		if ($scope.fm1.$valid) {      
@@ -76,6 +77,8 @@ angular.module('app.controller.login', [])
         	    	$scope.error = true;
         	    });
         	    
+        }).error(function(response){
+        	$scope.error = true;
         })
 }
 })

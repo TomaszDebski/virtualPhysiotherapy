@@ -53,6 +53,7 @@ public class VisitController {
 		
 		if (visit.getIsHoliday().equals("true")){
 			Physiotherapist physiotherapist = physiotherapisRepository.findTop1ByUsername(principal.getName());
+			if (physiotherapist != null)
 			visit.setPhysiotherapist(physiotherapist);
 			try {
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

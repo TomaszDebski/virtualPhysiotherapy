@@ -12,11 +12,14 @@ angular.module('app.controller.addPatient', [])
 //	}
 //	
 //	console.log('patient Controllerrrr');
+	$scope.successAddPatient = false;
 	$scope.addPatient = function(patient){
 		if($scope.addPatientForm.$valid) {
 			patientService.save(patient,function(){
 				console.log("udało się");
-				$location.path("/allPatients");
+				$scope.successAddPatient = true;
+				$window.scrollTo(0, 0);
+//				$location.path("/allPatients");
 			})
 		}else{
 			$scope.addPatientForm.submitted=true;    

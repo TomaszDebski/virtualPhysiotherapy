@@ -17,9 +17,13 @@
 						<p>
 							<span class="required">* Oznaczenie wymaganych pól</span>
 						</p>
-<!-- 						<ng-form name="userForm">  -->
+						
+						<div class="alert alert-success" ng-show="successAddPhys">
+							  <strong>Sukces!</strong> Utworzono nowego użytkownika
+						</div>
+						
 						<div class="form-group">
-							<label for="field_given_name">
+							<label for="name">
 							Imię
 								<span class="required">*</span>
 							</label> 
@@ -34,7 +38,9 @@
 							>
 							<span 
 								ng-show="registerForm.name.$error.required  && registerForm.submitted" 
-								style="color : #f00; float:left;">imię jest wymagane</span>
+								style="color : #f00; float:left;"
+								>imię jest wymagane
+							</span>
 						</div>
 						
 						
@@ -71,7 +77,13 @@
 							>
 							<span 
 								ng-show="registerForm.email.$error.required && registerForm.submitted" 
-								style="color : #f00; float:left;">Email jest wymagany</span>
+								style="color : #f00; float:left;">Email jest wymagany
+							</span>
+							<span 
+	        					ng-show="registerForm.email.$error.email && registerForm.submitted" 
+	        					style="color : #f00; float:left;"
+	        					>Nieprawidłowy e-mail
+	        				</span>
 						</div>
 						
 						
@@ -119,24 +131,25 @@
 						</div>
 						
 						<div class="form-group" style="padding-top:15px;">
-							<label for="password_confirmation">Potwierdź hasło <span
+							<label for="passwordConfirm">Potwierdź hasło <span
 								class="required">*</span>
 							</label>
 							<input 
 							required 
-							id="password_confirmation"
-							name="password_confirmation" 
+							id="passwordConfirm"
+							name="passwordConfirm" 
 							value="" 
 							type="password" 
-							ng-model="user.password_verify"
+							ng-model="passwordConfirm"
 							ng-class="{submitted:registerForm.submitted}"
-							equals-directive="{{value1}}"/>
+							required data-password-verify="user.password"
+							/>
 								<span 
-								ng-show="registerForm.password_confirmation.$error.required && registerForm.submitted" 
+								ng-show="registerForm.passwordConfirm.$error.required && registerForm.submitted" 
 								 style="color : #f00; float:left;">Potwierdzenie hasła jest wymagane</span>
 <!-- 							 <div class="row"> -->
 							 <span 
-							 	ng-show="registerForm.password_confirmation.$error.equals && registerForm.submitted"
+							 	ng-show="registerForm.passwordConfirm.$error.passwordVerify && registerForm.submitted"
 							 	style="color : #f00; float:left;">
         								Hasłą nie są identyczne</span>
 <!-- 							<span  -->

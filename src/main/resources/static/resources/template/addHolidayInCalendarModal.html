@@ -11,14 +11,14 @@
 			                <div id="modalTab">
 			                    <div class="tab-content">
 			                        <div class="tab-pane active" id="login">
-			                            <form name="holidayForm">
+			                            <form name="holidayForm" novalidate>
 											<div class="row vertical-align">
 												<div class="col-md-1">
 													<span>Od:</span>
 												</div>
 												<div class="col-md-4">
 
-												<p class="input-group">
+												<div class="input-group">
 												<input type="text" 
 													class="form-control" 
 													ng-change="getStartDate()" 
@@ -31,8 +31,8 @@
 													close-text="Close" 
 													alt-input-formats="altInputFormats" 
 													required
-													name="dateField"
-													ng-class="{submitted:addVisitForm.submitted}"
+													name="dateToField"
+													ng-class="{submitted:holidayForm.submitted}"
 												/>
 			          							<span class="input-group-btn">
 			            							<button 
@@ -43,15 +43,16 @@
 													</button>
 			          							</span>
 
-												</p>
 												</div>
+												</div>
+												
 
 												<div class="col-md-1">
 													<span>Do:</span>
 												</div>
 												<div class="col-md-4">
 
-												<p class="input-group">
+												<div class="input-group">
 												<input type="text" 
 													class="form-control" 
 													ng-change="getEndDate()" 
@@ -64,8 +65,8 @@
 													close-text="Close" 
 													alt-input-formats="altInputFormats" 
 													required
-													name="dateField"
-													ng-class="{submitted:addVisitForm.submitted}"
+													name="dateFromField"
+													ng-class="{submitted:holidayForm.submitted}"
 												/>
 			          							<span class="input-group-btn">
 			            							<button 
@@ -76,9 +77,25 @@
 													</button>
 			          							</span>
 
-												</p>
+												</div>
 												</div>
 											</div>
+							<div class="row">
+								<div class="col-md-offset-1 col-md-5">
+									<span 
+    									ng-show="holidayForm.dateToField.$error.required && holidayForm.submitted" 
+    									style="color : #f00; float:left;"
+    									>Wymagana data początkowa
+    								</span>
+								</div>
+								<div class="col-md-5">
+									<span 
+    									ng-show="holidayForm.dateFromField.$error.required && holidayForm.submitted" 
+    									style="color : #f00; float:left;"
+    									>Wymagana data do
+    								</span>
+								</div>
+							</div>
 										<br>
 			                        </div>
 			                       		<div class="modal-footer">
@@ -91,4 +108,9 @@
 			            </div>
 			        </div>
 </div>
+	<style>
+input.submitted.ng-invalid{
+  border:2px solid #f00;
+}
+	</style>
 </script>

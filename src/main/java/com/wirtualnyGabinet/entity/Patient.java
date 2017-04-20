@@ -25,7 +25,7 @@ import com.wirtualnyGabinet.Views;
 
 @Entity
 @Table(name="patient")
-@JsonIgnoreProperties("visits")
+@JsonIgnoreProperties({"visits","phisiotherapistId"})
 //@JsonAppend(props = {@JsonAppend.Prop(value = "version")})
 public class Patient implements Serializable{
 
@@ -94,6 +94,10 @@ public class Patient implements Serializable{
 	@Column(name="description")
 	public String description;
 	
+//	@Transient
+	@Column(name="phisiotherapist_Id",nullable=true)
+	private String phisiotherapist_Id;
+	
 	public Patient(){}
 	
 	@JsonView(Views.Patient.class)
@@ -101,11 +105,11 @@ public class Patient implements Serializable{
 	public Date lastVisit;
 	
 	public Date getLastVisit() {
-		if (visits != null){
+		if (visits != null && !visits.isEmpty()){
 			List<Date> dateVisits = visits.stream().map(Visit::getDate).collect(Collectors.toList());
 			return (Date) Collections.max(dateVisits);
 		}else{
-			System.out.println("źle");
+//			System.out.println("źle");
 		}
 		return null;
 	}
@@ -308,6 +312,25 @@ public class Patient implements Serializable{
 	public void setInterviews(List<Interview> interviews) {
 		this.interviews = interviews;
 	}
+
+	public String getPhisiotherapist_Id() {
+		return phisiotherapist_Id;
+	}
+
+	public void setPhisiotherapist_Id(String phisiotherapist_Id) {
+		this.phisiotherapist_Id = phisiotherapist_Id;
+	}
+
+//	public long getPhisiotherapist_Id() {
+//		return phisiotherapist_Id;
+//	}
+//
+//	public void setPhisiotherapist_Id(long phisiotherapist_Id) {
+//		this.phisiotherapist_Id = phisiotherapist_Id;
+//	}
+
+	
+	
 	
 	
 }

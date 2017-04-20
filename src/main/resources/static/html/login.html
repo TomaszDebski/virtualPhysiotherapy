@@ -12,19 +12,21 @@
 					novalidate
 					>
 					<div class="row">
-					<h1>
-						<img src="images/CPA-white-logo-mark.png" alt="Wirtualny gabinet">
-					</h1>
-					<h2>Witaj na stronie logowania</h2>
-					<p>
-						Dostęp do wirtualnego gabinetu fizjoterapii. Jeśli masz konto,
-						wpisz adres email i hasło poniżej, a jeśli nie masz to<br>
-						<br> <a ui-sref="register">Stwórz
-							nowe konto</a>
-					</p>
+						<h1>
+							<img src="images/CPA-white-logo-mark.png" alt="Wirtualny gabinet">
+						</h1>
+						<h2>Witaj na stronie logowania</h2>
+						<p>
+							Dostęp do wirtualnego gabinetu fizjoterapii. Jeśli masz konto,
+							wpisz adres email i hasło poniżej, a jeśli nie masz to<br>
+							<br> <a ui-sref="register">Stwórz
+								nowe konto</a>
+						</p>
 					</div>
-<!-- 					<section class="row"> -->
-<!-- 					<div class="row" style="margin-bottom:20px; padding-bottom:30px;"> -->
+					<div class="alert alert-danger" ng-show="error" style="text-align:center;">
+					  <strong>Błąd!</strong> <span>Nieprawidłowy login lub hasło. <br>Spróbuj jeszcze raz.</span>
+					</div>
+					
 					<div class="form-group" >
 						<label for="username" class="input">Login</label> 
 						<input
@@ -76,9 +78,6 @@
 					<div>
 					</div>
 				</form>
-				<div class="row">
-				<div class="alert alert-danger" ng-show="error">Nieprawidłowy login lub hasło. Spróbuj jeszcze raz. </div>
-				</div>
 				</div>
 			</div>
 			

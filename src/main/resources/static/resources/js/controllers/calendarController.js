@@ -24,7 +24,7 @@ angular.module('app.controller.calendar', [])
               windowClass: 'app-modal-window',
               resolve :{
             	  patients : function(allPatientsForPhysiotherapistService,$rootScope){
-            		  return allPatientsForPhysiotherapistService.getPatients($rootScope.user)
+            		  return allPatientsForPhysiotherapistService.getPatients()
             		  .then(function(result){
 //            	    	console.log('result addVisitInCalendarModelController: ' , result);
             	    	return result;

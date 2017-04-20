@@ -1,9 +1,11 @@
 package com.wirtualnyGabinet.controller;
 
 import java.security.Principal;
+import org.apache.commons.lang3.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +23,7 @@ import com.wirtualnyGabinet.entity.Physiotherapist;
 import com.wirtualnyGabinet.repository.PatientRepository;
 import com.wirtualnyGabinet.repository.PhysiotherapistRepository;
 
+
 @RestController
 @RequestMapping("/patient")
 public class PatientController {
@@ -32,7 +35,9 @@ public class PatientController {
 	PatientRepository patientRepository;
 
 	@RequestMapping(method= RequestMethod.POST)
-	public void addPatient(@RequestBody Patient patient){
+	public void addPatient(@RequestBody Patient patient,Principal principal){
+		Physiotherapist phys = physiotherapistRepository.findTop1ByUsername(principal.getName());
+		patient.setPhisiotherapist_Id(Long.toString(phys.getId()));
 		patientRepository.save(patient);
 	}
 	
@@ -50,11 +55,15 @@ public class PatientController {
 	
 	@JsonView(Views.Patient.class)
 	@RequestMapping("/byPhysiotherapist")
-	public List<Patient> getAllPatientsForPhysiotherapist(@RequestParam("name") String name){
-		Physiotherapist physiotheraphist = physiotherapistRepository.findTop1ByUsername(name);
+	public List<Patient> getAllPatientsForPhysiotherapist(Principal principal){
+		Physiotherapist physiotheraphist = null;
+		if (principal != null && StringUtils.isNotEmpty(principal.getName())){
+			physiotheraphist = physiotherapistRepository.findTop1ByUsername(principal.getName());
+		}
 		List<Patient> patients = new ArrayList<>();
 		if (physiotheraphist != null){
-			patients = (List<Patient>)patientRepository.findById(physiotheraphist.getId());
+//			patients = (List<Patient>)patientRepository.findById(physiotheraphist.getId());
+			patients = (List<Patient>)patientRepository.findByPhisiotherapist_Id(Long.toString(physiotheraphist.getId()));
 		}
 		return patients;
 	}
@@ -65,7 +74,8 @@ public class PatientController {
 		Physiotherapist physio = physiotherapistRepository.findOne(id);
 		Page<Patient> patients = null;
 		if (physio != null){
-			patients = (Page<Patient>) patientRepository.findById(pageable,physio.getId());
+//			patients = (Page<Patient>) patientRepository.findById(pageable,physio.getId());
+			patients = (Page<Patient>) patientRepository.findByPhisiotherapist_Id(pageable,Long.toString(physio.getId()));
 		}
 		return patients;
 	}

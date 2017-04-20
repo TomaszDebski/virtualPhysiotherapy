@@ -8,16 +8,6 @@ angular.module('app.controller.addVisit', [])
 	
 	var vm = this;
 	
-//	console.log("$stateParams",$stateParams.patientId)
-//	patientService.query(function(data) {
-//		$scope.patients =  data;
-//		if ($stateParams.patientId == undefined){
-//			$scope.patientId = data[0].id;
-//		}else{
-//			$scope.patientId = 'number:' +$stateParams.patientId;
-//		}
-//		//console.log(data[0].firstname);
-//	});
 	$scope.success = false;
 	$scope.addVisit = function(visit){
 		console.log("vm.visit.hour" , vm.visit.hour)
@@ -80,8 +70,6 @@ angular.module('app.controller.addVisit', [])
 			  vm.clear = function() {
 				  console.log("function clear")
 			    vm.person.selected = undefined;
-//			    vm.address.selected = undefined;
-//			    vm.country.selected = undefined;
 			  };
 
 			  vm.someGroupFn = function (item){
@@ -91,7 +79,6 @@ angular.module('app.controller.addVisit', [])
 
 			    if (item.name[0] >= 'N' && item.name[0] <= 'Z')
 			        return 'From N - Z';
-
 			  };
 
 			  vm.firstLetterGroupFn = function (item){
@@ -102,7 +89,6 @@ angular.module('app.controller.addVisit', [])
 			    return groups.reverse();
 			  };
 
-//			  vm.personAsync = {selected : "wladimir@email.com"};
 			  vm.peopleAsync = [];
 			  
 			  $timeout(function(){

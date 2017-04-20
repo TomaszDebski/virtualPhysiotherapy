@@ -5,6 +5,34 @@ angular.module('app.controller.addVisitInCalendarModel', [])
 .controller('addVisitInCalendarModelController', function($scope,$rootScope,$http, $uibModalInstance , myParam,
 		allPatientsForPhysiotherapistService,patients,myParam,$timeout, $interval,getVisitsService,$log,visitService) {
 	
+	$scope.width = 1200;
+	$scope.height = 1000;
+	$scope.visit = {};
+	$scope.ok = function (visit) {
+		  if ($scope.addVisitForm.$valid){
+			  visit.hour = vm.visit.hour;
+//			  console.log('vm.visit.startDate' , vm.visit.startDate)
+			  visit.date = vm.visit.startDate;
+			  visit.isHoliday = false;
+			  visit.length = vm.visit.length;
+			  visitService.save({patientId:vm.visit.selectedPatientId},visit,function(){
+				  console.log("udało się");
+				  //vm.people.push({title: 'Random 1', start: new Date(), allDay: true})
+			  })
+			  $uibModalInstance.close();
+		  }else{
+			  $(".selectize-input").css(
+					  {"border-color": "#f00", 
+		             "border-width":"2px", 
+		             "border-style":"solid"})
+			  $scope.addVisitForm.submitted=true;
+		  }
+	  
+	  };
+
+	  $scope.cancel = function () {
+		  $uibModalInstance.dismiss('cancel');
+	  };
 //	var patients = allPatientsForPhysiotherapistService.getPatients($rootScope.user);
 //	patients.then(function(result){
 //    	console.log('result: ' , result);
@@ -254,35 +282,6 @@ angular.module('app.controller.addVisitInCalendarModel', [])
 	  
 	  
 	//////////////////////////datapicker///////////////// 
-//	  $scope.visit = {};
-	  $scope.ok = function (visit) {
-		  if ($scope.addVisitForm.$valid){
-			  visit.hour = vm.visit.hour;
-			  console.log('vm.visit.startDate' , vm.visit.startDate)
-			  visit.date = vm.visit.startDate;
-			  visitService.save({patientId:vm.visit.selectedPatientId},visit,function(){
-				  console.log("udało się");
-				  //vm.people.push({title: 'Random 1', start: new Date(), allDay: true})
-			  })
-			  $uibModalInstance.close();
-		  }else{
-			  $(".selectize-input").css(
-					  {"border-color": "#f00", 
-		             "border-width":"2px", 
-		             "border-style":"solid"})
-			  $scope.addVisitForm.submitted=true;
-		  }
-	  
-	  };
-
-	  $scope.cancel = function () {
-		  $uibModalInstance.dismiss('cancel');
-	  };
-	  
-//	  $http.get("bodyPart")
-//		.then(function(value) {
-////			$scope.bodyPart = value.data;
-//})
 	  
 	  $scope.myParam = myParam;
 	  

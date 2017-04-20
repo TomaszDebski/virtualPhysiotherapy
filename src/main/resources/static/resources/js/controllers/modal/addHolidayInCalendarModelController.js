@@ -28,17 +28,13 @@ angular.module('app.controller.addHolidayInCalendarModel', [])
 					  {"border-color": "#f00", 
 		             "border-width":"2px", 
 		             "border-style":"solid"})
-			  $scope.addVisitForm.submitted=true;
+			  $scope.holidayForm.submitted=true;
 		  }
-	  
 	  };
 
 	  $scope.cancel = function () {
 		  $uibModalInstance.dismiss('cancel');
 	  };
-	
-	
-	
 	
 	/////////////////////////////////////////datePickers////////////////////////
 	

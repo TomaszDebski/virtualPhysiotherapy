@@ -4,8 +4,8 @@
 angular.module('app.service.allPatientsForPhysiotherapist',[])
     .factory('allPatientsForPhysiotherapistService',['$http', function($http) {
     	return {
-    	    getPatients: function(name) {
-    	      return $http.get('patient/byPhysiotherapist?name=' + name)
+    	    getPatients: function() {
+    	      return $http.get('patient/byPhysiotherapist')
     	      .then(function(result){
             return result.data;
 //				.success(function(data,status,headers,config){

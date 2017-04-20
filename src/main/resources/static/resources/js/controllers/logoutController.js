@@ -3,7 +3,7 @@
  */
 angular.module('app.controller.logout', []).controller(
 		'logoutController',
-		function($scope, $http, $rootScope, $location, $window) {
+		function($scope, $http, $rootScope, $state, $window) {
 			$http.post("/logout")
 				.success(function(data, status, headers, config) {
 					$rootScope.authenticated = false;
@@ -14,9 +14,9 @@ angular.module('app.controller.logout', []).controller(
 					$window.sessionStorage.user = "";
 					$window.sessionStorage.authenticated = false;
 					$window.sessionStorage.role = "";
-					$location.path("/");
+					$state.go("home");
 				}).error(function(data, status, headers, config) {
-					
+					console.log('Problem z wylogowaniem');
 			})
 			
 			

@@ -4,20 +4,26 @@
 			<span class="page-title">Dodaj nową wizytę</span>
 		</div>
 	</div>
-	
-	
-	
-	
-	
-	
+
 	<!-- ///////////////////////////////////////// -->
-	
-	
+	<br><br>
 <div class="container">
-	<form class="form-horizontal" name="addVisitForm" novalidate>
+	<div class="row" ng-show="success">
+		<div class="col-md-offset-4 col-md-4">
+			<div class="alert alert-success" >
+			    <strong>Sukces</strong> Poprawnie dodano wizytę
+			</div>
+		</div>
+			    <br><br>
+	</div>
+	<div class="row" style="padding-top:15px;">
+	<form class="form-horizontal" 
+		name="addVisitForm" 
+		novalidate>
+		
 		<fieldset>
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="Pacjent">Pacjent:<span style="color:red;">*</span></label>  
+			  <label class="col-md-offset-2 col-md-2 control-label" for="Pacjent">Pacjent:<span style="color:red;">*</span></label>  
 			  <div class="col-md-4">
 			  	<ui-select 
 					ng-model="ctrl.people.patientId" 
@@ -43,29 +49,34 @@
       				</small>
     			</ui-select-choices>
 				</ui-select>
+				<span 
+    				ng-show="addVisitForm.selectPatientId.$error.required && addVisitForm.submitted" 
+    				style="color : #f00; float:left;"
+    				>Wybierz pacjenta
+    			</span>
 			  </div>
 			</div>
 			
 			<!-- Text input-->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="datapicker">Data:<span style="color:red;">*</span></label>  
+			  <label class="col-md-offset-2 col-md-2 control-label" for="datapicker">Data:<span style="color:red;">*</span></label>  
 			  <div class="col-md-4">
 			  	 <div class="input-group">
 			  	<input type="text" 
-													class="form-control" 
-													ng-change="getDate()" 
-													uib-datepicker-popup="{{format}}"
-													ng-model="ctrl.visit.startDate" 
-													is-open="popup1.opened" 
-													ng-model-options="{timezone: 'utc'}"
-													datepicker-options="dateOptions" 
-													ng-required="true" 
-													close-text="Close" 
-													alt-input-formats="altInputFormats" 
-													required
-													name="dateField"
-													ng-class="{submitted:addVisitForm.submitted}"
-												/>
+					class="form-control" 
+					ng-change="getDate()" 
+					uib-datepicker-popup="{{format}}"
+					ng-model="ctrl.visit.startDate" 
+					is-open="popup1.opened" 
+					ng-model-options="{timezone: 'utc'}"
+					datepicker-options="dateOptions" 
+					ng-required="true" 
+					close-text="Close" 
+					alt-input-formats="altInputFormats" 
+					required
+					name="dateField"
+					ng-class="{submitted:addVisitForm.submitted}"
+				/>
 			          <span class="input-group-btn" id="spanDate">
 			            <button 
 			            	type="button" 
@@ -75,14 +86,19 @@
 			            </button>
 			          </span>
 				</div>
+				<span 
+    				ng-show="addVisitForm.dateField.$error.required && addVisitForm.submitted" 
+    				style="color : #f00; float:left;"
+    				>Wybierz date
+    			</span>
 			  </div>
 			</div>
 			
 			<!-- Text input-->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="hour">Godzina:<span style="color:red;">*</span></label>  
+			  <label class="col-md-offset-2 col-md-2 control-label" for="hour">Godzina:<span style="color:red;">*</span></label>  
 			  <div class="col-md-4">
-			  <ui-select 
+			  	<ui-select 
 					ng-model="visit.hour" 
 					theme="selectize" 
 					ng-disabled="ctrl.disabled"  
@@ -104,27 +120,37 @@
 								<small ng-bind-html="country.code | highlight: $select.search"></small>
 					</ui-select-choices>
 						</ui-select>
+				<span 
+    				ng-show="addVisitForm.hourField.$error.required && addVisitForm.submitted" 
+    				style="color : #f00; float:left;"
+    				>Wybierz godzinę
+    			</span>
 			  </div>
 			</div>
 			
 			<!-- Text input-->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="textinput">Czas trwania:<span style="color:red;">*</span></label>  
+			  <label class="col-md-offset-2 col-md-2 control-label" for="textinput">Czas trwania:<span style="color:red;">*</span></label>  
 			  <div class="col-md-4">
 			  <input id="textinput" 
 			  	ng-class="{submitted:addVisitForm.submitted}"  
-			  	name="textinput" 
+			  	name="lengthField" 
 			  	placeholder="Czas trwania" 
 			  	class="form-control" 
 			  	required
 			  	ng-model="visit.length"
 			  	type="text">
+			  	<span 
+    				ng-show="addVisitForm.lengthField.$error.required && addVisitForm.submitted" 
+    				style="color : #f00; float:left;"
+    				>Określ czas trwania
+    			</span>
 			  </div>
 			</div>
 			
 			<!-- Textarea -->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="description">Opis wizyty: </label>
+			  <label class="col-md-offset-2 col-md-2 control-label" for="description">Opis wizyty: </label>
 			  <div class="col-md-4">                     
 			    <textarea 
 			    	name="description"
@@ -140,7 +166,7 @@
 			
 			<!-- Textarea -->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="recommendations">Zalecenia po wizycie: </label>
+			  <label class="col-md-offset-2 col-md-2 control-label" for="recommendations">Zalecenia po wizycie: </label>
 			  <div class="col-md-4">                     
 			    <textarea 
 			    	name="recommendations"
@@ -157,7 +183,7 @@
 			
 			<!-- Button (Double) -->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="button1id"></label>
+			  <label class="col-md-offset-2 col-md-2 control-label" for="button1id"></label>
 			  <div class="col-md-8">
 			    <button 
 			    	id="button1id" 
@@ -174,10 +200,6 @@
 
 		</fieldset>
 	</form>
-	<div class="row">
-		<div class="alert alert-success" ng-show="success">
-		    <strong>Success!</strong> This alert box could indicate a successful or positive action.
-		</div>
 	</div>
 </div>
 	

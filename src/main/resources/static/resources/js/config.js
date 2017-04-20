@@ -76,7 +76,7 @@ angular.module('app.config', [])
 			},
 			patients : function(allPatientsForPhysiotherapistService,$rootScope,$window){
 				$rootScope.user = $window.sessionStorage.user;
-      		  return allPatientsForPhysiotherapistService.getPatients($rootScope.user)
+      		  return allPatientsForPhysiotherapistService.getPatients()
       		  .then(function(result){
       	    	console.log('result addVisitController: ' , result);
       	    	return result;
@@ -94,7 +94,7 @@ angular.module('app.config', [])
 		resolve : {
 			patients : function(allPatientsForPhysiotherapistService,$rootScope,$window){
 				$rootScope.user = $window.sessionStorage.user;
-      		  return allPatientsForPhysiotherapistService.getPatients($rootScope.user)
+      		  return allPatientsForPhysiotherapistService.getPatients()
       		  .then(function(result){
       	    	console.log('result addVisitController: ' , result);
       	    	return result;

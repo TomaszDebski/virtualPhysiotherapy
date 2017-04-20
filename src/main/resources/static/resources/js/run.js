@@ -9,7 +9,8 @@ angular.module('app.run', [])
 //		if (toState.name =="login" || toState.name == "logout")
 			console.log("toState.name " + toState.name)
 //		event.preventDefault(); 
-//		console.log('jestem w metodzie')
+		console.log('jestem w metodzie')
+		console.log('$window.sessionStorage.authenticated',$window.sessionStorage.authenticated)
 //		if (!$window.sessionStorage.authenticated){
 //			$http({
 //		        url: 'findUser',
@@ -23,8 +24,8 @@ angular.module('app.run', [])
 //		    				$state.go( "login" , {});
 //		    			}
 //		    		}else{
-//		    			$rootScope.user = $window.sessionStorage.user;
-//		    			$rootScope.authenticated = $window.sessionStorage.authenticated;
+		    			$rootScope.user = $window.sessionStorage.user;
+		    			$rootScope.authenticated = $window.sessionStorage.authenticated;
 //		    			if ($window.sessionStorage.role == "ROLE_ADMIN"){
 //		    				$rootScope.isAdmin = true; 
 //		    			}else if($window.sessionStorage.role == "ROLE_USER"){
@@ -44,12 +45,14 @@ angular.module('app.run', [])
 //					$window.sessionStorage.user = "";
 //					$window.sessionStorage.authenticated = false;
 //					$window.sessionStorage.role = "";
-//					if ((toState.name == "register") && ($window.sessionStorage.user == "")){
-//	//					if ((next.templateUrl == "html/register.html") && ($window.sessionStorage.user == "")){
+					if ($window.sessionStorage.user == ""){
+						if ((toState.name != "register" && toState.name != "login"  )){
+							$state.go( "login", {});
+							event.preventDefault();
+						}
 //						$state.go( "register", {});
 //					}else{
-//						$state.go( "login", {});
-//					}
+					}
 //		    	}
 //			})
 ////		}
