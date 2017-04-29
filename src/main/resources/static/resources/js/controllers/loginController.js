@@ -8,14 +8,15 @@ angular.module('app.controller.login', [])
 	console.log("jestem w loginie");
 	var self = this;
 	$scope.error = false;
+//	self.loginForm.submitted=false;
 	$scope.login = function(event) {
 		event.preventDefault();
-		if ($scope.fm1.$valid) {      
+		if ($scope.loginForm.$valid) {      
 		      //form is valid
 	    }
 	    else {
 	        //if form is not valid set $scope.addContact.submitted to true     
-	        $scope.fm1.submitted=true;    
+	        $scope.loginForm.submitted=true;    
 	    	return;
 //	    	$scope.error = false;
 	    };
@@ -30,6 +31,10 @@ angular.module('app.controller.login', [])
 //		,
 //        xsrfHeaderName: 'X-XSRF-TOKEN'
         }).success(function(data, status, headers, config){
+        		console.log("data",data);
+        		console.log("status",status);
+        		console.log("headers",headers);
+        		console.log("config",config);
         		$http({
         	        url: 'findUser',
         	        method: "GET",

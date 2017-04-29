@@ -2,90 +2,87 @@
 <div id="container"  >
 	<div id="content">
 		<div class="top">
-<!-- 			<div class="box" id="login"> -->
-<div class="row" ">
-<div class="col-md-offset-4 col-md-4" ">
-				<form id="fm1"	
-					name="fm1"
-					method="post"
-					ng-submit="login($event)"
-					novalidate
-					>
-					<div class="row">
-						<h1>
-							<img src="images/CPA-white-logo-mark.png" alt="Wirtualny gabinet">
-						</h1>
-						<h2>Witaj na stronie logowania</h2>
-						<p>
-							Dostęp do wirtualnego gabinetu fizjoterapii. Jeśli masz konto,
-							wpisz adres email i hasło poniżej, a jeśli nie masz to<br>
-							<br> <a ui-sref="register">Stwórz
-								nowe konto</a>
-						</p>
-					</div>
-					<div class="alert alert-danger" ng-show="error" style="text-align:center;">
-					  <strong>Błąd!</strong> <span>Nieprawidłowy login lub hasło. <br>Spróbuj jeszcze raz.</span>
-					</div>
-					
-					<div class="form-group" >
-						<label for="username" class="input">Login</label> 
-						<input
-							id="username" 
-							name="username" 
-							class="required" 
-							tabindex="1"
-							accesskey="u" 
-							value="" size="25" 
-							autocomplete="off" 
-							type="text"
-							ng-model="data.credentials.username"
-							required
-							ng-class="{submitted:fm1.submitted}"
-							>
-							
+			<div class="row" ">
+				<div class="col-md-offset-4 col-md-4" ">
+					<form id="loginForm"	
+						name="loginForm"
+						method="post"
+						ng-submit="login($event)"
+						novalidate
+						>
+						
+						<div class="row">
+							<h1>
+								<img src="images/CPA-white-logo-mark.png" alt="Wirtualny gabinet">
+							</h1>
+							<h2>Witaj na stronie logowania</h2>
+							<p>
+								Dostęp do wirtualnego gabinetu fizjoterapii. Jeśli masz konto,
+								wpisz adres email i hasło poniżej, a jeśli nie masz to<br>
+								<br> <a ui-sref="register">Stwórz
+									nowe konto</a>
+							</p>
+						</div>
+						<div class="alert alert-danger" ng-show="error" style="text-align:center;">
+						  <strong>Błąd!</strong> <span>Nieprawidłowy login lub hasło. <br>Spróbuj jeszcze raz.</span>
+						</div>
+						
+						<div class="form-group" >
+							<label for="username" class="input">Login</label> 
+							<input
+								id="username" 
+								name="username" 
+								class="required" 
+								tabindex="1"
+								value="" 
+								size="25" 
+								autocomplete="off" 
+								type="text"
+								ng-model="data.credentials.username"
+								required
+								ng-class="{submitted:loginForm.submitted}"
+							/>
+								
 							<span 
-								ng-show="fm1.username.$error.required" 
+								ng-show="loginForm.username.$error.required && loginForm.submitted" 
 								style="color : #f00; float:left;"
-								>Login jest wymaganay
+								>Login jest wymagany
 							</span>
-							</div>
-<!-- 							</div> -->
-							<div class="form-group" style="padding-top:10px;">
-						<label for="password" class="input">Hasło</label> 
-						<input
-							id="password" 
-							name="password"
-							class="required" 
-							tabindex="2"
-							accesskey="p" 
-							value="" 
-							size="25" 
-							autocomplete="off"
-							type="password"
-							ng-model="data.credentials.password"
-							required
-							ng-class="{submitted:fm1.submitted}"
-							> 
-							<span ng-show="fm1.password.$error.required" style="color : #f00; float:left;">Hasło jest wymagane</span>
+						</div>
+						
+						<div class="form-group" style="padding-top:10px;">
+							<label for="password" class="input">Hasło</label> 
+							<input
+								id="password" 
+								name="password"
+								class="required" 
+								size="25" 
+								autocomplete="off"
+								type="password"
+								ng-model="data.credentials.password"
+								required
+								ng-class="{submitted:loginForm.submitted}"
+							/> 
+							<span 
+								ng-show="loginForm.password.$error.required && loginForm.submitted" 
+								style="color : #f00; float:left;"
+								>Hasło jest wymagane
+							</span>
 							<br><br><br>	
-<!-- 					<section class="row btn-row"> -->
-					</div>
-					<div class="form-group">
-						<input class="btn-submit" name="submit" accesskey="l"
-							value="Zaloguj" tabindex="6" type="submit">
-<!-- 					</section> -->
-					</div>
-					<div>
-					</div>
-				</form>
+						</div>
+						<div class="form-group">
+							<input 
+								class="btn-submit" 
+								name="submit"
+								value="Zaloguj" 
+								type="submit">
+						</div>
+					</form>
 				</div>
 			</div>
-			
 		</div>
-		
 	</div>
 	<!-- END #content -->
-	
 </div>
 <style>
 
@@ -141,12 +138,6 @@ p a, p a:hover, p a:focus {
 	color: #fff;
 	text-decoration: underline;
 }
-
-/* .row { */
-/* 	margin-bottom: 20px; */
-/* 	position: relative; */
-/* 	overflow: hidden; */
-/* } */
 
 label.input {
 	/* display: block;

@@ -4,7 +4,7 @@
         <div class="row vertical-align">
         	<div class="col-md-4">
 		        <span class="page-title">{{patient.firstname}} {{patient.lastname}}</span>
-		        <a href="" class="patient-edit icon" >
+		        <a href="" class="patient-edit icon" ng-click="editModeFunction(true)">
 		        	<img src="pics/edytuj.svg" style="height: 20px;">
 		        </a>
 		        <a href="" class="" >
@@ -13,7 +13,7 @@
             </div>
             <div class="col-md-4">
             	<span class="appointment-ended-text"><a
-							href="https://flexiforum.pl/wizyta/2017-02-19-15/"
+							href=""
 							class="appointment-patient-link">Ostatnia wizyta: {{patient.lastVisit | date:'dd/MMM/yy, HH:mm' }}</a></span> 
             </div>
 			<div class="col-md-4">
@@ -31,285 +31,358 @@
 </div>
 
 	
-	
-   <title>User profile form requirement</title>
-    <style>
-    body {
-        padding-top: 70px;
-        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-    }
-
-    .othertop{margin-top:10px;}
-    </style>
-
-
-
-   <div class="container">
-<div class="row">
-<div class="col-md-6 ">
-<form class="form-horizontal">
-<fieldset>
-
-<!-- Form Name -->
-<legend>Profil pacjenta</legend>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="firstName">Imię:</label>  
-  <div class="col-md-6">
- <div class="input-group">
-       <div class="input-group-addon">
-        <i class="fa fa-user">
-        </i>
-       </div>
-       <input 
-       	id="firstName" 
-       	name="firstName" 
-       	type="text" 
-       	placeholder="Imię" 
-       	class="form-control input-md"
-       	ng-model="patient.firstname"
-       	required
-       >
-      </div>
-  </div>
-</div>
-
-<div class="form-group">
-  <label class="col-md-4 control-label" for="lastName">Nazwisko:</label>  
-  <div class="col-md-6">
- <div class="input-group">
-       <div class="input-group-addon">
-        <i class="fa fa-user">
-        </i>
-       </div>
-       <input 
-       		id="lastName" 
-       		name="lastName" 
-       		type="text" 
-       		placeholder="Nazwisko" 
-       		class="form-control input-md"
-       		ng-model="patient.lastname"
-       		required
-       	>
-      </div>
-  </div>
-</div>
-
-<!-- File Button --> 
-<!-- <div class="form-group"> -->
-<!--   <label class="col-md-4 control-label" for="Upload photo">Upload photo</label> -->
-<!--   <div class="col-md-4"> -->
-<!--     <input id="Upload photo" name="Upload photo" class="input-file" type="file"> -->
-<!--   </div> -->
-<!-- </div> -->
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="birthDate">Data urodzenia:</label>  
-  <div class="col-md-6">
-
-  <div class="input-group">
-       <div class="input-group-addon">
-     <i class="fa fa-birthday-cake"></i>
-        
-       </div>
-       <input 
-       		id="birthDate"
-			name="birthDate" 
-			type="text" 
-			placeholder="Data urodzenia" 
-			class="form-control input-md"
-			ng-model="patient.birthDate"
-       		required
-		>
-      </div>
-  </div>
-</div>
-
-<!-- Multiple Radios (inline) -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="gender">Płeć:</label>
-  <div class="col-md-6"> 
-    <label class="radio-inline" for="gender1">
-      <input type="radio" name="gender1" id="gender1" value="M" checked="checked">
-      Male
-    </label> 
-    <label class="radio-inline" for="gender2">
-      <input type="radio" name="gender2" id="gender2" value="K">
-      Female
-    </label> 
-  </div>
-</div>
-
-<div class="form-group">
-  <label class="col-md-4 control-label col-xs-12" for="adres">Adres:</label>  
-  <div class="col-md-4  col-xs-4">
-  <input 
-  		id="adres" 
-  		name="adres" 
-  		type="text" 
-  		placeholder="Miasto" 
-  		class="form-control input-md "
-  		ng-model="patient.city"
-       	required>
-  </div>
-
- 
-
-  
-</div>
-<div class="row">
-	  <label class="col-md-4 control-label col-xs-12" for="street"></label>  
-	  <div class="col-md-4 col-xs-4">
-	  <input 
-	  	id="street" 
-	  	name="street" 
-	  	type="text" 
-	  	placeholder="Ulica" 
-	  	class="form-control input-md "
-	  	ng-model="patient.address"
-       	required
-	  	>
-	  
-	  </div>
-	   	<div class=" col-md-2 col-xs-4">
-
-		  <input 
-		  		id="number" 
-		  		name="number" 
-		  		type="text" 
-		  		placeholder="Numer" 
-		  		class="form-control input-md "
-		  		ng-model="patient.number"
-		       	required
-		   >
-  		</div>
-</div>
-
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="phone">Numer telefonu:</label>  
-  <div class="col-md-6">
-  <div class="input-group">
-       <div class="input-group-addon">
-     <i class="fa fa-phone"></i>
-        
-       </div>
-    <input 
-    	id="phone" 
-    	name="phone" 
-    	type="text" 
-    	placeholder="Telefon" 
-    	class="form-control input-md"
-    	ng-model="patient.phone"
-    	>
-      </div>
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="email">Email:</label>  
-  <div class="col-md-6">
-  <div class="input-group">
-       <div class="input-group-addon">
-     <i class="fa fa-envelope-o"></i>
-        
-       </div>
-    <input 
-    	id="email" 
-    	name="email" 
-    	type="text" 
-    	placeholder="Email" 
-    	class="form-control input-md"
-    	ng-model="patient.email"
-       	required
-    	>
-    
-      </div>
-  
-  </div>
-</div>
-
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="pesel">Pesel:</label>  
-  <div class="col-md-6">
-  <div class="input-group">
-       <div class="input-group-addon">
-     <i class="fa fa-sticky-note-o"></i>
-        
-       </div>
-   <input 
-   		id="pesel" 
-   		name="pesel" 
-   		type="text" 
-   		placeholder="Pesel" 
-   		class="form-control input-md"
-   		ng-model="patient.pesel"
-       	required
-   		>
-      </div>
-  </div>
-</div>
-
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="postcode">Kod pocztowy:</label>  
-  <div class="col-md-6">
-  <div class="input-group">
-       <div class="input-group-addon">
-     <i class="fa fa-sticky-note-o"></i>
-        
-       </div>
-   <input 
-   		id="postcode" 
-   		name="postcode" 
-   		type="text" 
-   		placeholder="Kod pocztowy" 
-   		class="form-control input-md"
-   		ng-model="patient.postcode"
-       	required
-   		>
-      </div>
-  </div>
-</div>
+<title>User profile form requirement</title>
+<style>
+body {
+    padding-top: 70px;
+}
+.othertop{
+margin-top:10px;
+}
+</style>
 
 
 
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 ">
+			<form class="form-horizontal" novalidate>
+				<fieldset>
+				<!-- Form Name -->
+					<legend>Profil pacjenta</legend>
+					
+					<!-- Text input-->
+					<div class="form-group">
+						  <label class="col-md-4 control-label" for="firstName">Imię:</label>  
+						  <div class="col-md-6">
+							 <div class="input-group">
+							       <div class="input-group-addon" ng-show="editMode">
+							        <i class="fa fa-user">
+							        </i>
+							       </div>
+							       <input 
+							       	ng-show="editMode"
+							       	id="firstName" 
+							       	name="firstName" 
+							       	type="text" 
+							       	placeholder="Imię" 
+							       	class="form-control input-md"
+							       	ng-model="patient.firstname"
+							       	required
+							       >
+							       <div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode">
+								       <span >
+								       		{{patient.firstname}}
+								       </span>
+							       </div>
+							    </div>
+						  </div>
+					</div>
+					
+					<div class="form-group">
+					  <label class="col-md-4 control-label" for="lastName">Nazwisko:</label>  
+					  <div class="col-md-6">
+							 <div class="input-group">
+							       <div class="input-group-addon" ng-show="editMode">
+								        <i class="fa fa-user"></i>
+							       </div>
+							       <input 
+							       		ng-show="editMode"
+							       		id="lastName" 
+							       		name="lastName" 
+							       		type="text" 
+							       		placeholder="Nazwisko" 
+							       		class="form-control input-md"
+							       		ng-model="patient.lastname"
+							       		required
+							       	>
+							       	<div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode">
+								       <span >
+								       		{{patient.lastname}}
+								       </span>
+							       </div>
+					      	</div>
+					  </div>
+					</div>
+					
+					<!-- File Button --> 
+					<!-- <div class="form-group"> -->
+					<!--   <label class="col-md-4 control-label" for="Upload photo">Upload photo</label> -->
+					<!--   <div class="col-md-4"> -->
+					<!--     <input id="Upload photo" name="Upload photo" class="input-file" type="file"> -->
+					<!--   </div> -->
+					<!-- </div> -->
+					
+					<!-- Text input-->
+					<div class="form-group">
+					  <label class="col-md-4 control-label" for="birthDate">Data urodzenia:</label>  
+					  <div class="col-md-6">
+						  <div class="input-group">
+								<span class="input-group-btn" id="spanDate"  ng-show="editMode">
+						            <button 
+						            	type="button" 
+						            	class="btn btn-default" 
+						            	ng-click="open1()">
+						            	<i class="glyphicon glyphicon-calendar"></i>
+						            </button>
+						          </span>
+								<input type="text" 
+									class="form-control" 
+									ng-change="getDate()" 
+									uib-datepicker-popup="{{format}}"
+									ng-model="patient.birthDate" 
+									is-open="popup1.opened" 
+									ng-model-options="{timezone: 'utc'}"
+									datepicker-options="dateOptions" 
+									ng-required="true" 
+									close-text="Close" 
+									alt-input-formats="altInputFormats" 
+									required
+									name="dateField"
+									ng-class="{submitted:addVisitForm.submitted}"
+									ng-show="editMode"
+								/>
 
-<!-- Textarea -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="description">Opis pacjenta:</label>
-  <div class="col-md-6">                     
-    <textarea 
-    	class="form-control" 
-    	rows="10"  
-    	id="description" 
-    	name="description"
-    	ng-model="patient.description"
-    	>Opis
-    </textarea>
-  </div>
-</div>
-
-
-<div class="form-group">
-  <label class="col-md-4 control-label" ></label>  
-  <div class="col-md-6">
-  <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> Zapisz</a>
-  <a href="#" class="btn btn-danger" value=""><span class="glyphicon glyphicon-remove-sign"></span> Wyczyść</a>
-    
-  </div>
-</div>
-
-</fieldset>
-</form>
-</div>
+								<div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode">
+							       <span>
+							       		{{patient.birthDate | date:'dd/MM/yyyy' }}
+							       </span>
+							    </div>
+						 </div>
+					  </div>
+					</div>
+					
+					<!-- Multiple Radios (inline) -->
+					<div class="form-group">
+					  <label class="col-md-4 control-label" for="gender">Płeć:</label>
+					  <div class="col-md-6" > 
+					  	<div ng-show="editMode">
+						    <label class="radio-inline" for="gender1">
+						      <input type="radio" name="gender1" id="gender1" value="M" checked="checked">
+						      Male
+						    </label> 
+						    <label class="radio-inline" for="gender2">
+						      <input type="radio" name="gender2" id="gender2" value="K">
+						      Female
+						    </label> 
+					    </div>
+					    <div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode">
+					       <span>
+					       		{{patient.gender}}
+					       </span>
+					    </div>
+					  </div>
+					</div>
+					
+					<div class="form-group">
+					  <label class="col-md-4 control-label col-xs-12" for="adres">Adres:</label>  
+					  <div class="col-md-4  col-xs-4">
+					  <input 
+					  		id="adres" 
+					  		name="adres" 
+					  		type="text" 
+					  		placeholder="Miasto" 
+					  		class="form-control input-md "
+					  		ng-model="patient.city"
+					       	required
+					       	ng-show="editMode"
+					       	>
+					  </div>
+						<div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode">
+					       <span style="padding-left: 15px;">
+					       		{{patient.city}}, {{patient.address}} {{patient.number}}
+					       </span>
+					    </div>
+					 
+					</div>
+					<div class="row" ng-show="editMode">
+						  <label class="col-md-4 control-label col-xs-12" for="street"></label>  
+						  <div class="col-md-4 col-xs-4">
+						  <input 
+						  	id="street" 
+						  	name="street" 
+						  	type="text" 
+						  	placeholder="Ulica" 
+						  	class="form-control input-md "
+						  	ng-model="patient.address"
+					       	required
+					       	ng-show="editMode"
+						  	>
+<!-- 						  <div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode"> -->
+<!-- 					       <span> -->
+<!-- 					       		{{patient.address}} -->
+<!-- 					       </span> -->
+<!-- 					    </div> -->
+						  </div>
+						   	<div class=" col-md-2 col-xs-4">
+							  <input 
+							  		id="number" 
+							  		name="number" 
+							  		type="text" 
+							  		placeholder="Numer" 
+							  		class="form-control input-md"
+							  		ng-model="patient.number"
+							       	required
+							       	ng-show="editMode"
+							   >
+<!-- 							    <div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode"> -->
+<!-- 							       <span> -->
+<!-- 							       		{{patient.number}} -->
+<!-- 							       </span> -->
+<!-- 							    </div> -->
+					  		</div>
+					</div>
+					
+					
+					<!-- Text input-->
+					<div class="form-group" style="padding-top: 15px;">
+					  <label class="col-md-4 control-label" for="phone">Numer telefonu:</label>  
+					  <div class="col-md-6">
+						  <div class="input-group" ng-show="editMode">
+						       <div class="input-group-addon">
+						     <i class="fa fa-phone"></i>
+						        
+						       </div>
+						    <input 
+						    	id="phone" 
+						    	name="phone" 
+						    	type="text" 
+						    	placeholder="Telefon" 
+						    	class="form-control input-md"
+						    	ng-model="patient.phone"
+						    	ng-show="editMode"
+						    >
+					    	<div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode">
+						       <span>
+						       		{{patient.phone}}
+						       </span>
+						    </div>
+						      </div>
+					  </div>
+					</div>
+					
+					<!-- Text input-->
+					<div class="form-group">
+					  <label class="col-md-4 control-label" for="email">Email:</label>  
+					  <div class="col-md-6">
+						  <div class="input-group">
+						       <div class="input-group-addon" ng-show="editMode">
+						     		<i class="fa fa-envelope-o"></i>
+						       </div>
+							    <input 
+							    	id="email" 
+							    	name="email" 
+							    	type="text" 
+							    	placeholder="Email" 
+							    	class="form-control input-md"
+							    	ng-model="patient.email"
+							       	required
+							       	ng-show="editMode"
+							    >
+							    <div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode">
+							       <span>
+							       		{{patient.phone}}
+							       </span>
+							    </div>	
+						  </div>
+					  </div>
+					</div>
+					
+					
+					<!-- Text input-->
+					<div class="form-group">
+					  <label class="col-md-4 control-label" for="pesel">Pesel:</label>  
+					  <div class="col-md-6">
+						  <div class="input-group">
+						       <div class="input-group-addon"ng-show="editMode">
+						     		<i class="fa fa-sticky-note-o"></i>
+						        
+						       </div>
+						   <input 
+						   		id="pesel" 
+						   		name="pesel" 
+						   		type="text" 
+						   		placeholder="Pesel" 
+						   		class="form-control input-md"
+						   		ng-model="patient.pesel"
+						       	required
+						       	ng-show="editMode"
+						   		>
+					   		<div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode">
+						       <span>
+						       		{{patient.pesel}}
+						       </span>
+						    </div>
+						      </div>
+					  </div>
+					</div>
+					
+					<div class="form-group">
+					  <label class="col-md-4 control-label" for="postcode">Kod pocztowy:</label>  
+					  <div class="col-md-6">
+					  <div class="input-group">
+					       <div class="input-group-addon" ng-show="editMode">
+					     		<i class="fa fa-sticky-note-o"></i>
+					       </div>
+					   <input 
+					   		id="postcode" 
+					   		name="postcode" 
+					   		type="text" 
+					   		placeholder="Kod pocztowy" 
+					   		class="form-control input-md"
+					   		ng-model="patient.postcode"
+					       	required
+					       	ng-show="editMode"
+					   	>
+				   		<div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode">
+					       <span>
+					       		{{patient.postcode}}
+					       </span>
+					    </div>
+					      </div>
+					  </div>
+					</div>
+					
+					
+					
+					
+					<!-- Textarea -->
+					<div class="form-group">
+					  <label class="col-md-4 control-label" for="description">Opis pacjenta:</label>
+					  <div class="col-md-6">                     
+					    <textarea 
+					    	class="form-control" 
+					    	rows="10"  
+					    	id="description" 
+					    	name="description"
+					    	ng-model="patient.description"
+					    	ng-show="editMode"
+					    	>Opis
+					    </textarea>
+					    <div style="padding-top: 7px; font-size: 16px; word-wrap: break-word;" ng-show="!editMode">
+					       <span>
+					       		{{patient.description}}
+					       </span>
+					    </div>
+					  </div>
+					</div>
+					
+					<div class="form-group">
+					  <label class="col-md-4 control-label" ></label>  
+					  <div class="col-md-6">
+					  <button type="button" class="btn btn-success" ng-show="editMode" ng-click="savePatient(patient)">
+<!-- 					  	<span class="glyphicon glyphicon-thumbs-up"/>  -->
+					  	Zapisz
+					  </button>
+					  <a href="" class="btn btn-danger" ng-show="editMode" ng-click="editModeFunction(false)">
+					  <span class="glyphicon glyphicon-remove-sign"></span> Anuluj</a>
+					    
+					  </div>
+					</div>
+				
+				</fieldset>
+			</form>
+		</div>
 <div class="col-md-6 hidden-xs">
 	<div class="row">
 		<img src="pics/avatar.jpg" class="img-responsive img-thumbnail ">
@@ -764,10 +837,8 @@ wywiad</a>
 		
 <!-- 	</div> -->
   </div>
-
-
+	</div>
 </div>
-   </div>
 	
 	
 	

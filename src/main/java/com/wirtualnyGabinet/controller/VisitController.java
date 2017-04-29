@@ -188,7 +188,6 @@ public class VisitController {
 			if (visit.getIsHoliday() != null && visit.getIsHoliday().equals("true")){
 				inf.setStart(formatter.format(visit.getDate()));
 				inf.setEnd(formatter.format(DateUtils.addHours(visit.getEndDate(), 24)));
-//				inf.setColor("green");
 				inf.setAllDay(true);
 				inf.setTitle("Wakacje");
 				inf.setBackgroundColor("green");

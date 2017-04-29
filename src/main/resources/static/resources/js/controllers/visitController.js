@@ -20,7 +20,7 @@ angular.module('app.controller.visit', [])
 	    $scope.endDate = new Date();
 //	  };
 	
-	    $rootScope.id = $window.sessionStorage.id;
+	$rootScope.id = $window.sessionStorage.id;
 	refreshVisit = function(page,size){
 		console.log('vm.visit.selectedPatientId ',vm.visit.selectedPatientId)
 		var vis = visitPaginationService.getVisit(page,size,$scope.startDate,$scope.endDate,vm.visit.selectedPatientId);
@@ -254,12 +254,19 @@ angular.module('app.controller.visit', [])
 	  vm.visit = {};
 	  vm.person = {};
 	  vm.people = patients;
-	  if ($stateParams != null && $stateParams.patient_id != null){
+	  if ($stateParams != null && $stateParams.patient_id != null && vm.people.length > 0){
 		  console.log(" vm.people", vm.people)
 		  vm.people.patientId = vm.people[$stateParams.patient_id-1];
 		  vm.visit.selectedPatientId = vm.people.patientId.id; 
+		  vm.patientPlaceholer = 'Wybierz pacjenta z listy';
 	  }else{
 		  vm.people.patientId = vm.people[0];
+		  if (vm.people.length == 0){
+			  vm.patientPlaceholer = 'Brak pacjentów';
+			  vm.disabled = true;
+			  vm.disable();
+			  vm.disableSearch();
+		  }
 	  }
 
 

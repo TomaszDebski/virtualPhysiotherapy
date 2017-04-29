@@ -6,44 +6,42 @@
 	</div>
 	<div class="container">
 		<form class="form-horizontal" name="addPatientForm" novalidate>
-		<div class="row">
-			<div class="col-md-offset-2 col-md-4">
-			
-			<div class="alert alert-success" ng-show="successAddPatient">
-				  <strong>Sukces!</strong> Poprawnie dodano pacjenta
-			</div>
-			
-
+			<div class="row">
+				<div class="col-md-offset-2 col-md-4">
+					<div class="alert alert-success" ng-show="successAddPatient">
+						  <strong>Sukces!</strong> Poprawnie dodano pacjenta
+					</div>
 						<div class="form-group">
-								<label for="firstname" >Imię:<span class="required">*</span></label>
-								<input
-									name="firstname"
-									required="required" 
-									placeholder="Imię*"
-									id="firstname" 
-									value=""
-									type="text" 
-									required
-									ng-model="patient.firstname"
-									ng-minlength="3" ng-maxlength="10"
-									ng-class="{submitted:addPatientForm.submitted}"
-								>
-			        				<span 
-			        					ng-show="addPatientForm.firstname.$error.required && addPatientForm.submitted" 
-			        					style="color : #f00; float:left;"
-			        					>Imię jest wymagane
-			        				</span>
-			        				<span 
-			        					ng-show="addPatientForm.firstname.$error.minlength && addPatientForm.submitted" 
-			        					style="color : #f00; float:left;"
-			        					>Za krótkie imię
-			        				</span>
-			        				<span 
-			        					ng-show="addPatientForm.firstname.$error.maxlength && addPatientForm.submitted" 
-			        					style="color : #f00; float:left;"
-			        					>Za długie imię
-			        				</span>
+							<label for="firstname" >Imię:<span class="required">*</span></label>
+							<input
+								name="firstname"
+								required="required" 
+								placeholder="Imię*"
+								id="firstname" 
+								value=""
+								type="text" 
+								required
+								ng-model="patient.firstname"
+								ng-minlength="3" ng-maxlength="10"
+								ng-class="{submitted:addPatientForm.submitted}"
+							/>
+	        				<span 
+	        					ng-show="addPatientForm.firstname.$error.required && addPatientForm.submitted" 
+	        					style="color : #f00; float:left;"
+	        					>Imię jest wymagane
+	        				</span>
+	        				<span 
+	        					ng-show="addPatientForm.firstname.$error.minlength && addPatientForm.submitted" 
+	        					style="color : #f00; float:left;"
+	        					>Za krótkie imię
+	        				</span>
+	        				<span 
+	        					ng-show="addPatientForm.firstname.$error.maxlength && addPatientForm.submitted" 
+	        					style="color : #f00; float:left;"
+	        					>Za długie imię
+	        				</span>
 						</div>
+						
 						<div class="form-group">
 								<label for="lastname" 
 								>Nazwisko:<span class="required">*</span></label> 
@@ -56,13 +54,14 @@
 									type="text"
 									ng-model="patient.lastname"
 									ng-class="{submitted:addPatientForm.submitted}"
-								>
-									<span 
-										ng-show="addPatientForm.lastname.$error.required && addPatientForm.submitted" 
-										style="color : #f00; float:left;"
-										>Nazwisko jest wymagane
-									</span>
+								/>
+								<span 
+									ng-show="addPatientForm.lastname.$error.required && addPatientForm.submitted" 
+									style="color : #f00; float:left;"
+									>Nazwisko jest wymagane
+								</span>
 						</div>
+						
 						<div class="form-group">
 							<label for="pesel">PESEL:</label> 
 								<input
@@ -74,7 +73,7 @@
 									ng-model="patient.pesel"
 								>
 						</div>
-						
+							
 						<div class="form-group" >
 							<label for="email" >E-mail:<span class="required">*</span></label> 
 								<input
@@ -109,54 +108,52 @@
 									ng-model="patient.phone"
 								>
 						</div>
-			</div>
-			<div class="col-md-offset-1 col-md-4">
-				<div class="form-group">
-							<label for="street" >Ulica:</label> 
-								<input
-									name="street"
-									placeholder="Ulica" 
-									id="street"
-									value="" 
-									type="text"
-									ng-model="patient.address"
-								>
 				</div>
-				<div class="form-group">
-							<label for="number">Numer:</label> 
-								<input
-									name="number" 
-									placeholder="Numer" 
-									id="number" 
-									value="" 
-									type="text"
-									ng-model="patient.number"
-								>
-				</div>
-				<div class="form-group" >
-							<label for="city" >Miasto:</label> 
-								<input
-									name="city"
-									placeholder="Miejscowość" 
-									id="city"
-									value="" 
-									type="text"
-									ng-model="patient.city"
-								>
-			</div>
-			<div class="form-group">
-				<label for="postcode " >Kod pocztowy:<span class="required">*</span></label> 
-					<input
-						name="postcode"
-						placeholder="Kod pocztowy" 
-						id="postcode"
-						value="" type="text"
-						ng-model="patient.postcode"
-						ng-pattern="/^(\d{2}-\d{3})$/"
-						ng-class="{submitted:addPatientForm.submitted}"
-						required
-					>
-	<!-- 									ng-pattern="/^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] *\d[A-Z]\d)$/" -->
+				<div class="col-md-offset-1 col-md-4">
+					<div class="form-group">
+						<label for="street" >Ulica:</label> 
+						<input
+							name="street"
+							placeholder="Ulica" 
+							id="street"
+							value="" 
+							type="text"
+							ng-model="patient.address"
+						>
+					</div>
+					<div class="form-group">
+						<label for="number">Numer:</label> 
+						<input
+							name="number" 
+							placeholder="Numer" 
+							id="number" 
+							type="text"
+							ng-model="patient.number"
+						>
+					</div>
+					<div class="form-group" >
+						<label for="city" >Miasto:</label> 
+						<input
+							name="city"
+							placeholder="Miejscowość" 
+							id="city"
+							type="text"
+							ng-model="patient.city"
+						>
+					</div>
+					<div class="form-group">
+						<label for="postcode " >Kod pocztowy:<span class="required">*</span></label> 
+						<input
+							name="postcode"
+							placeholder="Kod pocztowy" 
+							id="postcode"
+							value="" type="text"
+							ng-model="patient.postcode"
+							ng-pattern="/^(\d{2}-\d{3})$/"
+							ng-class="{submitted:addPatientForm.submitted}"
+							required
+						>
+									<!-- 	ng-pattern="/^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] *\d[A-Z]\d)$/" -->
 	       				<span 
 	       					ng-show="addPatientForm.postcode.$error.required && addPatientForm.submitted"
 	       					style="color : #f00; float:left;"
@@ -167,33 +164,33 @@
 	       					style="color : #f00; float:left;"
 	       					>Proszę podać prawidłowy polski kod
 	       				</span>
+					</div>
+					<div class="form-group" >
+						<label for="description" >Dodatkowe informacje:</label>
+						<textarea name="description"
+							class="form-control" 
+							placeholder="Dodatkowe informacje"
+							id="description" 
+							style="height: 61px; 
+							background: #f6f9fc;"
+							ng-model="patient.description">
+						</textarea>
+						<p class="description">Możesz tu wpisać dodatkowe informacje o pacjencie</p>
+					</div>
+				</div>
 			</div>
-						<div class="form-group" >
-							<label for="description" >Dodatkowe informacje:</label>
-								<textarea name="description"
-									class="form-control" 
-									placeholder="Dodatkowe informacje"
-									id="description" 
-									style="height: 61px; 
-									background: #f6f9fc;"
-									ng-model="patient.description">
-								</textarea>
-								<p class="description">Możesz tu wpisać dodatkowe informacje o
-									pacjencie</p>
-			</div>
-			</div>
-		</div>
-		<div class="row" style="padding-top:15px;">
-			<div class="form-group" >
-				<div class="text-center">
-					<button type="submit" class="btn btn-primary" ng-click="addPatient(patient)">Zapisz</button>
+			<div class="row" style="padding-top:15px;">
+				<div class="form-group" >
+					<div class="text-center">
+						<button type="submit" class="btn btn-primary" ng-click="addPatient(patient)">Zapisz</button>
+					</div>
 				</div>
 			</div>
 		</form>
-		</div>
 	</div>
-		<style>
+	
+<style>
 input.submitted.ng-invalid{
   border:2px solid #f00;
 }
-	</style>
+</style>

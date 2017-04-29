@@ -27,6 +27,7 @@ angular.module('app.controller.register', [])
     	 				physiotherapistService.save(user,function(){
     	 					console.log("udało się");
     	 					$scope.successAddPhys = true;
+    	 					 $scope.registerForm.submitted=false;
     	 					$window.scrollTo(0, 0);
     	 					$scope.user = {};
     	 					$scope.passwordConfirm = "";

@@ -8,7 +8,6 @@ public class Views {
 	
 	public interface User {}
 	
-	//eeeeeee
 	public interface VisitsPatient extends Visits,Patient{}
 	
 	public interface Patients extends Patient,Visits{}

@@ -24,35 +24,30 @@
 						
 						<div class="form-group">
 							<label for="name">
-							Imię
-								<span class="required">*</span>
+							Imię<span class="required">*</span>
 							</label> 
 							<input 
-							
-							id="name" 
-							name="name"
-							value="" type="text" 
-							ng-model="user.firstName"
-							ng-class="{submitted:registerForm.submitted}"
-							required
+								id="name" 
+								name="name"
+								value="" type="text" 
+								ng-model="user.firstName"
+								ng-class="{submitted:registerForm.submitted}"
+								required
 							>
 							<span 
 								ng-show="registerForm.name.$error.required  && registerForm.submitted" 
 								style="color : #f00; float:left;"
-								>imię jest wymagane
+								>Imię jest wymagane
 							</span>
 						</div>
 						
-						
 						<div class="form-group" style="padding-top:15px;">
-							<label for="field_family_name">Nazwisko <span
-								class="required">*</span>
+							<label for="field_family_name">Nazwisko<spanclass="required">*</span>
 							</label>
 							<input 
 							required 
 							id="field_family_name" 
 							name="lastName"
-							value="" 
 							type="text" 
 							ng-model="user.lastName"
 							ng-class="{submitted:registerForm.submitted}"
@@ -64,16 +59,15 @@
 						
 						
 						<div class="form-group" style="padding-top:15px;">
-							<label for="field_address">Email <span class="required">*</span>
+							<label for="field_address">Email<span class="required">*</span>
 							</label>
 							<input 
-							required 
-							id="field_address" 
-							name="email" 
-							value=""
-							type="email" 
-							ng-model="user.email"
-							ng-class="{submitted:registerForm.submitted}"
+								required 
+								id="field_address" 
+								name="email" 
+								type="email" 
+								ng-model="user.email"
+								ng-class="{submitted:registerForm.submitted}"
 							>
 							<span 
 								ng-show="registerForm.email.$error.required && registerForm.submitted" 
@@ -82,80 +76,76 @@
 							<span 
 	        					ng-show="registerForm.email.$error.email && registerForm.submitted" 
 	        					style="color : #f00; float:left;"
-	        					>Nieprawidłowy e-mail
+	        					>Nieprawidłowy adres e-mail
 	        				</span>
 						</div>
 						
 						
 						<div class="form-group" style="padding-top:15px;">
-							<label for="field_given_name">login
-								<span class="required">*</span>
+							<label for="field_given_name">login<span class="required">*</span>
 							</label> 
 							<input required="" 
-							id="field_given_name" 
-							name="username"
-							value="" 
-							type="text" 
-							ng-model="user.username"
-							ng-class="{submitted:registerForm.submitted}"
-							username-available-directive
+								id="field_given_name" 
+								name="username"
+								type="text" 
+								ng-model="user.username"
+								ng-class="{submitted:registerForm.submitted}"
+								username-available-directive
 							>	
 							<span 
 								ng-if="registerForm.username.$error.required && registerForm.submitted" 
 								style="color : #f00; float:left;">
-							Login jest wymagany</span>
+								Login jest wymagany</span>
 							<span 
 								ng-if="registerForm.$error.usernameExists && registerForm.submitted" 
 								style="color : #f00; float:left;">
-							Nazwa usera została już zarezerwowana</span>
+								Nazwa usera została już zarezerwowana</span>
 						</div>
 						
 						
 						<div class="form-group" style="padding-top:15px;">
 							<label for="field_password">
-								Hasło 
-								<span class="required">*</span>
+								Hasło<span class="required">*</span>
 							</label>
 							<input 
-							required 
-							id="field_password" 
-							name="password" 
-							value=""
-							type="password" 
-							ng-model="user.password"
-							ng-class="{submitted:registerForm.submitted}"
+								required 
+								id="field_password" 
+								name="password" 
+								value=""
+								type="password" 
+								ng-model="user.password"
+								ng-class="{submitted:registerForm.submitted}"
 							>
 							<span 
 								ng-show="registerForm.password.$error.required && registerForm.submitted" 
-								style="color : #f00; float:left;">Hasło jest wymagane</span>
+								style="color : #f00; float:left;"
+								>Hasło jest wymagane
+							</span>
 						</div>
 						
 						<div class="form-group" style="padding-top:15px;">
-							<label for="passwordConfirm">Potwierdź hasło <span
-								class="required">*</span>
+							<label for="passwordConfirm">Potwierdź hasło<span class="required">*</span>
 							</label>
 							<input 
-							required 
-							id="passwordConfirm"
-							name="passwordConfirm" 
-							value="" 
-							type="password" 
-							ng-model="passwordConfirm"
-							ng-class="{submitted:registerForm.submitted}"
-							required data-password-verify="user.password"
+								required 
+								id="passwordConfirm"
+								name="passwordConfirm" 
+								value="" 
+								type="password" 
+								ng-model="passwordConfirm"
+								ng-class="{submitted:registerForm.submitted}"
+								required data-password-verify="user.password"
 							/>
-								<span 
+							<span 
 								ng-show="registerForm.passwordConfirm.$error.required && registerForm.submitted" 
-								 style="color : #f00; float:left;">Potwierdzenie hasła jest wymagane</span>
-<!-- 							 <div class="row"> -->
+								 style="color : #f00; float:left;"
+								 >Potwierdzenie hasła jest wymagane
+							</span>
 							 <span 
 							 	ng-show="registerForm.passwordConfirm.$error.passwordVerify && registerForm.submitted"
-							 	style="color : #f00; float:left;">
-        								Hasłą nie są identyczne</span>
-<!-- 							<span  -->
-<!-- 							ng-show="user.password != passwordConfirm && registerForm.submitted"  -->
-<!-- 							 style="color : #f00;">Hasła nie są takie same</span>  -->
-<!-- 							 </div> -->
+							 	style="color : #f00; float:left;"
+							 	>Hasłą nie są identyczne
+							 </span>
 						</div>
 						
 						<div class="form-group" style="padding-top:15px;">

@@ -82,9 +82,4 @@ public class InfForScheduler {
 	public void setRendering(String rendering) {
 		this.rendering = rendering;
 	}
-	
-	
-	
-	
-		
 }

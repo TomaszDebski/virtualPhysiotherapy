@@ -65,6 +65,10 @@ public class Patient implements Serializable{
 	@Column(name="address")
 	public String address;
 	
+	@JsonView(Views.Patient.class)
+	@Column(name="number")
+	public String number;
+	
 	@Column(name="insertedDate")
 	public Date insertedDate;
 	
@@ -77,8 +81,8 @@ public class Patient implements Serializable{
 	public int age;
 	
 	@JsonView(Views.Patient.class)
-	@Column(name="sex")
-	public String sex;
+	@Column(name="gender")
+	public String gender;
 	
 	@Column(name="registryDate")
 	public Date registryDate;
@@ -114,17 +118,14 @@ public class Patient implements Serializable{
 		return null;
 	}
 
-//	public void setVersion(String version) {
-//		this.version = "rrrrr";
-//	}
 
-	public Patient(String firstname, String lastname, String phone, String email,String sex,int age) {
+	public Patient(String firstname, String lastname, String phone, String email,String gender,int age) {
 		super();
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.phone = phone;
 		this.email = email;
-		this.sex = sex;
+		this.gender = gender;
 		this.age = age;
 	}
 
@@ -158,22 +159,13 @@ public class Patient implements Serializable{
 		return id;
 	}
 
-	
-
-
 	public String getDescription() {
 		return description;
 	}
 
-
-
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-
-
 
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
@@ -289,12 +281,12 @@ public class Patient implements Serializable{
 		this.age = age;
 	}
 
-	public String getSex() {
-		return sex;
+	public String getGender() {
+		return gender;
 	}
 
-	public void setSex(String sex) {
-		this.sex = sex;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	
 	public List<Visit> getVisits() {
@@ -319,6 +311,14 @@ public class Patient implements Serializable{
 
 	public void setPhisiotherapist_Id(String phisiotherapist_Id) {
 		this.phisiotherapist_Id = phisiotherapist_Id;
+	}
+
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
 	}
 
 //	public long getPhisiotherapist_Id() {

@@ -62,7 +62,6 @@ public class PatientController {
 		}
 		List<Patient> patients = new ArrayList<>();
 		if (physiotheraphist != null){
-//			patients = (List<Patient>)patientRepository.findById(physiotheraphist.getId());
 			patients = (List<Patient>)patientRepository.findByPhisiotherapist_Id(Long.toString(physiotheraphist.getId()));
 		}
 		return patients;
@@ -74,17 +73,34 @@ public class PatientController {
 		Physiotherapist physio = physiotherapistRepository.findOne(id);
 		Page<Patient> patients = null;
 		if (physio != null){
-//			patients = (Page<Patient>) patientRepository.findById(pageable,physio.getId());
 			patients = (Page<Patient>) patientRepository.findByPhisiotherapist_Id(pageable,Long.toString(physio.getId()));
 		}
 		return patients;
 	}
 	
 	
-//	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
-//	public void updatePhysiotherapist(@PathVariable("id") long id,@RequestBody Physiotherapist physiotherapist){	
-//		physiotherapistRepository.save(physiotherapist);
-//	}
+	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
+	public void updatePatient(@PathVariable("id") long id,@RequestBody Patient patient){
+		Patient oldPatient = patientRepository.findOne(id);
+		if (oldPatient != null){
+			oldPatient.setFirstname(patient.getFirstname());
+			oldPatient.setLastname(patient.getLastname());
+			oldPatient.setAddress(patient.getAddress());
+			oldPatient.setAge(patient.getAge());
+			oldPatient.setBirthDate(patient.getBirthDate());
+			oldPatient.setCity(patient.getCity());
+			oldPatient.setCountry(patient.getCountry());
+			oldPatient.setDescription(patient.getDescription());
+			oldPatient.setEmail(patient.getEmail());
+			oldPatient.setGender(patient.getGender());
+			oldPatient.setPesel(patient.getPesel());
+			oldPatient.setPostCode(patient.getPostCode());
+	//		oldPatient.setSecondPhone(patient.getSecondPhone());
+			oldPatient.setPhone(patient.getPhone());
+			oldPatient.setNumber(patient.getNumber());
+		}
+		patientRepository.save(oldPatient);
+	}
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
 	public void deletePatient(@PathVariable("id") long id){

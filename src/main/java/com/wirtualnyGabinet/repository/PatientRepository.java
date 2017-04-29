@@ -27,6 +27,4 @@ public interface PatientRepository extends CrudRepository<Patient,Long>,PagingAn
 	@Query("select distinct p from Patient p where p.phisiotherapist_Id = :id")
 	List<Patient> findByPhisiotherapist_Id(@Param("id")String id);
 	
-//	Page<Patient> findByfirstname(Pageable pageable, String firstname);
-	
 }

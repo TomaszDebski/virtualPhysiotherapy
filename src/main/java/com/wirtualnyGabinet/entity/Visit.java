@@ -69,8 +69,6 @@ public class Visit implements Serializable {
 	//@JsonProperty(value="grupa_id")
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "patient_id")
-//	@JsonBackReference
-//	@JsonManagedReference
 	@JsonIdentityInfo(
 			  generator = ObjectIdGenerators.PropertyGenerator.class, 
 			  property = "id")

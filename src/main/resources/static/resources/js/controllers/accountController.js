@@ -10,27 +10,36 @@ angular.module('app.controller.account', [])
 //	console.log($window.sessionStorage.userModel)
 	
 	$scope.editAccount = false;
-	
+	var oldUser = {};
 	$scope.changeToEdit = function(isEdit){
-		$scope.editAccount = isEdit ? true : false;
+		if (isEdit){
+			$scope.editAccount = true;
+			oldUser = angular.copy($scope.user);
+		}else{
+			$scope.editAccount = false;
+			$scope.editUserForm.submitted = false;
+			$scope.user = oldUser;
+		}
 	}
 	
 	physiotherapistService.get({id:$window.sessionStorage.id},function(data){
-//		refreshMethod();
 		$scope.user = data;
 		var file = getFileService.getOneFile(data.id);
 		file.then(function(result){
 			$scope.avatar = result.data;
 		})
-		//console.log("dataaa "  ,data.firstname);
 	});
 	
 	
 	
 	$scope.editUser = function(user){
-		physiotherapistService.update({id:user.id},user,function(){
-			console.log("udało się zmienić dane konta")
-		})
+		if ($scope.editUserForm.$valid){
+			physiotherapistService.update({id:user.id},user,function(){
+				console.log("udało się zmienić dane konta")
+			})
+		}else{
+			$scope.editUserForm.submitted=true;
+		}
 	}
 	///////////////////////////////////UploadFile///////////////////////////////
 	

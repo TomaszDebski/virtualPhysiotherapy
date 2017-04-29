@@ -93,8 +93,8 @@
                             	required="required"
                                 placeholder="Treść wiadomości"
                                 ng-model="sender.message"
-                                ng-class="{submitted:sendEmailForm.submitted}"
-                            ></textarea>
+                                ng-class="{submitted:sendEmailForm.submitted}">
+                               </textarea>
                             <span 
                                 ng-show="sendEmailForm.message.$error.required && sendEmailForm.submitted" 
                                 style="color : #f00; float: left;"

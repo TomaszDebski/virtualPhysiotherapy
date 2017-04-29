@@ -13,7 +13,4 @@ public class ListInfForScheduler {
 	public void setLista(List<InfForScheduler> lista) {
 		this.lista = lista;
 	}
-	
-	
-
 }

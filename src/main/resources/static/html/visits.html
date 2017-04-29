@@ -1,4 +1,3 @@
-
 <meta meta charset=utf-8>
 	<div class="main-header">
 <!-- 		<div class="ht-container"> -->
@@ -24,7 +23,8 @@
 					ng-class="{submitted:addVisitForm.submitted}"
 				>
     			<ui-select-match 
-					placeholder="Wybierz pacjenta z listy" >{{$select.selected.firstname}} {{$select.selected.lastname}}
+					placeholder="{{ctrl.patientPlaceholer}}" >
+					<div ng-if="ctrl.people.length > 0">{{$select.selected.firstname}} {{$select.selected.lastname}}</div>
 				</ui-select-match>
     			<ui-select-choices 
 					repeat="person in ctrl.people | propsFilter: {firstname: $select.search, lastname: $select.search, age: $select.search}" >
