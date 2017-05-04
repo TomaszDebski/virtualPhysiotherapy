@@ -1,0 +1,16 @@
+ 
+ {
+ 	"TITLE": "Witaj",
+    "FOO": "To jest paragraf",
+    "BUTTON_LANG_EN": "angielski",
+    "BUTTON_LANG_DE": "niemiecki",
+    "index": {
+    	"login": "Zaloguj",
+    	"logout": "Wyloguj",
+    	"contact": "Kontakt",
+    	"welcome": "Witaj",
+    	"registerSpecialist":"Czy jesteœ specjalist¹?",
+    	"language_EN": "angielski",
+    	"language_PL": "polski"
+    }
+ }

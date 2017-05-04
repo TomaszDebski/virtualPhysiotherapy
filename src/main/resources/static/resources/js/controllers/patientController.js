@@ -30,10 +30,14 @@ angular.module('app.controller.patient', ['ui.bootstrap'])
 		}
 		
 		$scope.savePatient = function(patient){
-			$log.info("patient.birthDate " , patient.birthDate);
-			patientService.update({id:$scope.patient.id},patient,function(){
-				console.log("udało się zmienić dane pacjenta")
-			})
+			if ($scope.editPatientForm.$valid){
+				$log.info("patient.birthDate " , patient.birthDate);
+				patientService.update({id:$scope.patient.id},patient,function(){
+					console.log("udało się zmienić dane pacjenta")
+				})
+			}else{
+				$scope.editPatientForm.submitted=true;
+			}
 		}
 		
 ////////////////////////////////////////Datepicker//////////////////////////////////////////

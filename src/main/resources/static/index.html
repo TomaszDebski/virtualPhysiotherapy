@@ -1,7 +1,8 @@
 <!DOCTYPE HTML>
 <html ng-app="app" ng-cloak class="ng-cloak">
 <head>
-<meta charset="UTF-8">
+<!-- <meta charset="UTF-8"> -->
+<meta meta charset=utf-8>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
  <!--
@@ -37,6 +38,10 @@
 <script src="resources/js/libraries/calendar.js"></script>
 <script src="resources/js/libraries/angular-ui-router.js"></script>
 <script src="resources/js/libraries/ui-validate.js"></script>
+<script src="/resources/js/libraries/angular-translate.js"></script>
+<script src="resources/js/libraries/angular-translate-loader-static-files.js"></script>
+<script src="resources/js/libraries/angular-translate-storage-cookie.js"></script>
+
 <script src="resources/js/libraries/angular-sanitize.js"></script>
 
 <script src="resources/js/libraries/moment.min.js"></script>
@@ -80,18 +85,35 @@
 						<nav class="nav nav_utility">
 					
 							<ul class="menu menu_utility">
-							<li><p ng-if="authenticated" class="navbar-text">Welcome {{user}}</p> </li>
+							<li><p ng-if="authenticated" class="navbar-text"><span translate="index.welcome"></span> {{user}}</p> </li>
 								<li ng-if="!authenticated"><a ui-sref="register"
-									class="button desktop become_a_member">Jesteś specjalistą?</a></li>
-								<li class="en first active"><a href="/"
-									class="language-link active" xml:lang="en-CA" lang="en-CA">English</a></li>
+									class="button desktop become_a_member" 
+									translate="index.registerSpecialist"></a></li>
+								<li class="en first active">
+								<div ng-if="showCurrentLanguage() == 'en'">
+									<a href="" 
+									class="language-link active" 
+									xml:lang="en-CA" lang="en-CA" 
+									ng-click="changeLanguage('pl')"
+									><span translate="index.language_PL"></span></a>
+								</div>
+								
+								<div ng-if="showCurrentLanguage() == 'pl'">
+									<a href="" 
+									class="language-link active" 
+									xml:lang="en-CA" lang="en-CA" 
+									ng-click="changeLanguage('en')"
+									><span translate="index.language_EN"></span></a>
+								</div>
+								</li>
+								
+								<li class="first leaf menu-mlid-605">
+								<a ui-sref="contact" translate="index.contact"></a></li>
 
-								<li class="first leaf menu-mlid-605"><a ui-sref="contact"
-									title="">Kontakt</a></li>
-
-								<li ng-if="!authenticated"><a ui-sref="login"><strong>Zaloguj</strong></a></li>
-<!-- 								<li ng-if="authenticated"><a ui-sref="logout"><strong>Wyloguj</strong></a></li> -->
-								<li ng-if="authenticated"><a ng-click="logout(authenticated)" href="#"><strong>Wyloguj</strong></a></li>
+								<li ng-if="!authenticated">
+									<a ui-sref="login"><strong translate="index.login"></strong></a>
+								</li>
+								<li ng-if="authenticated"><a ng-click="logout(authenticated)" href="#"><strong translate="index.logout"></strong></a></li>
 							</ul>
 						</nav>
 						</div>
@@ -291,6 +313,11 @@
 	<script src="resources/js/app.js"></script>
 	<script src="resources/js/config.js"></script>
 	<script src="resources/js/run.js"></script>
+	<script src="resources/js/translate-config.js"></script>
+	
+	
+	
+	
 	<script src="resources/js/controllers/navigationController.js"></script>
 	<script src="resources/js/controllers/loginController.js"></script>
 	<script src="resources/js/controllers/logoutController.js"></script>

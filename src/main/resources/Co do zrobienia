@@ -1,3 +1,7 @@
+edycja pacjenta
+nie zapisuje się 
+- data rejestracji
+
 dodawanie plików
 Zamiast usuwania pacjenta przełączanie na nieaktywny
 Gdy usunę fizjoterapeute usuwam wszystkie wizyty z nim związane
@@ -6,3 +10,4 @@ opcja zmiany hasła
 ruchomy panel menu
 w kalendarzu dodaj opcje zaznaczania długości urlopu przez przeciągnięcie
 W pacjencie dodaj nr lokalu(kolumne) i daty urodzenia(teraz to nulle), postcode(nulle)
+Zrób modal success

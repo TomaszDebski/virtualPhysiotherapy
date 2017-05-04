@@ -63,6 +63,66 @@
 						</div>
 						
 						<div class="form-group">
+						  <label for="birthDate">Data urodzenia:</label>  
+<!-- 						  <div class="col-md-6"> -->
+							  <div class="input-group">
+									<span class="input-group-btn" id="spanDate">
+							            <button 
+							            	type="button" 
+							            	class="btn btn-default" 
+							            	ng-click="open1()">
+							            	<i class="glyphicon glyphicon-calendar"></i>
+							            </button>
+							          </span>
+									<input type="text" 
+										class="form-control" 
+										ng-change="getDate()" 
+										uib-datepicker-popup="{{format}}"
+										ng-model="patient.birthDate" 
+										is-open="popup1.opened" 
+										ng-model-options="{timezone: 'utc'}"
+										datepicker-options="dateOptions" 
+										ng-required="true" 
+										close-text="Close" 
+										alt-input-formats="altInputFormats" 
+										required
+										name="dateField"
+										ng-class="{submitted:addVisitForm.submitted}"
+									/>
+							 </div>
+<!-- 						  </div> -->
+						</div>
+						
+						
+						<div class="form-group ">
+						  <label for="gender">Płeć:</label>
+<!-- 						  <div class="col-md-6" >  -->
+						  	<div name="gender" ng-init="patient.gender='M'">
+							    <label class="radio-inline" for="gender">
+							      <input 
+							      	type="radio" 
+							      	name="gender" 
+							      	id="gender1" 
+							      	value="M" 
+							      	checked="checked"
+							      	ng-model="patient.gender">
+							      Mężczyzna
+							    </label> 
+							    <label class="radio-inline" for="gender">
+							      <input 
+							      	type="radio" 
+							      	name="gender" 
+							      	id="gender2" 
+							      	value="K"
+							      	ng-model="patient.gender">
+							      Kobieta
+							    </label> 
+<!-- 						    </div> -->
+						  	</div>
+						</div>
+						
+						
+						<div class="form-group">
 							<label for="pesel">PESEL:</label> 
 								<input
 									name="pesel"
@@ -71,7 +131,13 @@
 									value=""
 									type="text"
 									ng-model="patient.pesel"
+									ng-class="{submitted:addPatientForm.submitted}"
+									required
 								>
+								<span 
+									ng-show="addPatientForm.pesel.$error.required  && addPatientForm.submitted" 
+									style="color : #f00; float:left;">Pesel jest wymagany
+								</span>
 						</div>
 							
 						<div class="form-group" >
@@ -97,19 +163,22 @@
 		        					>Nieprawidłowy e-mail
 		        				</span>
 						</div>
-						<div class="form-group" >
-							<label for="phone">Telefon:</label> 
-								<input
-									name="phone"
-									placeholder="Telefon" 
-									id="phone"
-									value="" 
-									type="text"
-									ng-model="patient.phone"
-								>
-						</div>
+						
 				</div>
 				<div class="col-md-offset-1 col-md-4">
+				
+				
+					<div class="form-group" >
+							<label for="phone">Telefon:</label> 
+							<input
+								name="phone"
+								placeholder="Telefon" 
+								id="phone"
+								value="" 
+								type="text"
+								ng-model="patient.phone"
+							>
+					</div>				
 					<div class="form-group">
 						<label for="street" >Ulica:</label> 
 						<input
@@ -142,25 +211,25 @@
 						>
 					</div>
 					<div class="form-group">
-						<label for="postcode " >Kod pocztowy:<span class="required">*</span></label> 
+						<label for="postCode " >Kod pocztowy:<span class="required">*</span></label> 
 						<input
-							name="postcode"
+							name="postCode"
 							placeholder="Kod pocztowy" 
 							id="postcode"
 							value="" type="text"
-							ng-model="patient.postcode"
+							ng-model="patient.postCode"
 							ng-pattern="/^(\d{2}-\d{3})$/"
 							ng-class="{submitted:addPatientForm.submitted}"
 							required
 						>
 									<!-- 	ng-pattern="/^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] *\d[A-Z]\d)$/" -->
 	       				<span 
-	       					ng-show="addPatientForm.postcode.$error.required && addPatientForm.submitted"
+	       					ng-show="addPatientForm.postCode.$error.required && addPatientForm.submitted"
 	       					style="color : #f00; float:left;"
 	       					>Kod pocztowy jest wymagany
 	       				</span>
 	       				<span 
-	       					ng-show="addPatientForm.postcode.$error.pattern && addPatientForm.submitted"
+	       					ng-show="addPatientForm.postCode.$error.pattern && addPatientForm.submitted"
 	       					style="color : #f00; float:left;"
 	       					>Proszę podać prawidłowy polski kod
 	       				</span>
@@ -175,7 +244,7 @@
 							background: #f6f9fc;"
 							ng-model="patient.description">
 						</textarea>
-						<p class="description">Możesz tu wpisać dodatkowe informacje o pacjencie</p>
+						<p class="description">* Możesz tu wpisać dodatkowe informacje o pacjencie</p>
 					</div>
 				</div>
 			</div>
@@ -188,6 +257,25 @@
 			</div>
 		</form>
 	</div>
+	
+	<a class="btn btn-success" href="#success" data-toggle="modal"><h4><i class="glyphicon glyphicon-eye-open"></i> Success</h4></a>
+    <!-- Modal -->
+    <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-success">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h1><i class="glyphicon glyphicon-thumbs-up"></i> Success Modal</h1>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- Modal -->
 	
 <style>
 input.submitted.ng-invalid{

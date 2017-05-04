@@ -1,11 +1,11 @@
 package com.wirtualnyGabinet.controller;
 
 import java.security.Principal;
-import org.apache.commons.lang3.StringUtils;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.lang3.time.DateUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -38,6 +38,11 @@ public class PatientController {
 	public void addPatient(@RequestBody Patient patient,Principal principal){
 		Physiotherapist phys = physiotherapistRepository.findTop1ByUsername(principal.getName());
 		patient.setPhisiotherapist_Id(Long.toString(phys.getId()));
+//		Patient oldPatient = patientRepository.findOne(patient.getId());
+//		if (oldPatient != null && oldPatient.getInsertedDate() == null){
+			patient.setInsertedDate(new Date());
+			patient.setRegistryDate(new Date());
+//		}
 		patientRepository.save(patient);
 	}
 	

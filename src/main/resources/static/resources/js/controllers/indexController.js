@@ -2,7 +2,7 @@
  * 
  */
 angular.module('app.controller.index', [])
-.controller('indexController',function($scope,$http,$rootScope,$location,$window,
+.controller('indexController',function($scope,$http,$rootScope,$location,$window,$translate,
 		authService,$state) {
 	console.log("indexController")
 	
@@ -21,5 +21,13 @@ angular.module('app.controller.index', [])
 			$window.sessionStorage.authenticated = false;
 			$window.sessionStorage.role = "";
 		})
+	}
+	
+	$scope.changeLanguage = function (key) {
+	    $translate.use(key);
+	  };
+	  
+	$scope.showCurrentLanguage = function (){
+		return $translate.use();
 	}
 })

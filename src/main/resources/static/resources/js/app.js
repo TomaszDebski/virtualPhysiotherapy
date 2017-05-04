@@ -23,6 +23,7 @@ angular.module('app',
 		  'app.controller.calendar',
 		  
 		  'app.config',
+		  'app.translate-config',
 //		  'app.service.angularModalService',
 		  'app.service.patientPagination',
 		  'app.controller.navigation',
