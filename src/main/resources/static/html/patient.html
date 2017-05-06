@@ -46,6 +46,9 @@ margin-top:10px;
 <div class="container">
 	<div class="row">
 		<div class="col-md-6 ">
+			<div class="alert alert-success" ng-show="successEditPatient">
+				  <strong>Sukces!</strong> Poprawnie zmieniono dane pacjenta
+			</div>
 			<form 
 				name="editPatientForm"
 				class="form-horizontal" 
@@ -182,16 +185,27 @@ margin-top:10px;
 					<div class="form-group">
 					  <label class="col-md-4 control-label" for="gender">Płeć:</label>
 					  <div class="col-md-6" > 
-					  	<div ng-show="editMode">
-						    <label class="radio-inline" for="gender1">
-						      <input type="radio" name="gender1" id="gender1" value="M" checked="checked">
-						      Male
+					    <div ng-show="editMode" name="gender" ng-init="patient.gender=patient.gender">
+						    <label class="radio-inline" for="gender">
+						      <input 
+						      	type="radio" 
+						      	name="gender" 
+						      	id="gender1" 
+						      	value="m" 
+						      	checked="checked"
+						      	ng-model="patient.gender">
+						      Mężczyzna
 						    </label> 
-						    <label class="radio-inline" for="gender2">
-						      <input type="radio" name="gender2" id="gender2" value="K">
-						      Female
+						    <label class="radio-inline" for="gender">
+						      <input 
+						      	type="radio" 
+						      	name="gender" 
+						      	id="gender2" 
+						      	value="k"
+						      	ng-model="patient.gender">
+						      Kobieta
 						    </label> 
-					    </div>
+					  	</div>
 					    <div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode">
 					       <span>
 					       		{{patient.gender}}
@@ -248,7 +262,6 @@ margin-top:10px;
 							  		placeholder="Numer" 
 							  		class="form-control input-md"
 							  		ng-model="patient.number"
-							       	required
 							       	ng-show="editMode"
 							   >
 <!-- 							    <div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode"> -->
@@ -306,7 +319,7 @@ margin-top:10px;
 							    <input 
 							    	id="email" 
 							    	name="email" 
-							    	type="text" 
+							    	type="email" 
 							    	placeholder="Email" 
 							    	class="form-control input-md"
 							    	ng-model="patient.email"
@@ -316,7 +329,7 @@ margin-top:10px;
 							    >
 							    <div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode">
 							       <span>
-							       		{{patient.phone}}
+							       		{{patient.email}}
 							       </span>
 							    </div>	
 						  </div>
@@ -326,6 +339,11 @@ margin-top:10px;
 								style="color : #f00; float:left;"
 								>E-mail jest wymagany
 							</span>
+							<span 
+	        					ng-show="editPatientForm.email.$error.email && editPatientForm.submitted" 
+	        					style="color : #f00; float:left;"
+	        					>Nieprawidłowy e-mail
+	        				</span>
 					     </div>
 					  </div>
 					</div>
@@ -382,6 +400,7 @@ margin-top:10px;
 							   		ng-model="patient.postCode"
 							       	required
 							       	ng-show="editMode"
+							       	ng-pattern="/^(\d{2}-\d{3})$/"
 							       	ng-class="{submitted:editPatientForm.submitted}"
 							   	>
 						   		<div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode">
@@ -396,6 +415,11 @@ margin-top:10px;
 								style="color : #f00; float:left;"
 								>Kod pocztowy jest wymagany
 							</span>
+							<span 
+		       					ng-show="editPatientForm.postCode.$error.pattern && editPatientForm.submitted"
+		       					style="color : #f00; float:left;"
+		       					>Proszę podać prawidłowy polski kod pocztowy
+		       				</span>
 					     </div>
 					  </div>
 					</div>

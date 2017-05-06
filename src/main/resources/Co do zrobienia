@@ -1,6 +1,7 @@
-edycja pacjenta
-nie zapisuje się 
-- data rejestracji
+dodaj do sql daty urodzenia
+sprawdź dlaczego nie uaktualnia się paginacja
+w pacjentach podczas usuwania pacjenta nie uaktualnia się paginacja
+
 
 dodawanie plików
 Zamiast usuwania pacjenta przełączanie na nieaktywny

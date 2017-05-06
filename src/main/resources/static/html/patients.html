@@ -42,7 +42,7 @@
 	      	</span>
       	</td>
          <td><span class="table_span"><img src="">{{patient.sex}}</span></td>
-         <td><span class="table_span">{{patient.age}}</span></td>
+         <td><span class="table_span">{{patient.birthDate |  date:'dd/MM/yyyy' }}</span></td>
          <td><span class="table_span">{{patient.phone}}</span></td>
          <td><span class="table_span">{{patient.email}}</span></td>
          <td><span class="table_span">{{patient.lastVisit | date:'dd/MMM/yy, HH:mm' }}</span></td>

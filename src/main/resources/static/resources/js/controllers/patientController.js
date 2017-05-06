@@ -30,10 +30,12 @@ angular.module('app.controller.patient', ['ui.bootstrap'])
 		}
 		
 		$scope.savePatient = function(patient){
+			$scope.successEditPatient = false;
 			if ($scope.editPatientForm.$valid){
 				$log.info("patient.birthDate " , patient.birthDate);
 				patientService.update({id:$scope.patient.id},patient,function(){
 					console.log("udało się zmienić dane pacjenta")
+					$scope.successEditPatient = true;
 				})
 			}else{
 				$scope.editPatientForm.submitted=true;
