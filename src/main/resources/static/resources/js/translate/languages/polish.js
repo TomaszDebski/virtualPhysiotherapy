@@ -1,0 +1,77 @@
+/**
+ * 
+ */
+angular.module('app.translate-config-pl', ['pascalprecht.translate'])
+.config(function ($translateProvider) {
+	$translateProvider.translations('pl', {
+	    "index": {
+	    	"login": "Zaloguj",
+	    	"logout": "Wyloguj",
+	    	"contact": "Kontakt",
+	    	"welcome": "Witaj",
+	    	"registerSpecialist":"Czy jesteś specjalistą?",
+	    	"language_EN": "angielski",
+	    	"language_PL": "polski",
+	    	"about_portal":"O portalu",
+	    	"physiotherapy" : "Fizjoterapia",
+	    	"specialists" : "Specjaliści",
+	    	"tips" : "Porady",
+	    	"timetable" : "Terminarz",
+	    	"add_a_visit" : "Dodaj wizytę",
+	    	"visits" : "Wizyty",
+	    	"patients" : "Pacjenci",
+	    	"account" : "Konto",
+	    	"add_services" : "Dodaj usługę",
+	    	"" : "",
+	    },
+		"patients": {
+			"patients" : "Pacjenci",
+			"search_patient" : "Wyszukaj pacjenta",
+			"search" : "Wyszukaj",
+	    	"add_patient" : "Dodaj pacjenta",
+	    	"firstName_lastName" : "Imię i nazwisko",
+	    	"gender" : "Płeć",
+	    	"date_of_birth" : "Data urodzenia",
+	    	"phone" : "Telefon",
+	    	"last_visit" : "Ostatnia wizyta",
+	    	"actions" : "Akcje",
+	    	"man" : "mężczyzna",
+	    	"woman" : "kobieta",
+	    	"add_a_visit" : "Dodaj wizytę",
+	    	"remove_the_patient" : "Usuń pacjenta",
+	    	"send_email" : "Wyślij e-mail",
+	    	"want_to_remove_the_patient" : "Czy na pewno chcesz usunąć pacjenta?",
+		},
+		"addVisit" : {
+			"add_new_visit":"Dodaj nową wizytę",
+			"correct_add_visit" : "Poprawnie dodano wizytę",
+			"visit_length":"Czas trwania",
+			"what_visit_length":"Określ czas trwania",
+			"visit_description" : "Opis wizyty",
+		},
+		"addService" : {
+			"add_new_service" : "Dodaj nową usługę",
+			"correct_add_service" : "Poprawnie dodano wizytę",
+			"service_name" : "Nazwa usługi",
+			"service_description" : "Opis usługi",
+			"please_correct_price" : "Proszę wpisać prawidłową kwotę",
+			"" : "",
+		},
+		"commons" : {
+			"success" : "Sukces",
+			"save" : "Zapisz",
+			"clear" : "Wyczyść",
+			"name" : "Nazwa",
+			"description" : "Opis",
+			"price" : "Cena",
+			"patient" : "Pacjent",
+			"date" : "Data",
+			"hour" : "Godzina",
+			"select_Patient" : "Wybierz pacjenta",
+			"select_date" : "Wybierz datę",
+			"select_hour" : "Wybierz godzinę",
+			"name_is_required" : "Nazwa jest wymagana",
+			"price_is_required":"Cena jest wymagana",
+		}
+	 })
+})

@@ -1,7 +1,7 @@
 <meta meta charset=utf-8>
 	<div class="main-header">
 		<div class="container">
-			<span class="page-title">Dodaj nową wizytę</span>
+			<span class="page-title">{{'addVisit.add_new_visit' | translate}}</span>
 		</div>
 	</div>
 
@@ -11,7 +11,7 @@
 	<div class="row" ng-show="success">
 		<div class="col-md-offset-4 col-md-4">
 			<div class="alert alert-success" >
-			    <strong>Sukces</strong> Poprawnie dodano wizytę
+			    <strong>{{'commons.success' | translate}}</strong> {{'addVisit.correct_add_visit' | translate}}
 			</div>
 		</div>
 			    <br><br>
@@ -23,7 +23,9 @@
 		
 		<fieldset>
 			<div class="form-group">
-			  <label class="col-md-offset-2 col-md-2 control-label" for="Pacjent">Pacjent:<span style="color:red;">*</span></label>  
+			  <label class="col-md-offset-2 col-md-2 control-label" for="Pacjent">
+			  	{{'commons.patient' | translate}}:<span style="color:red;">*</span>
+			  </label>  
 			  <div class="col-md-4">
 			  	<ui-select 
 					ng-model="ctrl.people.patientId" 
@@ -52,14 +54,16 @@
 				<span 
     				ng-show="addVisitForm.selectPatientId.$error.required && addVisitForm.submitted" 
     				style="color : #f00; float:left;"
-    				>Wybierz pacjenta
+    				>{{'commons.select_Patient' | translate}}
     			</span>
 			  </div>
 			</div>
 			
 			<!-- Text input-->
 			<div class="form-group">
-			  <label class="col-md-offset-2 col-md-2 control-label" for="datapicker">Data:<span style="color:red;">*</span></label>  
+			  <label class="col-md-offset-2 col-md-2 control-label" for="datapicker">
+			  	{{'commons.date' | translate}}:<span style="color:red;">*</span>
+			  </label>  
 			  <div class="col-md-4">
 			  	 <div class="input-group">
 				  	<input type="text" 
@@ -89,14 +93,16 @@
 				<span 
     				ng-show="addVisitForm.dateField.$error.required && addVisitForm.submitted" 
     				style="color : #f00; float:left;"
-    				>Wybierz date
+    				>{{'commons.select_date' | translate}}
     			</span>
 			  </div>
 			</div>
 			
 			<!-- Text input-->
 			<div class="form-group">
-			  <label class="col-md-offset-2 col-md-2 control-label" for="hour">Godzina:<span style="color:red;">*</span></label>  
+			  <label class="col-md-offset-2 col-md-2 control-label" for="hour">
+			  	{{'commons.hour' | translate}}:<span style="color:red;">*</span>
+			  </label>  
 			  <div class="col-md-4">
 			  	<ui-select 
 					ng-model="visit.hour" 
@@ -111,7 +117,7 @@
 				>
 					<ui-select-match 
 						id="hourField2" 
-						placeholder="Wybierz godzinę"
+						placeholder="{{'commons.select_hour' | translate}}"
 						allow-clear="true"
 						>{{$select.selected.name}}
 					</ui-select-match>
@@ -123,19 +129,19 @@
 				<span 
     				ng-show="addVisitForm.hourField.$error.required && addVisitForm.submitted" 
     				style="color : #f00; float:left;"
-    				>Wybierz godzinę
+    				>{{'commons.select_hour' | translate}}
     			</span>
 			  </div>
 			</div>
 			
 			<!-- Text input-->
 			<div class="form-group">
-			  <label class="col-md-offset-2 col-md-2 control-label" for="textinput">Czas trwania:<span style="color:red;">*</span></label>  
+			  <label class="col-md-offset-2 col-md-2 control-label" for="textinput">{{'addVisit.visit_length' | translate}}:<span style="color:red;">*</span></label>  
 			  <div class="col-md-4">
 			  <input id="textinput" 
 			  	ng-class="{submitted:addVisitForm.submitted}"  
 			  	name="lengthField" 
-			  	placeholder="Czas trwania" 
+			  	placeholder="{{'addVisit.visit_length' | translate}}" 
 			  	class="form-control" 
 			  	required
 			  	ng-model="visit.length"
@@ -143,14 +149,60 @@
 			  	<span 
     				ng-show="addVisitForm.lengthField.$error.required && addVisitForm.submitted" 
     				style="color : #f00; float:left;"
-    				>Określ czas trwania
+    				>{{'addVisit.what_visit_length' | translate}}
     			</span>
 			  </div>
 			</div>
 			
+			
+			<div class="form-group">
+			  <label class="col-md-offset-2 col-md-2 control-label" for="selectService">
+			  	{{'commons.services' | translate}}:<span style="color:red;">*</span>
+			  </label>  
+			  <div class="col-md-4">
+			  	<ui-select 
+					ng-model="ctrl.service" 
+					theme="select2" 
+					ng-disabled="disabled" 
+					style="width: 100%;" 
+					title="Wybierz zabieg" 
+					on-select="ctrl.onSelectService($item, $model)" 
+					ng-required="true"
+					name="selectService"
+					id="selectService"
+					ng-class="{submitted:addVisitForm.submitted}"
+				>
+    			<ui-select-match 
+					placeholder="Wybierz zabieg z listy" >{{$select.selected.serviceName}}
+				</ui-select-match>
+    			<ui-select-choices 
+					repeat="person in ctrl.services | propsFilter: {firstname: $select.search, lastname: $select.search, age: $select.search}" >
+      				<div ng-bind-html="person.serviceName + ' ' + person.serviceName | highlight: $select.search"></div>
+      				<small>
+        				email: {{person.serviceName}}
+        				age: <span ng-bind-html="''+person.serviceName | highlight: $select.search"></span>
+      				</small>
+    			</ui-select-choices>
+				</ui-select>
+				<span 
+    				ng-show="addVisitForm.selectService.$error.required && addVisitForm.submitted" 
+    				style="color : #f00; float:left;"
+    				>{{'commons.select_Patient' | translate}}
+    			</span>
+			  </div>
+			</div>
+			
+			
+			
+			
+			
+			
+			
 			<!-- Textarea -->
 			<div class="form-group">
-			  <label class="col-md-offset-2 col-md-2 control-label" for="description">Opis wizyty: </label>
+			  <label class="col-md-offset-2 col-md-2 control-label" for="description">
+			  	{{'addVisit.visit_description' | translate}}: 
+			  		</label>
 			  <div class="col-md-4">                     
 			    <textarea 
 			    	name="description"

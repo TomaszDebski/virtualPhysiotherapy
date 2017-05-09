@@ -20,13 +20,9 @@
     <![endif]-->
 
 
-
-
 <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.css">
 <link rel="stylesheet" href="resources/js/libraries/jquery-ui.css">
 <link rel="stylesheet" href="resources/js/libraries/fullcalendar.css">
-<!-- <link rel="stylesheet" href="resources/js/libraries/fullcalendar.print.css"> -->
-
 
 <script src="resources/js/libraries/jQuery.js"></script>
 <script src="resources/js/libraries/jquery-ui.min.js"></script>
@@ -38,7 +34,7 @@
 <script src="resources/js/libraries/calendar.js"></script>
 <script src="resources/js/libraries/angular-ui-router.js"></script>
 <script src="resources/js/libraries/ui-validate.js"></script>
-<script src="/resources/js/libraries/angular-translate.js"></script>
+<script src="resources/js/libraries/angular-translate.js"></script>
 <script src="resources/js/libraries/angular-translate-loader-static-files.js"></script>
 <script src="resources/js/libraries/angular-translate-storage-cookie.js"></script>
 
@@ -57,11 +53,7 @@
 <link rel="stylesheet" href="resources/js/libraries/components/jquery.timepicker.css">
 <link rel="stylesheet" href="css/components/selectize.default.css">
 
-
-<!-- <link rel="stylesheet" href="resources/bootstrap/bootstrap-theme.css"> -->
-
 <!-- Latest compiled and minified JavaScript -->
-<!-- <script src="resources/bootstrap/bootstrap.js"></script> -->
 <link href="css/fonts/font-awesome.min.css" rel="stylesheet">
 <link href="css/fonts/fontawesome-webfont.woff" rel="stylesheet">
 <link rel="stylesheet" href="css/style-header-upper.css">
@@ -71,6 +63,7 @@
 <link rel="stylesheet" href="css/style-main-header.css">
 <link rel="stylesheet" href="css/style-common.css">
 </head>
+
 <body ng-controller="indexController" >
 	<header>
 		<div class="container">
@@ -81,91 +74,85 @@
 				</div>
 				<div class="col-md-offset-2 col-md-7">
 					<div class="pull-right">
-				<div class="row">
-						<nav class="nav nav_utility">
-					
-							<ul class="menu menu_utility">
-							<li><p ng-if="authenticated" class="navbar-text"><span translate="index.welcome"></span> {{user}}</p> </li>
-								<li ng-if="!authenticated"><a ui-sref="register"
-									class="button desktop become_a_member" 
-									translate="index.registerSpecialist"></a></li>
-								<li class="en first active">
-								<div ng-if="showCurrentLanguage() == 'en'">
-									<a href="" 
-									class="language-link active" 
-									xml:lang="en-CA" lang="en-CA" 
-									ng-click="changeLanguage('pl')"
-									><span translate="index.language_PL"></span></a>
-								</div>
-								
-								<div ng-if="showCurrentLanguage() == 'pl'">
-									<a href="" 
-									class="language-link active" 
-									xml:lang="en-CA" lang="en-CA" 
-									ng-click="changeLanguage('en')"
-									><span translate="index.language_EN"></span></a>
-								</div>
-								</li>
-								
-								<li class="first leaf menu-mlid-605">
-								<a ui-sref="contact" translate="index.contact"></a></li>
-
-								<li ng-if="!authenticated">
-									<a ui-sref="login"><strong translate="index.login"></strong></a>
-								</li>
-								<li ng-if="authenticated"><a ng-click="logout(authenticated)" href="#"><strong translate="index.logout"></strong></a></li>
-							</ul>
-						</nav>
+						<div class="row">
+							<nav class="nav nav_utility">
+								<ul class="menu menu_utility">
+									<li><p ng-if="authenticated" class="navbar-text">
+										<span translate="index.welcome"></span> {{user}}</p> 
+									</li>
+									<li ng-if="!authenticated">
+										<a ui-sref="register"
+											class="button desktop become_a_member" 
+											translate="index.registerSpecialist"> 
+										</a>
+									</li>
+									<li class="en first active">
+										<div ng-if="showCurrentLanguage() == 'en'">
+											<a href="" 
+												class="language-link active" 
+												xml:lang="en-CA" lang="en-CA" 
+												ng-click="changeLanguage('pl')"
+											>
+												<span translate="index.language_PL"></span>
+											</a>
+										</div>
+										
+										<div ng-if="showCurrentLanguage() == 'pl'">
+											<a href="" 
+												class="language-link active" 
+												xml:lang="en-CA" lang="en-CA" 
+												ng-click="changeLanguage('en')"
+											>
+												<span translate="index.language_EN"></span>
+											</a>
+										</div>
+									</li>
+									
+									<li class="first leaf menu-mlid-605">
+										<a ui-sref="contact" translate="index.contact"></a>
+									</li>
+	
+									<li ng-if="!authenticated">
+										<a ui-sref="login"><strong translate="index.login"></strong></a>
+									</li>
+									<li ng-if="authenticated">
+										<a ng-click="logout(authenticated)" href="#"><strong translate="index.logout"></strong></a>
+									</li>
+								</ul>
+							</nav>
 						</div>
-					<div class="row">
-						<div class="col-md-6 pull-right">
-						<form  action="/search" method="get">
-<!-- 							<div class="form-group"> -->
-								<div class="input-group">
-							      <input type="text" class="form-control" placeholder="Wyszukiwarka">
-							      <span class="input-group-btn">
-							        <button class="btn btn-primary" type="button">Wyszukaj</button>
-							      </span>
-							    </div>
-<!-- 								<span data-icon="" aria-hidden="true"></span>  -->
-<!-- 								<label -->
-<!-- 									class="webaim-hidden"  -->
-<!-- 									for="search" -->
-<!-- 									>Wyszukaj -->
-<!-- 								</label>  -->
-<!-- 								<input -->
-<!-- 									id=""  -->
-<!-- 									name="keywords"  -->
-<!-- 									type="text" -->
-<!-- 								>  -->
-<!-- 								<a href="#" class="btn btn-primary"> -->
-<!-- 								<span class="glyphicon glyphicon-search"></span> dddddd</a> -->
-							</form>
+						<div class="row">
+							<div class="col-md-6 pull-right">
+								<form  action="/search" method="get">
+									<div class="input-group">
+									      <input type="text" class="form-control" placeholder="Wyszukiwarka">
+									      <span class="input-group-btn">
+									        	<button class="btn btn-primary" type="button">Wyszukaj</button>
+									      </span>
+								    </div>
+								</form>
 							</div>
 						</div>
 					</div>
-					
 				</div>
 			</div>
 		</div>
 		<!-- Bottom  -->
 		
-		<style>
-			
-		</style>
 <!-- 		<div class="navbar navbar-default navbar-fixed" role="navigation"> -->
 <div class="container">
 <!--    	<nav> -->
           <ul class="nav nav-justified">
-           	<li ng-if="authenticated" class="active"><a ui-sref="allPatients" title=""><span>Pacjenci</span></a></li>
-            <li ng-if="authenticated"><a ui-sref="visits"><span>Wizyty</span></a></li>
-            <li ng-if="authenticated"><a ui-sref="addVisit"><span>Dodaj wizyte</span></a></li>
-            <li ng-if="authenticated"><a ui-sref="calendar({id: 2})"><span>Terminarz</span></a></li>
-            <li ng-if="authenticated"><a ui-sref="account"><span>Konto</span></a></li>
-            <li ng-if="!authenticated"><a ui-sref="/" title=""><span style="border-left: none;">O portalu</span></a></li>
-            <li ng-if="!authenticated"><a ui-sref="/"><span>Fizjoterapia</span></a></li>
-            <li ng-if="!authenticated"><a ui-sref="showAllPhysiotherapists"><span>Specjaliści</span></a></li>
-            <li ng-if="!authenticated"><a ui-sref="/"><span>Porady</span></a></li>
+           	<li ng-if="authenticated" class="active"><a ui-sref="allPatients" title=""><span translate="index.patients"></span></a></li>
+            <li ng-if="authenticated"><a ui-sref="visits"><span translate="index.visits"></span></a></li>
+            <li ng-if="authenticated"><a ui-sref="addService"><span translate="index.add_services"></span></a></li>
+<!--             <li ng-if="authenticated"><a ui-sref="addVisit"><span translate="index.add_a_visit"></span></a></li> -->
+            <li ng-if="authenticated"><a ui-sref="calendar({id: 2})"><span translate="index.timetable"></span></a></li>
+            <li ng-if="authenticated"><a ui-sref="account"><span translate="index.account"></span></a></li>
+            <li ng-if="!authenticated"><a ui-sref="/" title=""><span style="border-left: none;" translate="index.about_portal"></span></a></li>
+            <li ng-if="!authenticated"><a ui-sref="/"><span translate="index.physiotherapy"></span></a></li>
+            <li ng-if="!authenticated"><a ui-sref="showAllPhysiotherapists"><span translate="index.specialists"></span></a></li>
+            <li ng-if="!authenticated"><a ui-sref="/"><span translate="index.tips"></span></a></li>
           </ul>
 <!--    </nav> -->
 </div>
@@ -313,9 +300,9 @@
 	<script src="resources/js/app.js"></script>
 	<script src="resources/js/config.js"></script>
 	<script src="resources/js/run.js"></script>
-	<script src="resources/js/translate-config.js"></script>
-	
-	
+	<script src="resources/js/translate/translate-config.js"></script>
+	<script src="resources/js/translate/languages/polish.js"></script>
+	<script src="resources/js/translate/languages/english.js"></script>
 	
 	
 	<script src="resources/js/controllers/navigationController.js"></script>
@@ -335,6 +322,7 @@
 	<script src="resources/js/controllers/calendarController.js"></script>
 	<script src="resources/js/controllers/accountController.js"></script>
 	<script src="resources/js/controllers/indexController.js"></script>
+	<script src="resources/js/controllers/addServiceController.js"></script>
 	
 	<script src="resources/js/services/authService.js"></script>
 	<script src="resources/js/services/physiotherapistService.js"></script>
@@ -345,6 +333,8 @@
 	<script src="resources/js/services/visitPaginationService.js"></script>
 	<script src="resources/js/services/getVisitsService.js"></script>
 	<script src="resources/js/services/getFileService.js"></script>
+	<script src="resources/js/services/serviceService.js"></script>
+	
 	
 	<script src="resources/js/directives/usernameAvailableDirective.js"></script>
 	<script src="resources/js/directives/compareToDirective.js"></script>

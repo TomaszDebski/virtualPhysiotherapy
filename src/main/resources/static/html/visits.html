@@ -1,16 +1,14 @@
 <meta meta charset=utf-8>
-	<div class="main-header">
-<!-- 		<div class="ht-container"> -->
-		<div class="container">
-<!-- 			<div class="row"> -->
-				 <div class="row vertical-align">
-			      <div class="col-md-1">
-				 <span class="page-title">Wizyty</span>
-				 </div>
-				 <div class="col-md-4">
-				 Pacjent: 
-				 
-				 	<ui-select 
+<div class="main-header">
+	<div class="container">
+		<div class="row vertical-align">
+		    <div class="col-md-1">
+			 	<span class="page-title">Wizyty</span>
+			</div>
+			
+			<div class="col-md-4">
+			 Pacjent: 
+			 	<ui-select 
 					ng-model="ctrl.people.patientId" 
 					theme="select2" 
 					ng-disabled="disabled" 
@@ -22,273 +20,135 @@
 					id="selectedPatientId"
 					ng-class="{submitted:addVisitForm.submitted}"
 				>
-    			<ui-select-match 
-					placeholder="{{ctrl.patientPlaceholer}}" >
-					<div ng-if="ctrl.people.length > 0">{{$select.selected.firstname}} {{$select.selected.lastname}}</div>
-				</ui-select-match>
-    			<ui-select-choices 
-					repeat="person in ctrl.people | propsFilter: {firstname: $select.search, lastname: $select.search, age: $select.search}" >
-      				<div ng-bind-html="person.firstname + ' ' + person.lastname | highlight: $select.search"></div>
-      				<small>
-        				email: {{person.email}}
-        				age: <span ng-bind-html="''+person.age | highlight: $select.search"></span>
-      				</small>
-    			</ui-select-choices>
+		   			<ui-select-match 
+						placeholder="{{ctrl.patientPlaceholer}}"
+					>
+						<div ng-if="ctrl.people.length > 0">{{$select.selected.firstname}} {{$select.selected.lastname}}</div>
+					</ui-select-match>
+		   			<ui-select-choices 
+						repeat="person in ctrl.people | propsFilter: {firstname: $select.search, lastname: $select.search, age: $select.search}" >
+		     				<div ng-bind-html="person.firstname + ' ' + person.lastname | highlight: $select.search"></div>
+		     				<small>
+		       				email: {{person.email}}
+		       				age: <span ng-bind-html="''+person.age | highlight: $select.search"></span>
+		     				</small>
+		   			</ui-select-choices>
 				</ui-select>
-				 
-				 
-				 
-				 </div>
-				 <div class="col-md-2">
-			        <div class="input-group">
-			          <input type="text" class="form-control" ng-change="getDate()" uib-datepicker-popup="{{format}}" ng-model="startDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-			          <span class="input-group-btn">
-			            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
-			          </span>
-			        </div>
-			      </div>
-			      <div class="col-md-2">
-			        <p class="input-group">
-			          <input type="text" class="form-control" ng-change="getDate()" uib-datepicker-popup="{{format}}" ng-model="endDate" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-			          <span class="input-group-btn">
-			            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
-			          </span>
-			        </p>
-			      </div>
-<!-- 			    </Cdiv> -->
-		<div class="col-md-offset-1 col-md-2">
-			<div class="pull-right">
-				<a id="" class="btn btn-primary active"
-							href="#/addVisit">Dodaj wizytę</a>	
+			</div>
+			<div class="col-md-2">
+		        <div class="input-group">
+		          <input 
+		          	type="text" 
+		          	class="form-control" 
+		          	ng-change="getDate()" 
+		          	uib-datepicker-popup="{{format}}" 
+		          	ng-model="startDate" 
+		          	is-open="popup1.opened" 
+		          	datepicker-options="dateOptions" 
+		          	ng-required="true" 
+		          	close-text="Close" 
+		          	alt-input-formats="altInputFormats" />
+		          <span class="input-group-btn">
+		            <button type="button" class="btn btn-default" ng-click="open1()">
+		            	<i class="glyphicon glyphicon-calendar"></i>
+		            </button>
+		          </span>
+		        </div>
+		     </div>
+		     <div class="col-md-2">
+		        <p class="input-group">
+		          <input 
+		          	type="text" 
+		          	class="form-control" 
+		          	ng-change="getDate()" 
+		          	uib-datepicker-popup="{{format}}" 
+		          	ng-model="endDate" 
+		          	is-open="popup2.opened" 
+		          	datepicker-options="dateOptions" 
+		          	ng-required="true" 
+		          	close-text="Close" 
+		          	alt-input-formats="altInputFormats" />
+		          <span class="input-group-btn">
+		            <button type="button" class="btn btn-default" ng-click="open2()">
+		            	<i class="glyphicon glyphicon-calendar"></i>
+		            </button>
+		          </span>
+		        </p>
+		     </div>
+			<div class="col-md-offset-1 col-md-2">
+				<div class="pull-right">
+					<a class="btn btn-primary active" ui-sref="addVisit">Dodaj wizytę</a>	
+				</div>	
 			</div>	
-		</div>	
-				</div>
-<!-- 		</div>	 -->
-<!-- 		</div>		 -->
-</div>			
-		</div>		
+		</div>
+	</div>			
+</div>		
 				
 				
+<div class="container">
+	<table id="appointments-table-id"
+		class=" patients-table ">
+		<thead>
+			<tr>
+				<th style="width: 200px;">Typ</th>
+				<th style="width:200px;">Data</th>
+				<th>Treść</th>
+				<th style="width:150px;">Akcje</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="visit in visits">
+				<td class=""><div class="">Rezerwacja</div></td>
+				<td><span class="table_span">{{visit.date | date:'EEE, dd/MMM/yy, HH:mm' }}</span></td>
+				<td><span class="table_span">{{visit.description}}</span></td>
+				<td class="actions-col">
+					<span class="masterTooltip table_span" title="Zakończ wizytę">
+						<a href="" class="icon">
+							<img src="/pics/checkmark.svg">
+						</a>
+					</span>
+
+					<span class="masterTooltip table_span" title="Usuń wizytę">
+						<a ng-click="deleteVisit(visit)" href="" class="icon">
+							<img src="/pics/usun_szary.svg">
+						</a>
+					</span>
+
+					<span class="masterTooltip table_span" title="Wyślij email">
+						<a
+							href="#myModal" 
+							onclick="addData(event)" 
+							role="button"
+							class="icon" 
+							data-toggle="modal" 
+							attr.item-patient="11111 22222"
+							name="11111 22222" 
+							attr.item-opiszwizyte="1111"
+							attr.item-zalecenia="111" 
+							attr.item-zabiegi="1111"
+							attr.item-email="1111@o2.pl"
+						>
+							<img src="/pics/email.svg">
+						</a>
+					</span>
+				</td>
+				<script type="text/javascript">
+					function confirm_click() {
+						return confirm("Czy na pewno chcesz usunąć wizytę?");
+					}
+				</script>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div class="row">
+    <div class="col-md-5 col-md-offset-5">
+    	<ul  uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>
+    </div>
+</div>	
+
 
 <style>
-
-/*   .full button span { */
-/*     background-color: limegreen; */
-/*     border-radius: 32px; */
-/*     color: black; */
-/*   } */
-/*   .partially button span { */
-/*     background-color: orange; */
-/*     border-radius: 32px; */
-/*     color: black; */
-/*   } */
-</style>
-<div>
-
-</div>
-
-				
-				
-				
-			</div>
-		</div>
-	</div>
-		<div class="container">
-			<table id="appointments-table-id"
-				class=" patients-table ">
-				<thead>
-					<tr>
-						<th style="width: 200px;">Typ</th>
-						<th style="width:200px;">Data</th>
-<!-- 						<th>Pacjent</th> -->
-						<th>Treść</th>
-<!-- 						<th>E-mail</th> -->
-<!-- 						<th>Telefon</th> -->
-						<th style="width:150px;">Akcje</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="visit in visits">
-						<td class=""><div
-								class="">Rezerwacja</div></td>
-						<td><span class="table_span">{{visit.date | date:'EEE, dd/MMM/yy, HH:mm' }}</span></td>
-<!-- 						<td><span class="table_span"><a -->
-<!-- 								href="#/patient/{{visit.patient.id}}" -->
-<!-- 								name="11111 22222" class="">{{visit.patient.firstname}} -->
-<!-- 									{{visit.patient.lastname}}</a></span></td> -->
-<!-- 						<td><span class="table_span">{{visit.patient.email}}</span></td> -->
-						<td><span class="table_span">{{visit.description}}</span></td>
-<!-- 						<td><span class="table_span">{{visit.patient.phone}}</span></td> -->
-						<td class="actions-col"><span
-							class="masterTooltip table_span" title="Zakończ wizytę"><a
-								href="?end=1068" class="icon"><img
-									src="/pics/checkmark.svg"></a></span>
-
-							<span class="masterTooltip table_span" title="Usuń wizytę"><a
-								ng-click="deleteVisit(visit)" href="" class="icon"><img
-									src="/pics/usun_szary.svg"></a></span>
-
-							<span class="masterTooltip table_span" title="Wyślij email"><a
-								href="#myModal" onclick="addData(event)" role="button"
-								class="icon" data-toggle="modal" attr.item-patient="11111 22222"
-								name="11111 22222" attr.item-opiszwizyte="1111"
-								attr.item-zalecenia="111" attr.item-zabiegi="1111"
-								attr.item-email="1111@o2.pl"><img
-									src="/pics/email.svg"></a></span>
-
-
-						</td>
-						<script type="text/javascript">
-							function confirm_click() {
-								return confirm("Czy na pewno chcesz usunąć wizytę?");
-							}
-						</script>
-
-					</tr>
-
-				</tbody>
-			</table>
-		</div>
-		<div class="row">
-		    <div class="col-md-5 col-md-offset-4">
-		    	<ul  uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>
-		    </div>
-		</div>	
-
-
-
-
-		</div>
-
-		<style>
-
-/* .ht-container { */
-/* 	max-width: 1100px; */
-/* 	margin: 0 auto; */
-/* 	padding: 0 15px; */
-/* } */
-
-/* .ht-container { */
-/* 	padding: 0 20px; */
-/* } */
-
-/* .ht-container, #page-header.ph-align-center .ht-container { */
-/* 	max-width: 1170px; */
-/* 	padding: 0; */
-/* } */
-
-/* .ht-container, #page-header.ph-align-center .ht-container { */
-/* 	padding-left: 20px; */
-/* 	padding-right: 20px; */
-/* } */
-
-/* .calendar-header .page-title { */
-/* 	font-size: 22px; */
-/* 	font-weight: 700; */
-/* 	line-height: 40px; */
-/* } */
-
-/* .calendar-header .page-title:last-of-type { */
-/* 	float: left; */
-/* } */
-
-/* .calendar-header .page-title:last-of-type { */
-/* 	margin-right: 20px; */
-/* } */
-
-/* div.patients_header { */
-/* 	float: right; */
-/* } */
-
-/* .patient-search-wrap { */
-/* 	margin-left: 100px; */
-/* 	display: inline-block; */
-/* 	padding: 0 10px 0 2px; */
-/* 	vertical-align: text-bottom; */
-/* 	border-bottom: 1px solid #7d7d7d; */
-/* 	color: #7d7d7d; */
-/* 	font-size: 12px; */
-/* } */
-
-/* span.patient-search-wrap { */
-/* 	float: right; */
-/* 	margin-left: 0 !important; */
-/* 	margin-right: 10px; */
-/* } */
-
-/* span#searchbar_patients.patient-search-wrap { */
-/* 	margin-left: 10px !important; */
-/* 	margin-top: 15px; */
-/* } */
-
-/* span#searchbar_patients.patient-search-wrap { */
-/* 	float: left !important; */
-/* } */
-
-/* button, input, optgroup, select, textarea { */
-/* 	margin: 0; */
-/* 	font: inherit; */
-/* 	color: inherit; */
-/* } */
-
-/* button, input, select, textarea { */
-/* 	font-family: inherit; */
-/* 	font-size: inherit; */
-/* 	line-height: inherit; */
-/* } */
-
-/* .patient-search-wrap input { */
-/* 	background: none; */
-/* 	border: none; */
-/* 	outline: none; */
-/* } */
-
-/* a { */
-/* 	background: transparent; */
-/* } */
-
-/* a, a:visited { */
-/* 	text-decoration: none; */
-/* 	outline: 0; */
-/* 	-moz-transition: color 0.15s ease-out; */
-/* 	-o-transition: color 0.15s ease-out; */
-/* 	-webkit-transition: color 0.15s ease-out; */
-/* 	-ms-transition: color 0.15s ease-out; */
-/* 	transition: color 0.15s ease-out; */
-/* } */
-
-/* a { */
-/* 	background-color: transparent; */
-/* } */
-
-/* a { */
-/* 	color: #337ab7; */
-/* 	text-decoration: none; */
-/* } */
-
-/* img { */
-/* 	border: 0; */
-/* } */
-
-/* img { */
-/* 	vertical-align: middle; */
-/* } */
-
-/* form input[type="reset"], form input[type="submit"], a.button { */
-/* 	width: 100%; */
-/* 	border: 0; */
-/* 	border-radius: 0; */
-/* 	box-shadow: none; */
-/* 	color: #fff !important; */
-/* 	background: #024593 !important; */
-/* 	text-transform: uppercase; */
-/* 	font-size: 13px; */
-/* 	padding: 7px 0; */
-/* /* 	margin-top: 20px !important; */ */
-/* 	border-radius: 15px; */
-/* 	font-size: 15px; */
-/* 	font-weight: 600; */
-/* } */
 
 .ht-pagination ul a, .ht-pagination ul span, form button, form input[type="reset"],
 	form input[type="submit"], a.button {
@@ -327,24 +187,6 @@
 	letter-spacing: 0;
 }
 
-/* a.button-large { */
-/* 	padding-top: 7px; */
-/* } */
-
-/* a.button-large { */
-/* 	height: 35px; */
-/* 	display: inline-block; */
-/* 	font-size: 13px; */
-/* 	width: 165px; */
-/* 	text-align: center; */
-/* } */
-
-/* .flexi-container { */
-/* 	padding-bottom: 50px; */
-/* } */
-
-
-
 .actions-col .icon img {
 	height: 20px;
 	width: auto;
@@ -355,58 +197,4 @@ a#add_appoitment_btn {
 	float: right;
 }
 
-/* .calendar-header .ui-datepicker-trigger { */
-/* 	height: 30px; */
-/* 	width: auto; */
-/* 	vertical-align: middle; */
-/* } */
-
-/* .calendar-header .calendar-date-wrapper { */
-/* 	margin: 0 auto !important; */
-/* 	margin-left: 0 !important; */
-/* 	padding-left: 0; */
-/* } */
-
-/* .calendar-header .calendar-date-wrapper { */
-/* 	margin-left: 45px; */
-/* 	display: inline-block; */
-/* } */
-
-/* div.appoitments_header { */
-/* 	margin-bottom: 30px; */
-/* } */
-
-/* .calendar-header .calendar-arrow { */
-/* 	display: inline-block; */
-/* 	margin: 0 10px; */
-/* 	padding: 10px; */
-/* } */
-
-/* .calendar-header .calendar-arrow.left { */
-/* 	-webkit-transform: rotate(180deg); */
-/* 	-moz-transform: rotate(180deg); */
-/* 	-ms-transform: rotate(180deg); */
-/* 	-o-transform: rotate(180deg); */
-/* 	transform: rotate(180deg); */
-/* } */
-
-/* .patient-search-wrap { */
-/* 	margin-left: 100px; */
-/* 	display: inline-block; */
-/* 	padding: 0 10px 0 2px; */
-/* 	vertical-align: text-bottom; */
-/* 	border-bottom: 1px solid #7d7d7d; */
-/* 	color: #7d7d7d; */
-/* 	font-size: 12px; */
-/* } */
-
-/* span.patient-search-wrap { */
-/* 	float: right; */
-/* 	margin-left: 0 !important; */
-/* 	margin-right: 10px; */
-/* } */
-
-/* span#searchbar_appoitments.patient-search-wrap { */
-/* 	margin-top: 15px; */
-/* } */
 </style>

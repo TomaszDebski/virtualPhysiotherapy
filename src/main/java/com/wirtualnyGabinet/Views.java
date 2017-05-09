@@ -13,5 +13,10 @@ public class Views {
 	public interface Patients extends Patient,Visits{}
 	
 	public interface VisitsPhysiotherapist extends Visits,User{}
+	
+	public interface Service{}
 
+	public interface VisitTreatments{}
+	
+	public interface VisitServices{}
 }

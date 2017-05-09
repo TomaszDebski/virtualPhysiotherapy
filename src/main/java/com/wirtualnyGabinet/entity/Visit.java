@@ -2,14 +2,19 @@ package com.wirtualnyGabinet.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -66,7 +71,6 @@ public class Visit implements Serializable {
 //	@JsonView(Views.Visits.class)
 //	@JsonProperty
 	@JsonView(Views.VisitsPatient.class)
-	//@JsonProperty(value="grupa_id")
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "patient_id")
 	@JsonIdentityInfo(
@@ -79,6 +83,15 @@ public class Visit implements Serializable {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "physiotherapist_id")
 	public Physiotherapist physiotherapist;
+	
+	
+	@JsonView(Views.VisitServices.class)
+	@OneToMany(cascade=CascadeType.ALL,mappedBy = "visit",fetch=FetchType.LAZY,orphanRemoval=true)
+	@JsonIdentityInfo(
+			  generator = ObjectIdGenerators.PropertyGenerator.class, 
+			  property = "id")
+	private List<Treatment> treatment;
+	
 
 	/* Relations */
 	
@@ -181,8 +194,15 @@ public class Visit implements Serializable {
 		this.isHoliday = isHoliday;
 	}
 
-	
-	
-	
-	
+
+	public List<Treatment> getTreatment() {
+		return treatment;
+	}
+
+
+	public void setTreatment(List<Treatment> treatment) {
+		this.treatment = treatment;
+	}
+
+
 }

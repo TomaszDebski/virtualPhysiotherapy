@@ -31,6 +31,7 @@ import com.wirtualnyGabinet.entity.Physiotherapist;
 import com.wirtualnyGabinet.entity.Visit;
 import com.wirtualnyGabinet.repository.PatientRepository;
 import com.wirtualnyGabinet.repository.PhysiotherapistRepository;
+import com.wirtualnyGabinet.repository.ServiceRepository;
 import com.wirtualnyGabinet.repository.VisitRepository;
 
 @RestController
@@ -47,6 +48,9 @@ public class VisitController {
 	
 	@Autowired
 	PhysiotherapistRepository physiotherapisRepository;
+	
+	@Autowired
+	ServiceRepository serviceRepository;
 
 	@RequestMapping(method= RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void addVisit(@RequestBody Visit visit,@RequestParam long patientId, Principal principal){

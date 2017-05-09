@@ -1,6 +1,3 @@
-dodaj do sql daty urodzenia
-sprawdź dlaczego nie uaktualnia się paginacja
-w pacjentach podczas usuwania pacjenta nie uaktualnia się paginacja
 
 
 dodawanie plików
@@ -12,3 +9,4 @@ ruchomy panel menu
 w kalendarzu dodaj opcje zaznaczania długości urlopu przez przeciągnięcie
 W pacjencie dodaj nr lokalu(kolumne) i daty urodzenia(teraz to nulle), postcode(nulle)
 Zrób modal success
+Nie działa wyszukiwanie pacjentów dla następnych stron paginacji

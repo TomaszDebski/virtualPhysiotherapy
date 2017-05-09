@@ -99,7 +99,13 @@ angular.module('app.config', [])
       	    	console.log('result addVisitController: ' , result);
       	    	return result;
       	    })
-      	  }
+      	  },
+      	  	services : function(serviceService){
+      	  		return serviceService.query(function(data) {
+      	  			console.log("services data " ,data);
+      	  			return data;
+      	  		});
+      	  	}
 		},
 		params : {
 			patientId :null
@@ -123,6 +129,12 @@ angular.module('app.config', [])
 		templateUrl : 'html/account.html',
 		controller : 'accountController',
 	})
+	.state('addService', {
+		url: '/addService',
+		templateUrl : 'html/addService.html',
+		controller : 'addServiceController',
+	})
+	
 	$urlRouterProvider.otherwise("/");
 
 //	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
