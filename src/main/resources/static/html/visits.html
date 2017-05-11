@@ -3,11 +3,11 @@
 	<div class="container">
 		<div class="row vertical-align">
 		    <div class="col-md-1">
-			 	<span class="page-title">Wizyty</span>
+			 	<span class="page-title" translate="visits.visits"></span>
 			</div>
 			
 			<div class="col-md-4">
-			 Pacjent: 
+			 {{'commons.patient' | translate}}: 
 			 	<ui-select 
 					ng-model="ctrl.people.patientId" 
 					theme="select2" 
@@ -29,8 +29,8 @@
 						repeat="person in ctrl.people | propsFilter: {firstname: $select.search, lastname: $select.search, age: $select.search}" >
 		     				<div ng-bind-html="person.firstname + ' ' + person.lastname | highlight: $select.search"></div>
 		     				<small>
-		       				email: {{person.email}}
-		       				age: <span ng-bind-html="''+person.age | highlight: $select.search"></span>
+		       				E-mail: {{person.email}}
+		       				{{'commons.age' |translate}}: <span ng-bind-html="''+person.age | highlight: $select.search"></span>
 		     				</small>
 		   			</ui-select-choices>
 				</ui-select>
@@ -77,7 +77,7 @@
 		     </div>
 			<div class="col-md-offset-1 col-md-2">
 				<div class="pull-right">
-					<a class="btn btn-primary active" ui-sref="addVisit">Dodaj wizytę</a>	
+					<a class="btn btn-primary active" ui-sref="addVisit">{{'index.add_a_visit' | translate}}</a>	
 				</div>	
 			</div>	
 		</div>
@@ -90,10 +90,11 @@
 		class=" patients-table ">
 		<thead>
 			<tr>
-				<th style="width: 200px;">Typ</th>
-				<th style="width:200px;">Data</th>
-				<th>Treść</th>
-				<th style="width:150px;">Akcje</th>
+				<th style="width: 150px;">{{'commons.type' | translate}}</th>
+				<th style="width:150px;">{{'commons.date' | translate}}</th>
+				<th>{{'commons.contents' | translate}}</th>
+				<th style="width:300px;">Zabiegi</th>
+				<th style="width:100px;">{{'commons.actions' | translate}}</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -101,20 +102,23 @@
 				<td class=""><div class="">Rezerwacja</div></td>
 				<td><span class="table_span">{{visit.date | date:'EEE, dd/MMM/yy, HH:mm' }}</span></td>
 				<td><span class="table_span">{{visit.description}}</span></td>
+				<td><span class="table_span">{{visit.treatment[0].service.serviceName}}</span>
+					
+				</td>
 				<td class="actions-col">
-					<span class="masterTooltip table_span" title="Zakończ wizytę">
+					<span class="masterTooltip table_span" title="{{'visits.finish_the_visit' | translate}}">
 						<a href="" class="icon">
 							<img src="/pics/checkmark.svg">
 						</a>
 					</span>
 
-					<span class="masterTooltip table_span" title="Usuń wizytę">
+					<span class="masterTooltip table_span" title="{{'visits.delete_the_visit' | translate}}">
 						<a ng-click="deleteVisit(visit)" href="" class="icon">
 							<img src="/pics/usun_szary.svg">
 						</a>
 					</span>
 
-					<span class="masterTooltip table_span" title="Wyślij email">
+					<span class="masterTooltip table_span" title="{{'commons.send_email' | translate}}">
 						<a
 							href="#myModal" 
 							onclick="addData(event)" 
@@ -134,7 +138,7 @@
 				</td>
 				<script type="text/javascript">
 					function confirm_click() {
-						return confirm("Czy na pewno chcesz usunąć wizytę?");
+						return confirm("{{'visits.want_delete_visit' | translate'}}");
 					}
 				</script>
 			</tr>

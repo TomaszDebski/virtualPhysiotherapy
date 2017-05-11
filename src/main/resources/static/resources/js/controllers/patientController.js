@@ -148,7 +148,13 @@ angular.module('app.controller.patient', ['ui.bootstrap'])
 	              resolve :{
 	            	  myParam : function(){
 	            		  return 'myParam'
-	            	  }
+	            	  },
+	            	  pains : function(kindOfPainService){
+	            	  		return kindOfPainService.query(function(data) {
+	            	  			console.log("pains data " ,data);
+	            	  			return data;
+	            	  		});
+	            	  	}
 	              }
 	         })
 	        .result.then(

@@ -9,7 +9,7 @@
        http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
 
-	<util:map id="kindOfPain" value-type="java.lang.String">
+	<util:map id="kindOfPain2" value-type="java.lang.String">
 		<entry key="0" value="miejscowy" />
 		<entry key="1" value="promieniujący" />
 		<entry key="2" value="miejscowy" />

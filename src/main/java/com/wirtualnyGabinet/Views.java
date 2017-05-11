@@ -8,15 +8,20 @@ public class Views {
 	
 	public interface User {}
 	
-	public interface VisitsPatient extends Visits,Patient{}
+	public interface Interview{}
+	
+	public interface Pain {}
+	
+	public interface Service{}
+	
+	public interface VisitsPatient extends Visits,Patient,Service{}
 	
 	public interface Patients extends Patient,Visits{}
 	
 	public interface VisitsPhysiotherapist extends Visits,User{}
 	
-	public interface Service{}
 
-	public interface VisitTreatments{}
+	public interface VisitTreatments extends Visits{}
 	
 	public interface VisitServices{}
 }

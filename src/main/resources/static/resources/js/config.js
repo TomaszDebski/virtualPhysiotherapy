@@ -134,6 +134,11 @@ angular.module('app.config', [])
 		templateUrl : 'html/addService.html',
 		controller : 'addServiceController',
 	})
+	.state('addKindOfPain', {
+		url: '/addKindOfPain',
+		templateUrl : 'html/addKindOfPain.html',
+		controller : 'addKindOfPainController',
+	})
 	
 	$urlRouterProvider.otherwise("/");
 

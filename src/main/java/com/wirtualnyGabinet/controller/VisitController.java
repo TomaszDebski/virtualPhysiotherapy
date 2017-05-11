@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -28,6 +29,8 @@ import com.wirtualnyGabinet.Views;
 import com.wirtualnyGabinet.DTO.InfForScheduler;
 import com.wirtualnyGabinet.entity.Patient;
 import com.wirtualnyGabinet.entity.Physiotherapist;
+import com.wirtualnyGabinet.entity.Service;
+import com.wirtualnyGabinet.entity.Treatment;
 import com.wirtualnyGabinet.entity.Visit;
 import com.wirtualnyGabinet.repository.PatientRepository;
 import com.wirtualnyGabinet.repository.PhysiotherapistRepository;
@@ -53,8 +56,10 @@ public class VisitController {
 	ServiceRepository serviceRepository;
 
 	@RequestMapping(method= RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void addVisit(@RequestBody Visit visit,@RequestParam long patientId, Principal principal){
+	public void addVisit(@RequestBody Visit visit,@RequestParam long patientId,
+			@RequestParam (required=false) Long serviceId,Principal principal){
 		
+		System.out.println("serviceId " + serviceId);
 		if (visit.getIsHoliday().equals("true")){
 			Physiotherapist physiotherapist = physiotherapisRepository.findTop1ByUsername(principal.getName());
 			if (physiotherapist != null)
@@ -89,6 +94,16 @@ public class VisitController {
 		try {
 			String stringDate = new SimpleDateFormat("yyyy-MM-dd").format(visit.getDate()) + " " + visit.getHour();
 			visit.setDate(new SimpleDateFormat("yyyy-MM-dd hh:mm").parse(stringDate));
+			
+			Service service = serviceRepository.findOne(serviceId);
+			if (service != null){
+				Treatment tretment = new Treatment();
+				tretment.setService(service);
+				tretment.setVisit(visit);
+				visit.setTreatment(Arrays.asList(tretment));
+			}
+			
+			
 		} catch (ParseException e) {
 			log.error("Problem z parsowaniem daty w addVisit method w VisitController");
 			e.printStackTrace();

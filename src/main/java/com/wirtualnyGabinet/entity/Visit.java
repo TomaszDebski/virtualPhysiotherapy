@@ -86,7 +86,8 @@ public class Visit implements Serializable {
 	
 	
 	@JsonView(Views.VisitServices.class)
-	@OneToMany(cascade=CascadeType.ALL,mappedBy = "visit",fetch=FetchType.LAZY,orphanRemoval=true)
+	@JsonProperty
+	@OneToMany(cascade=CascadeType.ALL,mappedBy = "visit",fetch=FetchType.EAGER,orphanRemoval=true)
 	@JsonIdentityInfo(
 			  generator = ObjectIdGenerators.PropertyGenerator.class, 
 			  property = "id")

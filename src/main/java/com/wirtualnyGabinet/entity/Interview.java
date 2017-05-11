@@ -2,7 +2,9 @@ package com.wirtualnyGabinet.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,24 +12,28 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.wirtualnyGabinet.Views;
 
 @Entity
-@Table(name="Interview")
+@Table(name="interview")
 public class Interview implements Serializable {
 
 	@Id
 	@GeneratedValue
-//	@JsonView(Views.Visits.class)
+	@JsonView(Views.Interview.class)
 	public Long id;
 	
-//	@JsonView(Views.Visits.class)
+	@JsonView(Views.Interview.class)
 	@Column(name="description")
 	public String description;
 	
+	@JsonView(Views.Interview.class)
 	@Column(name="date")
 	public Date date;
 	
@@ -41,6 +47,12 @@ public class Interview implements Serializable {
 			  property = "id")
 	public Patient patient;
 
+//	@JsonView(Views.Patient.class)
+	@OneToMany(cascade=CascadeType.ALL,mappedBy = "interview",fetch=FetchType.LAZY,orphanRemoval=true)
+	@JsonIdentityInfo(
+			  generator = ObjectIdGenerators.PropertyGenerator.class, 
+			  property = "id")
+	private List<Pain> pains;
 	
 	/* Relations */
 
@@ -76,6 +88,16 @@ public class Interview implements Serializable {
 
 	public Long getId() {
 		return id;
+	}
+
+
+	public List<Pain> getPains() {
+		return pains;
+	}
+
+
+	public void setPains(List<Pain> pains) {
+		this.pains = pains;
 	}
 
 	

@@ -9,13 +9,17 @@ angular.module('app.controller.addVisit', [])
 	var vm = this;
 	
 	$scope.success = false;
+	
 	$scope.addVisit = function(visit){
-		console.log("vm.visit.hour" , vm.visit.hour)
+		if (visit == undefined){
+			visit = {};
+		}
+		console.log("visit.service" , visit.service)	
 		if ($scope.addVisitForm.$valid){
 			visit.hour = vm.visit.hour;
 			visit.date = vm.visit.date;
 			visit.isHoliday = false;
-			visitService.save({patientId:vm.visit.selectedPatientId},visit,function(){
+			visitService.save({patientId:vm.visit.selectedPatientId,serviceId:visit.service},visit,function(){
 				console.log("udało się");
 				$scope.success = true;
 			})
@@ -28,6 +32,8 @@ angular.module('app.controller.addVisit', [])
 			$scope.success = false;
 		}
 	}
+	
+	$scope.services = services;
 	
 	$scope.clear = function(){
 		$scope.visit = {};
@@ -348,151 +354,5 @@ angular.module('app.controller.addVisit', [])
 				    
 				    
 				    
-				    ////////////////////////////////////////////////////////////
-					
-					  
-////////////////////////Select Patient///////////////////////
-					    
-					  vm.disabled = undefined;
-					  vm.searchEnabled = undefined;
-
-					  vm.setInputFocus = function (){
-						console.log("function setInputFocus")
-					    $scope.$broadcast('UiSelectDemo1');
-					  };
-
-					  vm.enable = function() {
-						  console.log("function enable")
-					    vm.disabled = false;
-					  };
-
-					  vm.disable = function() {
-					    vm.disabled = true;
-					  };
-
-					  vm.enableSearch = function() {
-						  console.log("function enableSearch")
-					    vm.searchEnabled = true;
-					  };
-
-					  vm.disableSearch = function() {
-					    vm.searchEnabled = false;
-					  };
-
-					  vm.clear = function() {
-						  console.log("function clear")
-					    vm.person.selected = undefined;
-					  };
-
-					  vm.someGroupFn = function (item){
-						  console.log("function someGroupFn")
-					    if (item.name[0] >= 'A' && item.name[0] <= 'M')
-					        return 'From A - M';
-
-					    if (item.name[0] >= 'N' && item.name[0] <= 'Z')
-					        return 'From N - Z';
-					  };
-
-					  vm.firstLetterGroupFn = function (item){
-					      return item.name[0];
-					  };
-
-					  vm.reverseOrderFilterFn = function(groups) {
-					    return groups.reverse();
-					  };
-
-					  vm.peopleAsync = [];
-					  
-					  $timeout(function(){
-						   vm.peopleAsync = patients;
-						  },3000);
-
-					  vm.counter = 0;
-					  vm.onSelectCallback = function (item, model){
-						  console.log("function onSelectCallback")
-					    vm.counter++;
-					    vm.eventResult = {item: item, model: model};
-					  };
-
-					  vm.removed = function (item, model) {
-					    vm.lastRemoved = {
-					        item: item,
-					        model: model
-					    };
-					  };
-
-					  vm.tagTransform = function (newTag) {
-						  console.log("function tagTransform")
-					    var item = {
-					        name: newTag,
-					        email: newTag.toLowerCase()+'@email.com',
-					        age: 'unknown',
-					        country: 'unknown'
-					    };
-
-					    return item;
-					  };
-					  vm.person = {};
-					  vm.services = services;
-//					  if ($stateParams != null && $stateParams.patientId != null){
-//						  console.log(" vm.people", vm.people)
-//						  vm.people.patientId = vm.people[$stateParams.patientId-1];
-//					  }
-
-//					  vm.person.selectedSingle = 'Samantha';
-//					  vm.person.selectedSingleKey = '5';
-					  // To run the demos with a preselected person object, uncomment the line below.
-					  //vm.person.selected = vm.person.selectedValue;
-
-					  
-					  /////////////Dodataj tutaj $paramsa z id pacjenta
-//					   = vm.people[2];
-//					  vm.availableColors = ['Red','Green','Blue','Yellow','Magenta','Maroon','Umbra','Turquoise'];
-
-					  vm.singleDemo = {};
-					  vm.singleDemo.color = '';
-					  vm.multipleDemo = {};
-
-					  vm.appendToBodyDemo = {
-					    remainingToggleTime: 0,
-					    present: true,
-					    startToggleTimer: function() {
-					      var scope = vm.appendToBodyDemo;
-					      var promise = $interval(function() {
-					        if (scope.remainingTime < 1000) {
-					          $interval.cancel(promise);
-					          scope.present = !scope.present;
-					          scope.remainingTime = 0;
-					        } else {
-					          scope.remainingTime -= 1000;
-					        }
-					      }, 1000);
-					      scope.remainingTime = 3000;
-					    }
-					  };
-
-
-					  vm.visit = {};
-					  vm.choosedPatient = {};
-					  vm.onSelectService = function(item, model){
-						 // console.log("function someFunction")
-						 // console.log("item.id " , item.id);
-//						  var aa = [];
-//						  vm.visit.selectedPatientId = item.id;
-//						  var aa = getVisitsService.getVisitsByPatientId(item.id);
-//						  aa.then(function(data){
-////							  var newObj = {};
-////							  angular.extend(vm.lastVisit,data);
-//							  vm.lastVisit = data[0];
-////							  $log.info("getVisitsByPatientId data " ,vm.lastVisit);
-//							  
-//						  })
-//						  vm.choosedPatient = item;
-//						  console.log("item" , item)
-//						  console.log("model " , model)
-						  
-					  }
-					  
-					  ////////////////////////////////////////////////////////////////////	
-	
+				    ////////////////////////////////////////////////////////////	
 })

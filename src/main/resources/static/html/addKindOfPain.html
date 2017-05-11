@@ -1,7 +1,7 @@
 <meta meta charset=utf-8>
 	<div class="main-header">
 		<div class="container">
-			<span class="page-title">{{'addService.add_new_service' | translate}}</span>
+			<span class="page-title">{{'addService.add_new_kindOfPain' | translate}}</span>
 		</div>
 	</div>
 
@@ -11,95 +11,96 @@
 	<div class="row" ng-show="success">
 		<div class="col-md-offset-4 col-md-4">
 			<div class="alert alert-success" >
-			    <strong> {{'commons.success' | translate}}</strong> {{'addService.correct_add_service' | translate}}
+			    <strong> {{'commons.success' | translate}}</strong> {{'addService.correct_add_kindOfPain' | translate}}
 			</div>
 		</div>
 			    <br><br>
 	</div>
 	<div class="row" style="padding-top:15px;">
 	<form class="form-horizontal" 
-		name="addServiceForm" 
+		name="addKindOfPainForm" 
 		novalidate>
 		
 		<fieldset>
 			<!-- Text input-->
 			<div class="form-group">
-			  <label class="col-md-offset-2 col-md-2 control-label" for="serviceNameField">
-			  {{'addService.service_name' | translate}}:<span style="color:red;">*</span></label>  
+			  <label class="col-md-offset-2 col-md-2 control-label" for="painNameField">
+			  {{'addService.pain_name' | translate}}:<span style="color:red;">*</span></label>  
 			  <div class="col-md-4">
-			  <input id="serviceNameField" 
+			  <input 
+			  	id="painNameField" 
 			  	type="text"
-			  	ng-class="{submitted:addServiceForm.submitted}"  
-			  	name="serviceNameField" 
-			  	placeholder="{{'commons.name' | translate}}" 
+			  	ng-class="{submitted:addKindOfPainForm.submitted}"  
+			  	name="painNameField" 
+			  	placeholder="{{'commons.pain_name' | translate}}" 
 			  	class="form-control" 
 			  	required
-			  	ng-model="service.serviceName">
+			  	ng-model="pain.painName">
 			  	<span 
-    				ng-show="addServiceForm.serviceNameField.$error.required && addServiceForm.submitted" 
+    				ng-show="addKindOfPainForm.painNameField.$error.required && addKindOfPainForm.submitted" 
     				style="color : #f00; float:left;"
-    				>{{'commons.name_is_required' | translate}}
+    				>{{'commons.pain_name_is_required' | translate}}
     			</span>
 			  </div>
 			</div>
 			
-			<!-- Textarea -->
+			<!-- Textarea --> 
 			<div class="form-group">
-			  <label class="col-md-offset-2 col-md-2 control-label" for="serviceDescription">
+			  <label class="col-md-offset-2 col-md-2 control-label" for="painDescription">
 			  	{{'commons.description' | translate}}:
 			  </label>
 			  <div class="col-md-4">                     
 			    <textarea 
-			    	name="serviceDescription"
+			    	name="painDescription"
 					class="form-control"
-					placeholder="{{'addService.service_description' | translate}}" 
-					id="serviceDescription" 
+					placeholder="{{'addService.pain_description' | translate}}" 
+					id="painDescription" 
 					style="height: 61px; background: #f6f9fc;"
-					ng-model="service.description"
+					ng-model="pain.description"
 					>
 				</textarea>
 			  </div>
 			</div>
 			
 			
-			<div class="form-group">
-			  <label class="col-md-offset-2 col-md-2 control-label" for="servicePriceField">
-			  {{'commons.price' | translate}}:<span style="color:red;">*</span></label>  
-			  <div class="col-md-4">
+<!-- 			<div class="form-group"> -->
+<!-- 			  <label class="col-md-offset-2 col-md-2 control-label" for="servicePriceField"> -->
+<!-- 			  {{'commons.price' | translate}}:<span style="color:red;">*</span></label>   -->
+<!-- 			  <div class="col-md-4"> -->
 			  
-			  <input id="servicePriceField" 
-			  	type="text"
-			  	ng-class="{submitted:addServiceForm.submitted}"  
-			  	name="servicePriceField" 
-			  	placeholder="{{'commons.price' | translate}}" 
-			  	class="form-control" 
-			  	ng-pattern="/^\d+(\.\d{1,2})?$/"
-			  	required
-			  	ng-model="service.price">
-			  	<span 
-    				ng-show="addServiceForm.servicePriceField.$error.required && addServiceForm.submitted" 
-    				style="color : #f00; float:left;"
-    				>{{'commons.price_is_required' | translate}}
-    			</span>
-    			<span 
-   					ng-show="addServiceForm.servicePriceField.$error.pattern && addServiceForm.submitted"
-   					style="color : #f00; float:left;"
-   					>{{'addService.please_correct_price' | translate}}
-   				</span>
-			  </div>
-			</div>
+<!-- 			  <input id="servicePriceField"  -->
+<!-- 			  	type="text" -->
+<!-- 			  	ng-class="{submitted:addServiceForm.submitted}"   -->
+<!-- 			  	name="servicePriceField"  -->
+<!-- 			  	placeholder="{{'commons.price' | translate}}"  -->
+<!-- 			  	class="form-control"  -->
+<!-- 			  	ng-pattern="/^\d+(\.\d{1,2})?$/" -->
+<!-- 			  	required -->
+<!-- 			  	ng-model="service.price"> -->
+<!-- 			  	<span  -->
+<!--     				ng-show="addServiceForm.servicePriceField.$error.required && addServiceForm.submitted"  -->
+<!--     				style="color : #f00; float:left;" -->
+<!--     				>{{'commons.price_is_required' | translate}} -->
+<!--     			</span> -->
+<!--     			<span  -->
+<!--    					ng-show="addServiceForm.servicePriceField.$error.pattern && addServiceForm.submitted" -->
+<!--    					style="color : #f00; float:left;" -->
+<!--    					>{{'addService.please_correct_price' | translate}} -->
+<!--    				</span> -->
+<!-- 			  </div> -->
+<!-- 			</div> -->
 			
 			
 			<!-- Button (Double) -->
 			<div class="form-group">
-			  <label class="col-md-offset-2 col-md-2 control-label" for="addServiceButton"></label>
+			  <label class="col-md-offset-2 col-md-2 control-label" for="addKindOfPainButton"></label>
 			  <div class="col-md-8">
 			    <button 
-			    	id="addServiceButton" 
-			    	name="addServiceButton" 
+			    	id="addKindOfPainButton" 
+			    	name="addKindOfPainButton" 
 			    	class="btn btn-primary"
 			    	type="button"
-			    	ng-click="addService(service)"
+			    	ng-click="addKindOfPain(pain)"
 			    	>{{'commons.save' | translate}}
 			    </button>
 			    <button 

@@ -24,6 +24,7 @@
 <link rel="stylesheet" href="resources/js/libraries/jquery-ui.css">
 <link rel="stylesheet" href="resources/js/libraries/fullcalendar.css">
 
+<!-- <script src="resources/bootstrap/js/bootstrap.js"></script> -->
 <script src="resources/js/libraries/jQuery.js"></script>
 <script src="resources/js/libraries/jquery-ui.min.js"></script>
 <script src="resources/js/libraries/angular.js"></script>
@@ -62,6 +63,8 @@
 <link rel="stylesheet" href="css/grid.css">
 <link rel="stylesheet" href="css/style-main-header.css">
 <link rel="stylesheet" href="css/style-common.css">
+<!-- <link rel="stylesheet" href="css/bootstrap-combined.min.css"> -->
+
 </head>
 
 <body ng-controller="indexController" >
@@ -140,23 +143,127 @@
 		<!-- Bottom  -->
 		
 <!-- 		<div class="navbar navbar-default navbar-fixed" role="navigation"> -->
-<div class="container">
-<!--    	<nav> -->
-          <ul class="nav nav-justified">
-           	<li ng-if="authenticated" class="active"><a ui-sref="allPatients" title=""><span translate="index.patients"></span></a></li>
+<!-- <div class="container"> -->
+<!-- <!--    	<nav> --> 
+<!--           <ul class="nav nav-justified"> -->
+<!--            	<li ng-if="authenticated" class="active"><a ui-sref="allPatients" title=""><span translate="index.patients"></span></a></li> -->
+<!--             <li ng-if="authenticated"><a ui-sref="visits"><span translate="index.visits"></span></a></li> -->
+<!--             <li ng-if="authenticated"><a ui-sref="addService"><span translate="index.add_services"></span></a></li> -->
+<!-- <!--             <li ng-if="authenticated"><a ui-sref="addVisit"><span translate="index.add_a_visit"></span></a></li> --> 
+<!--             <li ng-if="authenticated"><a ui-sref="calendar({id: 2})"><span translate="index.timetable"></span></a></li> -->
+<!--             <li ng-if="authenticated"><a ui-sref="account"><span translate="index.account"></span></a></li> -->
+<!--             <li ng-if="!authenticated"><a ui-sref="/" title=""><span style="border-left: none;" translate="index.about_portal"></span></a></li> -->
+<!--             <li ng-if="!authenticated"><a ui-sref="/"><span translate="index.physiotherapy"></span></a></li> -->
+<!--             <li ng-if="!authenticated"><a ui-sref="showAllPhysiotherapists"><span translate="index.specialists"></span></a></li> -->
+<!--             <li ng-if="!authenticated"><a ui-sref="/"><span translate="index.tips"></span></a></li> -->
+<!--           </ul> -->
+<!-- <!--    </nav> --> 
+<!-- </div> -->
+	
+	
+	
+	
+    
+    
+     <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+             <li ng-if="authenticated"><a ui-sref="allPatients" title=""><span translate="index.patients"></span></a></li>
             <li ng-if="authenticated"><a ui-sref="visits"><span translate="index.visits"></span></a></li>
-            <li ng-if="authenticated"><a ui-sref="addService"><span translate="index.add_services"></span></a></li>
-<!--             <li ng-if="authenticated"><a ui-sref="addVisit"><span translate="index.add_a_visit"></span></a></li> -->
             <li ng-if="authenticated"><a ui-sref="calendar({id: 2})"><span translate="index.timetable"></span></a></li>
+            <li uib-dropdown ng-if="authenticated" is-open="status.isopen">
+                <a ui-sref="addService" uib-dropdown-toggle>
+                	<span translate="index.management"></span> <b class="caret"></b>
+                </a>
+                <ul uib-dropdown-menu role="menu" aria-labelledby="split-button">
+                	<li role="menuitem" style="display:none;"><a href="#">ddddddddd</a></li> 
+                    <li role="menuitem"><a ui-sref="addService">{{'index.add_services' | translate}} </a></li>
+                    <li role="menuitem"><a ui-sref="addKindOfPain">{{'index.add_kindOfPain' | translate}} </a></li>                                   
+                </ul>
+            </li>
+<!--             <li ng-if="authenticated"><a ui-sref="addVisit"><span translate="index.add_a_visit"></span></a></li> -->
             <li ng-if="authenticated"><a ui-sref="account"><span translate="index.account"></span></a></li>
             <li ng-if="!authenticated"><a ui-sref="/" title=""><span style="border-left: none;" translate="index.about_portal"></span></a></li>
             <li ng-if="!authenticated"><a ui-sref="/"><span translate="index.physiotherapy"></span></a></li>
             <li ng-if="!authenticated"><a ui-sref="showAllPhysiotherapists"><span translate="index.specialists"></span></a></li>
             <li ng-if="!authenticated"><a ui-sref="/"><span translate="index.tips"></span></a></li>
-          </ul>
-<!--    </nav> -->
-</div>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+    </div> 
 	</header>
+    
+    
+    
+    
+    
+    
+    
+    
+	<style>
+	
+	.navbar-collapse { padding: 0; } /* forces the nav to take full container with */
+/* .navbar-nav > li > a { text-transform: uppercase; } */
+.navbar-nav > li:first-child { text-align: left; } /* alligns first element to the left border */
+.navbar-nav > li:last-child { text-align: right; } /* similar for right border */
+/* .navbar-nav > li:first-child > a, .navbar-nav > li:last-child > a { padding: 0; } */
+.navbar-nav { display: table; width: 100%; margin: 0; }
+.navbar-nav > li { display: table-cell; text-align: center; float: none; }
+
+.navbar-default {
+    background-color: #FFF;
+    border-color: #E7E7E7;
+    border-color: transparent;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #0078ad;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a {
+ 	text-align: center;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: #eee;
+    color: black;
+   
+}
+
+.navbar-custom .navbar-nav > .active > a,
+.navbar-custom .navbar-nav > .active > a:hover,
+.navbar-custom .navbar-nav > .active > a:focus {
+    color: #c00;
+    background-color: #fff;
+}
+
+/* show the collapse when navbar toggle is checked */
+#navbar-toggle-cbox:checked ~ .collapse {
+    display: block;
+}
+
+/* the checkbox used only internally; don't display it */
+#navbar-toggle-cbox {
+  display:none
+}
+	</style>
+	
+	
 	
 	<div ui-view></div>
 <!-- 	<div ng-view ></div> -->
@@ -323,6 +430,8 @@
 	<script src="resources/js/controllers/accountController.js"></script>
 	<script src="resources/js/controllers/indexController.js"></script>
 	<script src="resources/js/controllers/addServiceController.js"></script>
+	<script src="resources/js/controllers/addKindOfPainController.js"></script>
+	
 	
 	<script src="resources/js/services/authService.js"></script>
 	<script src="resources/js/services/physiotherapistService.js"></script>
@@ -334,6 +443,7 @@
 	<script src="resources/js/services/getVisitsService.js"></script>
 	<script src="resources/js/services/getFileService.js"></script>
 	<script src="resources/js/services/serviceService.js"></script>
+	<script src="resources/js/services/kindOfPainService.js"></script>
 	
 	
 	<script src="resources/js/directives/usernameAvailableDirective.js"></script>

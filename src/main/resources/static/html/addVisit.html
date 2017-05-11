@@ -154,49 +154,27 @@
 			  </div>
 			</div>
 			
-			
-			<div class="form-group">
-			  <label class="col-md-offset-2 col-md-2 control-label" for="selectService">
-			  	{{'commons.services' | translate}}:<span style="color:red;">*</span>
-			  </label>  
-			  <div class="col-md-4">
-			  	<ui-select 
-					ng-model="ctrl.service" 
-					theme="select2" 
-					ng-disabled="disabled" 
-					style="width: 100%;" 
-					title="Wybierz zabieg" 
-					on-select="ctrl.onSelectService($item, $model)" 
-					ng-required="true"
-					name="selectService"
-					id="selectService"
-					ng-class="{submitted:addVisitForm.submitted}"
-				>
-    			<ui-select-match 
-					placeholder="Wybierz zabieg z listy" >{{$select.selected.serviceName}}
-				</ui-select-match>
-    			<ui-select-choices 
-					repeat="person in ctrl.services | propsFilter: {firstname: $select.search, lastname: $select.search, age: $select.search}" >
-      				<div ng-bind-html="person.serviceName + ' ' + person.serviceName | highlight: $select.search"></div>
-      				<small>
-        				email: {{person.serviceName}}
-        				age: <span ng-bind-html="''+person.serviceName | highlight: $select.search"></span>
-      				</small>
-    			</ui-select-choices>
-				</ui-select>
-				<span 
-    				ng-show="addVisitForm.selectService.$error.required && addVisitForm.submitted" 
-    				style="color : #f00; float:left;"
-    				>{{'commons.select_Patient' | translate}}
-    			</span>
-			  </div>
-			</div>
-			
-			
-			
-			
-			
-			
+			<div class="form-group" style="padding-top:10px;">
+               <label class="col-md-offset-2 col-md-2 control-label" for="selectService">
+                   {{'commons.services' | translate}}:<span style="color:red;">*</span></label>
+               <div class="col-md-4">
+	               <select 
+		               	id="selectService" 
+		               	name="selectService" 
+		               	class="form-control" 
+		               	required="required"
+		               	ng-model="visit.service"
+		               	ng-class="{submitted:addVisitForm.submitted}"
+		               	ng-options="service.id as service.serviceName + ' (' + service.price + ')' for service in services"
+	               >
+	               </select>
+	               <span 
+	                   	ng-show="addVisitForm.selectService.$error.required && addVisitForm.submitted " 
+	                   	style="color : #f00; float: left;"
+	                   >{{'commons.select_service' | translate}}
+	               </span>
+               </div>
+           </div>
 			
 			<!-- Textarea -->
 			<div class="form-group">
@@ -218,14 +196,16 @@
 			
 			<!-- Textarea -->
 			<div class="form-group">
-			  <label class="col-md-offset-2 col-md-2 control-label" for="recommendations">Zalecenia po wizycie: </label>
+			  <label class="col-md-offset-2 col-md-2 control-label" for="recommendations">
+			  	{{'addVisit.recommendations_after_the_visit' | translate}}: 
+			  </label>
 			  <div class="col-md-4">                     
 			    <textarea 
+					id="recommendations"
 			    	name="recommendations"
 			    	type="text" 
 					class="form-control"
-					placeholder="Zalecenia po wizycie" 
-					id="recommendations"
+					placeholder="{{'addVisit.recommendations_after_the_visit' | translate}}" 
 					style="height: 61px; background: #f6f9fc;"
 					ng-model="visit.recommendation"
 					>
@@ -244,9 +224,11 @@
 			    	type="button"
 			    	ng-required="true"
 			    	ng-click="addVisit(visit)"
-			    	>Zapisz
+			    	>{{'commons.save' |translate}}
 			    </button>
-			    <button type="button" id="button2id" name="button2id" class="btn btn-danger" ng-click="clear()">Wyczyść</button>
+			    <button type="button" id="button2id" name="button2id" class="btn btn-danger" ng-click="clear()">
+			    	{{'commons.clear' |translate}}
+			    </button>
 			  </div>
 			</div>
 
