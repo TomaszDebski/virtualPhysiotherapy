@@ -21,6 +21,7 @@ import com.wirtualnyGabinet.Views;
 import com.wirtualnyGabinet.entity.FileUpload;
 import com.wirtualnyGabinet.entity.Physiotherapist;
 import com.wirtualnyGabinet.repository.PhysiotherapistRepository;
+import com.wirtualnyGabinet.service.IPhysiotherapistService;
 
 @RestController
 @RequestMapping("/physiotherapist")
@@ -28,64 +29,53 @@ public class PhysiotherapistController {
 	
 	@Autowired
 	PhysiotherapistRepository physiotherapistRepository;
+	
+	@Autowired
+	IPhysiotherapistService physiotherapistService;
 
 	@RequestMapping(method= RequestMethod.POST)
 	public void addPhysiotherapist(@RequestBody Physiotherapist physiotherapist){
-		physiotherapist.setPassword(new BCryptPasswordEncoder().encode(physiotherapist.getPassword()));
-		physiotherapist.setRole("ROLE_USER");
-		physiotherapistRepository.save(physiotherapist);
+		physiotherapistService.addPhysiotherapist(physiotherapist);
+//		physiotherapist.setPassword(new BCryptPasswordEncoder().encode(physiotherapist.getPassword()));
+//		physiotherapist.setRole("ROLE_USER");
+//		physiotherapistRepository.save(physiotherapist);
 	}
 	
 	@JsonView(Views.User.class)
 	@RequestMapping(value="/{id}")
 	public Physiotherapist getPhysiotherapistRepositoryById(@PathVariable("id") long id){
-		return physiotherapistRepository.findOne(id);
+//		return physiotherapistRepository.findOne(id);
+		return physiotherapistService.findOne(id);
 	}
 	
 	@JsonView(Views.VisitsPhysiotherapist.class)
 	@RequestMapping
 	public List<Physiotherapist> getAllPhysiotherapists(){
-		return (List<Physiotherapist>)physiotherapistRepository.findAll();
+//		return (List<Physiotherapist>)physiotherapistRepository.findAll();
+		return physiotherapistService.getAllPhysiotherapists();
 	}
 
 	@JsonView(Views.User.class)
 	@RequestMapping("/byUsername/{name}")
 	public Physiotherapist getPhysiotherapistByUsername(@PathVariable("name") String name){
-		return physiotherapistRepository.findTop1ByUsername(name);
+//		return physiotherapistRepository.findTop1ByUsername(name);
+		return physiotherapistService.getPhysiotherapistByUsername(name);
 	}
-	
-//	@JsonView(Views.User.class)
-//	@RequestMapping("/dd")
-//	public Physiotherapist getddddd(Principal principal){
-//		if (principal == null){
-//			return null;
-//		}
-//		return physiotherapistRepository.findTop1ByUsername(principal.getName()	);
-//	}
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
 	public void updatePhysiotherapist(@PathVariable("id") long id,@RequestBody Physiotherapist physiotherapist){
-		Physiotherapist oldPhysiotheraphist = physiotherapistRepository.findOne(id);
-		oldPhysiotheraphist.setAddress(physiotherapist.getAddress());
-		oldPhysiotheraphist.setCity(physiotherapist.getCity());
-		physiotherapistRepository.save(oldPhysiotheraphist);
+//		Physiotherapist oldPhysiotheraphist = physiotherapistRepository.findOne(id);
+//		oldPhysiotheraphist.setAddress(physiotherapist.getAddress());
+//		oldPhysiotheraphist.setCity(physiotherapist.getCity());
+//		physiotherapistRepository.save(oldPhysiotheraphist);
+		physiotherapistService.updatePhysiotherapist(id, physiotherapist);
 	}
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
 	public void deletePhysiotherapist(@PathVariable("id") long id){
-		Physiotherapist physiotherapist = physiotherapistRepository.findOne(id);
-		physiotherapistRepository.delete(physiotherapist);
+//		Physiotherapist physiotherapist = physiotherapistRepository.findOne(id);
+//		physiotherapistRepository.delete(physiotherapist);
 	}
-	
-//	@RequestMapping(value="/bookWithoutId")
-//	public List<Book> getAllBooksWithoutId(){
-//		return bookService.getAllBooksWithoutId();
-//	}
-//	
-//	@RequestMapping(value="/bookReaderBooks/{bookReaderName}")
-//	public List<Book> getAllBooksOneBookReader(@PathVariable String bookReaderName){
-//		return bookService.getAllBooksForBookReaderByName(bookReaderName);
-//}
 	
 	
 	 @RequestMapping(

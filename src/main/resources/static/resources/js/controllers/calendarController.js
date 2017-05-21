@@ -30,6 +30,12 @@ angular.module('app.controller.calendar', [])
             	    	return result;
             	    })
             	  },
+            	  services : function(serviceService){
+            	  		return serviceService.query(function(data) {
+            	  			console.log("services data " ,data);
+            	  			return data;
+            	  		});
+            	  	},
             	  myParam : function(){
             		  return 'myParam'
             	  }

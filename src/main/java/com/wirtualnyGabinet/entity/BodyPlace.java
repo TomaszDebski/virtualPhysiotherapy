@@ -10,17 +10,17 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.wirtualnyGabinet.Views;
 
 @Entity
-@Table(name="kind_of_pain")
-public class KindOfPain {
-	
+@Table(name="body_place")
+public class BodyPlace {
+
 	@Id
 	@GeneratedValue
 	@JsonView(Views.KindOfPain.class)
 	public Long id;
 	
 	@JsonView(Views.KindOfPain.class)
-	@Column(name="painName")
-	public String painName;
+	@Column(name="bodyName")
+	public String bodyName;
 	
 	@JsonView(Views.KindOfPain.class)
 	@Column(name="description")
@@ -34,12 +34,12 @@ public class KindOfPain {
 		this.id = id;
 	}
 
-	public String getPainName() {
-		return painName;
+	public String getBodyName() {
+		return bodyName;
 	}
 
-	public void setPainName(String painName) {
-		this.painName = painName;
+	public void setBodyName(String bodyName) {
+		this.bodyName = bodyName;
 	}
 
 	public String getDescription() {
@@ -51,5 +51,4 @@ public class KindOfPain {
 	}
 	
 	
-
 }

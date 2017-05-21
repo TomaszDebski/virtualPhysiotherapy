@@ -3,7 +3,8 @@
  */
 angular.module('app.controller.addVisitInCalendarModel', [])
 .controller('addVisitInCalendarModelController', function($scope,$rootScope,$http, $uibModalInstance , myParam,
-		allPatientsForPhysiotherapistService,patients,myParam,$timeout, $interval,getVisitsService,$log,visitService) {
+		allPatientsForPhysiotherapistService,patients,myParam,$timeout, $interval,getVisitsService,$log,visitService,
+		services) {
 	
 	$scope.width = 1200;
 	$scope.height = 1000;
@@ -15,7 +16,7 @@ angular.module('app.controller.addVisitInCalendarModel', [])
 			  visit.date = vm.visit.startDate;
 			  visit.isHoliday = false;
 			  visit.length = vm.visit.length;
-			  visitService.save({patientId:vm.visit.selectedPatientId},visit,function(){
+			  visitService.save({patientId:vm.visit.selectedPatientId,serviceId:vm.visit.service},visit,function(){
 				  console.log("udało się");
 				  //vm.people.push({title: 'Random 1', start: new Date(), allDay: true})
 			  })
@@ -29,6 +30,8 @@ angular.module('app.controller.addVisitInCalendarModel', [])
 		  }
 	  
 	  };
+	  
+	  $scope.services= services;
 
 	  $scope.cancel = function () {
 		  $uibModalInstance.dismiss('cancel');

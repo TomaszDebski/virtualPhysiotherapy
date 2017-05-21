@@ -9,6 +9,21 @@ insert into visit (cost, date, description, hour, length, recommendation, patien
 insert into visit (cost, date, description, hour, length, recommendation, patient_id , physiotherapist_id) values('100',TIMESTAMP '2017-04-05 12:00:00','opis','1','30','recomendation',1,1);
 insert into visit (cost, date, description, hour, length, recommendation, patient_id , physiotherapist_id) values('100',TIMESTAMP '2017-04-06 12:00:00','opis','1','30','recomendation',1,1);
 
+insert into Interview (id,date, description, unique_id, patient_id) values(1,date '2017-04-01','opis1','1111',1);
+insert into pain (pain_name, interview_id) values ('Ból ramienia',1);
+insert into pain (pain_name, interview_id) values ('Ból nogi',1);
+insert into pain (pain_name, interview_id) values ('Ból tułowia',1);
+insert into Interview (id,date, description, unique_id, patient_id) values(2,date '2017-04-02','opis2','1111',1);
+insert into pain (pain_name, interview_id) values ('Ból ramienia',2);
+insert into pain (pain_name, interview_id) values ('Ból nogi',2);
+insert into Interview (id,date, description, unique_id, patient_id) values(3,date '2017-04-03','opis3','1111',1);
+insert into pain (pain_name, interview_id) values ('Ból ramienia',3);
+insert into pain (pain_name, interview_id) values ('Ból nogi',3);
+insert into pain (pain_name, interview_id) values ('Ból tułowia',3);
+insert into pain (pain_name, interview_id) values ('Ból ramienia',3);
+insert into pain (pain_name, interview_id) values ('Ból nogi',3);
+insert into pain (pain_name, interview_id) values ('Ból tułowia',3);
+
 insert into patient (id,address, city, country, email, first_name, last_name,gender,age, phone,description,pesel,phisiotherapist_id,birth_date) values (2, 'Sandomierska', 'Sandomierz', 'Polska', 'Gustowski@o2.pl', 'Bernard', 'Gustowski','m',56,'737654753','Przykładowy opis pacjenta','98102107842','1',DATE '1982-04-02');
 insert into visit (cost, date, description, hour, length, recommendation, patient_id , physiotherapist_id) values('100',TIMESTAMP '2017-04-02 10:00:00','opis','1','60','recomendation',2,1);
 insert into visit (cost, date, description, hour, length, recommendation, patient_id , physiotherapist_id) values('100',TIMESTAMP '2017-04-08 09:00:00','opis','1','30','recomendation',2,1);
@@ -72,6 +87,10 @@ insert into visit (cost, date, description, hour, length, recommendation, patien
 insert into patient (id,address, city, country, email, first_name, last_name,gender,age, phone,description,pesel,phisiotherapist_id,birth_date) values (21,'Drużynowa', 'Gdynia', 'Polska', 'Kacprzak@o2.pl', 'Zofia', 'Kacprzak','k',18,'699341961','Przykładowy opis pacjenta','40081405624','1',DATE '2000-04-02');
 insert into visit (cost, date, description, hour, length, recommendation, patient_id , physiotherapist_id) values('100',TIMESTAMP '2017-04-11 15:00:00','opis','1','30','recomendation',21,1);
 
+insert into kind_of_pain (id,pain_name,description) values (1,'miejscowy','');
+insert into kind_of_pain (id,pain_name,description) values (2,'promieniujący','');
+insert into kind_of_pain (id,pain_name,description) values (3,'miejscowy','');
+insert into kind_of_pain (id,pain_name,description) values (4,'boczny','');
 
 --insert into fileupload (filename,file,mime_Type,object_id,object_Type) value('example',LOAD_FILE('C:\Users\Tomek\Desktop\PhysiotherapisAvatar.png'),'text/plain',1,'physiotherapist');
 

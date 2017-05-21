@@ -56,7 +56,13 @@
                                 <span 
                                 	ng-show="sendEmailForm.email.$error.required && sendEmailForm.submitted" 
                                 	style="color : #f00; float: left;"
-                                >Email jest wymagany</span>
+                                	>Email jest wymagany
+                                </span>
+                                <span 
+		        					ng-show="sendEmailForm.email.$error.email && sendEmailForm.submitted" 
+		        					style="color : #f00; float:left;"
+		        					>Nieprawidłowy e-mail
+		        				</span>
                         </div>
                         <div class="form-group" style="padding-top:10px;">
                             <label for="subject">

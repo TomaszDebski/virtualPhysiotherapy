@@ -32,7 +32,7 @@ public class KindOfPainController {
 		return kindOfPainRepository.findOne(id);
 	}
 	
-	@JsonView(Views.Service.class)
+	@JsonView(Views.KindOfPain.class)
 	@RequestMapping
 	public List<KindOfPain> getAllKindOfPains(){
 		return (List<KindOfPain>)kindOfPainRepository.findAll();

@@ -13,7 +13,7 @@ import com.wirtualnyGabinet.entity.FileUpload;
 import com.wirtualnyGabinet.repository.PatientRepository;
 import com.wirtualnyGabinet.repository.PhysiotherapistRepository;
 import com.wirtualnyGabinet.repository.VisitRepository;
-import com.wirtualnyGabinet.service.FileUploadService;
+import com.wirtualnyGabinet.service.impl.FileUploadService;
 
 @Component
 public class initDatabase {

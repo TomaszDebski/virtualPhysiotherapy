@@ -10,9 +10,14 @@ angular.module('app.controller.patient', ['ui.bootstrap'])
 			console.log("dataaa "  ,data.firstname);
 		});
 		
-//		$scope.showVisits = function(){
-//			$go.state("visits");
-//		}
+		$http.get("interview/allInterviewForPatient" + "?patient_id=" + $stateParams.id)
+		.then(function(value) {
+			console.log('value.data ' ,value.data)
+			$scope.interviews = value.data;
+		})
+		
+		
+		
 		
 		$scope.goToVisit = function(){
 			$state.go("visits",{patient_id:$scope.patient.id});
@@ -41,6 +46,49 @@ angular.module('app.controller.patient', ['ui.bootstrap'])
 				$scope.editPatientForm.submitted=true;
 			}
 		}
+		
+		$scope.saveInterview = function(ddd,ee){
+			console.log("ddd " , ddd);
+			console.log("ee " , ee);
+//			console.log("interview " , 'interview.pain_' , ddd);
+		}
+		
+		
+		
+		$scope.genereateUniqueId = function()
+		{
+		    var text = "";
+		    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+		    for( var i=0; i < 5; i++ )
+		        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+		    return text;
+		}
+		
+
+		
+	    
+//		$scope.country = {};
+//		$scope.countries = [ // Taken from https://gist.github.com/unceus/6501985
+//		    {name: 'Afghanistan', code: 'AF'},
+//		    {name: 'Åland Islands', code: 'AX'},
+//		    {name: 'Albania', code: 'AL'},
+//		    {name: 'Algeria', code: 'DZ'},
+//		    {name: 'American Samoa', code: 'AS'},
+//		  ];
+//		
+//		$scope.country2 = {};
+//		$scope.countries2 = [ // Taken from https://gist.github.com/unceus/6501985
+//		    {name: '111111', code: 'AF'},
+//		    {name: '22222', code: 'AX'},
+//		    {name: '333333', code: 'AL'},
+//		    {name: 'Algeria', code: 'DZ'},
+//		    {name: 'American Samoa', code: 'AS'},
+//		  ];
+
+//		$scope.items = ["one","two","three"]
+//		$scope.items2 = ["one2","two2","three2"]
 		
 ////////////////////////////////////////Datepicker//////////////////////////////////////////
 		
@@ -147,7 +195,7 @@ angular.module('app.controller.patient', ['ui.bootstrap'])
 	              controller: 'interviewModalController', 
 	              resolve :{
 	            	  myParam : function(){
-	            		  return 'myParam'
+	            		  return $stateParams.id;
 	            	  },
 	            	  pains : function(kindOfPainService){
 	            	  		return kindOfPainService.query(function(data) {
@@ -159,11 +207,20 @@ angular.module('app.controller.patient', ['ui.bootstrap'])
 	         })
 	        .result.then(
 	            function () {
+	            	console.log("ok")
+	            	$http.get("interview/allInterviewForPatient" + "?patient_id=" + $stateParams.id)
+					.then(function(value) {
+						console.log('value.data ' ,value.data)
+						$scope.interviews = value.data;
+					})
 	            }, 
 	            function () {
+	            	console.log("wyjście")
 	            }
 	        );
 	    }
+		
+		
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 

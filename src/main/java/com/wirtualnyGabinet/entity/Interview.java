@@ -37,6 +37,10 @@ public class Interview implements Serializable {
 	@Column(name="date")
 	public Date date;
 	
+	@JsonView(Views.Interview.class)
+	@Column(name="uniqueId")
+	public String uniqueId;
+	
 	
 	/* Relations */
 //	@JsonView(Views.Visits.class)
@@ -48,6 +52,7 @@ public class Interview implements Serializable {
 	public Patient patient;
 
 //	@JsonView(Views.Patient.class)
+	@JsonView(Views.Interview.class)
 	@OneToMany(cascade=CascadeType.ALL,mappedBy = "interview",fetch=FetchType.LAZY,orphanRemoval=true)
 	@JsonIdentityInfo(
 			  generator = ObjectIdGenerators.PropertyGenerator.class, 
@@ -100,8 +105,18 @@ public class Interview implements Serializable {
 		this.pains = pains;
 	}
 
-	
 
+	public String getUniqueId() {
+		return uniqueId;
+	}
+
+
+	public void setUniqueId(String uniqueId) {
+		this.uniqueId = uniqueId;
+	}
+
+	
+	
 	
 	
 	

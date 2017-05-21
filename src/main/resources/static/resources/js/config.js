@@ -114,7 +114,7 @@ angular.module('app.config', [])
 	.state('patient', {
 		url: '/patient/:id',
 		templateUrl : 'html/patient.html',
-		controller : 'patientController',
+		controller : 'patientController as vm',
 	})
 	.state('calendar', {
 		url: '/calendar',

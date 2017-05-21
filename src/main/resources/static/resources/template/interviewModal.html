@@ -1,67 +1,102 @@
  <script type="text/ng-template" id="myModal.html">
 <meta meta charset=utf-8>
  <div class="modal-header">
-            <h3 class="modal-title">Modal title</h3>
+            <h3 class="modal-title">{{'interview.add_an_interview' | translate}}</h3>
 </div>
 <div class="modal-body">
+	<form name="interviewForm" novalidate>
+	<div class="row vertical-align">
+	 	<div class="col-md-2">
+			<span>{{'interview.kind_of_pain' | translate}}:</span>
+		</div>
+		<div class="col-md-3">
+			<div class="btn-group dropdown" uib-dropdown="22" is-open="status.isopen" style=""  on-toggle="toggled(open)"
+>
+      			<button id="single-button" type="button" class="btn btn-primary dropdown-toggle" uib-dropdown-toggle="" ng-disabled="disabled" aria-haspopup="true" aria-expanded="false" uib-dropdown-toggle
+>
+       	 			{{painDisplay}}<span class="caret"></span>
+      			</button>
+      			<ul class="dropdown-menu" uib-dropdown-menu="22" role="menu" aria-labelledby="single-button" style="min-width: 120px;">
+        			<li role="menuitem"> 
+          				<a href="" ng-click="change(pain.painName)" ng-repeat="pain in pains">{{pain.painName}}</a>
+					</li>
+     		 	</ul>
+   		 	</div>
+			<input type="hidden" name="painInput" required  ng-model="interview.painInput">
+			
+		</div>
+		<div class="col-md-2">
+			<span>{{'interview.place_of_pain' | translate}}:</span>
+		</div>
+		<div class="col-md-3">
+			<div class="btn-group dropdown" uib-dropdown="22" is-open="status2.isopen" style=""  on-toggle="toggled2(open)">
+      			<button id="single-button2" type="button" class="btn btn-primary dropdown-toggle" uib-dropdown-toggle="" ng-disabled="disabled" aria-haspopup="true" aria-expanded="false" uib-dropdown-toggle>
+       	 			{{bodyDisplay}}<span class="caret"></span>
+      			</button>
+      			<ul class="dropdown-menu" uib-dropdown-menu="22" role="menu" aria-labelledby="single-button2" style="min-width: 120px;">
+        			<li role="menuitem"> 
+          				<a href="" ng-click="change2(body)" ng-repeat="body in bodyPart">{{body}}</a>
+					</li>
+     		 	</ul>
+   		 	</div>
+			<input type="hidden" name="bodyInput" required  ng-model="interview.bodyInput">
+		</div>
+		
 	
-	 <div class="btn-group dropdown" uib-dropdown="11" is-open="status.isopen" style=""  on-toggle="toggled1(open)">
-      	<button id="single-button" type="button" class="btn btn-primary dropdown-toggle" uib-dropdown-toggle="" ng-disabled="disabled" aria-haspopup="true" aria-expanded="false" uib-dropdown-toggle>
-       	 Rodzaj bólu<span class="caret"></span>
-      		</button>
-      		<ul class="dropdown-menu" uib-dropdown-menu="11" role="menu" aria-labelledby="single-button" style="min-width: 120px;">
-        		<li ng-repeat="pain in pains"> 
-          		<a href>{{pain}}</a>
-				</li>
-     		 </ul>
-   		 </div>
+	</div>
+	
 
-      <div class="btn-group dropdown" uib-dropdown="22" is-open="status.isopen" style=""  on-toggle="toggled2(open)">
-      	<button id="single-button2" type="button" class="btn btn-primary dropdown-toggle" uib-dropdown-toggle="" ng-disabled="disabled" aria-haspopup="true" aria-expanded="false" uib-dropdown-toggle>
-       	 Część ciała<span class="caret"></span>
-      		</button>
-      		<ul class="dropdown-menu" uib-dropdown-menu="22" role="menu" aria-labelledby="single-button2" style="min-width: 120px;">
-        		<li ng-repeat="part in bodyPart"> 
-          		<a href>{{part}}</a>
-				</li>
-     		 </ul>
-   		 </div>
+	<div class="row">
+		<div class="col-md-offset-2">
+			<span 
+		    	ng-show="interviewForm.painInput.$error.required  && interviewForm.submitted" 
+		    	style="color : #f00; float:left;"
+		    	>{{'interview.choose_the_type_of_pain' | translate}}
+		    </span>
+		</div>
+		<div class="col-md-offset-7">
+			<span 
+		    	ng-show="interviewForm.bodyInput.$error.required  && interviewForm.submitted" 
+		    	style="color : #f00; float:left;"
+		    	>{{'interview.choose_a_place_of_pain' | translate}}
+		    </span>
+		</div>
+	</div>
 
 
-<div class="btn-group" uib-dropdown dropdown-append-to-body on-toggle="toggled1(open)">
-            <button id="btn-append-to-to-body1" type="button" class="btn btn-primary" uib-dropdown-toggle>
-              Dropdown1<span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
-              <li role="menuitem"><a href="#">Action</a></li>
-              <li role="menuitem"><a href="#">Another action</a></li>
-              <li role="menuitem"><a href="#">Something else here</a></li>
-              <li class="divider"></li>
-              <li role="menuitem"><a href="#">Separated link</a></li>
-            </ul>
-          </div>
-          
-        
-          <div class="btn-group" uib-dropdown dropdown-append-to-body on-toggle="toggled2(open)">
-            <button id="btn-append-to-to-body2" type="button" class="btn btn-primary" uib-dropdown-toggle>
-              Dropdown2<span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
-              <li role="menuitem"><a href="#">Action</a></li>
-              <li role="menuitem"><a href="#">Another action</a></li>
-              <li role="menuitem"><a href="#">Something else here</a></li>
-              <li class="divider"></li>
-              <li role="menuitem"><a href="#">Separated link</a></li>
-            </ul>
-          </div>
+	<div class="row " style="padding-top: 15px;">
+		<div class="col-md-2" style="padding-left: 28px;">
+			<span >{{'commons.description' | translate}}:</span>
+		</div>
+		<div class="col-md-8">
+			<div class="form-group" >
+				<textarea name="description"
+					class="form-control" 
+					placeholder="{{'commons.additional_information' | translate}}"
+					id="description" 
+					style="height: 61px; 
+					background: #f6f9fc;"
+					ng-model="interview.description">
+				</textarea>
+			</div>
+		</div>
 
-
-       </div>
+	</div> 
+	</form>
+ </div>     
 
         <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="ok()">OK</button>
-            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+            <button class="btn btn-primary" ng-click="ok()">{{'commons.save' | translate}}</button>
+            <button class="btn btn-warning" ng-click="cancel()">{{'commons.cancel' | translate}}</button>
         </div>
+<style>
+.modal-dialog {
+    width: 800px;
+}
 
+input.submitted.ng-invalid{
+  border:2px solid #f00;
+}
+</style>
 
 </script>

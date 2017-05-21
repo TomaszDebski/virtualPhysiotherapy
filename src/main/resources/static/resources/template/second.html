@@ -8,9 +8,10 @@
       <div class="modal-content">
 		<!-------------------------header----------------------->
           <div class="modal-header" style="">
+         <form name="addVisitForm">
 				<div class="row vertical-align">
 					<div class="col-xs-4">
-              			<h3 class="modal-title">Dodaj wizyte </h3>
+              			<h3 class="modal-title">{{'patients.add_a_visit' | translate}} </h3>
 					</div>
 					<div class="col-xs-6">
 				<!-------------------------ui-select----------------------->
@@ -27,7 +28,7 @@
 					ng-class="{submitted:addVisitForm.submitted}"
 				>
     			<ui-select-match 
-					placeholder="Wybierz pacjenta z listy" >{{$select.selected.firstname}} {{$select.selected.lastname}}
+					placeholder="{{'commons.select_patient_from_list' | translate}}" >{{$select.selected.firstname}} {{$select.selected.lastname}}
 				</ui-select-match>
     			<ui-select-choices 
 					repeat="person in ctrl.people | propsFilter: {firstname: $select.search, lastname: $select.search, age: $select.search}" >
@@ -39,6 +40,11 @@
     			</ui-select-choices>
   				</ui-select> 
 					<!-------------------------/ui-select----------------------->
+				<span 
+	                  ng-show="addVisitForm.selectPatientId.$error.required && addVisitForm.submitted " 
+	                  style="color : #f00; float: left;"
+	                  >{{'commons.select_Patient' | translate}}
+	            </span>
 					</div>
 				</div>
           </div>
@@ -47,7 +53,6 @@
           <div style="margin-top: 1px; background-color: #2e77bc; height: 1px; width: 100%;"></div>
 
 		<!-------------------------body----------------------->
-         <form name="addVisitForm">
           <div class="modal-body">
               <div class="row">
 					<!-------------------------left----------------------->
@@ -56,7 +61,7 @@
                        <div class="row">
 							<div class="col-xs-5">
 								<span style="color: #acacac; font-size: 9pt; text-align: left;"
-								>Imię i nazwisko: 
+								>{{'patients.firstName_lastName' | translate}} 
 								</span>  
 							</div>
 							<div class="col-xs-7">
@@ -69,7 +74,7 @@
 						<div class="row">
 							<div class="col-xs-5">
 								<span style="color: #acacac; font-size: 9pt; text-align: left;"
-								>Email: 
+								>E-mail: 
 								</span>  
 							</div>
 							<div class="col-xs-7">
@@ -82,7 +87,7 @@
 						<div class="row">
 							<div class="col-xs-5">
 								<span style="color: #acacac; font-size: 9pt; text-align: left;"
-								>Data urodzenia:
+								>{{'commons.date_of_birth' | translate}}:
 								</span>  
 							</div>
 							<div class="col-xs-7">
@@ -99,7 +104,7 @@
 						</div>
                           <div style="margin-top: 8px; margin-bottom: 8px; width: 100%; height: 1px; background-color: #d9d9d9;"></div>
                       	
-						<h4>Opis Pacjenta</h4>
+						<h4>{{'patient.patient_description' | translate}}</h4>
 
 						<div class="row">
 							<div class="col-xs-12">
@@ -122,7 +127,7 @@
 									<div class="row vertical-align">
 										<div class="col-xs-4">
 											<span style="color: #acacac; font-size: 9pt; text-align: left;"
-												>Data wizyty:
+												>{{'commons.date_of_visit' | translate}}
 											</span>  
 										</div>
 										<div class="col-xs-8">
@@ -151,6 +156,11 @@
 													</button>
 			          							</span>
 			        						</p>
+											<span 
+	                  							ng-show="addVisitForm.dateField.$error.required && addVisitForm.submitted " 
+	                  							style="color : #f00; float: left;"
+	                  							>{{'commons.select_date' | translate}}
+	            							</span>
 										</div>
 									</div>
 									<div class="row vertical-align">
@@ -170,8 +180,9 @@
 												id="hourField"
 												required
 												ng-class="{submitted:addVisitForm.submitted}"
+												style="width: 100%;"
 							 				>
-    											<ui-select-match placeholder="Wybierz godzinę">{{$select.selected.name}}</ui-select-match>
+    											<ui-select-match placeholder="{{'commons.select_hour' | translate}}">{{$select.selected.name}}</ui-select-match>
     											<ui-select-choices repeat="country in ctrl.countries | filter: $select.search">
       												<span ng-bind-html="country.name | highlight: $select.search"></span>
       												<small ng-bind-html="country.code | highlight: $select.search"></small>
@@ -182,7 +193,7 @@
 						<div class="row vertical-align">
 							<div class="col-xs-4">
 								<span style="color: #acacac; font-size: 9pt; text-align: left;"
-								>Długość wizyty:
+								>{{'addVisit.visit_length' | translate}}:
 								</span>  
 							</div>
 							<div class="col-xs-8">
@@ -196,6 +207,27 @@
 							</div>
 						</div>
 
+						<div class="row vertical-align">
+							<div class="col-xs-4">
+								<span style="color: #acacac; font-size: 9pt; text-align: left;"
+								>{{'commons.services' | translate}}:
+								</span>  
+							</div>
+							<div class="col-xs-8">
+								<select 
+		               				id="selectService" 
+		               				name="selectService" 
+		               				class="form-control" 
+		               				required="required"
+		               				ng-model="ctrl.visit.service"
+		               				ng-class="{submitted:addVisitForm.submitted}"
+		               				ng-options="service.id as service.serviceName + ' (' + service.price + ')' for service in services"
+	               					>
+	               				</select>
+							</div>
+						</div>
+
+
 
                      </div>
                   </div>
@@ -206,8 +238,8 @@
 		<!-------------------------/body----------------------->
 
 			<div class="modal-footer">
-            <button type="button" class="btn btn-primary" ng-click="ok(visit)">OK</button>
-            <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+            <button type="button" class="btn btn-primary" ng-click="ok(visit)">{{'commons.save' | translate}}</button>
+            <button type="button" class="btn btn-warning" ng-click="cancel()">{{'commons.cancel' | translate}}</button>
         	</div>
 			</form> 
       </div>
@@ -218,7 +250,7 @@
 	height: 1000px;
 }
 
-#selectedPatientId.submitted.ng-invalid, input.submitted.ng-invalid{
+#selectedPatientId.submitted.ng-invalid, input.submitted.ng-invalid,select.submitted.ng-invalid{
   border:2px solid #f00;
 	border-radius: 4px;
 }

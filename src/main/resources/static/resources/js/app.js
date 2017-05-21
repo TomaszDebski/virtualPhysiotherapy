@@ -54,6 +54,7 @@ angular.module('app',
 		  'app.service.visitPagination',
 		  'app.service.getVisits',
 		  'app.service.getFile',
+		  'app.service.interview',
 		  
 		  'app.controller.interviewModal',
 		  'app.controller.addVisitInCalendarModel',
@@ -62,6 +63,8 @@ angular.module('app',
 		  'app.directive.usernameAvailable',
 		  'app.directive.equals',
 		  'app.directive.dropdown',
+		  'app.directive.addNewInterview',
+		  'app.directive.customDirective',
 		  
 		  'app.filter.searchPatient'
 //		  'app.service.returnBook',

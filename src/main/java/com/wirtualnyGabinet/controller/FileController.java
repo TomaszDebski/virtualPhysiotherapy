@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.wirtualnyGabinet.entity.FileUpload;
-import com.wirtualnyGabinet.service.FileUploadService;
+import com.wirtualnyGabinet.service.impl.FileUploadService;
 
 @CrossOrigin
 @RestController

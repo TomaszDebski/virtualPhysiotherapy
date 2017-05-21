@@ -1,0 +1,51 @@
+<meta meta charset=utf-8>
+	<div class="media-body"> 
+	  <div class="well well-lg"> 
+	      <div class="row vertical-align">
+	      	<div class="col-md-4">
+	      		<span class="text-uppercase">Tytuł </span> 
+	      	</div>
+	      	<div class="col-md-4 col-md-offset-4" >
+	      		<span style="font-size:12px;">{{curr | date:'dd/MM/yyyy' }}</span>
+	      	</div>
+	      </div>
+<!-- 	      <ul class="media-date text-uppercase reviews list-inline">  -->
+<!-- 	        <li class="dd">{{curr.getUTCDate()}}</li>  -->
+<!-- 	        <li class="mm">{{month}}<li>  -->
+<!-- 	        <li class="aaaa">{{curr.getFullYear()}}</li>  -->
+<!-- 	      </ul>  -->
+	      <div class="row" ng-repeat="pain in interviewAtrr.pains">
+      		<div class="row">
+      			<div class="col-md-2" style="">
+		      		<label class="col-md-2 control-label" for="pesel">Ból:</label>
+		      	</div>
+		       <div class="col-md-10">
+			       <span>
+			       		{{pain.painName}}
+			       </span>
+		       </div>
+		   </div>
+	       <div class="row">
+	       		<div class="col-md-2" style="text-align: right;">
+	       			<label class="col-md-2 control-label" for="pesel">Miejsca:</label>
+	       		</div>
+	       		<div class="col-md-10">
+			       <span>
+			       		{{pain.painBodyPlaces[0].bodyPlaceName}}
+			       </span>
+			    </div>
+	       </div>
+	       
+		    
+	     </div>
+	     <div class="row">
+	       		<label class="col-md-2 control-label" for="pesel">Opis:</label>
+		       <div style="word-wrap: break-word;">
+					<span style="font-size: 7pt; text-align: left;"
+						>{{interviewAtrr.description}}
+					</span>
+					
+				</div>
+	       </div>
+	  </div> 
+	</div> 

@@ -1,4 +1,7 @@
-
+sprawdź który kontroler odpowiada za upload plików
+sprawdź tłumaczenie select_patient_from_list
+dodaj kolorowanei na czerwono dropdownów na interview
+zrób opóźnienie pobierania wszystkich wywiadów po poprawnym dodaniu wywiadu
 
 dodawanie plików
 Zamiast usuwania pacjenta przełączanie na nieaktywny
