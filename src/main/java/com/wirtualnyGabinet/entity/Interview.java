@@ -30,7 +30,7 @@ public class Interview implements Serializable {
 	public Long id;
 	
 	@JsonView(Views.Interview.class)
-	@Column(name="description")
+	@Column(name="description" , nullable = true, length = 500)
 	public String description;
 	
 	@JsonView(Views.Interview.class)

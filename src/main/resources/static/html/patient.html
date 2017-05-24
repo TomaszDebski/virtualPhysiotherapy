@@ -4,7 +4,7 @@
         <div class="row vertical-align">
         	<div class="col-md-4">
 		        <span class="page-title">{{patient.firstname}} {{patient.lastname}}</span>
-		        <a href="" class="patient-edit icon" ng-click="editModeFunction(true)">
+		        <a href="" class="patient-edit icon" >
 		        	<img src="pics/edytuj.svg" style="height: 20px;">
 		        </a>
 		        <a href="" class="" >
@@ -13,11 +13,12 @@
             </div>
             <div class="col-md-4">
             	<span class="appointment-ended-text">
-            	<a
-							href=""
-							class="appointment-patient-link">
-							{{'patient.last_visit' | translate}}: {{patient.lastVisit | date:'dd/MMM/yy, HH:mm' }}
-							</a></span> 
+	            	<a
+						href=""
+						class="appointment-patient-link">
+						{{'patient.last_visit' | translate}}: {{patient.lastVisit | date:'dd/MMM/yy, HH:mm' }}
+					</a>
+				</span> 
             </div>
 			<div class="col-md-4">
 				<div class="pull-right">
@@ -37,9 +38,9 @@
 	
 <title>User profile form requirement</title>
 <style>
-body {
-    padding-top: 70px;
-}
+/* body { */
+/*     padding-top: 70px; */
+/* } */
 .othertop{
 margin-top:10px;
 }
@@ -67,12 +68,12 @@ margin-top:10px;
 						  <label class="col-md-4 control-label" for="firstName">{{'commons.firstname' | translate}}:</label>  
 						  <div class="col-md-6">
 							 <div class="input-group">
-							       <div class="input-group-addon" ng-show="editMode">
+							       <div class="input-group-addon" >
 							        <i class="fa fa-user">
 							        </i>
 							       </div>
 							       <input 
-							       	ng-show="editMode"
+							       	
 							       	id="firstName" 
 							       	name="firstName" 
 							       	type="text" 
@@ -82,13 +83,13 @@ margin-top:10px;
 							       	required
 							       	ng-class="{submitted:editPatientForm.submitted}"
 							       >
-							       <div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode">
-								       <span >
-								       		{{patient.firstname}}
-								       </span>
-							       </div>
+<!-- 							       <div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode"> -->
+<!-- 								       <span > -->
+<!-- 								       		{{patient.firstname}} -->
+<!-- 								       </span> -->
+<!-- 							       </div> -->
 							 </div>
-							 <div ng-show="editMode">
+							 <div >
 						       <span 
 									ng-show="editPatientForm.firstName.$error.required  && editPatientForm.submitted" 
 									style="color : #f00; float:left;"
@@ -102,11 +103,11 @@ margin-top:10px;
 					  <label class="col-md-4 control-label" for="lastName">{{'commons.lastName' | translate}}:</label>  
 					  <div class="col-md-6">
 							 <div class="input-group">
-							       <div class="input-group-addon" ng-show="editMode">
+							       <div class="input-group-addon" >
 								        <i class="fa fa-user"></i>
 							       </div>
 							       <input 
-							       		ng-show="editMode"
+							       		
 							       		id="lastName" 
 							       		name="lastName" 
 							       		type="text" 
@@ -117,13 +118,13 @@ margin-top:10px;
 							       		ng-class="{submitted:editPatientForm.submitted}"
 							       	>
 							       	 
-							       	<div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode">
-								       <span >
-								       		{{patient.lastname}}
-								       </span>
-							       </div>
+<!-- 							       	<div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode"> -->
+<!-- 								       <span > -->
+<!-- 								       		{{patient.lastname}} -->
+<!-- 								       </span> -->
+<!-- 							       </div> -->
 					      	</div>
-					      	<div ng-show="editMode">
+					      	<div>
 						       <span 
 									ng-show="editPatientForm.lastName.$error.required  && editPatientForm.submitted" 
 									style="color : #f00; float:left;"
@@ -146,11 +147,12 @@ margin-top:10px;
 					  <label class="col-md-4 control-label" for="birthDate">{{'commons.date_of_birth' | translate}}:</label>  
 					  <div class="col-md-6">
 						  <div class="input-group">
-								<span class="input-group-btn" id="spanDate"  ng-show="editMode">
+								<span class="input-group-btn" id="spanDate" >
 						            <button 
 						            	type="button" 
 						            	class="btn btn-default" 
-						            	ng-click="open1()">
+						            	ng-click="open1()"
+						            	style="background-color: #eee;">
 						            	<i class="glyphicon glyphicon-calendar"></i>
 						            </button>
 						          </span>
@@ -167,21 +169,26 @@ margin-top:10px;
 									alt-input-formats="altInputFormats" 
 									required
 									name="dateField"
-									ng-show="editMode"
+									
 									ng-class="{submitted:editPatientForm.submitted}"
 								/>
-								<div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode">
-							       <span>
-							       		{{patient.birthDate | date:'dd/MM/yyyy' }}
-							       </span>
-							    </div>
+<!-- 								<div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode"> -->
+<!-- 							       <span> -->
+<!-- 							       		{{patient.birthDate | date:'dd/MM/yyyy' }} -->
+<!-- 							       </span> -->
+<!-- 							    </div> -->
 						 </div>
-						 <div ng-show="editMode">
+						 <div >
 					       <span 
 								ng-show="editPatientForm.dateField.$error.required  && editPatientForm.submitted" 
 								style="color : #f00; float:left;"
 								>{{'commons.date_of_birth_required' | translate}}
 							</span>
+							<span 
+		       					ng-show="editPatientForm.dateField.$error.date && editPatientForm.submitted"
+		       					style="color : #f00; float:left;"
+		       					>Proszę podać prawidłową datę urodzenia
+		       				</span>
 					     </div>
 					  </div>
 					</div>
@@ -190,7 +197,7 @@ margin-top:10px;
 					<div class="form-group">
 					  <label class="col-md-4 control-label" for="gender">{{'commons.gender' | translate}}:</label>
 					  <div class="col-md-6" > 
-					    <div ng-show="editMode" name="gender" ng-init="patient.gender=patient.gender">
+					    <div  name="gender" ng-init="patient.gender=patient.gender">
 						    <label class="radio-inline" for="gender">
 						      <input 
 						      	type="radio" 
@@ -211,11 +218,11 @@ margin-top:10px;
 						      {{'commons.woman' | translate}}
 						    </label> 
 					  	</div>
-					    <div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode">
-					       <span>
-					       		{{patient.gender}}
-					       </span>
-					    </div>
+<!-- 					    <div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode"> -->
+<!-- 					       <span> -->
+<!-- 					       		{{patient.gender}} -->
+<!-- 					       </span> -->
+<!-- 					    </div> -->
 					  </div>
 					</div>
 					
@@ -230,17 +237,17 @@ margin-top:10px;
 					  		class="form-control input-md "
 					  		ng-model="patient.city"
 					       	required
-					       	ng-show="editMode"
+					       	
 					       	>
 					  </div>
-						<div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode">
-					       <span style="padding-left: 15px;">
-					       		{{patient.city}}, {{patient.address}} {{patient.number}}
-					       </span>
-					    </div>
+<!-- 						<div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode"> -->
+<!-- 					       <span style="padding-left: 15px;"> -->
+<!-- 					       		{{patient.city}}, {{patient.address}} {{patient.number}} -->
+<!-- 					       </span> -->
+<!-- 					    </div> -->
 					 
 					</div>
-					<div class="row" ng-show="editMode">
+					<div class="row" >
 						  <label class="col-md-4 control-label col-xs-12" for="street"></label>  
 						  <div class="col-md-4 col-xs-4">
 						  <input 
@@ -251,7 +258,7 @@ margin-top:10px;
 						  	class="form-control input-md "
 						  	ng-model="patient.address"
 					       	required
-					       	ng-show="editMode"
+					       	
 						  	>
 <!-- 						  <div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode"> -->
 <!-- 					       <span> -->
@@ -267,7 +274,7 @@ margin-top:10px;
 							  		placeholder="{{'commons.number' | translate}}" 
 							  		class="form-control input-md"
 							  		ng-model="patient.number"
-							       	ng-show="editMode"
+							       	
 							   >
 <!-- 							    <div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode"> -->
 <!-- 							       <span> -->
@@ -282,7 +289,7 @@ margin-top:10px;
 					<div class="form-group" style="padding-top: 15px;">
 					  <label class="col-md-4 control-label" for="phone">{{'commons.phone' | translate}}</label>  
 					  <div class="col-md-6">
-						  <div class="input-group" ng-show="editMode">
+						  <div class="input-group" >
 						       <div class="input-group-addon">
 						     		<i class="fa fa-phone"></i>
 						       </div>
@@ -293,17 +300,17 @@ margin-top:10px;
 						    	placeholder="{{'commons.phone' | translate}}" 
 						    	class="form-control input-md"
 						    	ng-model="patient.phone"
-						    	ng-show="editMode"
+						    	
 						    	ng-class="{submitted:editPatientForm.submitted}"
 						    	required
 						    >
-					    	<div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode">
-						       <span>
-						       		{{patient.phone}}
-						       </span>
-						    </div>
+<!-- 					    	<div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode"> -->
+<!-- 						       <span> -->
+<!-- 						       		{{patient.phone}} -->
+<!-- 						       </span> -->
+<!-- 						    </div> -->
 						  </div>
-						  <div ng-show="editMode">
+						  <div >
 					       <span 
 								ng-show="editPatientForm.phone.$error.required  && editPatientForm.submitted" 
 								style="color : #f00; float:left;"
@@ -318,7 +325,7 @@ margin-top:10px;
 					  <label class="col-md-4 control-label" for="email">E-mail:</label>  
 					  <div class="col-md-6">
 						  <div class="input-group">
-						       <div class="input-group-addon" ng-show="editMode">
+						       <div class="input-group-addon" >
 						     		<i class="fa fa-envelope-o"></i>
 						       </div>
 							    <input 
@@ -329,16 +336,16 @@ margin-top:10px;
 							    	class="form-control input-md"
 							    	ng-model="patient.email"
 							       	required
-							       	ng-show="editMode"
+							       	
 							       	ng-class="{submitted:editPatientForm.submitted}"
 							    >
-							    <div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode">
-							       <span>
-							       		{{patient.email}}
-							       </span>
-							    </div>	
+<!-- 							    <div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode"> -->
+<!-- 							       <span> -->
+<!-- 							       		{{patient.email}} -->
+<!-- 							       </span> -->
+<!-- 							    </div>	 -->
 						  </div>
-						  <div ng-show="editMode">
+						  <div>
 					       <span 
 								ng-show="editPatientForm.email.$error.required  && editPatientForm.submitted" 
 								style="color : #f00; float:left;"
@@ -356,30 +363,30 @@ margin-top:10px;
 					
 					<!-- Text input-->
 					<div class="form-group">
-					  <label class="col-md-4 control-label" for="pesel">Pesel:</label>  
+					  <label class="col-md-4 control-label" for="pesel">{{'commons.pesel' | translate}}:</label>  
 					  <div class="col-md-6">
 						  <div class="input-group">
-						       <div class="input-group-addon"ng-show="editMode">
+						       <div class="input-group-addon">
 						     		<i class="fa fa-sticky-note-o"></i>
 						       </div>
 						   <input 
 						   		id="pesel" 
 						   		name="pesel" 
 						   		type="text" 
-						   		placeholder="Pesel" 
+						   		placeholder="{{'commons.pesel' | translate}}" 
 						   		class="form-control input-md"
 						   		ng-model="patient.pesel"
 						       	required
-						       	ng-show="editMode"
+						       	
 						       	ng-class="{submitted:editPatientForm.submitted}"
 						   		>
-					   		<div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode">
-						       <span>
-						       		{{patient.pesel}}
-						       </span>
-						    </div>
+<!-- 					   		<div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode"> -->
+<!-- 						       <span> -->
+<!-- 						       		{{patient.pesel}} -->
+<!-- 						       </span> -->
+<!-- 						    </div> -->
 						 </div>
-						 <div ng-show="editMode">
+						 <div >
 					       <span 
 								ng-show="editPatientForm.pesel.$error.required  && editPatientForm.submitted" 
 								style="color : #f00; float:left;"
@@ -393,7 +400,7 @@ margin-top:10px;
 					  <label class="col-md-4 control-label" for="postCode">{{'commons.postcode' | translate}}:</label>  
 					  <div class="col-md-6">
 						  <div class="input-group">
-						       <div class="input-group-addon" ng-show="editMode">
+						       <div class="input-group-addon" >
 						     		<i class="fa fa-sticky-note-o"></i>
 						       </div>
 							   <input 
@@ -404,17 +411,17 @@ margin-top:10px;
 							   		class="form-control input-md"
 							   		ng-model="patient.postCode"
 							       	required
-							       	ng-show="editMode"
+							       
 							       	ng-pattern="/^(\d{2}-\d{3})$/"
 							       	ng-class="{submitted:editPatientForm.submitted}"
 							   	>
-						   		<div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode">
-							       <span>
-							       		{{patient.postCode}}
-							       </span>
-							    </div>
+<!-- 						   		<div style="padding-top: 7px; font-size: 16px;" ng-show="!editMode"> -->
+<!-- 							       <span> -->
+<!-- 							       		{{patient.postCode}} -->
+<!-- 							       </span> -->
+<!-- 							    </div> -->
 						  </div>
-						  <div ng-show="editMode">
+						  <div >
 					       <span 
 								ng-show="editPatientForm.postCode.$error.required  && editPatientForm.submitted" 
 								style="color : #f00; float:left;"
@@ -442,14 +449,15 @@ margin-top:10px;
 					    	id="description" 
 					    	name="description"
 					    	ng-model="patient.description"
-					    	ng-show="editMode"
+					    	style="background-color:#f6f9fc;"
+					    	
 					    	>{{'commons.description' | translate}}
 					    </textarea>
-					    <div style="padding-top: 7px; font-size: 16px; word-wrap: break-word;" ng-show="!editMode">
-					       <span>
-					       		{{patient.description}}
-					       </span>
-					    </div>
+<!-- 					    <div style="padding-top: 7px; font-size: 16px; word-wrap: break-word;" ng-show="!editMode"> -->
+<!-- 					       <span> -->
+<!-- 					       		{{patient.description}} -->
+<!-- 					       </span> -->
+<!-- 					    </div> -->
 					  </div>
 					</div>
 					
@@ -459,13 +467,13 @@ margin-top:10px;
 					  <button 
 					  	type="button" 
 					  	class="btn btn-success" 
-					  	ng-show="editMode" 
+					  	
 					  	ng-click="savePatient(patient)">
 <!-- 					  	<span class="glyphicon glyphicon-thumbs-up"/>  -->
 					  	{{'commons.save' | translate}}
 					  </button>
-					  <a href="" class="btn btn-danger" ng-show="editMode" ng-click="editModeFunction(false)">
-					  <span class="glyphicon glyphicon-remove-sign"></span> {{'commons.cancel' | translate}}</a>
+<!-- 					  <a href="" class="btn btn-danger"  ng-click="editModeFunction(false)"> -->
+<!-- 					  <span class="glyphicon glyphicon-remove-sign"></span> {{'commons.cancel' | translate}}</a> -->
 					    
 					  </div>
 					</div>
@@ -484,8 +492,37 @@ margin-top:10px;
 		<img src="pics/avatar.jpg" class="img-responsive img-thumbnail ">
 	</div>
 		<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-		
-		 <a class="button button-large" ng-click="showModal()" >{{'patient.add_an_interview' | translate}}</a> 
+	<div class="row" style="padding-top:7px; padding-bottom:7px">	
+		 <a class="btn btn-primary active" ng-click="showModal()" >{{'patient.add_an_interview' | translate}}</a> 
+	</div>
+
+	<div class="row">
+		<div class="col-md-8 col-sm-8 col-xs-8 " style="padding-left:0px;">
+        
+            <!-- Begin fluid width widget -->
+            <div class="panel panel-info" style="border: 1px solid #ccc;">
+                <div class="panel-heading" style="background: #f4f4f4; border-bottom: 1px solid #ccc;">
+                    <h3 class="panel-title ">
+	      				<span class="text-right pull-right" >ffff</span>
+                        <span class="glyphicon glyphicon-list-alt"></span> {{'patient.interviews' | translate}}
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="media-list">
+	                    <li class="media" ng-repeat="interview in interviews" style="overflow: inherit;"> 
+	                      	<add-New-Interview-Directive interview-atrr="interview"></add-New-Interview-Directive>
+	                	</li>
+                            
+                    </ul>
+<!--                     <a href="#" class="btn btn-default btn-block">More Blog Posts »</a> -->
+                </div>
+            </div>
+            <!-- End fluid width widget -->
+            
+        </div>
+	</div>
+
+
 		
   <div class="row">
     <div class="col-sm-11" id="logout">
@@ -496,15 +533,31 @@ margin-top:10px;
             <div class="tab-content">
                 <div class="tab-pane active" id="comments-logout">                
                     <ul class="media-list">
-                      <li class="media" ng-repeat="interview in interviews">
-                      	<add-New-Interview-Directive interview-atrr="interview"></add-New-Interview-Directive>
-                      </li>          
+<!--                       <li class="media" ng-repeat="interview in interviews"> -->
+<!--                       	<add-New-Interview-Directive interview-atrr="interview"></add-New-Interview-Directive> -->
+<!--                       </li>   -->
+                      <li class="media">
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                                <a href="#" class="text-info">
+                                                    Ultricies Luctus
+                                                </a>
+                                            </h4>
+                                <p class="margin-top-10 margin-bottom-20">
+                                    Ut sit amet tincidunt risus. Aenean quis tempus tortor. Pellentesque commodo malesuada augue...
+                                </p>
+                            </div>
+                        </li>        
                     </ul> 
                 </div>
             </div>
         </div>
 	</div>
   </div>
+  
+  
+  
+  
   </div>
 	</div>
 </div>

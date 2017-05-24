@@ -10,17 +10,17 @@ angular.module('app.controller.account', [])
 //	console.log($window.sessionStorage.userModel)
 	
 	$scope.editAccount = false;
-	var oldUser = {};
-	$scope.changeToEdit = function(isEdit){
-		if (isEdit){
-			$scope.editAccount = true;
-			oldUser = angular.copy($scope.user);
-		}else{
-			$scope.editAccount = false;
-			$scope.editUserForm.submitted = false;
-			$scope.user = oldUser;
-		}
-	}
+//	var oldUser = {};
+//	$scope.changeToEdit = function(isEdit){
+//		if (isEdit){
+//			$scope.editAccount = true;
+//			oldUser = angular.copy($scope.user);
+//		}else{
+//			$scope.editAccount = false;
+//			$scope.editUserForm.submitted = false;
+//			$scope.user = oldUser;
+//		}
+//	}
 	
 	physiotherapistService.get({id:$window.sessionStorage.id},function(data){
 		$scope.user = data;
@@ -31,11 +31,13 @@ angular.module('app.controller.account', [])
 	});
 	
 	
-	
+	$scope.successSave = false;
 	$scope.editUser = function(user){
 		if ($scope.editUserForm.$valid){
 			physiotherapistService.update({id:user.id},user,function(){
-				console.log("udało się zmienić dane konta")
+				console.log("udało się zmienić dane konta");
+				$scope.successSave = true;
+				$window.scrollTo(0, 0);
 			})
 		}else{
 			$scope.editUserForm.submitted=true;

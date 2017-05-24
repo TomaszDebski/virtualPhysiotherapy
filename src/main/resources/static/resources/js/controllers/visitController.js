@@ -22,14 +22,19 @@ angular.module('app.controller.visit', [])
 	
 	$rootScope.id = $window.sessionStorage.id;
 	refreshVisit = function(page,size){
-		console.log('vm.visit.selectedPatientId ',vm.visit.selectedPatientId)
-		var vis = visitPaginationService.getVisit(page,size,$scope.startDate,$scope.endDate,vm.visit.selectedPatientId);
-		vis.then(function(result){
-	    	console.log('result: ' , result);
-	    	$scope.visits = result.content;
-	    	$scope.totalItems = result.totalElements;
-	    	$scope.currentPage = result.number+1;
-	    })
+		if ($scope.searchVisitForm.$valid){
+			console.log('popranwy')
+			console.log('vm.visit.selectedPatientId ',vm.visit.selectedPatientId)
+			var vis = visitPaginationService.getVisit(page,size,$scope.startDate,$scope.endDate,vm.visit.selectedPatientId);
+			vis.then(function(result){
+		    	console.log('result: ' , result);
+		    	$scope.visits = result.content;
+		    	$scope.totalItems = result.totalElements;
+		    	$scope.currentPage = result.number+1;
+		    })
+		}else{
+			console.log('niepopranwy')
+		}
 	}
 	$scope.visits = visits;
 	
@@ -116,7 +121,7 @@ angular.module('app.controller.visit', [])
 
 //	  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 	  $scope.format = 'yyyy/MM/dd';
-//	  $scope.altInputFormats = ['M!/d!/yyyy'];
+	  $scope.altInputFormats = ['yyyy/MM/dd'];
 
 	  $scope.popup1 = {
 	    opened: false

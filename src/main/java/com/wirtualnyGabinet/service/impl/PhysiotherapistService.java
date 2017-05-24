@@ -42,6 +42,14 @@ public class PhysiotherapistService implements IPhysiotherapistService {
 	@Override
 	public void updatePhysiotherapist(long id, Physiotherapist physiotherapist) {
 		Physiotherapist oldPhysiotheraphist = physiotherapistRepository.findOne(id);
+		oldPhysiotheraphist.setFirstname(physiotherapist.getFirstname());
+		oldPhysiotheraphist.setEmail(physiotherapist.getEmail());
+		oldPhysiotheraphist.setLastname(physiotherapist.getLastname());
+		oldPhysiotheraphist.setNumber(physiotherapist.getNumber());
+		oldPhysiotheraphist.setPesel(physiotherapist.getPesel());
+		oldPhysiotheraphist.setPhone(physiotherapist.getPhone());
+		oldPhysiotheraphist.setPostCode(physiotherapist.getPostCode());
+		oldPhysiotheraphist.setUsername(physiotherapist.getUsername());
 		oldPhysiotheraphist.setAddress(physiotherapist.getAddress());
 		oldPhysiotheraphist.setCity(physiotherapist.getCity());
 		physiotherapistRepository.save(oldPhysiotheraphist);

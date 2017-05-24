@@ -23,16 +23,16 @@ angular.module('app.controller.patient', ['ui.bootstrap'])
 			$state.go("visits",{patient_id:$scope.patient.id});
 		}
 		
-		var oldPatient = {};
-		$scope.editModeFunction = function(isEdit){
-			if (isEdit){
-				oldPatient = angular.copy($scope.patient);
-				$scope.editMode = true;
-			}else{
-				$scope.editMode = false;
-				$scope.patient = oldPatient;
-			}
-		}
+//		var oldPatient = {};
+//		$scope.editModeFunction = function(isEdit){
+//			if (isEdit){
+//				oldPatient = angular.copy($scope.patient);
+//				$scope.editMode = true;
+//			}else{
+//				$scope.editMode = false;
+//				$scope.patient = oldPatient;
+//			}
+//		}
 		
 		$scope.savePatient = function(patient){
 			$scope.successEditPatient = false;
@@ -143,7 +143,7 @@ angular.module('app.controller.patient', ['ui.bootstrap'])
 
 //				  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 				  $scope.format = 'yyyy/MM/dd';
-//				  $scope.altInputFormats = ['M!/d!/yyyy'];
+				  $scope.altInputFormats = ['yyyy/MM/dd'];
 
 				  $scope.popup1 = {
 				    opened: false

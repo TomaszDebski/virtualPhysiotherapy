@@ -48,6 +48,10 @@
 <script src="resources/js/libraries/components/jquery.timepicker.js"></script>
 <script src="resources/js/libraries/components/select/select.js"></script>
 <script src="resources/js/libraries/components/uploader/uploader.js"></script>
+<script src="resources/js/libraries/anim-in-out.js"></script>
+<link rel="stylesheet" href="resources/js/libraries/anim-in-out.css">
+
+
 <link rel="stylesheet" href="css/components/select.css">
 <link rel="stylesheet" href="css/components/select2.css">
 
@@ -142,29 +146,6 @@
 		</div>
 		<!-- Bottom  -->
 		
-<!-- 		<div class="navbar navbar-default navbar-fixed" role="navigation"> -->
-<!-- <div class="container"> -->
-<!-- <!--    	<nav> --> 
-<!--           <ul class="nav nav-justified"> -->
-<!--            	<li ng-if="authenticated" class="active"><a ui-sref="allPatients" title=""><span translate="index.patients"></span></a></li> -->
-<!--             <li ng-if="authenticated"><a ui-sref="visits"><span translate="index.visits"></span></a></li> -->
-<!--             <li ng-if="authenticated"><a ui-sref="addService"><span translate="index.add_services"></span></a></li> -->
-<!-- <!--             <li ng-if="authenticated"><a ui-sref="addVisit"><span translate="index.add_a_visit"></span></a></li> --> 
-<!--             <li ng-if="authenticated"><a ui-sref="calendar({id: 2})"><span translate="index.timetable"></span></a></li> -->
-<!--             <li ng-if="authenticated"><a ui-sref="account"><span translate="index.account"></span></a></li> -->
-<!--             <li ng-if="!authenticated"><a ui-sref="/" title=""><span style="border-left: none;" translate="index.about_portal"></span></a></li> -->
-<!--             <li ng-if="!authenticated"><a ui-sref="/"><span translate="index.physiotherapy"></span></a></li> -->
-<!--             <li ng-if="!authenticated"><a ui-sref="showAllPhysiotherapists"><span translate="index.specialists"></span></a></li> -->
-<!--             <li ng-if="!authenticated"><a ui-sref="/"><span translate="index.tips"></span></a></li> -->
-<!--           </ul> -->
-<!-- <!--    </nav> --> 
-<!-- </div> -->
-	
-	
-	
-	
-    
-    
      <div class="container">
 
       <!-- Static navbar -->
@@ -184,11 +165,11 @@
             <li ng-if="authenticated"><a ui-sref="visits"><span translate="index.visits"></span></a></li>
             <li ng-if="authenticated"><a ui-sref="calendar({id: 2})"><span translate="index.timetable"></span></a></li>
             <li uib-dropdown ng-if="authenticated" is-open="status.isopen">
-                <a ui-sref="addService" uib-dropdown-toggle>
+                <a href="" uib-dropdown-toggle>
                 	<span translate="index.management"></span> <b class="caret"></b>
                 </a>
                 <ul uib-dropdown-menu role="menu" aria-labelledby="split-button">
-                	<li role="menuitem" style="display:none;"><a href="#">ddddddddd</a></li> 
+                	<li role="menuitem" style="display:none;"><a href="#"></a></li> 
                     <li role="menuitem"><a ui-sref="addService">{{'index.add_services' | translate}} </a></li>
                     <li role="menuitem"><a ui-sref="addKindOfPain">{{'index.add_kindOfPain' | translate}} </a></li>                                   
                 </ul>
@@ -263,12 +244,22 @@
 }
 	</style>
 	
+<!-- <div class="container-fluid"> -->
 	
-	
-	<div ui-view></div>
-<!-- 	<div ng-view ></div> -->
+	<div ui-view class="anim-in-out anim-fade" data-anim-speed="300"> </div>
+<!-- </div> -->
 
+<style>
+	[ui-view] {
+    position: inherit;
+</style>
 
+<div class="row">
+  <hr style="margin-bottom: 12px;">
+    <div class="col-md-4 col-centered" style="float: none; margin: 0 auto;">
+        <p class="muted">© 2017 Wirtualny gabinet fizjoterapii. All rights reserved</p>
+    </div>
+  </div>
 
 <!-- <footer> -->
 <!--   <div class="container"> -->
@@ -332,76 +323,6 @@
 <!--     </div> -->
 <!--   </div> -->
 <!-- </div> -->
-
-<style>
-/* 	@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,300); */
-/* /* @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css); */ */
-/* ul,li{ */
-/*     padding:0; */
-/*     margin:0; */
-/* } */
-/* li{ */
-/*     list-style-type:none; */
-/* } */
-
-
-
-/* footer { background-color:#0c1a1e; min-height:350px; font-family: 'Open Sans', sans-serif; } */
-/* .footer-col { margin-top:50px; } */
-/* .logofooter { margin-bottom:10px; font-size:25px; color:#fff; font-weight:700;} */
-
-/* .footer-col p { color:#fff; font-size:12px; font-family: 'Open Sans', sans-serif; margin-bottom:15px;} */
-/* .footer-col p i { width:20px; color:#999;} */
-
-/* .footer-ul { list-style-type:none;  padding-left:0; margin-left:2px;} */
-/* .footer-ul li { line-height:29px; font-size:12px;} */
-/* .footer-ul li a { color:#a0a3a4; transition: color 0.2s linear 0s, background 0.2s linear 0s; } */
-/* .footer-ul i { margin-right:10px;} */
-/* .footer-ul li a:hover {transition: color 0.2s linear 0s, background 0.2s linear 0s; color:#ff670f; } */
-
-/*  .copyright { min-height:40px; background-color:#000000;} */
-/*  .copyright p { text-align:left; color:#FFF; padding:10px 0; margin-bottom:0;} */
-/*  .heading7 { font-size:21px; font-weight:700; color:#d9d6d6; margin-bottom:22px;} */
-/*  .post p { font-size:12px; color:#FFF; line-height:20px;} */
-/*  .post p span { display:block; color:#8f8f8f;} */
-/*  .bottom_ul { list-style-type:none; float:right; margin-bottom:0;} */
-/*  .bottom_ul li { float:left; line-height:40px;} */
-/*  .bottom_ul li:after { content:"/"; color:#FFF; margin-right:8px; margin-left:8px;} */
-/*  .bottom_ul li a { color:#FFF;  font-size:12px;} */
-/* .social-icon { */
-/*     width: 30px; */
-/*     height: 30px; */
-/*     font-size: 15px; */
-/*     background-color: blue; */
-/*     color: #fff; */
-/*     text-align: center; */
-/*     margin-right: 10px; */
-/*     padding-top: 7px; */
-/*     border-radius: 50%; */
-/* } */
-/*  .footer-social li{ */
-/*      float:left; */
-/*  } */
-/*  .linked-in{ */
-/*      background-color:#007bb6; */
-/*  } */
-/*  .facebook{ */
-/*      background-color:#3b5998; */
-/*  } */
-/*  .twitter{ */
-/*      background-color:#1da1f2; */
-/*  } */
-/*  .google{ */
-/*      background-color:#f63e28; */
-/*  } */
-</style>
-
-
-
-
-
-
-
 
 
 	<script src="resources/js/app.js"></script>

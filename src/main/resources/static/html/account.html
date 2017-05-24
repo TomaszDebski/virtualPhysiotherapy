@@ -2,467 +2,422 @@
 	<div class="main-header">
 		<div class="container">
 			<div class="row vertical-align">
-				<div class="col-md-1">
-					<span class="page-title">Konto</span>
-				</div>
-				<div class="col-md-offset-9 col-md-2">
-					<div class="pull-right">
-			        	<button 
-			        		id="edit_btn" 
-			        		class="btn btn-primary active"
-			        		ng-click="changeToEdit(true)"
-			        		>Edytuj
-			        	</button>
-			        </div>
-				</div>
+<!-- 				<div class="col-md-1"> -->
+					<span class="page-title">{{'account.account' | translate}}</span>
+<!-- 				</div> -->
+<!-- 				<div class="col-md-offset-9 col-md-2"> -->
+<!-- 					<div class="pull-right"> -->
+<!-- 			        	<button  -->
+<!-- 			        		id="edit_btn"  -->
+<!-- 			        		class="btn btn-primary active" -->
+<!-- 			        		ng-click="changeToEdit(true)" -->
+<!-- 			        		>Edytuj -->
+<!-- 			        	</button> -->
+<!-- 			        </div> -->
+<!-- 				</div> -->
 			</div>
 		</div>
 	</div>
 	
-	<div class="container">
-		<div class="row">
-			<div class="text-center">
-				<h3>Szczegóły konta</h3>
-			</div>
+<div class="container" >
+  <h1 class="page-header" style="margin-top:0px;"> {{'account.account_details' | translate}}</h1>
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-4 col-md-offset-1 col-sm-6 col-xs-12">
+      <div class="text-center">
+        <img alt="/pics/defaultAvatar.png" src="/download?object_id={{user.id}}" style="height:150px;width=100px;"/>
+		<h6>{{user.firstname}} {{user.lastname}}</h6>
+		
+        <div class="well" " style="width:300px;">
+             <div>
+                 <div style="float:left;">
+                     <button ng-click="btn_upload()">Upload</button>
+                     <button ng-click="btn_clean()">Remove all</button>
+                 </div>
+                 <input type="file" id="file1"/>
+             </div>
+             <div 
+             	ng-repeat="file in files" 
+             	style="margin-top: 20px;border-bottom-color: antiquewhite;border-bottom-style: double;"
+             >
+                 <div>
+                 	<span>{{file.name}}</span>
+                 	<div style="float:right;">
+                  	<span>{{file.humanSize}}</span>
+                  	<a ng-click="btn_remove(file)" title="Remove from list to be uploaded">
+                  		<i class="icon-remove"></i>
+                  	</a>
+                 	</div>
+                 </div>
+                 <progress style="width:250px;" value="{{file.loaded}}" max="{{file.size}}"></progress>
+             </div>
 		</div>
-		<div class="row" style="padding-top:20px;">
-	      <!-- left column -->
-	      <div class="col-md-4 col-md-offset-2">
-	      	<div class="row">
-		        <div class="text-center">
-		           <img alt="/pics/defaultAvatar.png" src="/download?object_id={{user.id}}" style="height:150px;width=100px;"/>
-		          <h6>{{user.firstname}} {{user.lastname}}</h6>
-		         	
-		        </div>
-		    </div>
-		    <div class="row">
-		    	<div class="col-md-offset-1">
-			        <div class="well" ng-show="editAccount" style="width:300px;">
-                        <div>
-                            <div style="float:left;">
-                                <button ng-click="btn_upload()">Upload</button>
-                                <button ng-click="btn_clean()">Remove all</button>
-                            </div>
-                            <input type="file" id="file1"/>
-                        </div>
-                        <div 
-                        	ng-repeat="file in files" 
-                        	style="margin-top: 20px;border-bottom-color: antiquewhite;border-bottom-style: double;"
-                        >
-                            <div>
-                            	<span>{{file.name}}</span>
-                            	<div style="float:right;">
-	                            	<span>{{file.humanSize}}</span>
-	                            	<a ng-click="btn_remove(file)" title="Remove from list to be uploaded">
-	                            		<i class="icon-remove"></i>
-	                            	</a>
-                            	</div>
-                            </div>
-                            <progress style="width:250px;" value="{{file.loaded}}" max="{{file.size}}"></progress>
-                        </div>
-			        </div>
-		        </div>
-	        </div>
-	        <style>
-         		.ng-hide.ng-hide-animate{
-     				display: none !important;
-				}
-	         </style>
-	      </div>
-			<div class="row">
-				<div class=" col-md-5">
-				<div 
-					class="alert alert-success" 
-					ng-show="">
-					<strong>Sukces!</strong> Utworzono nowego użytkownika
-				</div>
-					<form  
-						name="editUserForm" 
-						class="form-horizontal" 
-						novalidate
-						>
-							<div class="form-group">
-							  <label 
-							  		for="login" 
-							  		class="col-md-4 control-label"
-							  		>Login:<span ng-show="editAccount" class="required">*</span>:
-							  </label>
-							  <div class="col-md-8">
-							    <input 
-							    	ng-show="editAccount"
-							    	class="form-control" 
-							    	type="text" 
-							    	id="username"
-							    	name="username"
-									required="required"
-									placeholder="login" 
-									ng-model="user.username"
-									ng-class="{submitted:editUserForm.submitted}"
-								>
-								<span 
-									ng-show="editUserForm.username.$error.required  && editUserForm.submitted" 
-									style="color : #f00; float:left;"
-									>Login jest wymagany
-								</span>
-								<span 
-		        					ng-show="editUserForm.username.$error.minlength && editUserForm.submitted" 
-		        					style="color : #f00; float:left;"
-		        					>Za krótki login
-		        				</span>
-		        				<span 
-		        					ng-show="editUserForm.firstname.$error.maxlength && editUserForm.submitted" 
-		        					style="color : #f00; float:left;"
-		        					>Za długi login
-		        				</span>
-								<label 
-									for="" 
-									class="control-label"
-									ng-show="!editAccount"
-									>{{user.username}}</label>
-							  </div>
-							</div>
-	<!-- 						<div class="form-group row"> -->
-	<!-- 						  <label for="password" class="col-md-4 control-label">Hasło:</label> -->
-	<!-- 						  <div class="col-md-8"> -->
-	<!-- 						    <input -->
-	<!-- 						    	ng-show="editAccount"  -->
-	<!-- 						    	class="form-control"  -->
-	<!-- 						    	type="password"  -->
-	<!-- 						    	value=""  -->
-	<!-- 						    	id="password" -->
-	<!-- 						    	name="" -->
-	<!-- 								required="required" -->
-	<!-- 								placeholder="password"  -->
-	<!-- 								ng-model="user.password" -->
-	<!-- 						    	> -->
-	<!-- 						    <label  -->
-	<!-- 								for=""  -->
-	<!-- 								class="control-label" -->
-	<!-- 								ng-show="!editAccount" -->
-	<!-- 								>{{user.password}}</label> -->
-	<!-- 						  </div> -->
-	<!-- 						</div>		 -->
-							<div class="form-group" style="padding-top:15px;">
-							  <label 
-							  		for="firstname" 
-							  		class="col-md-4 control-label"
-							  		>Imię:<span ng-show="editAccount" class="required">*</span></label>
-							  <div class="col-md-8">
-							  	<input
-							  		ng-show="editAccount"
-							  		class="form-control"
-									name="firstname"
-									class="kcs-text kcs-input" 
-									placeholder="Imię"
-									id="firstname" 
-									type="text" 
-									required
-									ng-model="user.firstname"
-									ng-minlength="3" 
-									ng-maxlength="10"
-									ng-class="{submitted:editUserForm.submitted}"
-								>
-								<span 
-									ng-show="editUserForm.firstname.$error.required  && editUserForm.submitted" 
-									style="color : #f00; float:left;">Imię jest wymagane
-								</span>
-									<label 
-									for="" 
-									class="control-label"
-									ng-show="!editAccount"
-									>{{user.firstname}}
-								</label>
-							  </div>
-							</div>
-							
-							<div class="form-group">
-							  <label 
-							  		for="lastname" 
-							  		class="col-md-4 control-label"
-							  		>Nazwisko:<span ng-show="editAccount" class="required">*</span>
-							  	</label>
-							  <div class="col-md-8">
-							    <input 
-							    	ng-show="editAccount"
-							    	class="form-control" 
-							    	type="text" 
-							    	id="lastname"
-							    	name="lastname"
-									required="required"
-									placeholder="Nazwisko*" 
-									ng-model="user.lastname"
-									ng-class="{submitted:editUserForm.submitted}"
-								>
-								<span 
-									ng-show="editUserForm.lastname.$error.required  && editUserForm.submitted" 
-									style="color : #f00; float:left;">Nazwisko jest wymagane
-								</span>
-								<label 
-									for="" 
-									class="control-label"
-									ng-show="!editAccount"
-									>{{user.lastname}}
-								</label>
-							  </div>
-							</div>
-							
-							<div class="form-group row">
-							  <label 
-							  	for="pesel" 
-							  	class="col-md-4 control-label"
-							  	>PESEL:<span ng-show="editAccount" class="required">*</span>
-							  </label>
-							  <div class="col-md-8">
-							    <input 
-							    	ng-show="editAccount"
-							    	class="form-control" 
-							    	type="text" 
-							    	id="pesel"
-							    	name="pesel"
-									required="required"
-									placeholder="PESEL" 
-									ng-model="user.pesel"
-									ng-class="{submitted:editUserForm.submitted}"
-								>
-								<span 
-									ng-show="editUserForm.pesel.$error.required  && editUserForm.submitted" 
-									style="color : #f00; float:left;">Pesel jest wymagany
-								</span>
-								<label 
-									for="" 
-									class="control-label"
-									ng-show="!editAccount"
-									>{{user.pesel}}
-								</label>
-							  </div>
-							</div>
-							
-							<div class="form-group row">
-							  <label 
-							  		for="email" 
-							  		class="col-md-4 control-label"
-							  		>Email:<span ng-show="editAccount" class="required">*</span>
-							  	</label>
-							  <div class="col-md-8">
-							    <input 
-							    	ng-show="editAccount"
-							    	class="form-control" 
-							    	type="email" 
-							    	id="email"
-							    	name="email"
-									required="required"
-									placeholder="E-mail" 
-									ng-model="user.email"
-									ng-class="{submitted:editUserForm.submitted}"
-								>
-								<span 
-									ng-show="editUserForm.email.$error.required  && editUserForm.submitted" 
-									style="color : #f00; float:left;">Email jest wymagany
-								</span>
-								<span 
-		        					ng-show="editUserForm.email.$error.email && editUserForm.submitted" 
-		        					style="color : #f00; float:left;"
-		        					>Nieprawidłowy e-mail
-		        				</span>
-								<label 
-									for="" 
-									class="control-label"
-									ng-show="!editAccount"
-									>{{user.email}}
-								</label>
-							  </div>
-							</div>
-					
-							<div class="form-group row">
-							  <label 
-							  		for="phone" 
-							  		class="col-md-4 control-label"
-							  		>Telefon:<span ng-show="editAccount" class="required">*</span>
-							  	</label>
-							  <div class="col-md-8">
-							    <input 
-							    	ng-show="editAccount"
-							    	class="form-control" 
-							    	type="text" 
-							    	id="phone"
-							    	name="phone"
-									required="required"
-									placeholder="telefon" 
-									ng-model="user.phone"
-									ng-class="{submitted:editUserForm.submitted}"
-								>
-								<span 
-									ng-show="editUserForm.phone.$error.required  && editUserForm.submitted" 
-									style="color : #f00; float:left;">Telefon jest wymagany
-								</span>
-								<label 
-									for="" 
-									class="control-label"
-									ng-show="!editAccount"
-									>{{user.phone}}
-								</label>
-							  </div>
-							</div>
-					
-							<div class="form-group row">
-							  <label 
-							  	for="city" 
-							  	class="col-md-4 control-label"
-							  	>Miasto:<span ng-show="editAccount" class="required">*</label>
-							  <div class="col-md-8">
-							    <input 
-							    	ng-show="editAccount"
-							    	class="form-control" 
-							    	type="text" 
-							    	id="city"
-							    	name="city"
-									required="required"
-									placeholder="miasto" 
-									ng-model="user.city"
-									ng-class="{submitted:editUserForm.submitted}"
-								>
-								<span 
-									ng-show="editUserForm.city.$error.required  && editUserForm.submitted" 
-									style="color : #f00; float:left;">Miasto jest wymagane
-								</span>
-								<label 
-									for="" 
-									class="control-label"
-									ng-show="!editAccount"
-									>{{user.city}}
-								</label>
-							  </div>
-							</div>
-					
-							<div class="form-group row">
-							  <label 
-							  	for="street" 
-							  	class="col-md-4 control-label"
-							  	>Ulica:<span ng-show="editAccount" class="required">*</label>
-							  <div class="col-md-8">
-							    <input 
-							    	ng-show="editAccount"
-							    	class="form-control" 
-							    	type="text" 
-							    	id="street"
-							    	name="street"
-									required="required"
-									placeholder="ulica" 
-									ng-model="user.address"
-									ng-class="{submitted:editUserForm.submitted}"
-								>
-								<span 
-									ng-show="editUserForm.street.$error.required  && editUserForm.submitted" 
-									style="color : #f00; float:left;">Ulica jest wymagana
-								</span>
-								<label 
-									for="" 
-									class="control-label"
-									ng-show="!editAccount"
-									>{{user.address}}
-								</label>
-							  </div>
-							</div>
-					
-							<div class="form-group row">
-							  <label 
-							  	for="number" 
-							  	class="col-md-4 control-label"
-							  	>Numer:<span ng-show="editAccount" class="required">*</label>
-							  <div class="col-md-8">
-							    <input 
-							    	ng-show="editAccount"
-							    	class="form-control" 
-							    	type="text" 
-							    	id="number"
-							    	name="number"
-									required="required"
-									placeholder="Numer" 
-									ng-model="user.number"
-									ng-class="{submitted:editUserForm.submitted}"
-								>
-								<span 
-									ng-show="editUserForm.number.$error.required  && editUserForm.submitted" 
-									style="color : #f00; float:left;">Numer jest wymagany
-								</span>
-								<label 
-									for="" 
-									class="control-label"
-									ng-show="!editAccount"
-									>{{user.number}}
-								</label>
-							  </div>
-							</div>
-					
-							<div class="form-group row">
-							  <label 
-							  	for="postcode" 
-							  	class="col-md-4 control-label"
-							  	>Kod pocztowy:<span ng-show="editAccount" class="required">*</label>
-							  <div class="col-md-8">
-							    <input 
-							    	ng-show="editAccount"
-							    	class="form-control" 
-							    	type="text" 
-							    	id="postcode"
-							    	name="postcode"
-									required="required"
-									placeholder="Kod pocztowy" 
-									ng-model="user.postCode"
-									ng-pattern="/^(\d{2}-\d{3})$/"
-									ng-class="{submitted:editUserForm.submitted}"
-								>
-								<span 
-			       					ng-show="editUserForm.postcode.$error.required && editUserForm.submitted"
-			       					style="color : #f00; float:left;"
-			       					>Kod pocztowy jest wymagany
-			       				</span>
-			       				<span 
-			       					ng-show="editUserForm.postcode.$error.pattern && editUserForm.submitted"
-			       					style="color : #f00; float:left;"
-			       					>Proszę podać prawidłowy polski kod pocztowy
-			       				</span>
-								<label 
-									for="" 
-									class="control-label"
-									ng-show="!editAccount"
-									>{{user.postCode}}
-								</label>
-							  </div>
-							</div>
-							
-							<div class="form-group row">
-						      <div class="offset-sm-2 col-sm-10">
-						      	<div class="pull-right">
-						        	<button 
-						        		ng-show="editAccount"
-						        		type="button" 
-						        		class="btn btn-primary" 
-						        		ng-click="editUser(user)"
-						        		>Zmień
-						        	</button>
-						        	<button 
-						        		ng-show="editAccount"
-						        		type="button" 
-						        		class="btn btn-primary" 
-						        		ng-click="changeToEdit(false)"
-						        		>Zakończ
-						        	</button>
-	<!-- 					        	<button  -->
-	<!-- 					        		ng-hide="editAccount" -->
-	<!-- 						        	type="button" -->
-	<!-- 						        	class="btn btn-primary"  -->
-	<!-- 						        	ng-click="changeToEdit(true)" -->
-	<!-- 						        	>Edytuj -->
-	<!-- 						        </button> -->
-						        </div>	
-						      </div>
-					    	</div>
-					</form>
-				</div>
-			</div>
+        
+      </div>
+    </div>
+    <!-- edit form column -->
+    <div class="col-md-7 col-sm-6 col-xs-12 personal-info">
+    
+      <div class="alert alert-success alert-dismissable" ng-show="successSave">
+        <a class="panel-close close" data-dismiss="alert">×</a> 
+        <i class="fa fa-coffee"></i>
+        <strong>{{'commons.success' | translate}}</strong>{{'commons.changes_have_been_saved' | translate}}
+      </div>
+      <div class="row col-md-offset-3" style="padding-bottom:10px;">
+      	<h3>Personal info</h3>
+      </div>
+      <div class="row">
+      <form  
+			name="editUserForm" 
+			class="form-horizontal" 
+			novalidate
+			role="form"
+			>
+        <div class="form-group">
+		  <label 
+		  		for="login" 
+		  		class="col-lg-3 control-label"
+		  		>{{'commons.login' | translate}}:<span  class="required">*</span>
+		  </label>
+		  <div class="col-lg-8">
+		    <input 
+		    	class="form-control" 
+		    	type="text" 
+		    	id="username"
+		    	name="username"
+				required="required"
+				placeholder="login" 
+				ng-model="user.username"
+				ng-class="{submitted:editUserForm.submitted}"
+				ng-minlength="3" 
+				ng-maxlength="10"
+			>
+			<span 
+				ng-show="editUserForm.username.$error.required  && editUserForm.submitted" 
+				style="color : #f00; float:left;"
+				>{{'login.login_is_required' | translate}}
+			</span>
+			<span 
+				ng-show="editUserForm.username.$error.minlength && editUserForm.submitted" 
+				style="color : #f00; float:left;"
+				>{{'account.for_short_login' | translate}}
+  			</span>
+			<span 
+				ng-show="editUserForm.firstname.$error.maxlength && editUserForm.submitted" 
+				style="color : #f00; float:left;"
+				>{{'account.for_long_login' | translate}}
+			</span>
+<!-- 			<label  -->
+<!-- 				for=""  -->
+<!-- 				class="control-label" -->
+<!-- 				ng-show="!editAccount" -->
+<!-- 				>{{user.username}}</label> -->
+		  </div>
 		</div>
-	</div>
+		
+		<div class="form-group">
+		  <label 
+		  		for="firstname" 
+		  		class="col-lg-3 control-label"
+		  		>{{'commons.firstname' | translate}}:<span  class="required">*</span></label>
+		  <div class="col-lg-8">
+		  	<input
+		  		
+		  		class="form-control"
+				name="firstname"
+				class="kcs-text kcs-input" 
+				placeholder="{{'commons.firstname' | translate}}"
+				id="firstname" 
+				type="text" 
+				required
+				ng-model="user.firstname"
+				ng-class="{submitted:editUserForm.submitted}"
+			>
+			<span 
+				ng-show="editUserForm.firstname.$error.required  && editUserForm.submitted" 
+				style="color : #f00; float:left;">{{'commons.firstname_is_required' | translate}}
+			</span>
+<!-- 				<label  -->
+<!-- 				for=""  -->
+<!-- 				class="control-label" -->
+<!-- 				ng-show="!editAccount" -->
+<!-- 				>{{user.firstname}} -->
+<!-- 			</label> -->
+		  </div>
+		</div>
+							
+		<div class="form-group">
+		  <label 
+		  		for="lastname" 
+		  		class="col-lg-3 control-label"
+		  		>{{'commons.lastName' | translate}}:<span  class="required">*</span>
+		  	</label>
+		  <div class="col-lg-8">
+		    <input 
+		    	class="form-control" 
+		    	type="text" 
+		    	id="lastname"
+		    	name="lastname"
+				required="required"
+				placeholder="{{'commons.lastName' | translate}}" 
+				ng-model="user.lastname"
+				ng-class="{submitted:editUserForm.submitted}"
+			>
+			<span 
+				ng-show="editUserForm.lastname.$error.required  && editUserForm.submitted" 
+				style="color : #f00; float:left;">{{'commons.lastname_is_required' | translate}}
+			</span>
+<!-- 			<label  -->
+<!-- 				for=""  -->
+<!-- 				class="control-label" -->
+<!-- 				ng-show="!editAccount" -->
+<!-- 				>{{user.lastname}} -->
+<!-- 			</label> -->
+		  </div>
+		</div>
+							
+		<div class="form-group row">
+		  <label 
+		  	for="pesel" 
+		  	class="col-lg-3 control-label"
+		  	>{{'commons.pesel' | translate}}:<span  class="required">*</span>
+		  </label>
+		  <div class="col-lg-8">
+		    <input 
+		    	class="form-control" 
+		    	type="text" 
+		    	id="pesel"
+		    	name="pesel"
+				required="required"
+				placeholder="PESEL" 
+				ng-model="user.pesel"
+				ng-class="{submitted:editUserForm.submitted}"
+			>
+			<span 
+				ng-show="editUserForm.pesel.$error.required  && editUserForm.submitted" 
+				style="color : #f00; float:left;">{{'commons.pesel_is_required' | translate}}
+			</span>
+<!-- 			<label  -->
+<!-- 				for=""  -->
+<!-- 				class="control-label" -->
+<!-- 				ng-show="!editAccount" -->
+<!-- 				>{{user.pesel}} -->
+<!-- 			</label> -->
+		  </div>
+		</div>
+							
+		<div class="form-group row">
+		  <label 
+		  		for="email" 
+		  		class="col-lg-3 control-label"
+		  		>E-mail:<span  class="required">*</span>
+		  	</label>
+		  <div class="col-lg-8">
+		    <input 
+		    	class="form-control" 
+		    	type="email" 
+		    	id="email"
+		    	name="email"
+				required="required"
+				placeholder="E-mail" 
+				ng-model="user.email"
+				ng-class="{submitted:editUserForm.submitted}"
+			>
+			<span 
+				ng-show="editUserForm.email.$error.required  && editUserForm.submitted" 
+				style="color : #f00; float:left;">{{'commons.email_is_required' | translate}}
+			</span>
+			<span 
+				ng-show="editUserForm.email.$error.email && editUserForm.submitted" 
+				style="color : #f00; float:left;"
+				>{{'commons.incorrect_email' | translate}}
+			</span>
+<!-- 			<label  -->
+<!-- 				for=""  -->
+<!-- 				class="control-label" -->
+<!-- 				ng-show="!editAccount" -->
+<!-- 				>{{user.email}} -->
+<!-- 			</label> -->
+		  </div>
+		</div>
+					
+		<div class="form-group row">
+		  <label 
+		  		for="phone" 
+		  		class="col-lg-3 control-label"
+		  		>{{'commons.phone' | translate}}:<span  class="required">*</span>
+		  	</label>
+		  <div class="col-lg-8">
+		    <input 
+		    	class="form-control" 
+		    	type="text" 
+		    	id="phone"
+		    	name="phone"
+				required="required"
+				placeholder="{{'commons.incorrect_email' | translate}}" 
+				ng-model="user.phone"
+				ng-class="{submitted:editUserForm.submitted}"
+			>
+			<span 
+				ng-show="editUserForm.phone.$error.required  && editUserForm.submitted" 
+				style="color : #f00; float:left;">{{'commons.phone_is_required' | translate}}
+			</span>
+<!-- 			<label  -->
+<!-- 				for=""  -->
+<!-- 				class="control-label" -->
+<!-- 				ng-show="!editAccount" -->
+<!-- 				>{{user.phone}} -->
+<!-- 			</label> -->
+		  </div>
+		</div>
+					
+		<div class="form-group row">
+		  <label 
+		  	for="city" 
+		  	class="col-lg-3 control-label"
+		  	>{{'commons.city' | translate}}:<span  class="required">*</label>
+		  <div class="col-lg-8">
+		    <input 
+		    	class="form-control" 
+		    	type="text" 
+		    	id="city"
+		    	name="city"
+				required="required"
+				placeholder="miasto" 
+				ng-model="user.city"
+				ng-class="{submitted:editUserForm.submitted}"
+			>
+			<span 
+				ng-show="editUserForm.city.$error.required  && editUserForm.submitted" 
+				style="color : #f00; float:left;">{{'commons.city_is_required' | translate}}
+			</span>
+<!-- 			<label  -->
+<!-- 				for=""  -->
+<!-- 				class="control-label" -->
+<!-- 				ng-show="!editAccount" -->
+<!-- 				>{{user.city}} -->
+<!-- 			</label> -->
+		  </div>
+		</div>
+					
+		<div class="form-group row">
+		  <label 
+		  	for="street" 
+		  	class="col-lg-3 control-label"
+		  	>{{'commons.street' | translate}}:<span class="required">*</label>
+		  <div class="col-lg-8">
+		    <input 
+		    	class="form-control" 
+		    	type="text" 
+		    	id="street"
+		    	name="street"
+				required="required"
+				placeholder="{{'commons.street' | translate}}" 
+				ng-model="user.address"
+				ng-class="{submitted:editUserForm.submitted}"
+			>
+			<span 
+				ng-show="editUserForm.street.$error.required  && editUserForm.submitted" 
+				style="color : #f00; float:left;">{{'commons.street_is_required' | translate}}
+			</span>
+<!-- 			<label  -->
+<!-- 				for=""  -->
+<!-- 				class="control-label" -->
+<!-- 				ng-show="!editAccount" -->
+<!-- 				>{{user.address}} -->
+<!-- 			</label> -->
+		  </div>
+		</div>
+					
+		<div class="form-group row">
+		  <label 
+		  	for="number" 
+		  	class="col-lg-3 control-label"
+		  	>{{'commons.number' | translate}}:<span class="required">*</label>
+		  <div class="col-lg-8">
+		    <input 
+		    	class="form-control" 
+		    	type="text" 
+		    	id="number"
+		    	name="number"
+				required="required"
+				placeholder="Numer" 
+				ng-model="user.number"
+				ng-class="{submitted:editUserForm.submitted}"
+			>
+			<span 
+				ng-show="editUserForm.number.$error.required  && editUserForm.submitted" 
+				style="color : #f00; float:left;">{{'commons.number_is_required' | translate}}
+			</span>
+<!-- 			<label  -->
+<!-- 				for=""  -->
+<!-- 				class="control-label" -->
+<!-- 				ng-show="!editAccount" -->
+<!-- 				>{{user.number}} -->
+<!-- 			</label> -->
+		  </div>
+		</div>
+					
+		<div class="form-group row">
+		  <label 
+		  	for="postcode" 
+		  	class="col-lg-3 control-label"
+		  	>{{'commons.postcode' | translate}}:<span class="required">*</label>
+		  <div class="col-lg-8">
+		    <input 
+		    	class="form-control" 
+		    	type="text" 
+		    	id="postcode"
+		    	name="postcode"
+				required="required"
+				placeholder="{{'commons.postcode' | translate}}" 
+				ng-model="user.postCode"
+				ng-pattern="/^(\d{2}-\d{3})$/"
+				ng-class="{submitted:editUserForm.submitted}"
+			>
+			<span 
+				ng-show="editUserForm.postcode.$error.required && editUserForm.submitted"
+				style="color : #f00; float:left;"
+				>{{'commons.postcode_is_required' | translate}}
+			</span>
+			<span 
+				ng-show="editUserForm.postcode.$error.pattern && editUserForm.submitted"
+				style="color : #f00; float:left;"
+				>{{'commons.please_enter_valid_postcode' | translate}}
+			</span>
+<!-- 			<label  -->
+<!-- 				for=""  -->
+<!-- 				class="control-label" -->
+<!-- 				ng-show="!editAccount" -->
+<!-- 				>{{user.postCode}} -->
+<!-- 			</label> -->
+		  </div>
+		</div>
+		
+        <div class="form-group">
+          <label class="col-md-3 control-label"></label>
+          <div class="col-md-8">
+            <input 
+        		type="button" 
+        		class="btn btn-primary" 
+        		ng-click="editUser(user)"
+        		value="{{'commons.save' | translate}}"
+        		>
+<!--         		<span></span> -->
+<!--         	<input  -->
+<!--         		type="button"  -->
+<!--         		class="btn btn-primary"  -->
+<!--         		ng-click="changeToEdit(false)" -->
+<!--         		value="{{'commons.end' | translate}}" -->
+<!--         		> -->
+          </div>
+        </div>
+      </form>
+   	</div>	
+    </div>
+  </div>
+</div>
+	
 	
 <style>
 input.submitted.ng-invalid{
@@ -564,103 +519,10 @@ input.submitted.ng-invalid{
     </div>
     
     
-    
-    
-    
-    
-    <div class="container" style="padding-top: 60px;">
-  <h1 class="page-header">Edit Profile</h1>
-  <div class="row">
-    <!-- left column -->
-    <div class="col-md-4 col-sm-6 col-xs-12">
-      <div class="text-center">
-        <img src="https://fb-s-b-a.akamaihd.net/h-ak-xfa1/v/t1.0-1/c9.0.160.160/p160x160/420257_10151474103567424_1224916620_n.jpg?oh=0932a7be9adb74fd949d0211d9128ad7&oe=58BA7A17&__gda__=1488564886_feb0fc02d6307304a3d43aecff5a804a" class="avatar img-circle img-thumbnail" alt="avatar">
-        <h6>Upload a different photo...</h6>
-        <input type="file" class="text-center center-block well well-sm">
-      </div>
-    </div>
-    <!-- edit form column -->
-    <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
-      <div class="alert alert-info alert-dismissable">
-        <a class="panel-close close" data-dismiss="alert">×</a> 
-        <i class="fa fa-coffee"></i>
-        This is an <strong>.alert</strong>. Use this to show important messages to the user.
-      </div>
-      <h3>Personal info</h3>
-      <form class="form-horizontal" role="form">
-        <div class="form-group">
-          <label class="col-lg-3 control-label">First name:</label>
-          <div class="col-lg-8">
-            <input class="form-control" value="Estela" type="text">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-3 control-label">Last name:</label>
-          <div class="col-lg-8">
-            <input class="form-control" value="Silva" type="text">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-3 control-label">Company:</label>
-          <div class="col-lg-8">
-            <input class="form-control" value="http://tuconsultoraseo.com" type="text">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-3 control-label">Email:</label>
-          <div class="col-lg-8">
-            <input class="form-control" value="carmenestelasi@gmail.com" type="text">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-3 control-label">Time Zone:</label>
-          <div class="col-lg-8">
-            <div class="ui-select">
-              <select id="user_time_zone" class="form-control">
-                <option value="Hawaii">(GMT-10:00) Hawaii</option>
-                <option value="Alaska">(GMT-09:00) Alaska</option>
-                <option value="Pacific Time (US & Canada)">(GMT-08:00) Pacific Time (US & Canada)</option>
-                <option value="Arizona">(GMT-07:00) Arizona</option>
-                <option value="Mountain Time (US & Canada)">(GMT-07:00) Mountain Time (US & Canada)</option>
-                <option value="Central Time (US & Canada)" selected="selected">(GMT-06:00) Central Time (US & Canada)</option>
-                <option value="Eastern Time (US & Canada)">(GMT-05:00) Eastern Time (US & Canada)</option>
-                <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-md-3 control-label">Username:</label>
-          <div class="col-md-8">
-            <input class="form-control" value="janeuser" type="text">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-md-3 control-label">Password:</label>
-          <div class="col-md-8">
-            <input class="form-control" value="11111122333" type="password">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-md-3 control-label">Confirm password:</label>
-          <div class="col-md-8">
-            <input class="form-control" value="11111122333" type="password">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-md-3 control-label"></label>
-          <div class="col-md-8">
-            <input class="btn btn-primary" value="Save Changes" type="button">
-            <span></span>
-            <input class="btn btn-default" value="Cancel" type="reset">
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
 	<style>
 input.submitted.ng-invalid{
   border:2px solid #f00;
 }
 	</style>
+	
+	

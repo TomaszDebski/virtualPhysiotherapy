@@ -23,7 +23,7 @@
 		
 		<fieldset>
 			<div class="form-group">
-			  <label class="col-md-offset-2 col-md-2 control-label" for="Pacjent">
+			  <label class="col-md-offset-2 col-md-2 control-label" for="selectPatientId">
 			  	{{'commons.patient' | translate}}:<span style="color:red;">*</span>
 			  </label>  
 			  <div class="col-md-4">
@@ -95,6 +95,11 @@
     				style="color : #f00; float:left;"
     				>{{'commons.select_date' | translate}}
     			</span>
+    			<span 
+   					ng-show="addVisitForm.dateField.$error.date && addVisitForm.submitted"
+   					style="color : #f00; float:left;"
+   					>Proszę podać prawidłową datę
+   				</span>
 			  </div>
 			</div>
 			

@@ -15,16 +15,15 @@
 							<h1>
 								<img src="images/CPA-white-logo-mark.png" alt="Wirtualny gabinet">
 							</h1>
-							<h2>Witaj na stronie logowania</h2>
+							<h2>{{'login.welcome_login_page' | translate}}</h2>
 							<p>
-								Dostęp do wirtualnego gabinetu fizjoterapii. Jeśli masz konto,
-								wpisz adres email i hasło poniżej, a jeśli nie masz to<br>
-								<br> <a ui-sref="register">Stwórz
-									nowe konto</a>
+								{{'login.access_to_virtual_physiotherapy' | translate}}
+								<br><br> 
+								<a ui-sref="register">{{'login.create_new_account' | translate}}</a>
 							</p>
 						</div>
 						<div class="alert alert-danger" ng-show="error" style="text-align:center;">
-						  <strong>Błąd!</strong> <span>Nieprawidłowy login lub hasło. <br>Spróbuj jeszcze raz.</span>
+						  <strong>{{'login.error' | translate}}!</strong> <span>{{'login.incorrect_login_or_password' | translate}}. <br>{{'login.try_again' | translate}}.</span>
 						</div>
 						
 						<div class="form-group" >
@@ -46,12 +45,12 @@
 							<span 
 								ng-show="loginForm.username.$error.required && loginForm.submitted" 
 								style="color : #f00; float:left;"
-								>Login jest wymagany
+								>{{'login.login_is_required' | translate}}
 							</span>
 						</div>
 						
 						<div class="form-group" style="padding-top:10px;">
-							<label for="password" class="input">Hasło</label> 
+							<label for="password" class="input">{{'login.password' | translate}}</label> 
 							<input
 								id="password" 
 								name="password"
@@ -66,7 +65,7 @@
 							<span 
 								ng-show="loginForm.password.$error.required && loginForm.submitted" 
 								style="color : #f00; float:left;"
-								>Hasło jest wymagane
+								>{{'login.password_is_required' | translate}}
 							</span>
 							<br><br><br>	
 						</div>

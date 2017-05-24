@@ -82,9 +82,9 @@ angular.module('app.controller.addPatient', [])
 //			    $scope.dt = new Date(year, month, day);
 //			  };
 
-//			  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+//			  $scope.formats = ['yyyy/MM/dd'];
 			  $scope.format = 'yyyy/MM/dd';
-//			  $scope.altInputFormats = ['M!/d!/yyyy'];
+			  $scope.altInputFormats = ['yyyy/MM/dd'];
 
 			  $scope.popup1 = {
 			    opened: false

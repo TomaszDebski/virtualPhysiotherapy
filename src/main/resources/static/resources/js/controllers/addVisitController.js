@@ -269,7 +269,7 @@ angular.module('app.controller.addVisit', [])
 
 //					  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 					  $scope.format = 'yyyy/MM/dd';
-//					  $scope.altInputFormats = ['M!/d!/yyyy'];
+					  $scope.altInputFormats = ['yyyy/MM/dd'];
 
 					  $scope.popup1 = {
 					    opened: false

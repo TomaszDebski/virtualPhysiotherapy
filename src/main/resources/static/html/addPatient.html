@@ -85,7 +85,7 @@
 										ng-required="true" 
 										close-text="Close" 
 										alt-input-formats="altInputFormats" 
-										ng-pattern="/^(\d{4})/(\d{2})/(\d{2})$/"
+										
 										required
 										name="dateField"
 										ng-class="{submitted:addPatientForm.submitted}"
@@ -97,7 +97,7 @@
 								>Data urodzenia jest wymagana
 							</span>
 							<span 
-		       					ng-show="addPatientForm.dateField.$error.pattern && addPatientForm.submitted"
+		       					ng-show="addPatientForm.dateField.$error.date && addPatientForm.submitted"
 		       					style="color : #f00; float:left;"
 		       					>Proszę podać prawidłową date urodzenia
 		       				</span>
@@ -266,25 +266,6 @@
 			</div>
 		</form>
 	</div>
-	
-	<a class="btn btn-success" href="#success" data-toggle="modal"><h4><i class="glyphicon glyphicon-eye-open"></i> Success</h4></a>
-    <!-- Modal -->
-    <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header modal-header-success">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h1><i class="glyphicon glyphicon-thumbs-up"></i> Success Modal</h1>
-                </div>
-                <div class="modal-body">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-    <!-- Modal -->
 	
 <style>
 input.submitted.ng-invalid{

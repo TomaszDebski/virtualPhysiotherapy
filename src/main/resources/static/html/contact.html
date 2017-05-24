@@ -20,7 +20,7 @@
                     <div class="col-md-6">
                         <div class="form-group" >
                             <label for="name">
-                                Imię</label>
+                                {{'commons.firstname' |translate}}</label>
                             <input 
                             	type="text" 
                             	class="form-control" 
@@ -34,7 +34,7 @@
                             <span 
                             	ng-if="sendEmailForm.name.$error.required  && sendEmailForm.submitted" 
                             	style="color : #f00; float: left;"
-                            >Imię jest wymagane</span>
+                            >{{'commons.firstname_is_required' |translate}}</span>
                         </div>
                         <div class="form-group" style="padding-top:10px;">
                             <label for="email">
@@ -56,17 +56,17 @@
                                 <span 
                                 	ng-show="sendEmailForm.email.$error.required && sendEmailForm.submitted" 
                                 	style="color : #f00; float: left;"
-                                	>Email jest wymagany
+                                	>{{'commons.email_is_required' |translate}}
                                 </span>
                                 <span 
 		        					ng-show="sendEmailForm.email.$error.email && sendEmailForm.submitted" 
 		        					style="color : #f00; float:left;"
-		        					>Nieprawidłowy e-mail
+		        					>{{'commons.incorrect_email' |translate}}
 		        				</span>
                         </div>
                         <div class="form-group" style="padding-top:10px;">
                             <label for="subject">
-                                Temat</label>
+                                {{'contact.subject' |translate}}</label>
                             <select 
                             	id="subject" 
                             	name="subject" 
@@ -83,13 +83,13 @@
                             <span 
                                 	ng-show="sendEmailForm.subject.$error.required && sendEmailForm.submitted " 
                                 	style="color : #f00; float: left;"
-                                >Wybierz temat</span>
+                                >{{'contact.select_subject' |translate}}</span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="name">
-                                Wiadomość</label>
+                                {{'contact.message' |translate}}</label>
                             <textarea 
                             	name="message" 
                             	id="message" 

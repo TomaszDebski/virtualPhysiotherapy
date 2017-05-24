@@ -1,195 +1,263 @@
 <meta meta charset=utf-8>
 <div class="main-header">
 	<div class="container">
+			<form name="searchVisitForm" novalidate>
 		<div class="row vertical-align">
-		    <div class="col-md-1">
-			 	<span class="page-title" translate="visits.visits"></span>
-			</div>
+			    <div class="col-md-1">
+				 	<span class="page-title" translate="visits.visits"></span>
+				</div>
 			
-			<div class="col-md-4">
-			 {{'commons.patient' | translate}}: 
-			 	<ui-select 
-					ng-model="ctrl.people.patientId" 
-					theme="select2" 
-					ng-disabled="disabled" 
-					style="width: 100%;" 
-					title="Choose a person" 
-					on-select="ctrl.onSelectPatient($item, $model)" 
-					ng-required="true"
-					name="selectPatientId"
-					id="selectedPatientId"
-					ng-class="{submitted:addVisitForm.submitted}"
-				>
-		   			<ui-select-match 
-						placeholder="{{ctrl.patientPlaceholer}}"
+				<div class="col-md-4">
+				 {{'commons.patient' | translate}}: 
+				 	<ui-select 
+						ng-model="ctrl.people.patientId" 
+						theme="select2" 
+						ng-disabled="disabled" 
+						style="width: 100%;" 
+						title="Choose a person" 
+						on-select="ctrl.onSelectPatient($item, $model)" 
+						ng-required="true"
+						name="selectPatientId"
+						id="selectedPatientId"
+						ng-class="{submitted:addVisitForm.submitted}"
 					>
-						<div ng-if="ctrl.people.length > 0">{{$select.selected.firstname}} {{$select.selected.lastname}}</div>
-					</ui-select-match>
-		   			<ui-select-choices 
-						repeat="person in ctrl.people | propsFilter: {firstname: $select.search, lastname: $select.search, age: $select.search}" >
-		     				<div ng-bind-html="person.firstname + ' ' + person.lastname | highlight: $select.search"></div>
-		     				<small>
-		       				E-mail: {{person.email}}
-		       				{{'commons.age' |translate}}: <span ng-bind-html="''+person.age | highlight: $select.search"></span>
-		     				</small>
-		   			</ui-select-choices>
-				</ui-select>
-			</div>
-			<div class="col-md-2">
-		        <div class="input-group">
-		          <input 
-		          	type="text" 
-		          	class="form-control" 
-		          	ng-change="getDate()" 
-		          	uib-datepicker-popup="{{format}}" 
-		          	ng-model="startDate" 
-		          	is-open="popup1.opened" 
-		          	datepicker-options="dateOptions" 
-		          	ng-required="true" 
-		          	close-text="Close" 
-		          	alt-input-formats="altInputFormats" />
-		          <span class="input-group-btn">
-		            <button type="button" class="btn btn-default" ng-click="open1()">
-		            	<i class="glyphicon glyphicon-calendar"></i>
-		            </button>
-		          </span>
-		        </div>
-		     </div>
-		     <div class="col-md-2">
-		        <p class="input-group">
-		          <input 
-		          	type="text" 
-		          	class="form-control" 
-		          	ng-change="getDate()" 
-		          	uib-datepicker-popup="{{format}}" 
-		          	ng-model="endDate" 
-		          	is-open="popup2.opened" 
-		          	datepicker-options="dateOptions" 
-		          	ng-required="true" 
-		          	close-text="Close" 
-		          	alt-input-formats="altInputFormats" />
-		          <span class="input-group-btn">
-		            <button type="button" class="btn btn-default" ng-click="open2()">
-		            	<i class="glyphicon glyphicon-calendar"></i>
-		            </button>
-		          </span>
-		        </p>
-		     </div>
-			<div class="col-md-offset-1 col-md-2">
-				<div class="pull-right">
-					<a class="btn btn-primary active" ui-sref="addVisit">{{'index.add_a_visit' | translate}}</a>	
+			   			<ui-select-match 
+							placeholder="{{ctrl.patientPlaceholer}}"
+						>
+							<div ng-if="ctrl.people.length > 0">{{$select.selected.firstname}} {{$select.selected.lastname}}</div>
+						</ui-select-match>
+			   			<ui-select-choices 
+							repeat="person in ctrl.people | propsFilter: {firstname: $select.search, lastname: $select.search, age: $select.search}" >
+			     				<div ng-bind-html="person.firstname + ' ' + person.lastname | highlight: $select.search"></div>
+			     				<small>
+			       				E-mail: {{person.email}}
+			       				{{'commons.age' |translate}}: <span ng-bind-html="''+person.age | highlight: $select.search"></span>
+			     				</small>
+			   			</ui-select-choices>
+					</ui-select>
+				</div>
+				<div class="col-md-2 col-md-offset-1">
+					<div class="row">
+						<div class="row">
+					        <div class="input-group">
+					          <input 
+					          	type="text" 
+					          	class="form-control" 
+					          	ng-change="getDate()" 
+					          	uib-datepicker-popup="{{format}}" 
+					          	ng-model="startDate" 
+					          	name="startDate"
+					          	is-open="popup1.opened" 
+					          	datepicker-options="dateOptions" 
+					          	ng-required="true" 
+					          	close-text="Close" 
+					          	alt-input-formats="altInputFormats" />
+					          <span class="input-group-btn">
+					            <button type="button" class="btn btn-default" ng-click="open1()">
+					            	<i class="glyphicon glyphicon-calendar"></i>
+					            </button>
+					          </span>
+					        </div>
+					    </div>
+						<div class="row">
+					        <span 
+			   					ng-show="searchVisitForm.startDate.$error.date"
+			   					style="color : #f00; float:left;"
+			   					>Nieprawidłowa data
+		   					</span>
+				       	</div>
+					  </div>
+			     </div>
+			     <div class="col-md-2 col-md-offset-1">
+			     	<div class="row">
+						<div class="row">
+					        <p class="input-group">
+					          <input 
+					          	type="text" 
+					          	class="form-control" 
+					          	ng-change="getDate()" 
+					          	uib-datepicker-popup="{{format}}" 
+					          	ng-model="endDate" 
+					          	name="endDate" 
+					          	is-open="popup2.opened" 
+					          	datepicker-options="dateOptions" 
+					          	ng-required="true" 
+					          	close-text="Close" 
+					          	alt-input-formats="altInputFormats" />
+					          <span class="input-group-btn">
+					            <button type="button" class="btn btn-default" ng-click="open2()">
+					            	<i class="glyphicon glyphicon-calendar"></i>
+					            </button>
+					          </span>
+					        </p>
+					     </div>
+					     <div class="row">
+					        <span 
+			   					ng-show="searchVisitForm.endDate.$error.date"
+			   					style="color : #f00; float:left;"
+			   					>Nieprawidłowa data
+		   					</span>
+				       	</div>
+					 </div>
+			     </div>
+				<div class="col-md-offset-1 col-md-1">
+					<div class="pull-right">
+						<a class="btn btn-primary active" ui-sref="addVisit">{{'index.add_a_visit' | translate}}</a>	
+					</div>	
 				</div>	
-			</div>	
 		</div>
+			</form>
 	</div>			
 </div>		
 				
 				
 <div class="container">
-	<table id="appointments-table-id"
-		class=" patients-table ">
-		<thead>
-			<tr>
-				<th style="width: 150px;">{{'commons.type' | translate}}</th>
-				<th style="width:150px;">{{'commons.date' | translate}}</th>
-				<th>{{'commons.contents' | translate}}</th>
-				<th style="width:300px;">Zabiegi</th>
-				<th style="width:100px;">{{'commons.actions' | translate}}</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="visit in visits">
-				<td class=""><div class="">Rezerwacja</div></td>
-				<td><span class="table_span">{{visit.date | date:'EEE, dd/MMM/yy, HH:mm' }}</span></td>
-				<td><span class="table_span">{{visit.description}}</span></td>
-				<td><span class="table_span">{{visit.treatment[0].service.serviceName}}</span>
-					
-				</td>
-				<td class="actions-col">
-					<span class="masterTooltip table_span" title="{{'visits.finish_the_visit' | translate}}">
-						<a href="" class="icon">
-							<img src="/pics/checkmark.svg">
-						</a>
-					</span>
 
-					<span class="masterTooltip table_span" title="{{'visits.delete_the_visit' | translate}}">
-						<a ng-click="deleteVisit(visit)" href="" class="icon">
-							<img src="/pics/usun_szary.svg">
-						</a>
-					</span>
-
-					<span class="masterTooltip table_span" title="{{'commons.send_email' | translate}}">
-						<a
-							href="#myModal" 
-							onclick="addData(event)" 
-							role="button"
-							class="icon" 
-							data-toggle="modal" 
-							attr.item-patient="11111 22222"
-							name="11111 22222" 
-							attr.item-opiszwizyte="1111"
-							attr.item-zalecenia="111" 
-							attr.item-zabiegi="1111"
-							attr.item-email="1111@o2.pl"
-						>
-							<img src="/pics/email.svg">
-						</a>
-					</span>
-				</td>
-				<script type="text/javascript">
-					function confirm_click() {
-						return confirm("{{'visits.want_delete_visit' | translate'}}");
-					}
-				</script>
-			</tr>
-		</tbody>
-	</table>
-</div>
-<div class="row">
-    <div class="col-md-5 col-md-offset-5">
-    	<ul  uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>
+	<div class="row">
+        <div class="col-lg-12">
+             <table id="mytable" class="table table-bordred table-striped table-hover">
+             	<thead>
+                   	<tr>
+	                    <th style="width: 150px;">{{'commons.type' | translate}}</th>
+						<th style="width:200px;">{{'commons.date' | translate}}</th>
+						<th>{{'commons.contents' | translate}}</th>
+						<th style="width:300px;">{{'commons.services' | translate}}</th>
+						<th style="width:100px;">{{'commons.cost' | translate}}</th>
+						<th style="width:100px;">{{'commons.actions' | translate}}</th>
+                   </tr>
+                </thead>
+    			<tbody>
+    				<tr ng-repeat="visit in visits">
+				      	<td class=""><div class="">Rezerwacja</div></td>
+						<td><span class="table_span">{{visit.date | date:'dd/MMM/yy, HH:mm' }}</span></td>
+						<td><span class="table_span">{{visit.description}}</span></td>
+						<td><span class="table_span">
+							<span ng-repeat="treatment in visit.treatment">
+								{{treatment.service.serviceName}}<span ng-if="!$last">,</span>
+							</span>
+						</td>
+						<td><span class="table_span">{{visit.cost}}</span></td>
+						<td class="actions-col">
+							<span class="masterTooltip table_span" title="{{'visits.finish_the_visit' | translate}}">
+								<a href="" class="icon">
+									<img src="/pics/checkmark.svg">
+								</a>
+							</span>
+		
+							<span class="masterTooltip table_span" title="{{'visits.delete_the_visit' | translate}}">
+								<a ng-click="deleteVisit(visit)" href="" class="icon">
+									<img src="/pics/usun_szary.svg">
+								</a>
+							</span>
+		
+							<span class="masterTooltip table_span" title="{{'commons.send_email' | translate}}">
+								<a
+									href="#myModal" 
+									onclick="addData(event)" 
+									role="button"
+									class="icon" 
+									data-toggle="modal" 
+									attr.item-patient="11111 22222"
+									name="11111 22222" 
+									attr.item-opiszwizyte="1111"
+									attr.item-zalecenia="111" 
+									attr.item-zabiegi="1111"
+									attr.item-email="1111@o2.pl"
+								>
+									<img src="/pics/email.svg">
+								</a>
+							</span>
+						</td>
+						<script type="text/javascript">
+							function confirm_click() {
+								return confirm("{{'visits.want_delete_visit' | translate'}}");
+							}
+						</script>
+	        		</tr>
+    			</tbody>
+			</table>
+            <hr>
+        </div>
     </div>
-</div>	
 
+
+
+
+
+
+
+
+
+
+
+
+<!-- 	<table id="appointments-table-id" -->
+<!-- 		class=" patients-table "> -->
+<!-- 		<thead> -->
+<!-- 			<tr> -->
+<!-- 				<th >{{'commons.type' | translate}}</th> -->
+<!-- 				<th >{{'commons.date' | translate}}</th> -->
+<!-- 				<th>{{'commons.contents' | translate}}</th> -->
+<!-- 				<th >Zabiegi</th> -->
+<!-- 				<th >{{'commons.actions' | translate}}</th> -->
+<!-- 			</tr> -->
+<!-- 		</thead> -->
+<!-- 		<tbody> -->
+<!-- 			<tr ng-repeat="visit in visits"> -->
+<!-- 				<td class=""><div class="">Rezerwacja</div></td> -->
+<!-- 				<td><span class="table_span">{{visit.date | date:'dd/MMM/yy, HH:mm' }}</span></td> -->
+<!-- 				<td><span class="table_span">{{visit.description}}</span></td> -->
+<!-- 				<td><span class="table_span">{{visit.treatment[0].service.serviceName}}</span> -->
+					
+<!-- 				</td> -->
+<!-- 				<td class="actions-col"> -->
+<!-- 					<span class="masterTooltip table_span" title="{{'visits.finish_the_visit' | translate}}"> -->
+<!-- 						<a href="" class="icon"> -->
+<!-- 							<img src="/pics/checkmark.svg"> -->
+<!-- 						</a> -->
+<!-- 					</span> -->
+
+<!-- 					<span class="masterTooltip table_span" title="{{'visits.delete_the_visit' | translate}}"> -->
+<!-- 						<a ng-click="deleteVisit(visit)" href="" class="icon"> -->
+<!-- 							<img src="/pics/usun_szary.svg"> -->
+<!-- 						</a> -->
+<!-- 					</span> -->
+
+<!-- 					<span class="masterTooltip table_span" title="{{'commons.send_email' | translate}}"> -->
+<!-- 						<a -->
+<!-- 							href="#myModal"  -->
+<!-- 							onclick="addData(event)"  -->
+<!-- 							role="button" -->
+<!-- 							class="icon"  -->
+<!-- 							data-toggle="modal"  -->
+<!-- 							attr.item-patient="11111 22222" -->
+<!-- 							name="11111 22222"  -->
+<!-- 							attr.item-opiszwizyte="1111" -->
+<!-- 							attr.item-zalecenia="111"  -->
+<!-- 							attr.item-zabiegi="1111" -->
+<!-- 							attr.item-email="1111@o2.pl" -->
+<!-- 						> -->
+<!-- 							<img src="/pics/email.svg"> -->
+<!-- 						</a> -->
+<!-- 					</span> -->
+<!-- 				</td> -->
+<!-- 				<script type="text/javascript"> -->
+<!-- // 					function confirm_click() { -->
+<!-- // 						return confirm("{{'visits.want_delete_visit' | translate'}}"); -->
+<!-- // 					} -->
+<!-- 				</script> -->
+<!-- 			</tr> -->
+<!-- 		</tbody> -->
+<!-- 	</table> -->
+<!-- </div> -->
+	<div class="row">
+	    <div class="col-md-5 col-md-offset-5">
+	    	<ul  uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>
+	    </div>
+	</div>	
+</div>
 
 <style>
-
-.ht-pagination ul a, .ht-pagination ul span, form button, form input[type="reset"],
-	form input[type="submit"], a.button {
-	padding: 6px 23px 6px;
-	border: none !important;
-}
-
-.ht-pagination ul a, .ht-pagination ul span, form button, form input[type="reset"],
-	form input[type="submit"], nav ul>li a, #nav-primary ul>li a, a.button
-	{
-	color: #7e7e7e !important;
-	font-family: 'Roboto Slab', serif;
-	text-transform: none;
-	font-weight: normal;
-	padding: 6px 16px 2px;
-	letter-spacing: 0.5px;
-}
-
-.ht-pagination ul a, .ht-pagination ul span, form button, form input[type="reset"],
-	form input[type="submit"], nav ul>li.home a, nav ul>li a:hover,
-	#nav-primary ul>li.home a, #nav-primary ul>li a:hover, a.button {
-	background: #b70068;
-	border-radius: 20px;
-	color: #ffffff !important;
-	border: 3px solid #630039;
-	border-width: 0 0 3px 0;
-	-webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2);
-	-moz-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2);
-	box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2);
-}
-
-.ht-pagination ul a, .ht-pagination ul span, form button, form input[type="reset"],
-	form input[type="submit"], a.button {
-	font-size: 13px;
-	padding: 4px 23px 3px;
-	letter-spacing: 0;
-}
 
 .actions-col .icon img {
 	height: 20px;
@@ -199,6 +267,10 @@
 
 a#add_appoitment_btn {
 	float: right;
+}
+
+th, td {
+	text-align: center;
 }
 
 </style>

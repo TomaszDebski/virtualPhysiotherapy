@@ -1,16 +1,8 @@
 package com.wirtualnyGabinet.controller;
 
 import java.security.Principal;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.lang3.time.DateUtils;
-import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,15 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.wirtualnyGabinet.Views;
 import com.wirtualnyGabinet.DTO.InfForScheduler;
-import com.wirtualnyGabinet.entity.Patient;
-import com.wirtualnyGabinet.entity.Physiotherapist;
-import com.wirtualnyGabinet.entity.Service;
-import com.wirtualnyGabinet.entity.Treatment;
 import com.wirtualnyGabinet.entity.Visit;
-import com.wirtualnyGabinet.repository.PatientRepository;
-import com.wirtualnyGabinet.repository.PhysiotherapistRepository;
-import com.wirtualnyGabinet.repository.ServiceRepository;
-import com.wirtualnyGabinet.repository.VisitRepository;
 import com.wirtualnyGabinet.service.IVisitService;
 
 @RestController
