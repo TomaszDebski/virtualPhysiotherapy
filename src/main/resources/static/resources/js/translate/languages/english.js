@@ -23,6 +23,7 @@ angular.module('app.translate-config-en', ['pascalprecht.translate'])
 	    	"account" : "Account",
 	    	"add_services" : "Add service",
 	    	"management" : "Management",
+	    	"add_kindOfPain" : "Add kind of pain",
 	    },
 	    "patients": {
 	    	"patients" : "Patients",
@@ -69,18 +70,30 @@ angular.module('app.translate-config-en', ['pascalprecht.translate'])
 			"add_reservation" : "Add a reservation",
 			"correct_patient_data_corrected":"Correct patient data corrected",
 			"patient_profile" : "Patient profile",
-			"patient_description" : "Opis pacjenta",
+			"patient_description" : "Patient description",
 			"add_an_interview" : "Add an interview",
 			"interviews" : "Interviews",
 		},
+		"addPatient" : {
+			"correct_add_patient" : "Correctly added patient",
+			"for_short_firstname" : "Too short name",
+			"for_long_firstname" : "Too long name",
+			"enter_additional_patient_information" :"You can enter additional patient information here",
+			"add_patient" : "Add patient",
+		},
 		"addService" : {
 			"add_new_service" : "Add a new service",
-			"correct_add_service" : "Correctly added visit",
+			"correct_add_service" : "Correctly added service",
 			"service_name" : "Service name",
 			"service_description" : "Service description",
 			"please_correct_price" : "Please enter a valid amount",
 			"" : "",
-			"" : "",
+		},
+		"kindOfPain" : {
+			"add_new_kindOfPain" : "Add new kind of pain",
+			"pain_name" : "Pain name",
+			"correct_add_kindOfPain" : "Correct add kind of pain"
+			
 		},
 		"interview" : {
 			"add_an_interview" : "Add an interview",
@@ -157,6 +170,7 @@ angular.module('app.translate-config-en', ['pascalprecht.translate'])
 			"lastname_is_required" : "Last name is required",
 			"price_is_required":"Price is required",
 			"date_of_birth_required" : "Data urodzenia jest wymagana",
+			"incorrect_date" : "Incorrect date",
 			"phone_is_required" : "Phone is required",
 			"email_is_required" : "E-mail is required",
 			"incorrect_email" : "Incorrect e-mail",

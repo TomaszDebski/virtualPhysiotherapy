@@ -261,7 +261,7 @@ angular.module('app.controller.visit', [])
 	  vm.people = patients;
 	  if ($stateParams != null && $stateParams.patient_id != null && vm.people.length > 0){
 		  console.log(" vm.people", vm.people)
-		  vm.people.patientId = vm.people[$stateParams.patient_id-1];
+		  vm.people.patientId = search($stateParams.patient_id,vm.people);
 		  vm.visit.selectedPatientId = vm.people.patientId.id; 
 		  vm.patientPlaceholer = 'Wybierz pacjenta z listy';
 	  }else{
@@ -273,6 +273,14 @@ angular.module('app.controller.visit', [])
 			  vm.disableSearch();
 		  }
 	  }
+	  
+	  function search(idKey, myArray){
+		    for (var i=0; i < myArray.length; i++) {
+		        if (myArray[i].id === idKey) {
+		            return myArray[i];
+		        }
+		    }
+		}
 
 
 	  vm.singleDemo = {};

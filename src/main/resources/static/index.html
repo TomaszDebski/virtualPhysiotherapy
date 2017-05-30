@@ -178,7 +178,7 @@
             <li ng-if="authenticated"><a ui-sref="account"><span translate="index.account"></span></a></li>
             <li ng-if="!authenticated"><a ui-sref="/" title=""><span style="border-left: none;" translate="index.about_portal"></span></a></li>
             <li ng-if="!authenticated"><a ui-sref="/"><span translate="index.physiotherapy"></span></a></li>
-            <li ng-if="!authenticated"><a ui-sref="showAllPhysiotherapists"><span translate="index.specialists"></span></a></li>
+            <li ng-if="!authenticated"><a ui-sref="/"><span translate="index.specialists"></span></a></li>
             <li ng-if="!authenticated"><a ui-sref="/"><span translate="index.tips"></span></a></li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -254,12 +254,37 @@
     position: inherit;
 </style>
 
-<div class="row">
+<div class="">
   <hr style="margin-bottom: 12px;">
     <div class="col-md-4 col-centered" style="float: none; margin: 0 auto;">
         <p class="muted">© 2017 Wirtualny gabinet fizjoterapii. All rights reserved</p>
     </div>
   </div>
+  
+  <style>
+  	html,body
+		{
+		height:100%;
+		min-height: 100%;
+		}
+		
+		#main
+		{
+		overflow:auto;
+		padding-bottom:150px; /* this needs to be bigger than footer height*/
+		}
+		
+		.footer
+		{
+		position: relative;
+		margin-top: -150px; /* negative value of footer height */
+		height: 150px;
+		clear:both;
+		padding-top:20px;
+		color:#fff;
+		}
+  
+  </style>
 
 <!-- <footer> -->
 <!--   <div class="container"> -->

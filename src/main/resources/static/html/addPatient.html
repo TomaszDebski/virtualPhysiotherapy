@@ -1,22 +1,24 @@
 <meta meta charset=utf-8>
 	<div class="main-header">
 		<div class="container">
-			<span class="page-title">Dodaj pacjenta</span>
+			<span class="page-title">{{'addPatient.add_patient' | translation}}</span>
 		</div>
 	</div>
 	<div class="container">
 		<form class="form-horizontal" name="addPatientForm" novalidate>
 			<div class="row">
 				<div class="col-md-offset-2 col-md-4">
-					<div class="alert alert-success" ng-show="successAddPatient">
-						  <strong>Sukces!</strong> Poprawnie dodano pacjenta
+					<div class="form-group">
+						<div class="alert alert-success" ng-show="successAddPatient">
+							  <strong>{{'commons.success' | translation}}</strong> {{'addPatient.correct_add_patient' | translation}}
+						</div>
 					</div>
 						<div class="form-group">
-							<label for="firstname" >Imię:<span class="required">*</span></label>
+							<label for="firstname" >{{'commons.firstname' | translation}}:<span class="required">*</span></label>
 							<input
 								name="firstname"
 								required="required" 
-								placeholder="Imię*"
+								placeholder="{{'commons.firstname' | translation}}"
 								id="firstname" 
 								value=""
 								type="text" 
@@ -28,27 +30,27 @@
 	        				<span 
 	        					ng-show="addPatientForm.firstname.$error.required && addPatientForm.submitted" 
 	        					style="color : #f00; float:left;"
-	        					>Imię jest wymagane
+	        					>{{'commons.firstname_is_required' | translation}}
 	        				</span>
 	        				<span 
 	        					ng-show="addPatientForm.firstname.$error.minlength && addPatientForm.submitted" 
 	        					style="color : #f00; float:left;"
-	        					>Za krótkie imię
+	        					>{{'addPatient.for_short_firstname' | translation}}
 	        				</span>
 	        				<span 
 	        					ng-show="addPatientForm.firstname.$error.maxlength && addPatientForm.submitted" 
 	        					style="color : #f00; float:left;"
-	        					>Za długie imię
+	        					>{{'addPatient.for_long_firstname' | translation}}
 	        				</span>
 						</div>
 						
 						<div class="form-group">
 								<label for="lastname" 
-								>Nazwisko:<span class="required">*</span></label> 
+								>{{'commons.lastname' | translation}}:<span class="required">*</span></label> 
 								<input
 									name="lastname"
 									required="required"
-									placeholder="Nazwisko*" 
+									placeholder="{{'commons.lastname' | translation}}" 
 									id="lastname" 
 									value="" 
 									type="text"
@@ -58,12 +60,12 @@
 								<span 
 									ng-show="addPatientForm.lastname.$error.required && addPatientForm.submitted" 
 									style="color : #f00; float:left;"
-									>Nazwisko jest wymagane
+									>{{'commons.lastname_is_required' | translation}}
 								</span>
 						</div>
 						
 						<div class="form-group">
-						  <label for="birthDate">Data urodzenia:</label>  
+						  <label for="birthDate">{{'commons.date_of_birth' | translation}}:<span class="required">*</span></label>  
 <!-- 						  <div class="col-md-6"> -->
 							  <div class="input-group">
 									<span class="input-group-btn" id="spanDate">
@@ -85,7 +87,6 @@
 										ng-required="true" 
 										close-text="Close" 
 										alt-input-formats="altInputFormats" 
-										
 										required
 										name="dateField"
 										ng-class="{submitted:addPatientForm.submitted}"
@@ -94,48 +95,48 @@
 							 <span 
 								ng-show="addPatientForm.dateField.$error.required && addPatientForm.submitted" 
 								style="color : #f00; float:left;"
-								>Data urodzenia jest wymagana
+								>{{'commons.date_of_birth_required' | translation}}
 							</span>
 							<span 
 		       					ng-show="addPatientForm.dateField.$error.date && addPatientForm.submitted"
 		       					style="color : #f00; float:left;"
-		       					>Proszę podać prawidłową date urodzenia
+		       					>{{'commons.incorrect_date' | translation}}
 		       				</span>
 <!-- 						  </div> -->
 						</div>
 						
 						
 						<div class="form-group ">
-						  <label for="gender">Płeć:</label>
-						  	<div name="gender" ng-init="patient.gender='M'">
+						  <label for="gender">{{'commons.gender' | translation}}:</label>
+						  	<div name="gender" ng-init="patient.gender='m'">
 							    <label class="radio-inline" for="gender">
 							      <input 
 							      	type="radio" 
 							      	name="gender" 
 							      	id="gender1" 
-							      	value="M" 
+							      	value="m" 
 							      	checked="checked"
 							      	ng-model="patient.gender">
-							      Mężczyzna
+							      {{'commons.man' | translation}}
 							    </label> 
 							    <label class="radio-inline" for="gender">
 							      <input 
 							      	type="radio" 
 							      	name="gender" 
 							      	id="gender2" 
-							      	value="K"
+							      	value="k"
 							      	ng-model="patient.gender">
-							      Kobieta
+							      {{'commons.woman' | translation}}
 							    </label> 
 						  	</div>
 						</div>
 						
 						
 						<div class="form-group">
-							<label for="pesel">PESEL:</label> 
+							<label for="pesel">{{'commons.pesel' | translation}}:<span class="required">*</span></label> 
 								<input
 									name="pesel"
-									placeholder="PESEL" 
+									placeholder="{{'commons.pesel' | translation}}" 
 									id="pesel" 
 									value=""
 									type="text"
@@ -145,7 +146,7 @@
 								>
 								<span 
 									ng-show="addPatientForm.pesel.$error.required  && addPatientForm.submitted" 
-									style="color : #f00; float:left;">Pesel jest wymagany
+									style="color : #f00; float:left;">{{'commons.pesel_is_required' | translation}}
 								</span>
 						</div>
 							
@@ -164,12 +165,12 @@
 		        				<span 
 		        					ng-show="addPatientForm.email.$error.required && addPatientForm.submitted" 
 		        					style="color : #f00; float:left;"
-		        					>Email jest wymagany
+		        					>{{'commons.email_is_required' | translation}}
 		        				</span>
 		        				<span 
 		        					ng-show="addPatientForm.email.$error.email && addPatientForm.submitted" 
 		        					style="color : #f00; float:left;"
-		        					>Nieprawidłowy e-mail
+		        					>{{'commons.incorrect_email' | translation}}
 		        				</span>
 						</div>
 						
@@ -178,21 +179,21 @@
 				
 				
 					<div class="form-group" >
-							<label for="phone">Telefon:</label> 
-							<input
-								name="phone"
-								placeholder="Telefon" 
-								id="phone"
-								value="" 
-								type="text"
-								ng-model="patient.phone"
-							>
+						<label for="phone">{{'commons.phone' | translation}}:</label> 
+						<input
+							name="phone"
+							placeholder="{{'commons.phone' | translation}}" 
+							id="phone"
+							value="" 
+							type="text"
+							ng-model="patient.phone"
+						>
 					</div>				
 					<div class="form-group">
-						<label for="street" >Ulica:</label> 
+						<label for="street" >{{'commons.street' | translation}}:</label> 
 						<input
 							name="street"
-							placeholder="Ulica" 
+							placeholder="{{'commons.street' | translation}}" 
 							id="street"
 							value="" 
 							type="text"
@@ -200,30 +201,30 @@
 						>
 					</div>
 					<div class="form-group">
-						<label for="number">Numer:</label> 
+						<label for="number">{{'commons.number' | translation}}:</label> 
 						<input
 							name="number" 
-							placeholder="Numer" 
+							placeholder="{{'commons.number' | translation}}" 
 							id="number" 
 							type="text"
 							ng-model="patient.number"
 						>
 					</div>
 					<div class="form-group" >
-						<label for="city" >Miasto:</label> 
+						<label for="city" >{{'commons.city' | translation}}:</label> 
 						<input
 							name="city"
-							placeholder="Miejscowość" 
+							placeholder="{{'commons.city' | translation}}" 
 							id="city"
 							type="text"
 							ng-model="patient.city"
 						>
 					</div>
 					<div class="form-group">
-						<label for="postCode " >Kod pocztowy:<span class="required">*</span></label> 
+						<label for="postCode " >{{'commons.postcode' | translation}}:<span class="required">*</span></label> 
 						<input
 							name="postCode"
-							placeholder="Kod pocztowy" 
+							placeholder="{{'commons.postcode' | translation}}" 
 							id="postcode"
 							value="" type="text"
 							ng-model="patient.postCode"
@@ -235,32 +236,32 @@
 	       				<span 
 	       					ng-show="addPatientForm.postCode.$error.required && addPatientForm.submitted"
 	       					style="color : #f00; float:left;"
-	       					>Kod pocztowy jest wymagany
+	       					>{{'commons.postcode_is_required' | translation}}
 	       				</span>
 	       				<span 
 	       					ng-show="addPatientForm.postCode.$error.pattern && addPatientForm.submitted"
 	       					style="color : #f00; float:left;"
-	       					>Proszę podać prawidłowy polski kod
+	       					>{{'commons.please_enter_valid_postcode' | translation}}
 	       				</span>
 					</div>
 					<div class="form-group" >
-						<label for="description" >Dodatkowe informacje:</label>
+						<label for="description" >{{'commons.additional_information' | translation}}:</label>
 						<textarea name="description"
 							class="form-control" 
-							placeholder="Dodatkowe informacje"
+							placeholder="{{'commons.additional_information' | translation}}"
 							id="description" 
 							style="height: 61px; 
 							background: #f6f9fc;"
 							ng-model="patient.description">
 						</textarea>
-						<p class="description">* Możesz tu wpisać dodatkowe informacje o pacjencie</p>
+						<p class="description">* {{'addPatient.enter_additional_patient_information' | translation}}</p>
 					</div>
 				</div>
 			</div>
 			<div class="row" style="padding-top:15px;">
 				<div class="form-group" >
 					<div class="text-center">
-						<button type="submit" class="btn btn-primary" ng-click="addPatient(patient)">Zapisz</button>
+						<button type="submit" class="btn btn-primary" ng-click="addPatient(patient)">{{'commons.save' | translation}}</button>
 					</div>
 				</div>
 			</div>

@@ -21,7 +21,7 @@ angular.module('app.controller.register', [])
     	    })
     	    .then(function(response) {
     	    	if (response.data != null && response.data.username.length > 0){
-    	    		console.log("istnieje już taki uż	ytkownik")
+    	    		console.log("istnieje już taki użytkownik")
     	    	}else{
     	    		 if (isPasswordEqual){
     	 				physiotherapistService.save(user,function(){

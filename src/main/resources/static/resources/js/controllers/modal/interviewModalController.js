@@ -11,9 +11,34 @@ angular.module('app.controller.interviewModal', [])
 	
 	
 	  $scope.ok = function () {
-		  if ($scope.addInterview()){
-			  $uibModalInstance.close();
-		  }
+//		  if ($scope.addInterview()){
+//			  $uibModalInstance.close();
+//		  }
+		  if($scope.interviewForm.$valid) {
+				var interview = {};
+				interview.date = new Date();
+				interview.uniqueId = '22222';
+				interview.description = $scope.interview.description
+				interview.pains = []
+				var pain = {};
+				pain.painName = $scope.interview.painInput;
+				var place = {};
+				place.bodyPlaceName = $scope.interview.bodyInput;
+				pain.painBodyPlaces = [];
+				pain.painBodyPlaces.push(place);
+				interview.pains.push(pain);
+				interviewService.save({patinet_id:myParam},interview,function(data){
+					console.log("udało się");
+//					$scope.successAddPatient = true;
+//					$window.scrollTo(0, 0);
+////					$location.path("/allPatients");
+					$uibModalInstance.close();
+				})
+			}else{
+				$scope.interviewForm.submitted=true;    
+				console.log('niepoprawny formularz')
+//				return false;
+			} 
 	  };
 
 	  $scope.cancel = function () {
@@ -54,33 +79,33 @@ angular.module('app.controller.interviewModal', [])
 			$scope.interview.bodyInput = item;
 		}
 		
-		$scope.addInterview = function(){
-			if($scope.interviewForm.$valid) {
-				var interview = {};
-				interview.date = new Date();
-				interview.uniqueId = '22222';
-				interview.description = $scope.interview.description
-				interview.pains = []
-				var pain = {};
-				pain.painName = $scope.interview.painInput;
-				var place = {};
-				place.bodyPlaceName = $scope.interview.bodyInput;
-				pain.painBodyPlaces = [];
-				pain.painBodyPlaces.push(place);
-				interview.pains.push(pain);
-				interviewService.save({patinet_id:myParam},interview,function(data){
-					console.log("udało się");
-//					$scope.successAddPatient = true;
-//					$window.scrollTo(0, 0);
-////					$location.path("/allPatients");
-				})
-				return true;
-			}else{
-				$scope.interviewForm.submitted=true;    
-				console.log('niepoprawny formularz')
-				return false;
-			} 
+//		$scope.addInterview = function(){
+//			if($scope.interviewForm.$valid) {
+//				var interview = {};
+//				interview.date = new Date();
+//				interview.uniqueId = '22222';
+//				interview.description = $scope.interview.description
+//				interview.pains = []
+//				var pain = {};
+//				pain.painName = $scope.interview.painInput;
+//				var place = {};
+//				place.bodyPlaceName = $scope.interview.bodyInput;
+//				pain.painBodyPlaces = [];
+//				pain.painBodyPlaces.push(place);
+//				interview.pains.push(pain);
+//				interviewService.save({patinet_id:myParam},interview,function(data){
+//					console.log("udało się");
+////					$scope.successAddPatient = true;
+////					$window.scrollTo(0, 0);
+//////					$location.path("/allPatients");
+//				})
+//				return true;
+//			}else{
+//				$scope.interviewForm.submitted=true;    
+//				console.log('niepoprawny formularz')
+//				return false;
+//			} 
 			
-		}
+//		}
 
 });

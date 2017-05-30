@@ -14,6 +14,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.security.web.csrf.CsrfTokenRepository;
+import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 
 import io.github.jhipster.security.AjaxAuthenticationFailureHandler;
 import io.github.jhipster.security.AjaxAuthenticationSuccessHandler;
@@ -67,10 +70,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	        .antMatchers("/register").permitAll()
 	        .antMatchers("/login").permitAll()
 //	        .antMatchers("/api/**").authenticated()
-//	        .antMatchers("/physiotherapist/**").access("hasRole('ROLE_USER')")
+	        .antMatchers("/physiotherapist/byUsername/**").permitAll()
+	        .antMatchers("/physiotherapist").permitAll()
+	        .antMatchers("/physiotherapist/**").access("hasRole('ROLE_USER')")
+	        .antMatchers("/visit/**").access("hasRole('ROLE_USER')")
+	        .antMatchers("/patient/**").authenticated()
+	        .antMatchers("/#/patient/**").access("hasRole('ROLE_USER')")
+	        .antMatchers("/interview/**").access("hasRole('ROLE_USER')")
+	        .antMatchers("/kindOfPain/**").access("hasRole('ROLE_USER')")
+	        .antMatchers("/findUser/**").access("hasRole('ROLE_USER')")
+	        .antMatchers("/service/**").access("hasRole('ROLE_USER')")
 	        	.and()
 	        .formLogin()
 	        	.loginProcessingUrl("/login")
+	        	.loginPage("/#login")
 	        	.successHandler(ajaxAuthenticationSuccessHandler())
 	            .failureHandler(ajaxAuthenticationFailureHandler())
 	            .usernameParameter("j_username")
@@ -92,12 +105,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	        return new BCryptPasswordEncoder();
 	    }
 	    
-//	    private CsrfTokenRepository csrfTokenRepository() {
-//			HttpSessionCsrfTokenRepository repository = 
-//					new HttpSessionCsrfTokenRepository();
-//			repository.setHeaderName("X-XSRF-TOKEN");
-//			return repository;
-//		}
+	    private CsrfTokenRepository csrfTokenRepository() {
+			HttpSessionCsrfTokenRepository repository = 
+					new HttpSessionCsrfTokenRepository();
+			repository.setHeaderName("X-XSRF-TOKEN");
+			return repository;
+		}
 	    
 
 }

@@ -4,7 +4,7 @@
 
 angular.module('app.controller.patient', ['ui.bootstrap'])
 .controller('patientController', function($scope,$http,$rootScope,$log,$window,patientService,
-		$stateParams,$uibModal,$state) {
+		$stateParams,$uibModal,$state,$timeout) {
 		patientService.get({id:$stateParams.id},function(data){
 			$scope.patient = data;
 			console.log("dataaa "  ,data.firstname);
@@ -208,17 +208,21 @@ angular.module('app.controller.patient', ['ui.bootstrap'])
 	        .result.then(
 	            function () {
 	            	console.log("ok")
-	            	$http.get("interview/allInterviewForPatient" + "?patient_id=" + $stateParams.id)
-					.then(function(value) {
-						console.log('value.data ' ,value.data)
-						$scope.interviews = value.data;
-					})
+	            	$timeout(myfunction(),5000);
 	            }, 
 	            function () {
 	            	console.log("wyjście")
 	            }
 	        );
 	    }
+		
+		myfunction = function(){
+			$http.get("interview/allInterviewForPatient" + "?patient_id=" + $stateParams.id)
+			.then(function(value) {
+				console.log('value.data ' ,value.data)
+				$scope.interviews = value.data;
+			})
+		}
 		
 		
 ////////////////////////////////////////////////////////////////////////////////////////////////////

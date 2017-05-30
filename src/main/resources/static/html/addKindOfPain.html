@@ -1,7 +1,7 @@
 <meta meta charset=utf-8>
 	<div class="main-header">
 		<div class="container">
-			<span class="page-title">{{'addService.add_new_kindOfPain' | translate}}</span>
+			<span class="page-title">{{'kindOfPain.add_new_kindOfPain' | translate}}</span>
 		</div>
 	</div>
 
@@ -11,7 +11,7 @@
 	<div class="row" ng-show="success">
 		<div class="col-md-offset-4 col-md-4">
 			<div class="alert alert-success" >
-			    <strong> {{'commons.success' | translate}}</strong> {{'addService.correct_add_kindOfPain' | translate}}
+			    <strong> {{'commons.success' | translate}}</strong> {{'kindOfPain.correct_add_kindOfPain' | translate}}
 			</div>
 		</div>
 			    <br><br>
@@ -25,14 +25,14 @@
 			<!-- Text input-->
 			<div class="form-group">
 			  <label class="col-md-offset-2 col-md-2 control-label" for="painNameField">
-			  {{'addService.pain_name' | translate}}:<span style="color:red;">*</span></label>  
+			  {{'kindOfPain.pain_name' | translate}}:<span style="color:red;">*</span></label>  
 			  <div class="col-md-4">
 			  <input 
 			  	id="painNameField" 
 			  	type="text"
 			  	ng-class="{submitted:addKindOfPainForm.submitted}"  
 			  	name="painNameField" 
-			  	placeholder="{{'commons.pain_name' | translate}}" 
+			  	placeholder="{{'kindOfPain.pain_name' | translate}}" 
 			  	class="form-control" 
 			  	required
 			  	ng-model="pain.painName">

@@ -28,8 +28,8 @@ angular.module('app.controller.login', [])
         headers : {
             'Content-Type': 'application/x-www-form-urlencoded'
         }
-//		,
-//        xsrfHeaderName: 'X-XSRF-TOKEN'
+		,
+        xsrfHeaderName: 'X-XSRF-TOKEN'
         }).success(function(data, status, headers, config){
         		console.log("data",data);
         		console.log("status",status);

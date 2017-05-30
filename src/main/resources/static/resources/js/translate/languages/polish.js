@@ -23,6 +23,7 @@ angular.module('app.translate-config-pl', ['pascalprecht.translate'])
 	    	"account" : "Konto",
 	    	"add_services" : "Dodaj usługę",
 	    	"management" : "Zarządzaj",
+	    	"add_kindOfPain" : "Dodaj dolegliwość",
 	    },
 		"patients": {
 			"patients" : "Pacjenci",
@@ -68,13 +69,25 @@ angular.module('app.translate-config-pl', ['pascalprecht.translate'])
 			"add_an_interview" : "Dodaj wywiad",
 			"interviews" : "Wywiady",
 		},
+		"addPatient" : {
+			"correct_add_patient" : "Poprawnie dodano pacjenta",
+			"for_short_firstname" : "Za krótkie imię",
+			"for_long_firstname" : "Za długie imię",
+			"enter_additional_patient_information" : "Możesz tu wpisać dodatkowe informacje o pacjencie",
+			"add_patient" : "Dodaj pacjenta",
+		},
 		"addService" : {
 			"add_new_service" : "Dodaj nową usługę",
-			"correct_add_service" : "Poprawnie dodano wizytę",
+			"correct_add_service" : "Poprawnie dodano usługę",
 			"service_name" : "Nazwa usługi",
 			"service_description" : "Opis usługi",
 			"please_correct_price" : "Proszę wpisać prawidłową kwotę",
-			"" : "",
+		},
+		"kindOfPain" : {
+			"add_new_kindOfPain" : "Dodawanie nowej dolegliwości",
+			"pain_name" : "Rodzaj dolegliwości",
+			"correct_add_kindOfPain" : "Prawidłowo dodano rodzaj dolegliwości"
+			
 		},
 		"interview" : {
 			"add_an_interview" : "Dodaj wywiad",
@@ -151,6 +164,7 @@ angular.module('app.translate-config-pl', ['pascalprecht.translate'])
 			"lastname_is_required" : "Nazwisko jest wymagane",
 			"price_is_required":"Cena jest wymagana",
 			"date_of_birth_required" : "Data urodzenia jest wymagana",
+			"incorrect_date" : "Nieprawidłowa data",
 			"phone_is_required" : "Telefon jest wymagany",
 			"email_is_required" : "E-mail jest wymagany",
 			"incorrect_email" : "Nieprawidłowy e-mail",

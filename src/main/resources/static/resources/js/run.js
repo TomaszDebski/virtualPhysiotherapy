@@ -45,8 +45,11 @@ angular.module('app.run', [])
 //					$window.sessionStorage.user = "";
 //					$window.sessionStorage.authenticated = false;
 //					$window.sessionStorage.role = "";
-					if ($window.sessionStorage.user == ""){
-						if ((toState.name != "register" && toState.name != "login"  )){
+		    		var stateArray = ["register","login","contact","home"]
+		    		var name = toState.name;
+		    		console.log("name " , name)
+					if ($window.sessionStorage.user == undefined || $window.sessionStorage.user == ""){
+						if (stateArray.indexOf(toState.name) == -1){
 							$state.go( "login", {});
 							event.preventDefault();
 						}
