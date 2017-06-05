@@ -9,14 +9,31 @@
 	 	<div class="col-md-2">
 			<span>{{'interview.kind_of_pain' | translate}}:</span>
 		</div>
-		<div class="col-md-3">
-			<div class="btn-group dropdown" uib-dropdown="22" is-open="status.isopen" style=""  on-toggle="toggled(open)"
->
-      			<button id="single-button" type="button" class="btn btn-primary dropdown-toggle" uib-dropdown-toggle="" ng-disabled="disabled" aria-haspopup="true" aria-expanded="false" uib-dropdown-toggle
->
+		<div class="col-md-3" style="justify-content: left;">
+			<div 
+				class="btn-group dropdown drop1" 
+				uib-dropdown="22" 
+				is-open="status.isopen" 
+				style=""  
+				on-toggle="toggled(open,interview.painInput,'drop1')">
+
+      			<button 
+					id="single-button" 
+					type="button" 
+					class="btn btn-primary dropdown-toggle" 
+					uib-dropdown-toggle="" 
+					ng-disabled="disabled" 
+					aria-haspopup="true" 
+					aria-expanded="false" 
+					uib-dropdown-toggle>
        	 			{{painDisplay}}<span class="caret"></span>
       			</button>
-      			<ul class="dropdown-menu" uib-dropdown-menu="22" role="menu" aria-labelledby="single-button" style="min-width: 120px;">
+      			<ul 
+					class="dropdown-menu" 
+					uib-dropdown-menu="22" 
+					role="menu" 
+					aria-labelledby="single-button"
+					style="min-width: 120px;">
         			<li role="menuitem"> 
           				<a href="" ng-click="change(pain.painName)" ng-repeat="pain in pains">{{pain.painName}}</a>
 					</li>
@@ -25,11 +42,13 @@
 			<input type="hidden" name="painInput" required  ng-model="interview.painInput">
 			
 		</div>
+
 		<div class="col-md-2">
 			<span>{{'interview.place_of_pain' | translate}}:</span>
 		</div>
-		<div class="col-md-3">
-			<div class="btn-group dropdown" uib-dropdown="22" is-open="status2.isopen" style=""  on-toggle="toggled2(open)">
+
+		<div class="col-md-3" style="justify-content: left;">
+			<div class="btn-group dropdown drop2" uib-dropdown="22" is-open="status2.isopen" style=""  on-toggle="toggled(open,interview.bodyInput,'drop2')">
       			<button id="single-button2" type="button" class="btn btn-primary dropdown-toggle" uib-dropdown-toggle="" ng-disabled="disabled" aria-haspopup="true" aria-expanded="false" uib-dropdown-toggle>
        	 			{{bodyDisplay}}<span class="caret"></span>
       			</button>
@@ -41,23 +60,21 @@
    		 	</div>
 			<input type="hidden" name="bodyInput" required  ng-model="interview.bodyInput">
 		</div>
-		
 	
 	</div>
-	
 
 	<div class="row">
 		<div class="col-md-offset-2">
 			<span 
 		    	ng-show="interviewForm.painInput.$error.required  && interviewForm.submitted" 
-		    	style="color : #f00; float:left;"
+		    	style="color : #f00; float:left; margin-left: 15px;"
 		    	>{{'interview.choose_the_type_of_pain' | translate}}
 		    </span>
 		</div>
 		<div class="col-md-offset-7">
 			<span 
 		    	ng-show="interviewForm.bodyInput.$error.required  && interviewForm.submitted" 
-		    	style="color : #f00; float:left;"
+		    	style="color : #f00; float:left; margin-left: 15px;"
 		    	>{{'interview.choose_a_place_of_pain' | translate}}
 		    </span>
 		</div>

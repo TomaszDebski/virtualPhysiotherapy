@@ -67,6 +67,15 @@ public class PatientService implements IPatinetService {
 		}
 		return patients;
 	}
+	
+	@Override
+	public Page<Patient> getSearchPatient(Pageable pageable, long id, String name){
+		Physiotherapist physio = physiotherapistRepository.findOne(id);
+		Page<Patient> patients = null;
+		patients = (Page<Patient>) patientRepository
+				.findByPhisiotherapist_IdAndFirstNameOrLastName(pageable,Long.toString(physio.getId()),name);
+		return patients;
+	}
 
 	@Override
 	public void updatePatient(long id, Patient patient) {

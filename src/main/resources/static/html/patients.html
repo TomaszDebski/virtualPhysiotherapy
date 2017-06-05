@@ -5,11 +5,16 @@
         	<div class="col-md-1">
         <span class="page-title" translate="patients.patients"></span>
             </div>
-            <div class="col-md-offset-1 col-md-3">
-            	{{'patients.search_patient' | translate}}
-            	<input type="text" name="search" ng-model="patientSearch">
+            <div class="col-md-offset-1 col-md-4">
+            	<input type="text" name="search" ng-model="patient" style="margin-right: 20px; padding: 5px;"
+            	placeholder="{{'patients.search_patient' | translate}}">
+            	<button 
+            		id="search_patient_btn" 
+            		class="btn btn-primary active" 
+            		ng-click="searchPatient(patient)">{{'commons.search' | translate}}
+            	</button>
             </div>
-			<div class="col-md-offset-5 col-md-2">
+			<div class="col-md-offset-4 col-md-2">
 				<div class="pull-right">
          <a id="add_patient_btn" class="btn btn-primary active" href="#/addPatient">{{'patients.add_patient' | translate}}</a>
          </div>

@@ -90,6 +90,11 @@ public class PatientController {
 		return patientService.getAllPatientsList(pageable, id);
 	}
 	
+	@RequestMapping("/searchPatient")
+	public Page<Patient> getSearchPatients(Pageable pageable, @RequestParam("id") long id, @RequestParam("name") String name){
+		return patientService.getSearchPatient(pageable, id, name);
+	}
+	
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
 	public void updatePatient(@PathVariable("id") long id,@RequestBody Patient patient){

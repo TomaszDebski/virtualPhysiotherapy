@@ -35,11 +35,24 @@ angular.module('app.controller.interviewModal', [])
 					$uibModalInstance.close();
 				})
 			}else{
+				if($scope.interviewForm.painInput.$error.required){
+					makeRedBorder('drop1');
+				}
+				if($scope.interviewForm.bodyInput.$error.required){
+					makeRedBorder('drop2')
+				}
 				$scope.interviewForm.submitted=true;    
 				console.log('niepoprawny formularz')
-//				return false;
 			} 
 	  };
+	  
+	  function makeRedBorder(drop){
+		  $("."+drop).css(
+				  {"border-color": "#f00", 
+	             "border-width":"2px", 
+	             "border-style":"solid",
+	             "border-radius": "6px"})
+	  }
 
 	  $scope.cancel = function () {
 		  $uibModalInstance.dismiss('cancel');
@@ -52,18 +65,22 @@ angular.module('app.controller.interviewModal', [])
 			$scope.bodyPart = value.data;
 		})
 		
-		$scope.toggled1 = function(open) {
-		    console.log('Dropdown1 is now: ', open);
-		  };
-		  
-		  $scope.toggled2 = function(open) {
-		    console.log('Dropdown2 is now: ', open);
-		  };
-		  $scope.toggleDropdown = function($event) {
-			    $event.preventDefault();
-			    $event.stopPropagation();
-			    $scope.status.isopen = !$scope.status.isopen;
-			  };
+	  $scope.toggled = function(open,input,drop) {
+		  console.log('Dropdown is now: ', open);
+		 if (input != undefined){
+			 $("."+drop).css(
+					  {"border-color": "", 
+		             "border-width":"", 
+		             "border-style":""})
+		 }
+		 
+	    console.log("interview.painInput " ,$scope.interview.bodyInput)
+	  };
+	  $scope.toggleDropdown = function($event) {
+		    $event.preventDefault();
+		    $event.stopPropagation();
+		    $scope.status.isopen = !$scope.status.isopen;
+		 };
 			  
 	  $scope.myParam = myParam;
 	  	

@@ -98,7 +98,7 @@
     			<span 
    					ng-show="addVisitForm.dateField.$error.date && addVisitForm.submitted"
    					style="color : #f00; float:left;"
-   					>Proszę podać prawidłową datę
+   					>{{'commons.incorrect_date' | translate}}
    				</span>
 			  </div>
 			</div>
@@ -126,7 +126,7 @@
 						allow-clear="true"
 						>{{$select.selected.name}}
 					</ui-select-match>
-					<ui-select-choices repeat="country in ctrl.countries | filter: $select.search">
+					<ui-select-choices repeat="country in ctrl.countries | filter: $select.search" style="background: #f6f9fc;">
 								<span ng-bind-html="country.name | highlight: $select.search"></span>
 								<small ng-bind-html="country.code | highlight: $select.search"></small>
 					</ui-select-choices>
@@ -171,8 +171,10 @@
 		               	ng-model="visit.service"
 		               	ng-class="{submitted:addVisitForm.submitted}"
 		               	ng-options="service.id as service.serviceName + ' (' + service.price + ')' for service in services"
+		               	style="background: #f6f9fc; width:90%;float:left;" 
 	               >
 	               </select>
+	               <a href=""><span class="glyphicon glyphicon-plus" style="float:right;top:10px;right:10px;"></span></a>
 	               <span 
 	                   	ng-show="addVisitForm.selectService.$error.required && addVisitForm.submitted " 
 	                   	style="color : #f00; float: left;"
@@ -190,7 +192,7 @@
 			    <textarea 
 			    	name="description"
 					class="form-control"
-					placeholder="Opisz wizytę*" 
+					placeholder="{{'addVisit.visit_description' | translate}}" 
 					id="description" 
 					style="height: 61px; background: #f6f9fc;"
 					ng-model="visit.description"

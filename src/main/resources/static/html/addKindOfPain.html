@@ -6,22 +6,21 @@
 	</div>
 
 	<!-- ///////////////////////////////////////// -->
-	<br><br>
 <div class="container">
-	<div class="row" ng-show="success">
-		<div class="col-md-offset-4 col-md-4">
-			<div class="alert alert-success" >
-			    <strong> {{'commons.success' | translate}}</strong> {{'kindOfPain.correct_add_kindOfPain' | translate}}
-			</div>
-		</div>
-			    <br><br>
-	</div>
-	<div class="row" style="padding-top:15px;">
+	<div class="row">
 	<form class="form-horizontal" 
 		name="addKindOfPainForm" 
 		novalidate>
 		
 		<fieldset>
+			<div class="form-group">
+				<div class="col-md-offset-4 col-md-4" ng-show="success && addKindOfPainForm.$pristine">
+					<div class="alert alert-success" >
+					    <strong> {{'commons.success' | translate}}!</strong> {{'kindOfPain.correct_add_kindOfPain' | translate}}
+					</div>
+				</div>
+	<!-- 			    <br><br> -->
+			</div>
 			<!-- Text input-->
 			<div class="form-group">
 			  <label class="col-md-offset-2 col-md-2 control-label" for="painNameField">
@@ -53,7 +52,7 @@
 			    <textarea 
 			    	name="painDescription"
 					class="form-control"
-					placeholder="{{'addService.pain_description' | translate}}" 
+					placeholder="{{'kindOfPain.pain_description' | translate}}" 
 					id="painDescription" 
 					style="height: 61px; background: #f6f9fc;"
 					ng-model="pain.description"

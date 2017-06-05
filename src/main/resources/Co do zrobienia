@@ -1,15 +1,18 @@
 sprawdź który kontroler odpowiada za upload plików
-sprawdź tłumaczenie select_patient_from_list
-dodaj kolorowanei na czerwono dropdownów na interview
-zrób opóźnienie pobierania wszystkich wywiadów po poprawnym dodaniu wywiadu
-
+zakończenie wizyty z rodzajami platności
+Przetłumacz dodawanie wakacji
+dodaj flagi
+dodaj date do wywiadów
+usuwanie wizyty i informacje o usunięciach
 dodawanie plików
-Zamiast usuwania pacjenta przełączanie na nieaktywny
+walidatory wizyt
 Gdy usunę fizjoterapeute usuwam wszystkie wizyty z nim związane
 zabezpiecz przed wejściem bezpośrednio linkiem
 opcja zmiany hasła
 ruchomy panel menu
 w kalendarzu dodaj opcje zaznaczania długości urlopu przez przeciągnięcie
 W pacjencie dodaj nr lokalu(kolumne) i daty urodzenia(teraz to nulle), postcode(nulle)
-Zrób modal success
-Nie działa wyszukiwanie pacjentów dla następnych stron paginacji
+
+
+Zamiast usuwania pacjenta przełączanie na nieaktywny
+alert o usunięciu pacjenta

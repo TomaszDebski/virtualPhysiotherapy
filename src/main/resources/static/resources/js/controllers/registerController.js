@@ -4,7 +4,7 @@
 
 angular.module('app.controller.register', [])
 .controller('registerController',
-		function($rootScope,$scope, $http, $location,$window,physiotherapistService) {
+		function($rootScope,$scope, $http,$window,physiotherapistService,$timeout,$state) {
 	console.log('registerController');
 	$scope.successAddPhys = false;
 	$scope.createUser = function(user){
@@ -33,6 +33,9 @@ angular.module('app.controller.register', [])
     	 					$scope.passwordConfirm = "";
     	 					$scope.registerForm.$setPristine();
     	 					$scope.registerForm.$setUntouched();
+    	 					$window.scrollTo(0, 0);
+    	 					$timeout(function(){$state.go("login");},1000);
+    	 					
     	 				});
     	     	    }
     	    	}

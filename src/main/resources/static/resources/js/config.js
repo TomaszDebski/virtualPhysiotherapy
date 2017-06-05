@@ -62,7 +62,7 @@ angular.module('app.config', [])
 	.state('visits', {
 		url: '/visits',
 		templateUrl : 'html/visits.html',
-		controller : 'visitController as ctrl',
+		controller : 'visitsController as ctrl',
 		resolve: {
 			visits : function($rootScope,visitPaginationService,$stateParams){
 				var curr = new Date; 
@@ -86,6 +86,11 @@ angular.module('app.config', [])
 		params : {
 			patient_id : 1
 		}
+	})
+	.state('visit', {
+		url: '/visit/:id',
+		templateUrl : 'html/visit.html',
+		controller : 'visitController',
 	})
 	.state('addVisit', {
 		url: '/addVisit',

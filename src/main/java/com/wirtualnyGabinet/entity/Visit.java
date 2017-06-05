@@ -66,6 +66,14 @@ public class Visit implements Serializable {
 	@Column(name="recommendation")
 	public String recommendation;
 	
+	@JsonView(Views.Visits.class)
+	@Column(name="paymenMethod")
+	public String paymentMethod;
+	
+	@JsonView(Views.Visits.class)
+	@Column(name="status")
+	public String status;
+	
 	
 	/* Relations */
 //	@JsonView(Views.Visits.class)
@@ -193,6 +201,28 @@ public class Visit implements Serializable {
 
 	public void setIsHoliday(String isHoliday) {
 		this.isHoliday = isHoliday;
+	}
+	
+
+	public String getPaymentMethod() {
+		return paymentMethod;
+	}
+
+
+	public void setPaymentMethod(String paymentMethod) {
+		this.paymentMethod = paymentMethod;
+	}
+	
+	
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 

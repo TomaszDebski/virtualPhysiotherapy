@@ -1,0 +1,197 @@
+<meta meta charset=utf-8>
+<div class="main-header">
+    <div id="" class="container">
+        <div class="row vertical-align">
+        	<div class="col-md-4">
+		        <span class="page-title">{{'visit.visit_of_the_day' | translate}}: {{visit.date | date:'dd/MMM/yy, HH:mm'}}</span>
+            </div>
+            <div class="col-md-4">
+            	<span>Status: {{visit.status}}</span>
+            </div>
+			<div class="col-md-4">
+				<div class="pull-right">
+					 <button  class="btn btn-primary active" ng-click="goToVisits()"
+						>{{'visit.see_visits' | translate}}</button>
+					<button  class="btn btn-primary active" ng-click="endVisit()"
+						>{{'visit.end_visit' | translate}}</button>
+         		</div>
+         	</div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <section class="container">
+		<div class="container-page">
+			<form name="visitForm" novalidate>				
+				<div class="col-md-5">
+					<h3 class="dark-grey">{{'visit.details_of_the_visit' | translate}}</h3>
+					
+					<div class="form-group col-lg-12">
+						<label>{{'visit.date_of_visit' | translate}}</label>
+						
+						<div class="input-group">
+						  	<input type="text" 
+								class="form-control" 
+								ng-change="getDate()" 
+								uib-datepicker-popup="{{format}}"
+								ng-model="visit.date" 
+								is-open="popup1.opened" 
+								ng-model-options="{timezone: 'utc'}"
+								datepicker-options="dateOptions" 
+								ng-required="true" 
+								close-text="Close" 
+								alt-input-formats="altInputFormats" 
+								required
+								name="dateField"
+								ng-class="{submitted:addVisitForm.submitted}"
+							/>
+					          <span class="input-group-btn" id="spanDate">
+					            <button 
+					            	type="button" 
+					            	class="btn btn-default" 
+					            	ng-click="open1()">
+					            	<i class="glyphicon glyphicon-calendar"></i>
+					            </button>
+					          </span>
+						</div>
+
+					</div>
+					
+					<div class="form-group col-lg-12">
+						<label>{{'visit.visit_length' | translate}}</label>
+						<input 
+							type="text" 
+							name="length" 
+							class="form-control" 
+							id="length" 
+							ng-model="visit.length">
+					</div>
+									
+					<div class="form-group col-lg-12">
+						<label>{{'commons.services' | translate}}:</label>
+						<table id="mytable" class="table table-bordred table-striped">
+			             	<thead>
+			                   	<tr>
+				                    <th style="width: 150px;">{{'visit.service_name' | translate}}</th>
+									<th style="width:200px;">{{'commons.price' | translate}}</th>
+									<th>{{'commons.description' | translate}}</th>
+			                   </tr>
+			                </thead>
+			    			<tbody>
+			    				<tr ng-repeat="treatment in visit.treatment">
+							      	<td class=""><div class="">{{treatment.service.serviceName}}</div></td>
+									<td>
+									{{treatment.service.price}}</td>
+									<td><span class="table_span">{{treatment.service.description}}</span></td>
+				        		</tr>
+			    			</tbody>
+						</table>
+					</div>
+					
+					<div class="form-group col-lg-12">
+						<label>{{'visit.the_total_cost_of' | translate}}</label>
+						<input 
+							type="text" 
+							name="cost" 
+							class="form-control" 
+							id="cost"
+							ng-model="visit.cost">
+					</div>
+					
+					<div class="form-group col-lg-12">
+						<label>{{'visit.payment_method' | translate}}</label>
+						<div class="radio">
+				            <label style="margin-right:20px;">
+				                <input type="radio" name="paymentMethod" value="card" ng-model="visitForm.paymentMethod">
+				                {{'commons.card' | translate}}
+				            </label>
+				            <label style="margin-right:20px;">
+				                <input type="radio" name="paymentMethod" value="cash" ng-model="visitForm.paymentMethod">
+				                {{'commons.cash' | translate}}
+				            </label>    
+				            <label style="margin-right:20px;">    
+				                <input type="radio" name="paymentMethod" value="instalment" ng-model="visitForm.paymentMethod">
+				                {{'commons.installment' | translate}}
+				            </label>    
+				        </div>
+					</div>
+				
+				</div>
+			
+				<div class="col-md-6">
+					<h3 class="dark-grey">{{'visit.patient_data' | translate}}</h3>
+					
+					<div class="form-group col-lg-8">
+						<label>{{'visit.firstName_lastName' | translate}}</label>
+						<input type="" name="" class="form-control" id="" 
+						ng-value="firstName_lastName"
+						ng-disabled="true"
+						>
+					</div>
+					<div class="form-group col-lg-4">
+						<label>{{'commons.age' | translate}}</label>
+						<input type="" name="" class="form-control" id="" value=""
+						ng-model="visit.patient.age"
+						ng-disabled="true">
+					</div>
+					<div class="form-group col-lg-12">
+						<label>{{'patient.patient_description' | translate}}</label>
+						<textarea 
+		                   	name="message" 
+		                   	id="message" 
+		                   	class="form-control" 
+		                   	rows="4" 
+		                   	cols="25" 
+		                   	required="required"
+	                        placeholder="{{'commons.description' | translate}}"
+	                        ng-model="visit.patient.description"
+	                        ng-class="{submitted:sendEmailForm.submitted}"
+	                        ng-disabled="true">
+	                    </textarea>
+					</div>
+					
+					<div class="form-group col-lg-12">
+						<label>{{'addVisit.visit_description' | translate}}</label>
+						<textarea 
+		                   	name="message" 
+		                   	id="message" 
+		                   	class="form-control" 
+		                   	rows="3" 
+		                   	cols="25" 
+		                   	required="required"
+	                        placeholder="{{'commons.description' | translate}}"
+	                        ng-model="visit.description"
+	                        ng-class="{submitted:sendEmailForm.submitted}"
+	                        style="background: #f6f9fc;">
+	                    </textarea>
+					</div>
+					
+					<div class="form-group col-lg-12">
+						<label>{{'visit.recommendations_after_a_visit' | translate}}</label>
+						<textarea 
+		                   	name="message" 
+		                   	id="message" 
+		                   	class="form-control" 
+		                   	rows="3" 
+		                   	cols="25" 
+		                   	required="required"
+	                        placeholder="{{'commons.description' | translate}}"
+	                        ng-model="visit.recomendation"
+	                        ng-class="{submitted:sendEmailForm.submitted}"
+	                        style="background: #f6f9fc;">
+	                    </textarea>
+					</div>
+					
+					<button type="button" class="btn btn-primary">{{'commons.save' | translate}}</button>
+				</form>
+			</div>
+		</div>
+	</section>
+</div>
+
+<style>
+	.table-striped > tbody > tr:nth-of-type(2n+1) {
+		background: #f6f9fc;
+	}
+</style>

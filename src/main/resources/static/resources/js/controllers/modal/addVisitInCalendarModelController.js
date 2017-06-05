@@ -176,27 +176,6 @@ angular.module('app.controller.addVisitInCalendarModel', [])
 	    }
 	  };
 
-//	  vm.address = {};
-//	  vm.refreshAddresses = function(address) {
-//		  console.log("function refreshAddresses")
-//	    var params = {address: address, sensor: false};
-//	    return $http.get(
-//	      'http://maps.googleapis.com/maps/api/geocode/json',
-//	      {params: params}
-//	    ).then(function(response) {
-//	      vm.addresses = response.data.results;
-//	    });
-//	  };
-
-//	  vm.addPerson = function(item, model){
-//		  console.log("function addPerson")
-//	    if(item.hasOwnProperty('isTag')) {
-//	      delete item.isTag;
-//	      vm.people.push(item);
-//	    }
-//	  }
-	  
-//	  var lastVisitForPatient = {};
 	  vm.visit = {};
 	  vm.choosedPatient = {};
 	  vm.onSelectPatient = function(item, model){
@@ -223,7 +202,7 @@ angular.module('app.controller.addVisitInCalendarModel', [])
 	  /////////////////////select Hour///////////////////////////////////
 
 	  vm.onSelectHour = function(item, model){
-//		  $log.info("item hour " , item)
+		  $log.info("item hour " , item)
 		  $("#hourField").css({"border-color": "", 
 	             "border-width":"", 
 	             "border-style":""})

@@ -10,7 +10,7 @@ angular.module('app.translate-config-pl', ['pascalprecht.translate'])
 	    	"contact": "Kontakt",
 	    	"welcome": "Witaj",
 	    	"registerSpecialist":"Czy jesteś specjalistą?",
-	    	"language_EN": "english",
+	    	"language_EN": "English",
 	    	"language_PL": "polski",
 	    	"about_portal":"O portalu",
 	    	"physiotherapy" : "Fizjoterapia",
@@ -86,6 +86,7 @@ angular.module('app.translate-config-pl', ['pascalprecht.translate'])
 		"kindOfPain" : {
 			"add_new_kindOfPain" : "Dodawanie nowej dolegliwości",
 			"pain_name" : "Rodzaj dolegliwości",
+			"pain_description" : "Opis dolegliwości",
 			"correct_add_kindOfPain" : "Prawidłowo dodano rodzaj dolegliwości"
 			
 		},
@@ -99,6 +100,18 @@ angular.module('app.translate-config-pl', ['pascalprecht.translate'])
 		"visit" : {
 			"date_of_visit" : "Data wizyty",
 			"select_patient_from_list" : "Wybierz pacjenta z listy",
+			"visit_of_the_day" : "Wizyta z dnia",
+			"see_visits": "Zobacz wizyty",
+			"end_visit" : "Zakończ wizytę",
+			"details_of_the_visit" : "Szczegóły wizyty",
+			"visit_length":"Czas trwania",
+			"service_name" : "Nazwa usługi",
+			"the_total_cost_of": "Całkowity koszt",
+			"payment_method" : "Rodzaj płatności",
+			"patient_data" : "Dane pacjenta",
+			"firstName_lastName" : "Imię i nazwisko",
+			"recommendations_after_a_visit" : "Rekomendacje po wizycie",
+			"what_visit_length" : "What visit length",
 		},
 		"contact" : {
 			"subject" : "Temat",
@@ -107,8 +120,8 @@ angular.module('app.translate-config-pl', ['pascalprecht.translate'])
 		},
 		"login" : {
 			"welcome_login_page" : "Witaj na stronie logowania",
-			"access_to_virtual_physiotherapy" : "Dostęp do wirtualnego gabinetu fizjoterapii. Jeśli masz konto, wpisz adres email i hasło poniżej, a jeśli nie masz to",
-			"create_new_account" : "Create new account",
+			"access_to_virtual_physiotherapy" : "Dostęp do wirtualnego gabinetu fizjoterapii. Jeśli masz konto, wpisz adres email i hasło poniżej, a jeśli nie masz",
+			"create_new_account" : "Stwórz nowe konto",
 			"error" : "Błąd",
 			"incorrect_login_or_password" : "Nieprawidłowy login lub hasło",
 			"try_again" : "Spróbuj jeszcze raz",
@@ -169,10 +182,15 @@ angular.module('app.translate-config-pl', ['pascalprecht.translate'])
 			"email_is_required" : "E-mail jest wymagany",
 			"incorrect_email" : "Nieprawidłowy e-mail",
 			"postcode_is_required" : "Kod pocztowy jest wymagany",
+			"pain_name_is_required" : "Rodzaj dolegliwości jest wymagany",
 			"city_is_required" : "Miasto jest wymagane",
 			"pesel_is_required" : "Pesel jest wymagany",
 			"please_enter_valid_postcode" : "Proszę podać prawidłowy kod pocztowy",
 			"changes_have_been_saved" : "Zmiany zostały zapisane",
+			"search" : "Szukaj",
+			"card" : "Karta",
+			"cash" : "Gotówka",
+			"installment" : "Raty",
 		}
 	 })
 })

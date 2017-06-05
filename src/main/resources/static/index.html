@@ -161,7 +161,7 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-             <li ng-if="authenticated"><a ui-sref="allPatients" title=""><span translate="index.patients"></span></a></li>
+            <li ng-if="authenticated"><a ui-sref="allPatients" title=""><span translate="index.patients"></span></a></li>
             <li ng-if="authenticated"><a ui-sref="visits"><span translate="index.visits"></span></a></li>
             <li ng-if="authenticated"><a ui-sref="calendar({id: 2})"><span translate="index.timetable"></span></a></li>
             <li uib-dropdown ng-if="authenticated" is-open="status.isopen">
@@ -195,6 +195,18 @@
     
     
 	<style>
+	
+	.row.vdivide [class*='col-']:not(:last-child):after {
+  background: #e0e0e0;
+  width: 1px;
+  content: "";
+  display:block;
+  position: absolute;
+  top:0;
+  bottom: 0;
+  right: 0;
+  min-height: 70px;
+}
 	
 	.navbar-collapse { padding: 0; } /* forces the nav to take full container with */
 /* .navbar-nav > li > a { text-transform: uppercase; } */
@@ -357,6 +369,7 @@
 	<script src="resources/js/translate/languages/polish.js"></script>
 	<script src="resources/js/translate/languages/english.js"></script>
 	
+	<script src="resources/js/configuration/uibPaginationConfig.js"></script>
 	
 	<script src="resources/js/controllers/navigationController.js"></script>
 	<script src="resources/js/controllers/loginController.js"></script>
@@ -366,6 +379,7 @@
 	<script src="resources/js/controllers/contactController.js"></script>
 	<script src="resources/js/controllers/patientsController.js"></script>
 	<script src="resources/js/controllers/addPatientController.js"></script>
+	<script src="resources/js/controllers/visitsController.js"></script>
 	<script src="resources/js/controllers/visitController.js"></script>
 	<script src="resources/js/controllers/addVisitController.js"></script>
 	<script src="resources/js/controllers/patientController.js"></script>

@@ -11,7 +11,7 @@ angular.module('app.translate-config-en', ['pascalprecht.translate'])
 	    	"welcome": "Welcome",
 	    	"registerSpecialist":"Are you a specialist?",
 	    	"language_EN": "english",
-	    	"language_PL": "polski",
+	    	"language_PL": "Polski",
 	    	"about_portal":"About portal",
 	    	"physiotherapy" : "Physiotherapy",
 	    	"specialists" : "Specialists",
@@ -92,6 +92,7 @@ angular.module('app.translate-config-en', ['pascalprecht.translate'])
 		"kindOfPain" : {
 			"add_new_kindOfPain" : "Add new kind of pain",
 			"pain_name" : "Pain name",
+			"pain_description" : "Pain description",
 			"correct_add_kindOfPain" : "Correct add kind of pain"
 			
 		},
@@ -105,6 +106,18 @@ angular.module('app.translate-config-en', ['pascalprecht.translate'])
 		"visit" : {
 			"date_of_visit" : "Date of visit",
 			"select_patient_from_list" : "select patient from the list",
+			"visit_of_the_day" : "Visit of the day",
+			"see_visits": "See visits",
+			"end_visit" : "End the visit",
+			"details_of_the_visit" : "Details of the visit",
+			"visit_length":"Duration of visit",
+			"service_name" : "Service name",
+			"the_total_cost_of": "the total cost of",
+			"payment_method" : "Payment method",
+			"patient_data" : "Patient data",
+			"firstName_lastName" : "First name and last name",
+			"recommendations_after_a_visit" : "Recommendations after a visit",
+			"what_visit_length" : "Podaj długość wizyty",
 		},
 		"contact" : {
 			"subject" : "Sucject",
@@ -175,10 +188,15 @@ angular.module('app.translate-config-en', ['pascalprecht.translate'])
 			"email_is_required" : "E-mail is required",
 			"incorrect_email" : "Incorrect e-mail",
 			"postcode_is_required" : "Post code is required",
+			"pain_name_is_required" : "Pain name is required",
 			"city_is_required" : "City is required",
 			"pesel_is_required" : "Pesel is required",
 			"please_enter_valid_postcode" : "Please enter a valid zip code",
 			"changes_have_been_saved" : "Changes have been saved",
+			"search" : "Search",
+			"card" : "Card",
+			"cash" : "Cash",
+			"installment" : "Installment",
 		}
 	 })
 })

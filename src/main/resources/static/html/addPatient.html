@@ -1,7 +1,7 @@
 <meta meta charset=utf-8>
 	<div class="main-header">
 		<div class="container">
-			<span class="page-title">{{'addPatient.add_patient' | translation}}</span>
+			<span class="page-title">{{'addPatient.add_patient' | translate}}</span>
 		</div>
 	</div>
 	<div class="container">
@@ -10,15 +10,15 @@
 				<div class="col-md-offset-2 col-md-4">
 					<div class="form-group">
 						<div class="alert alert-success" ng-show="successAddPatient">
-							  <strong>{{'commons.success' | translation}}</strong> {{'addPatient.correct_add_patient' | translation}}
+							  <strong>{{'commons.success' | translate}}</strong> {{'addPatient.correct_add_patient' | translate}}
 						</div>
 					</div>
 						<div class="form-group">
-							<label for="firstname" >{{'commons.firstname' | translation}}:<span class="required">*</span></label>
+							<label for="firstname" >{{'commons.firstname' | translate}}:<span class="required">*</span></label>
 							<input
 								name="firstname"
 								required="required" 
-								placeholder="{{'commons.firstname' | translation}}"
+								placeholder="{{'commons.firstname' | translate}}"
 								id="firstname" 
 								value=""
 								type="text" 
@@ -30,27 +30,27 @@
 	        				<span 
 	        					ng-show="addPatientForm.firstname.$error.required && addPatientForm.submitted" 
 	        					style="color : #f00; float:left;"
-	        					>{{'commons.firstname_is_required' | translation}}
+	        					>{{'commons.firstname_is_required' | translate}}
 	        				</span>
 	        				<span 
 	        					ng-show="addPatientForm.firstname.$error.minlength && addPatientForm.submitted" 
 	        					style="color : #f00; float:left;"
-	        					>{{'addPatient.for_short_firstname' | translation}}
+	        					>{{'addPatient.for_short_firstname' | translate}}
 	        				</span>
 	        				<span 
 	        					ng-show="addPatientForm.firstname.$error.maxlength && addPatientForm.submitted" 
 	        					style="color : #f00; float:left;"
-	        					>{{'addPatient.for_long_firstname' | translation}}
+	        					>{{'addPatient.for_long_firstname' | translate}}
 	        				</span>
 						</div>
 						
 						<div class="form-group">
 								<label for="lastname" 
-								>{{'commons.lastname' | translation}}:<span class="required">*</span></label> 
+								>{{'commons.lastname' | translate}}:<span class="required">*</span></label> 
 								<input
 									name="lastname"
 									required="required"
-									placeholder="{{'commons.lastname' | translation}}" 
+									placeholder="{{'commons.lastname' | translate}}" 
 									id="lastname" 
 									value="" 
 									type="text"
@@ -60,12 +60,12 @@
 								<span 
 									ng-show="addPatientForm.lastname.$error.required && addPatientForm.submitted" 
 									style="color : #f00; float:left;"
-									>{{'commons.lastname_is_required' | translation}}
+									>{{'commons.lastname_is_required' | translate}}
 								</span>
 						</div>
 						
 						<div class="form-group">
-						  <label for="birthDate">{{'commons.date_of_birth' | translation}}:<span class="required">*</span></label>  
+						  <label for="birthDate">{{'commons.date_of_birth' | translate}}:<span class="required">*</span></label>  
 <!-- 						  <div class="col-md-6"> -->
 							  <div class="input-group">
 									<span class="input-group-btn" id="spanDate">
@@ -95,19 +95,19 @@
 							 <span 
 								ng-show="addPatientForm.dateField.$error.required && addPatientForm.submitted" 
 								style="color : #f00; float:left;"
-								>{{'commons.date_of_birth_required' | translation}}
+								>{{'commons.date_of_birth_required' | translate}}
 							</span>
 							<span 
 		       					ng-show="addPatientForm.dateField.$error.date && addPatientForm.submitted"
 		       					style="color : #f00; float:left;"
-		       					>{{'commons.incorrect_date' | translation}}
+		       					>{{'commons.incorrect_date' | translate}}
 		       				</span>
 <!-- 						  </div> -->
 						</div>
 						
 						
 						<div class="form-group ">
-						  <label for="gender">{{'commons.gender' | translation}}:</label>
+						  <label for="gender">{{'commons.gender' | translate}}:</label>
 						  	<div name="gender" ng-init="patient.gender='m'">
 							    <label class="radio-inline" for="gender">
 							      <input 
@@ -117,7 +117,7 @@
 							      	value="m" 
 							      	checked="checked"
 							      	ng-model="patient.gender">
-							      {{'commons.man' | translation}}
+							      {{'commons.man' | translate}}
 							    </label> 
 							    <label class="radio-inline" for="gender">
 							      <input 
@@ -126,17 +126,17 @@
 							      	id="gender2" 
 							      	value="k"
 							      	ng-model="patient.gender">
-							      {{'commons.woman' | translation}}
+							      {{'commons.woman' | translate}}
 							    </label> 
 						  	</div>
 						</div>
 						
 						
 						<div class="form-group">
-							<label for="pesel">{{'commons.pesel' | translation}}:<span class="required">*</span></label> 
+							<label for="pesel">{{'commons.pesel' | translate}}:<span class="required">*</span></label> 
 								<input
 									name="pesel"
-									placeholder="{{'commons.pesel' | translation}}" 
+									placeholder="{{'commons.pesel' | translate}}" 
 									id="pesel" 
 									value=""
 									type="text"
@@ -146,7 +146,7 @@
 								>
 								<span 
 									ng-show="addPatientForm.pesel.$error.required  && addPatientForm.submitted" 
-									style="color : #f00; float:left;">{{'commons.pesel_is_required' | translation}}
+									style="color : #f00; float:left;">{{'commons.pesel_is_required' | translate}}
 								</span>
 						</div>
 							
@@ -155,7 +155,7 @@
 								<input
 									name="email"
 									required="required"
-									placeholder="E-mail*" 
+									placeholder="E-mail" 
 									id="email" 
 									value="" 
 									type="email"
@@ -165,12 +165,12 @@
 		        				<span 
 		        					ng-show="addPatientForm.email.$error.required && addPatientForm.submitted" 
 		        					style="color : #f00; float:left;"
-		        					>{{'commons.email_is_required' | translation}}
+		        					>{{'commons.email_is_required' | translate}}
 		        				</span>
 		        				<span 
 		        					ng-show="addPatientForm.email.$error.email && addPatientForm.submitted" 
 		        					style="color : #f00; float:left;"
-		        					>{{'commons.incorrect_email' | translation}}
+		        					>{{'commons.incorrect_email' | translate}}
 		        				</span>
 						</div>
 						
@@ -179,10 +179,10 @@
 				
 				
 					<div class="form-group" >
-						<label for="phone">{{'commons.phone' | translation}}:</label> 
+						<label for="phone">{{'commons.phone' | translate}}:</label> 
 						<input
 							name="phone"
-							placeholder="{{'commons.phone' | translation}}" 
+							placeholder="{{'commons.phone' | translate}}" 
 							id="phone"
 							value="" 
 							type="text"
@@ -190,10 +190,10 @@
 						>
 					</div>				
 					<div class="form-group">
-						<label for="street" >{{'commons.street' | translation}}:</label> 
+						<label for="street" >{{'commons.street' | translate}}:</label> 
 						<input
 							name="street"
-							placeholder="{{'commons.street' | translation}}" 
+							placeholder="{{'commons.street' | translate}}" 
 							id="street"
 							value="" 
 							type="text"
@@ -201,30 +201,30 @@
 						>
 					</div>
 					<div class="form-group">
-						<label for="number">{{'commons.number' | translation}}:</label> 
+						<label for="number">{{'commons.number' | translate}}:</label> 
 						<input
 							name="number" 
-							placeholder="{{'commons.number' | translation}}" 
+							placeholder="{{'commons.number' | translate}}" 
 							id="number" 
 							type="text"
 							ng-model="patient.number"
 						>
 					</div>
 					<div class="form-group" >
-						<label for="city" >{{'commons.city' | translation}}:</label> 
+						<label for="city" >{{'commons.city' | translate}}:</label> 
 						<input
 							name="city"
-							placeholder="{{'commons.city' | translation}}" 
+							placeholder="{{'commons.city' | translate}}" 
 							id="city"
 							type="text"
 							ng-model="patient.city"
 						>
 					</div>
 					<div class="form-group">
-						<label for="postCode " >{{'commons.postcode' | translation}}:<span class="required">*</span></label> 
+						<label for="postCode " >{{'commons.postcode' | translate}}:<span class="required">*</span></label> 
 						<input
 							name="postCode"
-							placeholder="{{'commons.postcode' | translation}}" 
+							placeholder="{{'commons.postcode' | translate}}" 
 							id="postcode"
 							value="" type="text"
 							ng-model="patient.postCode"
@@ -236,32 +236,32 @@
 	       				<span 
 	       					ng-show="addPatientForm.postCode.$error.required && addPatientForm.submitted"
 	       					style="color : #f00; float:left;"
-	       					>{{'commons.postcode_is_required' | translation}}
+	       					>{{'commons.postcode_is_required' | translate}}
 	       				</span>
 	       				<span 
 	       					ng-show="addPatientForm.postCode.$error.pattern && addPatientForm.submitted"
 	       					style="color : #f00; float:left;"
-	       					>{{'commons.please_enter_valid_postcode' | translation}}
+	       					>{{'commons.please_enter_valid_postcode' | translate}}
 	       				</span>
 					</div>
 					<div class="form-group" >
-						<label for="description" >{{'commons.additional_information' | translation}}:</label>
+						<label for="description" >{{'commons.additional_information' | translate}}:</label>
 						<textarea name="description"
 							class="form-control" 
-							placeholder="{{'commons.additional_information' | translation}}"
+							placeholder="{{'commons.additional_information' | translate}}"
 							id="description" 
 							style="height: 61px; 
 							background: #f6f9fc;"
 							ng-model="patient.description">
 						</textarea>
-						<p class="description">* {{'addPatient.enter_additional_patient_information' | translation}}</p>
+						<p class="description">* {{'addPatient.enter_additional_patient_information' | translate}}</p>
 					</div>
 				</div>
 			</div>
 			<div class="row" style="padding-top:15px;">
 				<div class="form-group" >
 					<div class="text-center">
-						<button type="submit" class="btn btn-primary" ng-click="addPatient(patient)">{{'commons.save' | translation}}</button>
+						<button type="submit" class="btn btn-primary" ng-click="addPatient(patient)">{{'commons.save' | translate}}</button>
 					</div>
 				</div>
 			</div>

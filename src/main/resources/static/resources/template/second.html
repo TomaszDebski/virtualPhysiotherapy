@@ -92,21 +92,17 @@
 						<div class="row">
 							<div class="col-xs-5">
 								<span style="color: #acacac; font-size: 9pt; text-align: left;"
-								>{{'commons.date_of_birth' | translate}}:
+								>{{'commons.age' | translate}}:
 								</span>  
 							</div>
 							<div class="col-xs-7">
 								<span style="font-size: 9pt; text-align: left;"
-								>{{ctrl.choosedPatient.birthDate}}
+								>{{ctrl.choosedPatient.age}}
 								</span>
 							</div>
 						</div>
 
-						<div class="row">
-							<div class="col-xs-12">
-								<a href="#"><span class="label label-primary">View Spring record</span></a> <a href="#"><span class="label label-primary">View on EIP</span></a>
-							</div>
-						</div>
+						
                           <div style="margin-top: 8px; margin-bottom: 8px; width: 100%; height: 1px; background-color: #d9d9d9;"></div>
                       	
 						<h4>{{'patient.patient_description' | translate}}</h4>
@@ -132,7 +128,7 @@
 									<div class="row vertical-align">
 										<div class="col-xs-4" style="justify-content: end;">
 											<span style="color: #acacac; font-size: 9pt; text-align: left;">
-											{{'commons.date_of_visit' | translate}}:<span style="color:red;">*</span>
+											{{'visit.date_of_visit' | translate}}:<span style="color:red;">*</span>
 											 
 											</span>
 										</div>
@@ -169,7 +165,7 @@
 										<span 
 	                  						ng-show="addVisitForm.dateField.$error.required && addVisitForm.submitted " 
 	                  						style="color : #f00; float: left;"
-	                  						>{{'commons.select_hour' | translate}}
+	                  						>{{'commons.select_date' | translate}}
 	            						</span>
 									</div>
 
@@ -180,35 +176,28 @@
 											</span>  
 										</div>
 										<div class="col-xs-8">
-											<ui-select 
-												ng-model="visit.hour" 
-												theme="selectize" 
-												ng-disabled="ctrl.disabled"  
-												title="Choose a country"
-												on-select="ctrl.onSelectHour($item, $model)"
-												name="hourField"
-												id="hourField"
-												required
-												ng-class="{submitted:addVisitForm.submitted}"
-												style="width: 100%;"
-							 				>
-    											<ui-select-match placeholder="{{'commons.select_hour' | translate}}">{{$select.selected.name}}</ui-select-match>
-    											<ui-select-choices repeat="country in ctrl.countries | filter: $select.search">
-      												<span ng-bind-html="country.name | highlight: $select.search"></span>
-      												<small ng-bind-html="country.code | highlight: $select.search"></small>
-    											</ui-select-choices>
-  											</ui-select>
+											<select 
+		               							id="hourField" 
+		               							name="hourField" 
+		               							class="form-control" 
+		               							required="required"
+		               							ng-model="visit.hour"
+		               							ng-class="{submitted:addVisitForm.submitted}"
+		               							ng-options="country.name for country in ctrl.countries"
+												style="background: #f6f9fc;"
+	               								>
+	               							</select>
 										</div>
 									</div>
 									<div class="row col-md-offset-4">
 										<span 
 	                  						ng-show="addVisitForm.hourField.$error.required && addVisitForm.submitted " 
 	                  						style="color : #f00; float: left;"
-	                  						>{{'commons.select_date' | translate}}
+	                  						>{{'commons.select_hour' | translate}}
 	            						</span>
 									</div>
 									
-									<div class="row vertical-align">
+									<div class="row vertical-align" style="padding-top: 6px;">
 										<div class="col-xs-4" style="justify-content: end;">
 											<span style="color: #acacac; font-size: 9pt; text-align: left;"
 											>{{'addVisit.visit_length' | translate}}:<span style="color:red;">*</span>
@@ -281,7 +270,7 @@
 }
 
 #selectedPatientId.submitted.ng-invalid, input.submitted.ng-invalid,select.submitted.ng-invalid{
-  border:2px solid #f00;
+  	border:2px solid #f00;
 	border-radius: 4px;
 }
 </style>

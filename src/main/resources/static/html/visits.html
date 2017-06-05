@@ -129,7 +129,8 @@
     			<tbody>
     				<tr ng-repeat="visit in visits">
 				      	<td class=""><div class="">Rezerwacja</div></td>
-						<td><span class="table_span">{{visit.date | date:'dd/MMM/yy, HH:mm' }}</span></td>
+						<td>
+						<a ui-sref="visit({id:{{visit.id}}})"><span class="table_span">{{visit.date | date:'dd/MMM/yy, HH:mm' }}</span></a></td>
 						<td><span class="table_span">{{visit.description}}</span></td>
 						<td><span class="table_span">
 							<span ng-repeat="treatment in visit.treatment">

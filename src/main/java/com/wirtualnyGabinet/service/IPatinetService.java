@@ -23,6 +23,8 @@ public interface IPatinetService {
 	
 	Page<Patient> getAllPatientsList(Pageable pageable, long id);
 	
+	Page<Patient> getSearchPatient(Pageable pageable, long id, String name);
+	
 	void updatePatient(long id,Patient patient);
 	
 	void deletePatient(long id);
