@@ -3,22 +3,18 @@
  */
 angular.module('app.controller.visits', [])
 .controller('visitsController',
-		function($rootScope,$scope, $http, $location,$window,visitService,visitPaginationService,$timeout,patients,visits,
-				$stateParams) {
-//	console.log('visit Controller');
-//	console.log('dodatkowy parametr ' ,$location.search().id);
+		function($rootScope,$scope, $http, $location,$window,visitService,visitPaginationService,$timeout,
+				patients,visits,$stateParams) {
 	
 	var vm = this;
-	var curr = new Date(); // get current date
+	var curr = new Date();
 //	var first = curr.getDate() - curr.getDay() + 1; // First day is the day of the month - the day of the week
 //	var last = first + 6; // last day is the first day + 6
 //	var firstday = new Date(curr.setDate(first));
 //	var lastday = new Date(curr.setDate(firstday.getDate()+6));
 	var earlierDay = curr.setDate(curr.getDate()-7);
-//	$scope.today = function() {
-	    $scope.startDate = earlierDay;
-	    $scope.endDate = new Date();
-//	  };
+	$scope.startDate = earlierDay;
+	$scope.endDate = new Date();
 	
 	$rootScope.id = $window.sessionStorage.id;
 	refreshVisit = function(page,size){
@@ -62,17 +58,11 @@ angular.module('app.controller.visits', [])
 			refreshVisit(($scope.currentPage-1),10);
 		});
 	};
-	var monthNames = ["Styczeń", "Luty", "Marzec", "April", "May", "June",
-	                  "July", "August", "September", "October", "November", "December"
-	                ];
+//	var monthNames = ["Styczeń", "Luty", "Marzec", "April", "May", "June",
+//	                  "July", "August", "September", "October", "November", "December"
+//	                ];
 	
 	
-//	  $scope.today();
-
-//	  $scope.clear = function() {
-//	    $scope.dt = null;
-//	  };
-
 	  $scope.inlineOptions = {
 	    customClass: getDayClass,
 //	    minDate: new Date(),
@@ -120,8 +110,8 @@ angular.module('app.controller.visits', [])
 //	  };
 
 //	  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-	  $scope.format = 'yyyy/MM/dd';
-	  $scope.altInputFormats = ['yyyy/MM/dd'];
+	  $scope.format = 'yyyy-MM-dd';
+	  $scope.altInputFormats = ['yyyy-MM-dd'];
 
 	  $scope.popup1 = {
 	    opened: false
@@ -173,8 +163,6 @@ angular.module('app.controller.visits', [])
 	  }
 	  
 ////////////////////////Select Patient///////////////////////
-	  
-	  
 	  
 	  vm.disabled = undefined;
 	  vm.searchEnabled = undefined;

@@ -63,7 +63,7 @@
 					        <span 
 			   					ng-show="searchVisitForm.startDate.$error.date"
 			   					style="color : #f00; float:left;"
-			   					>Nieprawidłowa data
+			   					>{{'commons.incorrect_date' | translate}}
 		   					</span>
 				       	</div>
 					  </div>
@@ -95,7 +95,7 @@
 					        <span 
 			   					ng-show="searchVisitForm.endDate.$error.date"
 			   					style="color : #f00; float:left;"
-			   					>Nieprawidłowa data
+			   					>{{'commons.incorrect_date' | translate}}
 		   					</span>
 				       	</div>
 					 </div>
@@ -122,15 +122,15 @@
 						<th style="width:200px;">{{'commons.date' | translate}}</th>
 						<th>{{'commons.contents' | translate}}</th>
 						<th style="width:300px;">{{'commons.services' | translate}}</th>
-						<th style="width:100px;">{{'commons.cost' | translate}}</th>
+						<th style="width:100px;">{{'commons.price' | translate}}</th>
 						<th style="width:100px;">{{'commons.actions' | translate}}</th>
                    </tr>
                 </thead>
     			<tbody>
     				<tr ng-repeat="visit in visits">
-				      	<td class=""><div class="">Rezerwacja</div></td>
+				      	<td class=""><div class="">{{visit.status === 'reservation' ? 'commons.reservation' :'commons.finish' | translate}}</div></td>
 						<td>
-						<a ui-sref="visit({id:{{visit.id}}})"><span class="table_span">{{visit.date | date:'dd/MMM/yy, HH:mm' }}</span></a></td>
+						<a ui-sref="visit({id:{{visit.id}}})"><span class="table_span">{{visit.date | date:'yyyy-MM-dd, HH:mm' }}</span></a></td>
 						<td><span class="table_span">{{visit.description}}</span></td>
 						<td><span class="table_span">
 							<span ng-repeat="treatment in visit.treatment">
@@ -169,88 +169,12 @@
 								</a>
 							</span>
 						</td>
-						<script type="text/javascript">
-							function confirm_click() {
-								return confirm("{{'visits.want_delete_visit' | translate'}}");
-							}
-						</script>
 	        		</tr>
     			</tbody>
 			</table>
             <hr>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 	<table id="appointments-table-id" -->
-<!-- 		class=" patients-table "> -->
-<!-- 		<thead> -->
-<!-- 			<tr> -->
-<!-- 				<th >{{'commons.type' | translate}}</th> -->
-<!-- 				<th >{{'commons.date' | translate}}</th> -->
-<!-- 				<th>{{'commons.contents' | translate}}</th> -->
-<!-- 				<th >Zabiegi</th> -->
-<!-- 				<th >{{'commons.actions' | translate}}</th> -->
-<!-- 			</tr> -->
-<!-- 		</thead> -->
-<!-- 		<tbody> -->
-<!-- 			<tr ng-repeat="visit in visits"> -->
-<!-- 				<td class=""><div class="">Rezerwacja</div></td> -->
-<!-- 				<td><span class="table_span">{{visit.date | date:'dd/MMM/yy, HH:mm' }}</span></td> -->
-<!-- 				<td><span class="table_span">{{visit.description}}</span></td> -->
-<!-- 				<td><span class="table_span">{{visit.treatment[0].service.serviceName}}</span> -->
-					
-<!-- 				</td> -->
-<!-- 				<td class="actions-col"> -->
-<!-- 					<span class="masterTooltip table_span" title="{{'visits.finish_the_visit' | translate}}"> -->
-<!-- 						<a href="" class="icon"> -->
-<!-- 							<img src="/pics/checkmark.svg"> -->
-<!-- 						</a> -->
-<!-- 					</span> -->
-
-<!-- 					<span class="masterTooltip table_span" title="{{'visits.delete_the_visit' | translate}}"> -->
-<!-- 						<a ng-click="deleteVisit(visit)" href="" class="icon"> -->
-<!-- 							<img src="/pics/usun_szary.svg"> -->
-<!-- 						</a> -->
-<!-- 					</span> -->
-
-<!-- 					<span class="masterTooltip table_span" title="{{'commons.send_email' | translate}}"> -->
-<!-- 						<a -->
-<!-- 							href="#myModal"  -->
-<!-- 							onclick="addData(event)"  -->
-<!-- 							role="button" -->
-<!-- 							class="icon"  -->
-<!-- 							data-toggle="modal"  -->
-<!-- 							attr.item-patient="11111 22222" -->
-<!-- 							name="11111 22222"  -->
-<!-- 							attr.item-opiszwizyte="1111" -->
-<!-- 							attr.item-zalecenia="111"  -->
-<!-- 							attr.item-zabiegi="1111" -->
-<!-- 							attr.item-email="1111@o2.pl" -->
-<!-- 						> -->
-<!-- 							<img src="/pics/email.svg"> -->
-<!-- 						</a> -->
-<!-- 					</span> -->
-<!-- 				</td> -->
-<!-- 				<script type="text/javascript"> -->
-<!-- // 					function confirm_click() { -->
-<!-- // 						return confirm("{{'visits.want_delete_visit' | translate'}}"); -->
-<!-- // 					} -->
-<!-- 				</script> -->
-<!-- 			</tr> -->
-<!-- 		</tbody> -->
-<!-- 	</table> -->
-<!-- </div> -->
 	<div class="row">
 	    <div class="col-md-5 col-md-offset-5">
 	    	<ul  uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>

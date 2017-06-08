@@ -4,22 +4,28 @@
 
 angular.module('app.controller.addVisit', [])
 .controller('addVisitController', function($scope,$http,$rootScope,$log,
-		$location,$window,visitService,patientService,$http,$stateParams,patients,$timeout,$interval,services) {
+		$location,$window,visitService,patientService,$http,$stateParams,patients,$timeout,$interval,services,$parse,
+		$filter) {
 	
 	var vm = this;
 	
+//	var servicesCopy = angular.copy(services);
 	$scope.success = false;
 	
+	$scope.counter= 0;
+	//$scope.counter.number = 1;
+	$scope.visit= {};
+//	$scope.visit.service = [];
 	$scope.addVisit = function(visit){
 		if (visit == undefined){
 			visit = {};
 		}
-		console.log("visit.service" , visit.service)	
 		if ($scope.addVisitForm.$valid){
+			createTreatmentsForVisit(visit);
 			visit.hour = vm.visit.hour;
 			visit.date = vm.visit.date;
 			visit.isHoliday = false;
-			visitService.save({patientId:vm.visit.selectedPatientId,serviceId:visit.service},visit,function(){
+			visitService.save({patientId:vm.visit.selectedPatientId},visit,function(){
 				console.log("udało się");
 				$scope.success = true;
 			})
@@ -31,6 +37,24 @@ angular.module('app.controller.addVisit', [])
 			  $scope.addVisitForm.submitted=true;
 			$scope.success = false;
 		}
+	}
+	
+	function createTreatmentsForVisit(visit){
+		var servicesCopy = angular.copy(services);
+		visit.treatment = [];
+		var treatment = {};
+		var service = $filter('filter')(servicesCopy, {'id':$scope.visit.service})[0];
+		treatment.service = service;
+		visit.treatment.push(treatment);
+		for(var i = 1; i <= $scope.counter; i++){
+			treatment={};
+			var findedServiceValue = angular.element(document.querySelector('#selectService_'+i)).val();
+			service = $filter('filter')(servicesCopy, {'id':findedServiceValue})[0];
+			treatment.service = service;
+			visit.treatment.push(treatment);
+		}
+		return visit;
+		console.log('visit.treatment ' ,visit.treatment);
 	}
 	
 	$scope.services = services;
@@ -268,8 +292,8 @@ angular.module('app.controller.addVisit', [])
 //					  };
 
 //					  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-					  $scope.format = 'yyyy/MM/dd';
-					  $scope.altInputFormats = ['yyyy/MM/dd'];
+					  $scope.format = 'yyyy-MM-dd';
+					  $scope.altInputFormats = ['yyyy-MM-dd'];
 
 					  $scope.popup1 = {
 					    opened: false

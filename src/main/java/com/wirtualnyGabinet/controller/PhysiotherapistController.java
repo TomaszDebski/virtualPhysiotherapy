@@ -36,45 +36,33 @@ public class PhysiotherapistController {
 	@RequestMapping(method= RequestMethod.POST)
 	public void addPhysiotherapist(@RequestBody Physiotherapist physiotherapist){
 		physiotherapistService.addPhysiotherapist(physiotherapist);
-//		physiotherapist.setPassword(new BCryptPasswordEncoder().encode(physiotherapist.getPassword()));
-//		physiotherapist.setRole("ROLE_USER");
-//		physiotherapistRepository.save(physiotherapist);
 	}
 	
 	@JsonView(Views.User.class)
 	@RequestMapping(value="/{id}")
 	public Physiotherapist getPhysiotherapistRepositoryById(@PathVariable("id") long id){
-//		return physiotherapistRepository.findOne(id);
 		return physiotherapistService.findOne(id);
 	}
 	
 	@JsonView(Views.VisitsPhysiotherapist.class)
 	@RequestMapping
 	public List<Physiotherapist> getAllPhysiotherapists(){
-//		return (List<Physiotherapist>)physiotherapistRepository.findAll();
 		return physiotherapistService.getAllPhysiotherapists();
 	}
 
 	@JsonView(Views.User.class)
 	@RequestMapping("/byUsername/{name}")
 	public Physiotherapist getPhysiotherapistByUsername(@PathVariable("name") String name){
-//		return physiotherapistRepository.findTop1ByUsername(name);
 		return physiotherapistService.getPhysiotherapistByUsername(name);
 	}
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
 	public void updatePhysiotherapist(@PathVariable("id") long id,@RequestBody Physiotherapist physiotherapist){
-//		Physiotherapist oldPhysiotheraphist = physiotherapistRepository.findOne(id);
-//		oldPhysiotheraphist.setAddress(physiotherapist.getAddress());
-//		oldPhysiotheraphist.setCity(physiotherapist.getCity());
-//		physiotherapistRepository.save(oldPhysiotheraphist);
 		physiotherapistService.updatePhysiotherapist(id, physiotherapist);
 	}
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
 	public void deletePhysiotherapist(@PathVariable("id") long id){
-//		Physiotherapist physiotherapist = physiotherapistRepository.findOne(id);
-//		physiotherapistRepository.delete(physiotherapist);
 	}
 	
 	

@@ -135,6 +135,9 @@ angular.module('app.translate-config-pl', ['pascalprecht.translate'])
 			"for_short_login" : "Za krótki login",
 			"for_long_login" : "Za długi login",
 		},
+		"holiday" :{
+			"make_holiday":"Ustal wakacje",
+		},
 		"commons" : {
 			"success" : "Sukces",
 			"save" : "Zapisz",

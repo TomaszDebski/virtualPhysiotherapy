@@ -19,7 +19,7 @@ angular.module('app.controller.calendar', [])
 	/////////////////////////////////addVisit//////////////////
 	$scope.showModalVisit = function(){
 		$uibModal.open({
-              templateUrl: 'addVisitModal2.html',
+              templateUrl: 'addVisitModal.html',
               controller: 'addVisitInCalendarModelController as ctrl', 
               windowClass: 'app-modal-window',
               resolve :{
@@ -255,10 +255,4 @@ angular.module('app.controller.calendar', [])
         
 //////////////////////////////////////////////////////////////////        
         
-        $scope.myFunction = function(){
-//        	$('#calendar').fullCalendar('gotoDate', 2017,3,11);
-//        	$('#calendar').fullCalendar( 'changeView', 'agendaDay' )
-//        	$('#calendar').fullCalendar('gotoDate', '2017-03-11');
-        }
-
 });

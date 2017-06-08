@@ -5,13 +5,19 @@
 	    <h4 class="media-heading">
 	        <span href="" class="text-info">
 	            Ból: {{pain.painName}}
-	        </span><br>
+	        </span>
+	        <div class="pull-right">{{interviewAtrr.date | date:'yyyy-MM-dd'}}</div>
+	        <br>
 	        <span href="" class="text-info" style="font-size: 15px;">
 	            Umiejscowienie: {{pain.painBodyPlaces[0].bodyPlaceName}}
 	        </span>
 	    </h4>
 	    <p class="margin-top-10 margin-bottom-20">
-	        {{interviewAtrr.description}}
+	    	<div style="word-wrap: break-word;">
+				<span style="text-align: left;"
+					>{{interviewAtrr.description}}
+				</span>
+			</div>
 	    </p>
 	</div>
 </div>

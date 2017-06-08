@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.hibernate.Hibernate;
 import org.slf4j.Logger;
@@ -84,13 +85,16 @@ private final Logger log = LoggerFactory.getLogger(this.getClass());
 			String stringDate = new SimpleDateFormat("yyyy-MM-dd").format(visit.getDate()) + " " + visit.getHour();
 			visit.setDate(new SimpleDateFormat("yyyy-MM-dd hh:mm").parse(stringDate));
 			
-			Service service = serviceRepository.findOne(serviceId);
-			if (service != null){
-				Treatment tretment = new Treatment();
-				tretment.setService(service);
-				tretment.setVisit(visit);
-				visit.setTreatment(Arrays.asList(tretment));
+			for (Treatment treatment : visit.getTreatment()) {
+				treatment.setVisit(visit);
 			}
+//			Service service = serviceRepository.findOne(serviceId);
+//			if (service != null){
+//				Treatment tretment = new Treatment();
+//				tretment.setService(service);
+//				tretment.setVisit(visit);
+//				visit.setTreatment(Arrays.asList(tretment));
+//			}
 			
 			
 		} catch (ParseException e) {
@@ -144,11 +148,15 @@ private final Logger log = LoggerFactory.getLogger(this.getClass());
 	public void updateVisit(long id, Visit visit) {
 		System.out.println("robimy update");
 		Visit visitToUpdate = visitRepository.findOne(id);
-		visitToUpdate.setCost(visit.getCost());
+		if (StringUtils.equals(visit.getStatus(), "finish")){
+			visitToUpdate.setStatus(visit.getStatus());
+		}else{
+			visitToUpdate.setHour(visit.getHour());
+		}
 		visitToUpdate.setDate(visit.getDate());
-		visitToUpdate.setDescription(visit.getDescription());
-		visitToUpdate.setHour(visit.getHour());
+		visitToUpdate.setCost(visit.getCost());
 		visitToUpdate.setLength(visit.getLength());
+		visitToUpdate.setDescription(visit.getDescription());
 		visitToUpdate.setRecommendation(visit.getRecommendation());
 		visitRepository.save(visitToUpdate);
 	}

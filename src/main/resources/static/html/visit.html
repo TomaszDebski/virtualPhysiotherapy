@@ -3,17 +3,21 @@
     <div id="" class="container">
         <div class="row vertical-align">
         	<div class="col-md-4">
-		        <span class="page-title">{{'visit.visit_of_the_day' | translate}}: {{visit.date | date:'dd/MMM/yy, HH:mm'}}</span>
+		        <span class="page-title">{{'visit.visit_of_the_day' | translate}}: {{visit.date | date:'yyyy-MM-dd, HH:mm'}}</span>
             </div>
             <div class="col-md-4">
-            	<span>Status: {{visit.status}}</span>
+            	<span style="font-size: large">{{'visit.visit_status' | translate}}: {{visit.status === 'reservation' ? 'commons.reservation' :'commons.finish' | translate}}</span>
             </div>
 			<div class="col-md-4">
 				<div class="pull-right">
 					 <button  class="btn btn-primary active" ng-click="goToVisits()"
 						>{{'visit.see_visits' | translate}}</button>
-					<button  class="btn btn-primary active" ng-click="endVisit()"
-						>{{'visit.end_visit' | translate}}</button>
+					<button  
+						class="btn btn-primary active" 
+						ng-click="endVisit()"
+						ng-show="isFinishVar"
+						>{{'visit.end_visit' | translate}}
+					</button>
          		</div>
          	</div>
         </div>
@@ -55,6 +59,16 @@
 					            </button>
 					          </span>
 						</div>
+						<span 
+							ng-show="visitForm.dateField.$error.required && visitForm.submitted" 
+							style="color : #f00; float:left;"
+							>{{'commons.date_of_birth_required' | translate}}
+						</span>
+						<span 
+	       					ng-show="visitForm.dateField.$error.date && visitForm.submitted"
+	       					style="color : #f00; float:left;"
+	       					>{{'commons.incorrect_date' | translate}}
+	       				</span>
 
 					</div>
 					
@@ -103,18 +117,24 @@
 						<label>{{'visit.payment_method' | translate}}</label>
 						<div class="radio">
 				            <label style="margin-right:20px;">
-				                <input type="radio" name="paymentMethod" value="card" ng-model="visitForm.paymentMethod">
+				                <input type="radio" name="paymentMethod" value="card" required ng-model="visit.paymentMethod">
 				                {{'commons.card' | translate}}
 				            </label>
 				            <label style="margin-right:20px;">
-				                <input type="radio" name="paymentMethod" value="cash" ng-model="visitForm.paymentMethod">
+				                <input type="radio" name="paymentMethod" value="cash" required ng-model="visit.paymentMethod">
 				                {{'commons.cash' | translate}}
 				            </label>    
 				            <label style="margin-right:20px;">    
-				                <input type="radio" name="paymentMethod" value="instalment" ng-model="visitForm.paymentMethod">
+				                <input type="radio" name="paymentMethod" value="instalment" required ng-model="visit.paymentMethod">
 				                {{'commons.installment' | translate}}
 				            </label>    
 				        </div>
+				        {{visit.paymentMethod}}
+				        <span 
+							ng-show="visitForm.paymentMethod.$error.required  && visitForm.submitted" 
+							style="color : #f00; float:left;"
+							>{{'visit.login_is_required' | translate}}
+						</span>
 					</div>
 				
 				</div>
@@ -124,16 +144,23 @@
 					
 					<div class="form-group col-lg-8">
 						<label>{{'visit.firstName_lastName' | translate}}</label>
-						<input type="" name="" class="form-control" id="" 
-						ng-value="firstName_lastName"
-						ng-disabled="true"
+						<input 
+							type="" 
+							name="" 
+							class="form-control" 
+							id="" 
+							ng-value="firstName_lastName"
+							ng-disabled="true"
 						>
 					</div>
 					<div class="form-group col-lg-4">
 						<label>{{'commons.age' | translate}}</label>
-						<input type="" name="" class="form-control" id="" value=""
-						ng-model="visit.patient.age"
-						ng-disabled="true">
+						<input 
+							type="" 
+							name="" 
+							class="form-control" id="" value=""
+							ng-model="visit.patient.age"
+							ng-disabled="true">
 					</div>
 					<div class="form-group col-lg-12">
 						<label>{{'patient.patient_description' | translate}}</label>
@@ -143,7 +170,6 @@
 		                   	class="form-control" 
 		                   	rows="4" 
 		                   	cols="25" 
-		                   	required="required"
 	                        placeholder="{{'commons.description' | translate}}"
 	                        ng-model="visit.patient.description"
 	                        ng-class="{submitted:sendEmailForm.submitted}"
@@ -159,7 +185,6 @@
 		                   	class="form-control" 
 		                   	rows="3" 
 		                   	cols="25" 
-		                   	required="required"
 	                        placeholder="{{'commons.description' | translate}}"
 	                        ng-model="visit.description"
 	                        ng-class="{submitted:sendEmailForm.submitted}"
@@ -175,7 +200,6 @@
 		                   	class="form-control" 
 		                   	rows="3" 
 		                   	cols="25" 
-		                   	required="required"
 	                        placeholder="{{'commons.description' | translate}}"
 	                        ng-model="visit.recomendation"
 	                        ng-class="{submitted:sendEmailForm.submitted}"

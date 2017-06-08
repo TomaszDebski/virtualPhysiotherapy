@@ -3,7 +3,8 @@
  */
 
 angular.module('app.controller.interviewModal', [])
-.controller('interviewModalController', function($scope,$http, $uibModalInstance , myParam,pains,interviewService,$filter) {
+.controller('interviewModalController', function($scope,$http, $uibModalInstance , 
+		myParam,pains,interviewService,$filter) {
 	
 	var $translate = $filter('translate');
 	
@@ -16,7 +17,8 @@ angular.module('app.controller.interviewModal', [])
 //		  }
 		  if($scope.interviewForm.$valid) {
 				var interview = {};
-				interview.date = new Date();
+				interview.date = $scope.interview.startDate;
+				console.log('interview.date ' + interview.date);
 				interview.uniqueId = '22222';
 				interview.description = $scope.interview.description
 				interview.pains = []
@@ -124,5 +126,103 @@ angular.module('app.controller.interviewModal', [])
 //			} 
 			
 //		}
+		
+////////////////////////////////////////Datepicker//////////////////////////////////////////
+		
+		  $scope.inlineOptions = {
+				    customClass: getDayClass,
+//				    minDate: new Date(),
+//				    showWeeks: true
+				  };
+
+				  $scope.dateOptions = {
+				    dateDisabled: disabled,
+//				    formatYear: 'yy',
+//				    maxDate: new Date(2020, 5, 22),
+//				    minDate: new Date(),
+				    startingDay: 1
+				  };
+
+				  // Disable weekend selection
+				  function disabled(data) {
+				    var date = data.date,
+				      mode = data.mode;
+				    return mode === 'day' &&  date.getDay() === 0;
+//				    return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+				  }
+
+				  $scope.toggleMin = function() {
+					  console.log("zamykam");
+//				    $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
+//				    $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
+				  };
+
+//				  $scope.toggleMin();
+				  
+				  $scope.getDate = function(){
+//					  $log.info("mydate from getDate " , vm.visit.startDate)
+//					  vm.visit.date = Date.parse(vm.visit.startDate);
+					  
+//					  refreshVisit(($scope.currentPage-1),10);
+				  }
+
+				  $scope.open1 = function() {
+				    $scope.popup1.opened = true;
+				  };
+
+				  $scope.open2 = function() {
+				    $scope.popup2.opened = true;
+				  };
+
+//				  $scope.setDate = function(year, month, day) {
+//				    $scope.dt = new Date(year, month, day);
+//				  };
+
+//				  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+				  $scope.format = 'yyyy-MM-dd';
+				  $scope.altInputFormats = ['yyyy-MM-dd'];
+
+				  $scope.popup1 = {
+				    opened: false
+				  };
+
+				  $scope.popup2 = {
+				    opened: false
+				  };
+
+				  var tomorrow = new Date();
+				  tomorrow.setDate(tomorrow.getDate() + 1);
+				  var afterTomorrow = new Date();
+				  afterTomorrow.setDate(tomorrow.getDate() + 1);
+				  $scope.events = [
+				    {
+				      date: tomorrow,
+				      status: 'full'
+				    },
+				    {
+				      date: afterTomorrow,
+				      status: 'partially'
+				    }
+				  ];
+
+				  function getDayClass(data) {
+				    var date = data.date,
+				      mode = data.mode;
+				    if (mode === 'day') {
+				      var dayToCheck = new Date(date).setHours(0,0,0,0);
+
+				      for (var i = 0; i < $scope.events.length; i++) {
+				        var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
+
+				        if (dayToCheck === currentDay) {
+				          return $scope.events[i].status;
+				        }
+				      }
+				    }
+
+				    return '';
+				  }
+				  
+	///////////////////////////////////////////////////////////////////////////////////////////
 
 });

@@ -4,19 +4,21 @@
 angular.module('app.controller.addVisitInCalendarModel', [])
 .controller('addVisitInCalendarModelController', function($scope,$rootScope,$http, $uibModalInstance , myParam,
 		allPatientsForPhysiotherapistService,patients,myParam,$timeout, $interval,getVisitsService,$log,visitService,
-		services) {
+		services,$filter) {
 	
 	$scope.width = 1200;
 	$scope.height = 1000;
 	$scope.visit = {};
+	$scope.counter= 0;
 	$scope.ok = function (visit) {
 		  if ($scope.addVisitForm.$valid){
-			  visit.hour = vm.visit.hour;
-//			  console.log('vm.visit.startDate' , vm.visit.startDate)
+			  createTreatmentsForVisit(visit);
+			  visit.hour = vm.visit.hour.name;
+			  console.log('vm.visit.hour.name' , vm.visit.hour.name)
 			  visit.date = vm.visit.startDate;
 			  visit.isHoliday = false;
 			  visit.length = vm.visit.length;
-			  visitService.save({patientId:vm.visit.selectedPatientId,serviceId:vm.visit.service},visit,function(){
+			  visitService.save({patientId:vm.visit.selectedPatientId},visit,function(){
 				  console.log("udało się");
 				  //vm.people.push({title: 'Random 1', start: new Date(), allDay: true})
 			  })
@@ -30,6 +32,24 @@ angular.module('app.controller.addVisitInCalendarModel', [])
 		  }
 	  
 	  };
+	  
+	  function createTreatmentsForVisit(visit){
+			var servicesCopy = angular.copy(services);
+			visit.treatment = [];
+			var treatment = {};
+			var service = $filter('filter')(servicesCopy, {'id':$scope.visit.service})[0];
+			treatment.service = service;
+			visit.treatment.push(treatment);
+			for(var i = 1; i <= $scope.counter; i++){
+				treatment={};
+				var findedServiceValue = angular.element(document.querySelector('#selectService_'+i)).val();
+				service = $filter('filter')(servicesCopy, {'id':findedServiceValue})[0];
+				treatment.service = service;
+				visit.treatment.push(treatment);
+			}
+			return visit;
+			console.log('visit.treatment ' ,visit.treatment);
+		}
 	  
 	  $scope.services= services;
 

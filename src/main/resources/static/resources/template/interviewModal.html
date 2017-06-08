@@ -1,10 +1,58 @@
- <script type="text/ng-template" id="myModal.html">
+ <script type="text/ng-template" id="interviewModal.html">
 <meta meta charset=utf-8>
- <div class="modal-header">
+<form name="interviewForm" novalidate>
+ <div class="modal-header vertical-align">
             <h3 class="modal-title">{{'interview.add_an_interview' | translate}}</h3>
+	<div class="form-group">
+			  <label class="col-md-offset-2 col-md-2 control-label" for="datapicker">
+			  	<span style="display: inherit;padding-top: 8px;">{{'commons.date' | translate}}:<i style="color:red;">*</i></span>
+			  </label>  
+			  <div class="col-md-8">
+			  	 <div class="input-group">
+				  	<input type="text" 
+						class="form-control" 
+						ng-change="getDate()" 
+						uib-datepicker-popup="{{format}}"
+						ng-model="interview.startDate" 
+						is-open="popup1.opened" 
+						ng-model-options="{timezone: 'utc'}"
+						datepicker-options="dateOptions" 
+						ng-required="true" 
+						close-text="Close" 
+						alt-input-formats="altInputFormats" 
+						required
+						name="dateField"
+						ng-class="{submitted:interviewForm.submitted}"
+					/>
+			          <span class="input-group-btn" id="spanDate">
+			            <button 
+			            	type="button" 
+			            	class="btn btn-default" 
+			            	ng-click="open1()">
+			            	<i class="glyphicon glyphicon-calendar"></i>
+			            </button>
+			          </span>
+				</div>
+				<span 
+    				ng-show="interviewForm.dateField.$error.required && interviewForm.submitted" 
+    				style="color : #f00; float:left;"
+    				>{{'commons.select_date' | translate}}
+    			</span>
+    			<span 
+   					ng-show="interviewForm.dateField.$error.date && interviewForm.submitted"
+   					style="color : #f00; float:left;"
+   					>{{'commons.incorrect_date' | translate}}
+   				</span>
+			  </div>
+			</div>
+
+
+
+
+
+
 </div>
 <div class="modal-body">
-	<form name="interviewForm" novalidate>
 	<div class="row vertical-align">
 	 	<div class="col-md-2">
 			<span>{{'interview.kind_of_pain' | translate}}:</span>
@@ -99,8 +147,8 @@
 		</div>
 
 	</div> 
-	</form>
  </div>     
+</form>
 
         <div class="modal-footer">
             <button class="btn btn-primary" ng-click="ok()">{{'commons.save' | translate}}</button>

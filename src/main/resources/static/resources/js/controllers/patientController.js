@@ -49,8 +49,6 @@ angular.module('app.controller.patient', ['ui.bootstrap'])
 		
 		$scope.saveInterview = function(ddd,ee){
 			console.log("ddd " , ddd);
-			console.log("ee " , ee);
-//			console.log("interview " , 'interview.pain_' , ddd);
 		}
 		
 		
@@ -65,30 +63,6 @@ angular.module('app.controller.patient', ['ui.bootstrap'])
 
 		    return text;
 		}
-		
-
-		
-	    
-//		$scope.country = {};
-//		$scope.countries = [ // Taken from https://gist.github.com/unceus/6501985
-//		    {name: 'Afghanistan', code: 'AF'},
-//		    {name: 'Åland Islands', code: 'AX'},
-//		    {name: 'Albania', code: 'AL'},
-//		    {name: 'Algeria', code: 'DZ'},
-//		    {name: 'American Samoa', code: 'AS'},
-//		  ];
-//		
-//		$scope.country2 = {};
-//		$scope.countries2 = [ // Taken from https://gist.github.com/unceus/6501985
-//		    {name: '111111', code: 'AF'},
-//		    {name: '22222', code: 'AX'},
-//		    {name: '333333', code: 'AL'},
-//		    {name: 'Algeria', code: 'DZ'},
-//		    {name: 'American Samoa', code: 'AS'},
-//		  ];
-
-//		$scope.items = ["one","two","three"]
-//		$scope.items2 = ["one2","two2","three2"]
 		
 ////////////////////////////////////////Datepicker//////////////////////////////////////////
 		
@@ -191,7 +165,7 @@ angular.module('app.controller.patient', ['ui.bootstrap'])
 ////////////////////////////////////////////////modal//////////////////////////////////////////////////
 		$scope.showModal = function(){
 			$uibModal.open({
-	              templateUrl: 'myModal.html',
+	              templateUrl: 'interviewModal.html',
 	              controller: 'interviewModalController', 
 	              resolve :{
 	            	  myParam : function(){

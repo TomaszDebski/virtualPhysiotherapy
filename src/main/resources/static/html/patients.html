@@ -45,10 +45,10 @@
 					      	</span>
 				      	</td>
 				         <td><span class="table_span"><img src="">{{patient.gender == 'm' ? 'patients.man' : 'patients.woman' | translate}}</span></td>
-				         <td><span class="table_span">{{patient.birthDate |  date:'dd/MM/yyyy' }}</span></td>
+				         <td><span class="table_span">{{patient.birthDate |  date:'yyyy-MM-dd' }}</span></td>
 				         <td><span class="table_span">{{patient.phone | tel}}</span></td>
 				         <td><span class="table_span">{{patient.email}}</span></td>
-				         <td><span class="table_span">{{patient.lastVisit | date:'dd/MMM/yy, HH:mm' }}</span></td>
+				         <td><span class="table_span">{{patient.lastVisit | date:'yyyy-MM-dd, HH:mm' }}</span></td>
 				                        <td class="actions-col">
 				               <span class="masterTooltip table_span" title="{{'patients.add_a_visit' | translate}}"> 
 					               <a ui-sref="addVisit({patientId:{{patient.id}}})" title="{{'patients.add_a_visit' | translate}}" class="icon">

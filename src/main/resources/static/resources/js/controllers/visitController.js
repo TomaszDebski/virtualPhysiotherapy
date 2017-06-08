@@ -3,20 +3,80 @@
  */
 angular.module('app.controller.visit', ['ui.bootstrap'])
 .controller('visitController', function($scope,$http,$rootScope,$log,$window,visitService,
-		$stateParams,$uibModal,$state,$timeout) {
+		$stateParams,$uibModal,$state,$timeout,$filter) {
+	
+	var $translate = $filter('translate');
 	
 	visitService.get({id:$stateParams.id},function(data){
 		$scope.visit = data;
 		console.log("data visit: "  ,data);
+		var cash = 0;
+		angular.forEach($scope.visit.treatment,function(key,value){
+			cash += key.service.price;
+		})
+		$scope.visit.cost = cash;
 		$scope.firstName_lastName = data.patient.firstname + ' ' + data.patient.lastname;
+		$scope.isFinishVar = $scope.visit.status == 'reservation';
 	});
 	
 	$scope.goToVisits = function(){
 		$state.go('visits');
 	}
 	
+//	$scope.isFinish = function(){
+//		$scope.isFinishVar = $scope.visit.status == 'reservation';
+//	}
+	
+	$scope.successEndVisit = false;
 	$scope.endVisit = function(){
-		
+		if ($scope.visitForm.$valid){
+			swal({
+				  title: $translate('visit.end_visit'),
+				  text: $translate('visit.are_you_sure_end_visit'),
+				  type: "info",
+				  showCancelButton: true,
+				  confirmButtonClass: "btn-primary",
+				  confirmButtonText: $translate('visit.end'),
+				  cancelButtonText: $translate('commons.cancel'),
+				  closeOnConfirm: true
+				},
+				function(){
+					updateEndVisit();
+				});
+		}else{
+			$scope.visitForm.submitted=true;
+		}
+	}
+	
+	function updateEndVisit(){
+		var visit={};
+		visit.recommendation = $scope.visit.recommendation;
+		visit.paymentMethod = $scope.visit.paymentMethod;
+		console.log('$scope.visit.paymentMethod ' +$scope.visit.paymentMethod);
+		visit.length = $scope.visit.length
+		visit.date = $scope.visit.date
+		visit.cost = $scope.visit.cost
+		visit.description = $scope.visit.description
+		visit.status = 'finish';
+		visitService.update({id:$stateParams.id},visit,function(){
+			  console.log("zakończono");
+			  $scope.visit.status = visit.status;
+			  $scope.isFinishVar = $scope.visit.status == 'reservation'
+		  })
+		$scope.successEndVisit = true;
+	}
+	
+	$scope.successSave = false;
+	$scope.editUser = function(user){
+		if ($scope.editUserForm.$valid){
+			physiotherapistService.update({id:user.id},user,function(){
+				console.log("udało się zmienić dane konta");
+				$scope.successSave = true;
+				$window.scrollTo(0, 0);
+			})
+		}else{
+			$scope.editUserForm.submitted=true;
+		}
 	}
 	
 	
@@ -76,8 +136,8 @@ angular.module('app.controller.visit', ['ui.bootstrap'])
 //			  };
 
 //			  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-			  $scope.format = 'yyyy/MM/dd';
-			  $scope.altInputFormats = ['yyyy/MM/dd'];
+			  $scope.format = 'yyyy-MM-dd';
+			  $scope.altInputFormats = ['yyyy-MM-dd'];
 
 			  $scope.popup1 = {
 			    opened: false

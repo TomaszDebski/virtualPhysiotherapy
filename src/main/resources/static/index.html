@@ -51,6 +51,11 @@
 <script src="resources/js/libraries/anim-in-out.js"></script>
 <link rel="stylesheet" href="resources/js/libraries/anim-in-out.css">
 
+<script src="resources/js/libraries/components/bootstrap-sweetalert/sweetalert.js"></script>
+<link rel="stylesheet" href="resources/js/libraries/components/bootstrap-sweetalert/sweetalert.css">
+<script src="resources/js/libraries/components/bootstrap-sweetalert/SweetAlert.min.js"></script>
+
+
 
 <link rel="stylesheet" href="css/components/select.css">
 <link rel="stylesheet" href="css/components/select2.css">
@@ -77,7 +82,7 @@
 			<div class="row">
 				<div class="col-md-3">
 					<img src="pics/icon.jpg" style="height: 150px; width: 150px; "
-						alt="ggggggg">
+						alt="">
 				</div>
 				<div class="col-md-offset-2 col-md-7">
 					<div class="pull-right">
@@ -100,6 +105,7 @@
 												xml:lang="en-CA" lang="en-CA" 
 												ng-click="changeLanguage('pl')"
 											>
+<!-- 											<img  src="/pics/english-flag.jpg" alt="Wirtualny gabinet"> -->
 												<span translate="index.language_PL"></span>
 											</a>
 										</div>
@@ -129,7 +135,7 @@
 							</nav>
 						</div>
 						<div class="row">
-							<div class="col-md-6 pull-right">
+							<div class="col-md-6 col-md-offset-3 col-xs-6 col-xs-offset-3">
 								<form  action="/search" method="get">
 									<div class="input-group">
 									      <input type="text" class="form-control" placeholder="Wyszukiwarka">
@@ -174,7 +180,6 @@
                     <li role="menuitem"><a ui-sref="addKindOfPain">{{'index.add_kindOfPain' | translate}} </a></li>                                   
                 </ul>
             </li>
-<!--             <li ng-if="authenticated"><a ui-sref="addVisit"><span translate="index.add_a_visit"></span></a></li> -->
             <li ng-if="authenticated"><a ui-sref="account"><span translate="index.account"></span></a></li>
             <li ng-if="!authenticated"><a ui-sref="/" title=""><span style="border-left: none;" translate="index.about_portal"></span></a></li>
             <li ng-if="!authenticated"><a ui-sref="/"><span translate="index.physiotherapy"></span></a></li>
@@ -186,11 +191,6 @@
       </nav>
     </div> 
 	</header>
-    
-    
-    
-    
-    
     
     
     
@@ -258,10 +258,26 @@
 	
 <!-- <div class="container-fluid"> -->
 	
-	<div ui-view class="anim-in-out anim-fade" data-anim-speed="300"> </div>
+<!-- 	<div ui-view class="anim-in-out anim-none" data-anim-speed="1000" data-anim-sync="false"></div> -->
+	<div ui-view class="main"></div>
 <!-- </div> -->
 
 <style>
+
+.main.ng-enter {
+  transition: 1.0s;
+  opacity: 0; }
+.main.ng-enter-active {
+  opacity: 1; }
+/* .main.ng-leave { */
+/*   transition: 0.25s; */
+/*   opacity: 1; } */
+/* .main.ng-leave-active { */
+/*   opacity: 0; } */
+
+
+
+
 	[ui-view] {
     position: inherit;
 </style>
@@ -297,69 +313,6 @@
 		}
   
   </style>
-
-<!-- <footer> -->
-<!--   <div class="container"> -->
-<!--     <div class="row"> -->
-<!--       <div class="col-md-3 col-sm-6 footer-col"> -->
-<!--         <div class="logofooter"> Logo</div> -->
-<!--         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.</p> -->
-<!--         <p><i class="fa fa-map-pin"></i> #228, Tiruvannamalai, Tamilnadu, India</p> -->
-<!--         <p><i class="fa fa-phone"></i> Phone (India) : +91 9999 999 999</p> -->
-<!--         <p><i class="fa fa-envelope"></i> E-mail : info@prabuuideveloper.com</p> -->
-        
-<!--       </div> -->
-<!--       <div class="col-md-3 col-sm-6 footer-col"> -->
-<!--         <h6 class="heading7">GENERAL LINKS</h6> -->
-<!--         <ul class="footer-ul"> -->
-<!--           <li><a href="#"> Career</a></li> -->
-<!--           <li><a href="#"> Privacy Policy</a></li> -->
-<!--           <li><a href="#"> Terms & Conditions</a></li> -->
-<!--           <li><a href="#"> Client Gateway</a></li> -->
-<!--           <li><a href="#"> Ranking</a></li> -->
-<!--           <li><a href="#"> Case Studies</a></li> -->
-<!--           <li><a href="#"> Frequently Ask Questions</a></li> -->
-<!--         </ul> -->
-<!--       </div> -->
-<!--       <div class="col-md-3 col-sm-6 footer-col"> -->
-<!--         <h6 class="heading7">LATEST POST</h6> -->
-<!--         <div class="post"> -->
-<!--           <p>facebook crack the movie advertisment code:what it means for you <span>August 3,2015</span></p> -->
-<!--           <p>facebook crack the movie advertisment code:what it means for you <span>August 3,2015</span></p> -->
-<!--           <p>facebook crack the movie advertisment code:what it means for you <span>August 3,2015</span></p> -->
-<!--         </div> -->
-<!--       </div> -->
-<!--       <div class="col-md-3 col-sm-6 footer-col"> -->
-<!--         <h6 class="heading7">Social Media</h6> -->
-<!--         <ul class="footer-social"> -->
-<!--           <li><i class="fa fa-linkedin social-icon linked-in" aria-hidden="true"></i></li> -->
-<!--           <li><i class="fa fa-facebook social-icon facebook" aria-hidden="true"></i></li> -->
-<!--           <li><i class="fa fa-twitter social-icon twitter" aria-hidden="true"></i></li> -->
-<!--           <li><i class="fa fa-google-plus social-icon google" aria-hidden="true"></i></li> -->
-<!--         </ul> -->
-<!--       </div> -->
-<!--     </div> -->
-<!--   </div> -->
-<!-- </footer> -->
-<!-- <!--footer start from here-->
-
-<!-- <div class="copyright"> -->
-<!--   <div class="container"> -->
-<!--     <div class="col-md-6"> -->
-<!--       <p>© 2016 - All Rights with prabuuideveloper</p> -->
-<!--     </div> -->
-<!--     <div class="col-md-6"> -->
-<!--       <ul class="bottom_ul"> -->
-<!--         <li><a href="#">prabuuideveloper.com</a></li> -->
-<!--         <li><a href="#">About us</a></li> -->
-<!--         <li><a href="#">Blog</a></li> -->
-<!--         <li><a href="#">Faq's</a></li> -->
-<!--         <li><a href="#">Contact us</a></li> -->
-<!--         <li><a href="#">Site Map</a></li> -->
-<!--       </ul> -->
-<!--     </div> -->
-<!--   </div> -->
-<!-- </div> -->
 
 
 	<script src="resources/js/app.js"></script>
@@ -413,16 +366,20 @@
 	<script src="resources/js/directives/dropdownDirective.js"></script>
 	<script src="resources/js/directives/addNewInterviewDirective.js"></script>
 	<script src="resources/js/directives/newDirective.js"></script>
+	<script src="resources/js/directives/addServiceDirective.js"></script>
+	
 	
 	
 	<script src="resources/js/filters/searchPatientFilter.js"></script>
+	<script src="resources/js/filters/telFilter.js"></script>
+	
 	
 	
 	<!-- Modals -->
 	<div ng-include="'resources/template/interviewModal.html'"></div>
-	<div ng-include="'resources/template/addVisitInCalendarModal.html'"></div>
+<!-- 	<div ng-include="'resources/template/addVisitInCalendarModal.html'"></div> -->
 	<div ng-include="'resources/template/addHolidayInCalendarModal.html'"></div>
-	<div ng-include="'resources/template/second.html'"></div>
+	<div ng-include="'resources/template/addVisitInCalendarModal.html'"></div>
 	
 </body>
 </html>

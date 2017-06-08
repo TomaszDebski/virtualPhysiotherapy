@@ -1,7 +1,7 @@
 insert into physiotherapist (id,username,password,first_name,last_name,phone,second_phone,email,city,post_code,address,role,pesel) values (1,'user','$2a$06$/zpn1QuDr6QmJMnNm/oXyuQoKxmRkE3qhlKGAywFRtK03FelDd3AW','Tomasz','Dębski','787361182','222222','tomaszdebski@o2.pl','Lublin','20-765','Lublinowo','ROLE_USER',28080803742);
 
 insert into patient (id,address, city, country, email, first_name, last_name,gender,age,phone,description,pesel,phisiotherapist_id,birth_date) values ( 1,'Krakowska', 'Kraków', 'Polska', 'PiotrNowak@o2.pl', 'Piotr', 'Nowak','m',34,'699254436','Przykładowy opis pacjenta','61081702122','1',DATE '1982-04-02');
-insert into visit (id,cost, date, description, hour, length, recommendation, patient_id , physiotherapist_id) values(1,'100','2017-03-01 09:30:00','opis','1','90','recomendation',1,1);
+insert into visit (id,cost, date, description, hour, length, recommendation,status, patient_id , physiotherapist_id) values(1,'100','2017-03-01 09:30:00','opis','1','90','recomendation','reservation',1,1);
 insert into service (id,description,price,service_name) values (1,'opis',10.0,'zabieg1');
 insert into service (id,description,price,service_name) values (2,'opis',20.0,'zabieg2');
 insert into service (id,description,price,service_name) values (3,'opis',30.0,'zabieg3');
@@ -10,11 +10,11 @@ insert into service (id,description,price,service_name) values (5,'opis',50.0,'z
 insert into treatment (id, description, service_id, visit_id) values (1,'opis',1,1);
 insert into treatment (id, description, service_id, visit_id) values (2,'opis',2,1);
 insert into treatment (id, description, service_id, visit_id) values (3,'opis',3,1);
-insert into visit (id,cost, date, description, hour, length, recommendation, patient_id , physiotherapist_id) values(2,'100',TIMESTAMP '2017-04-02 09:00:00','opis','1','45','recomendation',1,1);
-insert into visit (id,cost, date, description, hour, length, recommendation, patient_id , physiotherapist_id) values(3,'100',TIMESTAMP '2017-04-03 10:00:00','opis','1','30','recomendation',1,1);
-insert into visit (id,cost, date, description, hour, length, recommendation, patient_id , physiotherapist_id) values(4,'100',TIMESTAMP '2017-04-04 11:00:00','opis','1','120','recomendation',1,1);
-insert into visit (id,cost, date, description, hour, length, recommendation, patient_id , physiotherapist_id) values(5,'100',TIMESTAMP '2017-04-05 12:00:00','opis','1','30','recomendation',1,1);
-insert into visit (id,cost, date, description, hour, length, recommendation, patient_id , physiotherapist_id) values(6,'100',TIMESTAMP '2017-04-06 12:00:00','opis','1','30','recomendation',1,1);
+insert into visit (id,cost, date, description, hour, length, recommendation,status, patient_id , physiotherapist_id) values(2,'100',TIMESTAMP '2017-04-02 09:00:00','opis','1','45','recomendation','reservation',1,1);
+insert into visit (id,cost, date, description, hour, length, recommendation,status, patient_id , physiotherapist_id) values(3,'100',TIMESTAMP '2017-04-03 10:00:00','opis','1','30','recomendation','reservation',1,1);
+insert into visit (id,cost, date, description, hour, length, recommendation,status, patient_id , physiotherapist_id) values(4,'100',TIMESTAMP '2017-04-04 11:00:00','opis','1','120','recomendation','reservation',1,1);
+insert into visit (id,cost, date, description, hour, length, recommendation,status, patient_id , physiotherapist_id) values(5,'100',TIMESTAMP '2017-04-05 12:00:00','opis','1','30','recomendation','reservation',1,1);
+insert into visit (id,cost, date, description, hour, length, recommendation,status, patient_id , physiotherapist_id) values(6,'100',TIMESTAMP '2017-04-06 12:00:00','opis','1','30','recomendation','reservation',1,1);
 
 insert into Interview (id,date, description, unique_id, patient_id) values(1,date '2017-04-01','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum','1111',1);
 insert into pain (pain_name, interview_id) values ('Ból ramienia',1);

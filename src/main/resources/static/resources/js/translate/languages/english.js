@@ -141,6 +141,9 @@ angular.module('app.translate-config-en', ['pascalprecht.translate'])
 			"for_short_login" : "For a short login",
 			"for_long_login" : "For a long login",
 		},
+		"holiday" :{
+			"make_holiday":"Make a holiday",
+		},
 		"commons" : {
 			"success" : "Success",
 			"save" : "Save",

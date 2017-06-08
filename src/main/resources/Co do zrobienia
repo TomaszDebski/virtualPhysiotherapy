@@ -1,18 +1,19 @@
-sprawdź który kontroler odpowiada za upload plików
-zakończenie wizyty z rodzajami platności
-Przetłumacz dodawanie wakacji
-dodaj flagi
-dodaj date do wywiadów
+
+
+przenieś do resolvów
+dodaj dyrektywe dla wywiadów
 usuwanie wizyty i informacje o usunięciach
+uzupełnij dane
 dodawanie plików
 walidatory wizyt
+walidacja długości trwania wizyty tylko na liczby
 Gdy usunę fizjoterapeute usuwam wszystkie wizyty z nim związane
 zabezpiecz przed wejściem bezpośrednio linkiem
 opcja zmiany hasła
 ruchomy panel menu
 w kalendarzu dodaj opcje zaznaczania długości urlopu przez przeciągnięcie
 W pacjencie dodaj nr lokalu(kolumne) i daty urodzenia(teraz to nulle), postcode(nulle)
-
+sprawdź który kontroler odpowiada za upload plików
 
 Zamiast usuwania pacjenta przełączanie na nieaktywny
 alert o usunięciu pacjenta
