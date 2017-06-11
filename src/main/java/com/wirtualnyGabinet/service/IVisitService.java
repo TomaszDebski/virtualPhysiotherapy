@@ -32,4 +32,6 @@ public interface IVisitService {
 	void deleteVisit(long id);
 	
 	InfForScheduler[] getForSheduler(long id,String start, String end,String _);
+	
+	boolean checkVisit(long visitId,String physiotherapistName);
 }

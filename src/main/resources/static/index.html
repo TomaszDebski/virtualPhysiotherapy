@@ -3,6 +3,7 @@
 <head>
 <!-- <meta charset="UTF-8"> -->
 <meta meta charset=utf-8>
+<!-- <base href="/"> -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
  <!--
@@ -66,13 +67,14 @@
 <!-- Latest compiled and minified JavaScript -->
 <link href="css/fonts/font-awesome.min.css" rel="stylesheet">
 <link href="css/fonts/fontawesome-webfont.woff" rel="stylesheet">
+<link href="css/fonts/font-awesome.css" rel="stylesheet">
+<link href="css/fonts/font-awesome.css.map" rel="stylesheet">
 <link rel="stylesheet" href="css/style-header-upper.css">
 <link rel="stylesheet" href="css/style-header-bottom.css">
 <link rel="stylesheet" href="css/style-main.css">
 <link rel="stylesheet" href="css/grid.css">
 <link rel="stylesheet" href="css/style-main-header.css">
 <link rel="stylesheet" href="css/style-common.css">
-<!-- <link rel="stylesheet" href="css/bootstrap-combined.min.css"> -->
 
 </head>
 
@@ -81,8 +83,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-3">
-					<img src="pics/icon.jpg" style="height: 150px; width: 150px; "
-						alt="">
+					<a ui-sref="home"><img src="pics/icon.jpg" style="height: 150px; width: 150px; "
+						alt=""></a>
 				</div>
 				<div class="col-md-offset-2 col-md-7">
 					<div class="pull-right">
@@ -105,7 +107,6 @@
 												xml:lang="en-CA" lang="en-CA" 
 												ng-click="changeLanguage('pl')"
 											>
-<!-- 											<img  src="/pics/english-flag.jpg" alt="Wirtualny gabinet"> -->
 												<span translate="index.language_PL"></span>
 											</a>
 										</div>
@@ -135,12 +136,13 @@
 							</nav>
 						</div>
 						<div class="row">
-							<div class="col-md-6 col-md-offset-3 col-xs-6 col-xs-offset-3">
+							<div class=" pull-right" style="padding-top:10px">
 								<form  action="/search" method="get">
 									<div class="input-group">
-									      <input type="text" class="form-control" placeholder="Wyszukiwarka">
+									      <input type="text" class="form-control" placeholder="{{'commons.search' | translate}}"
+									      style="min-width: 200px;">
 									      <span class="input-group-btn">
-									        	<button class="btn btn-primary" type="button">Wyszukaj</button>
+									        	<button class="btn btn-primary" type="button">{{'commons.Search' | translate}}</button>
 									      </span>
 								    </div>
 								</form>
@@ -176,8 +178,9 @@
                 </a>
                 <ul uib-dropdown-menu role="menu" aria-labelledby="split-button">
                 	<li role="menuitem" style="display:none;"><a href="#"></a></li> 
-                    <li role="menuitem"><a ui-sref="addService">{{'index.add_services' | translate}} </a></li>
-                    <li role="menuitem"><a ui-sref="addKindOfPain">{{'index.add_kindOfPain' | translate}} </a></li>                                   
+                    <li role="menuitem" style="display:inline;"><a ui-sref="addService">{{'index.add_services' | translate}} </a></li>
+                    <li role="menuitem" style="display:inline;"><a ui-sref="addKindOfPain">{{'index.add_kindOfPain' | translate}} </a></li>                                   
+                    <li role="menuitem" style="display:inline;"><a ui-sref="addBodyPlace">{{'index.add_bodyPlace' | translate}} </a></li> 
                 </ul>
             </li>
             <li ng-if="authenticated"><a ui-sref="account"><span translate="index.account"></span></a></li>
@@ -256,11 +259,7 @@
 }
 	</style>
 	
-<!-- <div class="container-fluid"> -->
-	
-<!-- 	<div ui-view class="anim-in-out anim-none" data-anim-speed="1000" data-anim-sync="false"></div> -->
 	<div ui-view class="main"></div>
-<!-- </div> -->
 
 <style>
 
@@ -269,15 +268,6 @@
   opacity: 0; }
 .main.ng-enter-active {
   opacity: 1; }
-/* .main.ng-leave { */
-/*   transition: 0.25s; */
-/*   opacity: 1; } */
-/* .main.ng-leave-active { */
-/*   opacity: 0; } */
-
-
-
-
 	[ui-view] {
     position: inherit;
 </style>
@@ -314,7 +304,6 @@
   
   </style>
 
-
 	<script src="resources/js/app.js"></script>
 	<script src="resources/js/config.js"></script>
 	<script src="resources/js/run.js"></script>
@@ -328,14 +317,14 @@
 	<script src="resources/js/controllers/loginController.js"></script>
 	<script src="resources/js/controllers/logoutController.js"></script>
 	<script src="resources/js/controllers/registerController.js"></script>
-	<script src="resources/js/controllers/allPhysiotherapistController.js"></script>
+<!-- 	<script src="resources/js/controllers/allPhysiotherapistController.js"></script> -->
 	<script src="resources/js/controllers/contactController.js"></script>
-	<script src="resources/js/controllers/patientsController.js"></script>
-	<script src="resources/js/controllers/addPatientController.js"></script>
+	<script src="resources/js/controllers/patient/patientsController.js"></script>
+	<script src="resources/js/controllers/patient/addPatientController.js"></script>
+	<script src="resources/js/controllers/patient/patientController.js"></script>
 	<script src="resources/js/controllers/visitsController.js"></script>
 	<script src="resources/js/controllers/visitController.js"></script>
 	<script src="resources/js/controllers/addVisitController.js"></script>
-	<script src="resources/js/controllers/patientController.js"></script>
 	<script src="resources/js/controllers/modal/interviewModalController.js"></script>
 	<script src="resources/js/controllers/modal/addVisitInCalendarModelController.js"></script>
 	<script src="resources/js/controllers/modal/addHolidayInCalendarModelController.js"></script>
@@ -344,7 +333,7 @@
 	<script src="resources/js/controllers/indexController.js"></script>
 	<script src="resources/js/controllers/addServiceController.js"></script>
 	<script src="resources/js/controllers/addKindOfPainController.js"></script>
-	
+	<script src="resources/js/controllers/addBodyPlaceController.js"></script>
 	
 	<script src="resources/js/services/authService.js"></script>
 	<script src="resources/js/services/physiotherapistService.js"></script>
@@ -357,27 +346,21 @@
 	<script src="resources/js/services/getFileService.js"></script>
 	<script src="resources/js/services/serviceService.js"></script>
 	<script src="resources/js/services/kindOfPainService.js"></script>
+	<script src="resources/js/services/bodyPlaceService.js"></script>
 	<script src="resources/js/services/interviewService.js"></script>
-	
-	
 	
 	<script src="resources/js/directives/usernameAvailableDirective.js"></script>
 	<script src="resources/js/directives/compareToDirective.js"></script>
 	<script src="resources/js/directives/dropdownDirective.js"></script>
-	<script src="resources/js/directives/addNewInterviewDirective.js"></script>
-	<script src="resources/js/directives/newDirective.js"></script>
-	<script src="resources/js/directives/addServiceDirective.js"></script>
-	
-	
+	<script src="resources/js/directives/newInterview/addNewInterviewDirective.js"></script>
+	<script src="resources/js/directives/addService/addServiceDirective.js"></script>
+	<script src="resources/js/directives/multipleBodyAndPlaceInInterview/multipleBodyAndPlaceDirective.js"></script>
 	
 	<script src="resources/js/filters/searchPatientFilter.js"></script>
 	<script src="resources/js/filters/telFilter.js"></script>
 	
-	
-	
 	<!-- Modals -->
 	<div ng-include="'resources/template/interviewModal.html'"></div>
-<!-- 	<div ng-include="'resources/template/addVisitInCalendarModal.html'"></div> -->
 	<div ng-include="'resources/template/addHolidayInCalendarModal.html'"></div>
 	<div ng-include="'resources/template/addVisitInCalendarModal.html'"></div>
 	

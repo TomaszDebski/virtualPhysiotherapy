@@ -2,7 +2,7 @@
  * 
  */
 angular.module('app.config', [])
-.config(function($stateProvider, $urlRouterProvider,$locationProvider,$compileProvider) {
+.config(function($stateProvider, $urlRouterProvider,$locationProvider,$compileProvider,$httpProvider) {
 	$stateProvider
 	.state('home', {
 		url:"/",
@@ -45,9 +45,6 @@ angular.module('app.config', [])
 	templateUrl : 'html/patients.html',
 	controller : 'patientsController',
 	resolve: {
-//		patients: function(patientService,allPatientsForPhysiotherapistService,$rootScope) {
-//	    	return allPatientsForPhysiotherapistService.getPatients($rootScope.user);
-//	    }
 		patients: function($http,$rootScope,$window){
 			$rootScope.id = $window.sessionStorage.id;
 			return $http.get('patient/cos?page=0&size=10&id=' + $rootScope.id)
@@ -68,11 +65,13 @@ angular.module('app.config', [])
 				var curr = new Date; 
 				var earlierDay = curr.setDate(curr.getDate()-7);
 				console.log('earlierDay ',earlierDay)
-				return visitPaginationService.getVisit(0,10,earlierDay,new Date(),$stateParams.patient_id)
-				.then(function(result){
-			    	console.log('result: ' , result);
-			    	return result.content;
-			    })
+				if ($stateParams.patient_id != null){
+					return visitPaginationService.getVisit(0,10,earlierDay,new Date(),$stateParams.patient_id)
+					.then(function(result){
+				    	console.log('result: ' , result);
+				    	return result.content;
+				    })
+				}
 			},
 			patients : function(allPatientsForPhysiotherapistService,$rootScope,$window){
 				$rootScope.user = $window.sessionStorage.user;
@@ -84,13 +83,21 @@ angular.module('app.config', [])
       	  }
 		},
 		params : {
-			patient_id : 1
+			patient_id : null
 		}
 	})
 	.state('visit', {
 		url: '/visit/:id',
 		templateUrl : 'html/visit.html',
 		controller : 'visitController',
+		resolve : {
+			visit : function(visitService,$stateParams){
+				return visitService.get({id:$stateParams.id}).$promise.then(function(data){
+					console.log("data visit: "  ,data);
+					return data;
+				});
+			}
+		}
 	})
 	.state('addVisit', {
 		url: '/addVisit',
@@ -120,6 +127,14 @@ angular.module('app.config', [])
 		url: '/patient/:id',
 		templateUrl : 'html/patient.html',
 		controller : 'patientController as vm',
+		resolve : {
+			patient : function($stateParams,patientService){
+				return patientService.get({id:$stateParams.id}).$promise.then(function(data){
+					console.log("dataaa "  ,data.firstname);
+					return data;
+				});
+			}
+		}
 	})
 	.state('calendar', {
 		url: '/calendar',
@@ -133,6 +148,18 @@ angular.module('app.config', [])
 		url: '/account',
 		templateUrl : 'html/account.html',
 		controller : 'accountController',
+		resolve : {
+			user : function(physiotherapistService,$window){
+				return physiotherapistService.get({id:$window.sessionStorage.id},function(data){
+					return data;
+				});
+			},
+			file : function(getFileService,$window){
+				return getFileService.getOneFile($window.sessionStorage.id).then(function(result){
+					return result.data;
+				})
+			}
+		}
 	})
 	.state('addService', {
 		url: '/addService',
@@ -143,6 +170,11 @@ angular.module('app.config', [])
 		url: '/addKindOfPain',
 		templateUrl : 'html/addKindOfPain.html',
 		controller : 'addKindOfPainController',
+	})
+	.state('addBodyPlace', {
+		url: '/addBodyPlace',
+		templateUrl : 'html/addBodyPlace.html',
+		controller : 'addBodyPlaceController',
 	})
 	
 	$urlRouterProvider.otherwise("/");

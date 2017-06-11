@@ -1,26 +1,36 @@
 <meta meta charset=utf-8>
 
 <div class="media-body" style="overflow: auto;">
-	 <div class="row" ng-repeat="pain in interviewAtrr.pains" style="border-bottom: 1px solid #ccc; padding: 0px 10px 10px;">
+	 <div class="row" ng-repeat="pain in interviewAtrr.pains" style="padding: 10px 10px 10px;" 
+	 	ng-class="{borderClass:$last,hrClass:!$last	}">
 	    <h4 class="media-heading">
 	        <span href="" class="text-info">
-	            Ból: {{pain.painName}}
+	            {{'interview.pain' | translate}}: {{pain.painName}}
 	        </span>
-	        <div class="pull-right">{{interviewAtrr.date | date:'yyyy-MM-dd'}}</div>
-	        <br>
-	        <span href="" class="text-info" style="font-size: 15px;">
-	            Umiejscowienie: {{pain.painBodyPlaces[0].bodyPlaceName}}
-	        </span>
+	        <div ng-show="$first" class="pull-right">{{interviewAtrr.date | date:'yyyy-MM-dd'}}</div>
 	    </h4>
+	        <span href="" class="text-info" style="font-size: 15px;">
+	             {{'interview.location' | translate}}: {{pain.painBodyPlaces[0].bodyPlaceName}}
+	        </span>
 	    <p class="margin-top-10 margin-bottom-20">
 	    	<div style="word-wrap: break-word;">
 				<span style="text-align: left;"
-					>{{interviewAtrr.description}}
+					>{{pain.description}}
 				</span>
 			</div>
 	    </p>
 	</div>
 </div>
+
+<style>
+	.borderClass {
+		border-bottom: 1px solid #ccc;
+	}
+	
+	.hrClass {
+		border-bottom: 1px solid #eee;
+	}
+</style>
 
 
 

@@ -4,10 +4,11 @@
 angular.module('app.controller.visits', [])
 .controller('visitsController',
 		function($rootScope,$scope, $http, $location,$window,visitService,visitPaginationService,$timeout,
-				patients,visits,$stateParams) {
+				patients,visits,$stateParams,$filter) {
 	
 	var vm = this;
 	var curr = new Date();
+	var $translate = $filter('translate');
 //	var first = curr.getDate() - curr.getDay() + 1; // First day is the day of the month - the day of the week
 //	var last = first + 6; // last day is the first day + 6
 //	var firstday = new Date(curr.setDate(first));
@@ -43,25 +44,23 @@ angular.module('app.controller.visits', [])
 		  refreshVisit(($scope.currentPage-1),10);
 		  };
 	
-//	if ($location.search().id == undefined){
-//		refreshVisit(0,10);
-//	}else{
-//		///// zmień to później na service getVisitsByPatients
-//		$http.get("visit/byPatient",{params: { patientId: $location.search().id }})
-//		    .then(function(value) {
-//			$scope.visits = value.data;
-//		})
-//	}
-	
 	$scope.deleteVisit = function(visit){
-		visitService.delete({id:visit.id},function(){
-			refreshVisit(($scope.currentPage-1),10);
-		});
+		swal({
+			  title: $translate('visits.remove_visit'),
+			  text: $translate('visits.are_you_sure_remove_visit'),
+			  type: "warning",
+			  showCancelButton: true,
+			  confirmButtonClass: "btn-danger",
+			  confirmButtonText: $translate('visits.remove'),
+			  cancelButtonText: $translate('commons.cancel'),
+			  closeOnConfirm: true
+			},
+			function(){
+				visitService.delete({id:visit.id},function(){
+					refreshVisit(($scope.currentPage-1),10);
+				});
+			});
 	};
-//	var monthNames = ["Styczeń", "Luty", "Marzec", "April", "May", "June",
-//	                  "July", "August", "September", "October", "November", "December"
-//	                ];
-	
 	
 	  $scope.inlineOptions = {
 	    customClass: getDayClass,
@@ -249,9 +248,11 @@ angular.module('app.controller.visits', [])
 	  vm.people = patients;
 	  if ($stateParams != null && $stateParams.patient_id != null && vm.people.length > 0){
 		  console.log(" vm.people", vm.people)
-		  vm.people.patientId = search($stateParams.patient_id,vm.people);
-		  vm.visit.selectedPatientId = vm.people.patientId.id; 
-		  vm.patientPlaceholer = 'Wybierz pacjenta z listy';
+		  vm.people.patient = search($stateParams.patient_id,vm.people);
+		  console.log('vm.people.patient ',vm.people.patient);
+		  vm.visit.selectedPatientId = vm.people.patient.id; 
+		  vm.people.patientId = vm.people.patient;
+//		  vm.patientPlaceholer = 'Wybierz pacjenta z listy';
 	  }else{
 		  vm.people.patientId = vm.people[0];
 		  if (vm.people.length == 0){
@@ -259,6 +260,8 @@ angular.module('app.controller.visits', [])
 			  vm.disabled = true;
 			  vm.disable();
 			  vm.disableSearch();
+		  }else{
+			  vm.visit.selectedPatientId = vm.people.patientId.id; 
 		  }
 	  }
 	  
@@ -269,7 +272,6 @@ angular.module('app.controller.visits', [])
 		        }
 		    }
 		}
-
 
 	  vm.singleDemo = {};
 	  vm.singleDemo.color = '';

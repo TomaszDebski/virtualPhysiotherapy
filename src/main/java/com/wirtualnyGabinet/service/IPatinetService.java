@@ -28,4 +28,6 @@ public interface IPatinetService {
 	void updatePatient(long id,Patient patient);
 	
 	void deletePatient(long id);
+	
+	boolean checkPatient(long patientId,String physiotherapistName);
 }

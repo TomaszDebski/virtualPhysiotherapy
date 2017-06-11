@@ -3,13 +3,12 @@
     <div id="" class="container">
         <div class="row vertical-align">
         	<div class="col-md-1">
-        <span class="page-title">Kontakt</span>
+        		<span class="page-title">{{'index.contact' | translate}}</span>
             </div>
 			<div class="col-md-11">
-         </div>
          	</div>
-        </div>
-    </div>
+         </div>
+     </div>
 </div>
 <div class="container">
     <div class="row">
@@ -26,7 +25,7 @@
                             	class="form-control" 
                             	name="name"
                             	id="name" 
-                            	placeholder="Wpisz imię" 
+                            	placeholder="{{'contact.enter_a_name' |translate}}" 
                             	required
                             	ng-model="sender.name" 
                             	ng-class="{submitted:sendEmailForm.submitted}"
@@ -47,7 +46,7 @@
                                 	class="form-control" 
                                 	id="email" 
                                 	name="email"
-                                	placeholder="Wpisz e-mail"
+                                	placeholder="{{'enter_a_email' |translate}}"
                                 	required="required" 
                                 	ng-model="sender.email"
                                 	ng-class="{submitted:sendEmailForm.submitted}"
@@ -76,9 +75,9 @@
                             	ng-class="{submitted:sendEmailForm.submitted}"
                             	ng-init="sender.subject = 'service'"
                             >
-                                <option value="service">Ogólna</option>
-                                <option value="suggestions">Sugestia</option>
-                                <option value="product">Wsparcie</option>
+                                <option value="service">{{'contact.general' |translate}}</option>
+                                <option value="suggestions">{{'contact.suggestion' |translate}}</option>
+                                <option value="product">{{'contact.support' |translate}}</option>
                             </select>
                             <span 
                                 	ng-show="sendEmailForm.subject.$error.required && sendEmailForm.submitted " 
@@ -97,14 +96,14 @@
                             	rows="9" 
                             	cols="25" 
                             	required="required"
-                                placeholder="Treść wiadomości"
+                                placeholder="{{'contact.content_message' |translate}}"
                                 ng-model="sender.message"
                                 ng-class="{submitted:sendEmailForm.submitted}">
                                </textarea>
                             <span 
                                 ng-show="sendEmailForm.message.$error.required && sendEmailForm.submitted" 
                                 style="color : #f00; float: left;"
-                            >Wpisz wiadomość</span>
+                            >{{'contact.message_content_is_required' | translate}}</span>
                         </div>
                     </div>
                     <div class="col-md-12" style="padding-top:13px;">
@@ -113,7 +112,7 @@
                         	class="btn btn-primary pull-right" 
                         	id="btnContactUs"
                         	ng-click="sendMessage(sender)"
-                        >Wyślij wiadomość</button>
+                        >{{'contact.send_a_message' | translate}}</button>
                     </div>
                 </div>
                 </form>
@@ -121,15 +120,15 @@
         </div>
         <div class="col-md-4">
             <form>
-            <legend><span class="glyphicon glyphicon-globe"></span> Nasze biuro</legend>
+            <legend><span class="glyphicon glyphicon-globe"></span> {{'contact.our_office' | translate}}</legend>
             <address>
-                <strong>Gabinet fizjoterapii</strong><br>
-                ul.Sienkiewicza 12<br>
+                <strong>{{'commons.physiotherapy_room' | translate}}</strong><br>
+                {{'commons.street' | translate}} Sienkiewicza 12<br>
                 Lublin 20-855<br>
                 (81)741-33-37
             </address>
             <address>
-                <strong>Nasz e-mail</strong><br>
+                <strong>{{'commons.our_email' | translate}}</strong><br>
                 <a href="mailto:#">gabinetFizjoterapi@gmail.com</a>
             </address>
             </form>

@@ -14,7 +14,7 @@ angular.module('app.controller.logout', []).controller(
 					$window.sessionStorage.user = "";
 					$window.sessionStorage.authenticated = false;
 					$window.sessionStorage.role = "";
-					$state.go("home");
+					$state.go("login");
 				}).error(function(data, status, headers, config) {
 					console.log('Problem z wylogowaniem');
 			})

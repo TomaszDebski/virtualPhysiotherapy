@@ -8,7 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.wirtualnyGabinet.Views;
 import com.wirtualnyGabinet.DTO.InfForScheduler;
+import com.wirtualnyGabinet.entity.Physiotherapist;
 import com.wirtualnyGabinet.entity.Visit;
 import com.wirtualnyGabinet.service.IVisitService;
 
@@ -38,8 +41,12 @@ public class VisitController {
 	}
 	
 	@RequestMapping(value="/{id}")
-	public Visit getVisitById(@PathVariable("id") long id){
-		return visitService.getVisitById(id);
+	public ResponseEntity<Visit> getVisitById(@PathVariable("id") long visitId, Principal principal){
+		if (visitService.checkVisit(visitId, principal.getName())){
+			return new ResponseEntity<Visit>(visitService.getVisitById(visitId),HttpStatus.OK);
+		}else{
+			return new ResponseEntity<Visit>(HttpStatus.UNAUTHORIZED);
+		}
 	}
 	
 	@JsonView(Views.VisitsPatient.class)

@@ -32,7 +32,7 @@ angular.module('app.directive.addNewInterview', ['ui.select','ngSanitize'])
 	    	interviewAtrr : '='
 	    }, 
 	    controller: controller,
-	    templateUrl: 'resources/js/directives/customUrl.html',
+	    templateUrl: 'resources/js/directives/newInterview/addNewInterview.html',
 	    link: {
 	    	pre : function postLink(scope, element, attr){
 	    	var myObject = [];

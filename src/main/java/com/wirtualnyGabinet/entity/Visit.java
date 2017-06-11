@@ -67,7 +67,7 @@ public class Visit implements Serializable {
 	public String recommendation;
 	
 	@JsonView(Views.Visits.class)
-	@Column(name="paymenMethod")
+	@Column(name="paymentMethod")
 	public String paymentMethod;
 	
 	@JsonView(Views.Visits.class)

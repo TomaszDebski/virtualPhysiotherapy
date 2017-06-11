@@ -30,7 +30,6 @@
              	<thead>
                    	<tr>
 	                    <th>{{'patients.firstName_lastName' | translate}}</th>
-				        <th align="left">{{'patients.gender' | translate}}</th>
 				        <th>{{'patients.date_of_birth' | translate}}</th>
 				        <th>{{'patients.phone' | translate}}</th>
 				        <th>E-mail</th>
@@ -44,7 +43,6 @@
 					      	<a ui-sref="patient({id:{{patient.id}}})">{{patient.firstname}} {{patient.lastname}}</a>
 					      	</span>
 				      	</td>
-				         <td><span class="table_span"><img src="">{{patient.gender == 'm' ? 'patients.man' : 'patients.woman' | translate}}</span></td>
 				         <td><span class="table_span">{{patient.birthDate |  date:'yyyy-MM-dd' }}</span></td>
 				         <td><span class="table_span">{{patient.phone | tel}}</span></td>
 				         <td><span class="table_span">{{patient.email}}</span></td>

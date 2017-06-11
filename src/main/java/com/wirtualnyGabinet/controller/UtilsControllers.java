@@ -13,18 +13,18 @@ public class UtilsControllers {
 //	@Resource(name="kindOfPain")
 //	private Map<Integer, String> kindOfPain;
 	
-	@Resource(name="bodyPart")
-	private Map<Integer, String> bodyPart;
+//	@Resource(name="bodyPart")
+//	private Map<Integer, String> bodyPart;
 
 //	@GetMapping("/kindOfPain")
 //	public Map<Integer, String> showPains(){
 //		return kindOfPain;
 //	}
 	
-	@GetMapping("/bodyPart")
-	public Map<Integer, String> showBodyParts(){
-		return bodyPart;
-	}
+//	@GetMapping("/bodyPart")
+//	public Map<Integer, String> showBodyParts(){
+//		return bodyPart;
+//	}
 	
 	
 }

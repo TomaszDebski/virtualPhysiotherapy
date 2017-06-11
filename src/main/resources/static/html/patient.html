@@ -7,7 +7,7 @@
 		        <a href="" class="patient-edit icon" >
 		        	<img src="pics/edytuj.svg" style="height: 20px;">
 		        </a>
-		        <a href="" class="" >
+		        <a href="" class="" ng-click="deletePatient()" >
 		        	<img src="pics/usun.svg" style="height: 20px;">
 		        </a>
             </div>
@@ -22,8 +22,8 @@
 					>{{'patient.see_visit' | translate}}</button>
 					<a
 					class="btn btn-primary active"
-					href="https://flexiforum.pl/dodaj-nowa-wizyte/?pt=1066">
-						{{'patient.add_reservation' | translate}}
+					ui-sref="addVisit({patientId: patient.id})">
+						{{'patients.add_a_visit' | translate}}
 					</a>
          		</div>
          	</div>
@@ -499,7 +499,6 @@ margin-top:10px;
             <div class="panel panel-info" style="border: 1px solid #ccc;">
                 <div class="panel-heading" style="background: #f4f4f4; border-bottom: 1px solid #ccc;">
                     <h3 class="panel-title ">
-	      				<span class="text-right pull-right" >ffff</span>
                         <span class="glyphicon glyphicon-list-alt"></span> {{'patient.interviews' | translate}}
                     </h3>
                 </div>

@@ -10,7 +10,7 @@ angular.module('app.directive.addService', ['ui.select','ngSanitize','app.direct
 	    	counter: '=',
 	    	servicesToSelect : '=',
 	    }, 
-	    templateUrl: 'resources/js/directives/addService.html',
+	    templateUrl: 'resources/js/directives/addService/addService.html',
 	    link: {
 	    	pre : function postLink(scope, element, attr){
 	    	scope.addNextService = function(){
@@ -21,7 +21,7 @@ angular.module('app.directive.addService', ['ui.select','ngSanitize','app.direct
 	    		html += '<div style="padding-top:10px"><select id="selectService_'+counter+'" class="form-control"'+
 	    		'style="width:90%;background: #f6f9fc;">';
 	    		angular.forEach(scope.servicesToSelect, function (value, index){
-	    			html += '<option value="'+value.id+'">'+value.serviceName+'</option>';
+	    			html += '<option value="'+value.id+'">'+value.serviceName+'('+value.price+')</option>';
 	    		})
 	    		html+= '</select></div><div class="hidden_'+counter+'"></div>';
 	    		wrappedResult.after(html)

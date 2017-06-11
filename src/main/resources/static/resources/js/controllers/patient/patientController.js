@@ -4,11 +4,10 @@
 
 angular.module('app.controller.patient', ['ui.bootstrap'])
 .controller('patientController', function($scope,$http,$rootScope,$log,$window,patientService,
-		$stateParams,$uibModal,$state,$timeout) {
-		patientService.get({id:$stateParams.id},function(data){
-			$scope.patient = data;
-			console.log("dataaa "  ,data.firstname);
-		});
+		$stateParams,$uibModal,$state,$timeout,$filter,patient) {
+	
+		var $translate = $filter('translate');
+		$scope.patient = patient;
 		
 		$http.get("interview/allInterviewForPatient" + "?patient_id=" + $stateParams.id)
 		.then(function(value) {
@@ -17,22 +16,9 @@ angular.module('app.controller.patient', ['ui.bootstrap'])
 		})
 		
 		
-		
-		
 		$scope.goToVisit = function(){
 			$state.go("visits",{patient_id:$scope.patient.id});
 		}
-		
-//		var oldPatient = {};
-//		$scope.editModeFunction = function(isEdit){
-//			if (isEdit){
-//				oldPatient = angular.copy($scope.patient);
-//				$scope.editMode = true;
-//			}else{
-//				$scope.editMode = false;
-//				$scope.patient = oldPatient;
-//			}
-//		}
 		
 		$scope.savePatient = function(patient){
 			$scope.successEditPatient = false;
@@ -47,10 +33,30 @@ angular.module('app.controller.patient', ['ui.bootstrap'])
 			}
 		}
 		
+		$scope.deletePatient = function(){
+			swal({
+				  title: $translate('patients.remove_patient'),
+				  text: $translate('patients.are_you_sure_remove_patient'),
+				  type: "warning",
+				  showCancelButton: true,
+				  confirmButtonClass: "btn-danger",
+				  confirmButtonText: $translate('patients.remove'),
+				  cancelButtonText: $translate('commons.cancel'),
+				  closeOnConfirm: true,
+				},
+				function(){
+					patientService.delete({id:$stateParams.id},function(){
+						swal($translate('commons.removed'), $translate('patients.patient_was_removed'), "success");
+						$state.go('allPatients');
+					});
+				});
+		}
+		
+		
+		
 		$scope.saveInterview = function(ddd,ee){
 			console.log("ddd " , ddd);
 		}
-		
 		
 		
 		$scope.genereateUniqueId = function()
@@ -176,13 +182,19 @@ angular.module('app.controller.patient', ['ui.bootstrap'])
 	            	  			console.log("pains data " ,data);
 	            	  			return data;
 	            	  		});
-	            	  	}
+	            	  },
+	            	  bodyPart : function(bodyPlaceService){
+	            		  return bodyPlaceService.query(function(data) {
+	            	  			console.log("bodyPlace data " ,data);
+	            	  			return data;
+	            	  		});
+	            	  }
 	              }
 	         })
 	        .result.then(
 	            function () {
 	            	console.log("ok")
-	            	$timeout(myfunction(),5000);
+	            	$timeout(getAllInterviewForPatient(),5000);
 	            }, 
 	            function () {
 	            	console.log("wyjście")
@@ -190,7 +202,7 @@ angular.module('app.controller.patient', ['ui.bootstrap'])
 	        );
 	    }
 		
-		myfunction = function(){
+		getAllInterviewForPatient = function(){
 			$http.get("interview/allInterviewForPatient" + "?patient_id=" + $stateParams.id)
 			.then(function(value) {
 				console.log('value.data ' ,value.data)
@@ -200,7 +212,5 @@ angular.module('app.controller.patient', ['ui.bootstrap'])
 		
 		
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-		
-
 
 })

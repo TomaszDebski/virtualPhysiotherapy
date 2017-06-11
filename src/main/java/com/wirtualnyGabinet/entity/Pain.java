@@ -33,6 +33,10 @@ public class Pain {
 	@Column(name="painName")
 	public String painName;
 	
+	@JsonView(Views.Interview.class)
+	@Column(name="description")
+	public String description;
+	
 	/* Relations */
 	
 //	@JsonView(Views.Visits.class)
@@ -84,6 +88,17 @@ public class Pain {
 	public void setPainBodyPlaces(List<PainBodyPlace> painBodyPlaces) {
 		this.painBodyPlaces = painBodyPlaces;
 	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	
+	
 	
 	
 	

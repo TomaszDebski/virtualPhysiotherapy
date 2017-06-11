@@ -47,8 +47,8 @@ angular.module('app.controller.addVisitInCalendarModel', [])
 				treatment.service = service;
 				visit.treatment.push(treatment);
 			}
-			return visit;
 			console.log('visit.treatment ' ,visit.treatment);
+			return visit;
 		}
 	  
 	  $scope.services= services;
@@ -221,15 +221,15 @@ angular.module('app.controller.addVisitInCalendarModel', [])
 	  
 	  /////////////////////select Hour///////////////////////////////////
 
-	  vm.onSelectHour = function(item, model){
-		  $log.info("item hour " , item)
-		  $("#hourField").css({"border-color": "", 
-	             "border-width":"", 
-	             "border-style":""})
-		  vm.visit.hour = item.name;
-	  }
+//	  vm.onSelectHour = function(item, model){
+//		  $log.info("item hour " , item)
+//		  $("#hourField").css({"border-color": "", 
+//	             "border-width":"", 
+//	             "border-style":""})
+//		  vm.visit.hour = item.name;
+//	  }
 	  vm.country = {};
-	  vm.countries = [ // Taken from https://gist.github.com/unceus/6501985
+	  vm.countries = [ 
 	    {name: '00:00'},
 	    {name: '01:30'},
 	    {name: '09:00'},
@@ -246,8 +246,6 @@ angular.module('app.controller.addVisitInCalendarModel', [])
 	    {name: '14:30'},
 	    {name: '15:00'},
 	    {name: '15:30'},
-//	    {name: 'Zambia', code: 'ZM'},
-//	    {name: 'Zimbabwe', code: 'ZW'}
 	  ];
     
     

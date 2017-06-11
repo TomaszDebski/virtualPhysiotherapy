@@ -29,6 +29,7 @@ import com.wirtualnyGabinet.repository.PhysiotherapistRepository;
 import com.wirtualnyGabinet.repository.ServiceRepository;
 import com.wirtualnyGabinet.repository.VisitRepository;
 import com.wirtualnyGabinet.service.IVisitService;
+import com.wirtualnyGabinet.utils.VisitUtils;
 
 @org.springframework.stereotype.Service
 public class VisitService implements IVisitService {
@@ -49,17 +50,15 @@ private final Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	@Override
 	public void addVisit(Visit visit, long patientId, Long serviceId, Principal principal) {
-		System.out.println("serviceId " + serviceId);
 		if (visit.getIsHoliday().equals("true")){
 			Physiotherapist physiotherapist = physiotherapisRepository.findTop1ByUsername(principal.getName());
 			if (physiotherapist != null)
 			visit.setPhysiotherapist(physiotherapist);
 			try {
-				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				SimpleDateFormat dateFormat = new SimpleDateFormat(VisitUtils.DATE_FORMAT);
 				String stringDate = dateFormat.format(visit.getDate());
 				visit.setDate(dateFormat.parse(stringDate));
 				visit.setEndDate( dateFormat.parse(dateFormat.format(visit.getEndDate())));
-				System.out.println("EndDate " + visit.getEndDate());
 				visitRepository.saveAndFlush(visit);
 				return;
 			} catch (ParseException e) {
@@ -80,10 +79,10 @@ private final Logger log = LoggerFactory.getLogger(this.getClass());
 		}else{
 			log.error("Principal is null");
 		}
-		System.out.println("data " + visit.getDate().toString());
 		try {
-			String stringDate = new SimpleDateFormat("yyyy-MM-dd").format(visit.getDate()) + " " + visit.getHour();
-			visit.setDate(new SimpleDateFormat("yyyy-MM-dd hh:mm").parse(stringDate));
+			String stringDate = new SimpleDateFormat(VisitUtils.DATE_FORMAT).format(visit.getDate()) + " " + visit.getHour();
+			visit.setDate(new SimpleDateFormat(VisitUtils.DATETIME_FORMAT).parse(stringDate));
+			visit.setStatus(VisitUtils.VISIT_STATUS_RESERVATION);
 			
 			for (Treatment treatment : visit.getTreatment()) {
 				treatment.setVisit(visit);
@@ -139,16 +138,14 @@ private final Logger log = LoggerFactory.getLogger(this.getClass());
 		if (principal != null){
 			phys = physiotherapisRepository.findTop1ByUsername(principal.getName());
 		}
-		System.out.println(new Date(Long.valueOf(startDate)));
 		Page<Visit> visits = visitRepository.findByPhysiotherapist_idAndDateBetweenAndPatient_id(pageable,phys.getId(),new Date(Long.valueOf(startDate)),new Date(Long.valueOf(endDate)),patient_id);
 		return visits;
 	}
 
 	@Override
 	public void updateVisit(long id, Visit visit) {
-		System.out.println("robimy update");
 		Visit visitToUpdate = visitRepository.findOne(id);
-		if (StringUtils.equals(visit.getStatus(), "finish")){
+		if (StringUtils.equals(visit.getStatus(), VisitUtils.VISIT_STATUS_FINISH)){
 			visitToUpdate.setStatus(visit.getStatus());
 		}else{
 			visitToUpdate.setHour(visit.getHour());
@@ -158,6 +155,7 @@ private final Logger log = LoggerFactory.getLogger(this.getClass());
 		visitToUpdate.setLength(visit.getLength());
 		visitToUpdate.setDescription(visit.getDescription());
 		visitToUpdate.setRecommendation(visit.getRecommendation());
+		visitToUpdate.setPaymentMethod(visit.getPaymentMethod());
 		visitRepository.save(visitToUpdate);
 	}
 
@@ -170,7 +168,7 @@ private final Logger log = LoggerFactory.getLogger(this.getClass());
 	@Override
 	public InfForScheduler[] getForSheduler(long id, String start, String end, String _) {
 		List<Visit> lista = null;
-		SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat formatter2 = new SimpleDateFormat(VisitUtils.DATE_FORMAT);
 		try {
 			lista = visitRepository.findAll();
 			lista = visitRepository.findByPhysiotherapist_idAndDateBetween(id,formatter2.parse(start),formatter2.parse(end));
@@ -179,16 +177,16 @@ private final Logger log = LoggerFactory.getLogger(this.getClass());
 			e.printStackTrace();
 		}
 		List<InfForScheduler> infForScheduler = new ArrayList<>();
-		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		DateFormat formatter = new SimpleDateFormat(VisitUtils.DATETIME_FORMAT);
 		for (Visit visit : lista) {
 			InfForScheduler inf = new InfForScheduler();
 			if (visit.getIsHoliday() != null && visit.getIsHoliday().equals("true")){
 				inf.setStart(formatter.format(visit.getDate()));
 				inf.setEnd(formatter.format(DateUtils.addHours(visit.getEndDate(), 24)));
 				inf.setAllDay(true);
-				inf.setTitle("Wakacje");
-				inf.setBackgroundColor("green");
-				inf.setRendering("background");
+				inf.setTitle(VisitUtils.HOLIDAY);
+				inf.setBackgroundColor(VisitUtils.COLOR_GREEN);
+				inf.setRendering(VisitUtils.BACKGROUND);
 				infForScheduler.add(inf);
 				continue;
 			}else{				
@@ -202,6 +200,21 @@ private final Logger log = LoggerFactory.getLogger(this.getClass());
 		}
 		InfForScheduler[] array = infForScheduler.toArray(new InfForScheduler[infForScheduler.size()]);
 		return array;
+	}
+
+	@Override
+	public boolean checkVisit(long visitId,String physiotherapistName) {
+		Physiotherapist phys = physiotherapisRepository.findTop1ByUsername(physiotherapistName);
+		if (phys == null){
+			return false;
+		}
+		Visit isVisit = visitRepository.checkVisit(visitId, phys.getId());
+		if (isVisit != null){
+			return true;
+		}else{
+			log.warn("UNAUTHORIZED, Error 401");
+			return false;
+		}
 	}
 
 }

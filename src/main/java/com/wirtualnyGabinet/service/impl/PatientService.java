@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,12 +15,15 @@ import org.springframework.stereotype.Service;
 
 import com.wirtualnyGabinet.entity.Patient;
 import com.wirtualnyGabinet.entity.Physiotherapist;
+import com.wirtualnyGabinet.entity.Visit;
 import com.wirtualnyGabinet.repository.PatientRepository;
 import com.wirtualnyGabinet.repository.PhysiotherapistRepository;
 import com.wirtualnyGabinet.service.IPatinetService;
 
 @Service
 public class PatientService implements IPatinetService {
+	
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	PhysiotherapistRepository physiotherapistRepository;
@@ -103,5 +108,20 @@ public class PatientService implements IPatinetService {
 	public void deletePatient(long id) {
 		Patient patient = patientRepository.findOne(id);
 		patientRepository.delete(patient);
+	}
+
+	@Override
+	public boolean checkPatient(long patientId, String physiotherapistName) {
+		Physiotherapist phys = physiotherapistRepository.findTop1ByUsername(physiotherapistName);
+		if (phys == null){
+			return false;
+		}
+		Patient isPatient = patientRepository.checkPatient(patientId, Long.toString(phys.getId()));
+		if (isPatient != null){
+			return true;
+		}else{
+			log.warn("UNAUTHORIZED, Error 401");
+			return false;
+		}
 	}
 }

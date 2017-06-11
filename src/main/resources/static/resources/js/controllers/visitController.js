@@ -3,21 +3,32 @@
  */
 angular.module('app.controller.visit', ['ui.bootstrap'])
 .controller('visitController', function($scope,$http,$rootScope,$log,$window,visitService,
-		$stateParams,$uibModal,$state,$timeout,$filter) {
+		$stateParams,$uibModal,$state,$timeout,$filter,visit) {
 	
 	var $translate = $filter('translate');
 	
-	visitService.get({id:$stateParams.id},function(data){
-		$scope.visit = data;
-		console.log("data visit: "  ,data);
-		var cash = 0;
-		angular.forEach($scope.visit.treatment,function(key,value){
-			cash += key.service.price;
-		})
-		$scope.visit.cost = cash;
-		$scope.firstName_lastName = data.patient.firstname + ' ' + data.patient.lastname;
-		$scope.isFinishVar = $scope.visit.status == 'reservation';
-	});
+//	visitService.get({id:$stateParams.id},function(data){
+//		$scope.visit = data;
+//		console.log("data visit: "  ,data);
+//		var cash = 0;
+//		angular.forEach($scope.visit.treatment,function(key,value){
+//			cash += key.service.price;
+//		})
+//		$scope.visit.cost = cash;
+//		$scope.firstName_lastName = data.patient.firstname + ' ' + data.patient.lastname;
+//		$scope.isFinishVar = $scope.visit.status == 'reservation';
+//	});
+	
+	console.log('visit ', visit)
+	$scope.visit = visit;
+	var cash = 0;
+	angular.forEach($scope.visit.treatment,function(key,value){
+		cash += key.service.price;
+	})
+	$scope.visit.cost = cash;
+	$scope.firstName_lastName = $scope.visit.patient.firstname + ' ' + $scope.visit.patient.lastname;
+	$scope.isFinishVar = $scope.visit.status == 'reservation';
+	
 	
 	$scope.goToVisits = function(){
 		$state.go('visits');

@@ -9,6 +9,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.wirtualnyGabinet.Views;
 import com.wirtualnyGabinet.entity.Patient;
 import com.wirtualnyGabinet.entity.Physiotherapist;
+import com.wirtualnyGabinet.entity.Visit;
 import com.wirtualnyGabinet.repository.PatientRepository;
 import com.wirtualnyGabinet.repository.PhysiotherapistRepository;
 import com.wirtualnyGabinet.service.IPatinetService;
@@ -40,8 +43,12 @@ public class PatientController {
 	
 	@JsonView(Views.Patients.class)
 	@RequestMapping(value="/{id}")
-	public Patient getPatientById(@PathVariable("id") long id){
-		return patientService.getPatientById(id);
+	public ResponseEntity<Patient> getPatientById(@PathVariable("id") long id,Principal principal){
+		if (patientService.checkPatient(id, principal.getName())){
+			return new ResponseEntity<Patient>(patientService.getPatientById(id),HttpStatus.OK);
+		}else{
+			return new ResponseEntity<Patient>(HttpStatus.UNAUTHORIZED);
+		}
 	}
 	
 	@JsonView(Views.Patient.class)

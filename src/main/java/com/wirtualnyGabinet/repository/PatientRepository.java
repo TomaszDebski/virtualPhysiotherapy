@@ -11,6 +11,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.wirtualnyGabinet.entity.Patient;
+import com.wirtualnyGabinet.entity.Visit;
 
 @Repository
 public interface PatientRepository extends CrudRepository<Patient,Long>,PagingAndSortingRepository<Patient,Long> {
@@ -29,5 +30,8 @@ public interface PatientRepository extends CrudRepository<Patient,Long>,PagingAn
 	
 	@Query("select distinct p from Patient p where p.phisiotherapist_Id = :id")
 	List<Patient> findByPhisiotherapist_Id(@Param("id")String id);
+
+	@Query("from Patient p where p.id = :patientId and p.phisiotherapist_Id = :physId")
+	Patient checkPatient(@Param("patientId")long patientId, @Param("physId")String id);
 	
 }

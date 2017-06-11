@@ -99,6 +99,12 @@ insert into kind_of_pain (id,pain_name,description) values (2,'promieniujący','
 insert into kind_of_pain (id,pain_name,description) values (3,'miejscowy','');
 insert into kind_of_pain (id,pain_name,description) values (4,'boczny','');
 
+insert into body_place (id,body_name,description) values (1,'Głowa','');
+insert into body_place (id,body_name,description) values (2,'Tułów','');
+insert into body_place (id,body_name,description) values (3,'Plecy','');
+insert into body_place (id,body_name,description) values (4,'Ręce','');
+insert into body_place (id,body_name,description) values (5,'Nogi','');
+
 --insert into fileupload (filename,file,mime_Type,object_id,object_Type) value('example',LOAD_FILE('C:\Users\Tomek\Desktop\PhysiotherapisAvatar.png'),'text/plain',1,'physiotherapist');
 
 

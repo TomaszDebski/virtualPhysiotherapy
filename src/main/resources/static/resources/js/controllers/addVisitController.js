@@ -22,7 +22,8 @@ angular.module('app.controller.addVisit', [])
 		}
 		if ($scope.addVisitForm.$valid){
 			createTreatmentsForVisit(visit);
-			visit.hour = vm.visit.hour;
+			visit.hour = visit.hour.name;
+			console.log('vm.visit.hour ' ,visit.hour.name)
 			visit.date = vm.visit.date;
 			visit.isHoliday = false;
 			visitService.save({patientId:vm.visit.selectedPatientId},visit,function(){
@@ -53,8 +54,8 @@ angular.module('app.controller.addVisit', [])
 			treatment.service = service;
 			visit.treatment.push(treatment);
 		}
-		return visit;
 		console.log('visit.treatment ' ,visit.treatment);
+		return visit;
 	}
 	
 	$scope.services = services;
@@ -237,6 +238,21 @@ angular.module('app.controller.addVisit', [])
 //				  console.log("model " , model)
 				  
 			  }
+			  vm.patientPlaceholer = 'Wybierz pacjenta z listy';
+			  
+			  if ($stateParams != null && $stateParams.patientId != null && vm.people.length > 0){
+				  vm.people.patient = search($stateParams.patientId,vm.people);
+				  vm.visit.selectedPatientId = vm.people.patient.id; 
+				  vm.people.patientId = vm.people.patient;
+			  }
+			  
+			  function search(idKey, myArray){
+				    for (var i=0; i < myArray.length; i++) {
+				        if (myArray[i].id === idKey) {
+				            return myArray[i];
+				        }
+				    }
+				}
 			  
 			  ////////////////////////////////////////////////////////////////////	
 			
@@ -344,19 +360,10 @@ angular.module('app.controller.addVisit', [])
 
 		////////////////////////////////////////////////////////////////////
 		
-					  vm.onSelectHour = function(item, model){
-//						  $log.info("item hour " , item)
-						  $("#hourField").css({"border-color": "", 
-					             "border-width":"", 
-					             "border-style":""})
-						  vm.visit.hour = item.name;
-					  }
 					  vm.country = {};
-					  vm.countries = [ // Taken from https://gist.github.com/unceus/6501985
-					    {name: '07:00'},
-					    {name: '07:30'},
-					    {name: '08:00'},
-					    {name: '08:30'},
+					  vm.countries = [ 
+					    {name: '00:00'},
+					    {name: '01:30'},
 					    {name: '09:00'},
 					    {name: '09:30'},
 					    {name: '10:00'},
@@ -371,12 +378,8 @@ angular.module('app.controller.addVisit', [])
 					    {name: '14:30'},
 					    {name: '15:00'},
 					    {name: '15:30'},
-//					    {name: 'Zambia', code: 'ZM'},
-//					    {name: 'Zimbabwe', code: 'ZW'}
 					  ];
-				    
-				    
-				    
+				        
 				    
 				    
 				    

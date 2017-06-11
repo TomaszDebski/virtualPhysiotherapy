@@ -1,0 +1,128 @@
+<meta meta charset=utf-8>
+	<div class="main-header">
+		<div class="container">
+			<span class="page-title">{{'bodyPlace.add_new_body_place' | translate}}</span>
+		</div>
+	</div>
+
+	<!-- ///////////////////////////////////////// -->
+<div class="container">
+	<div class="row">
+	<form class="form-horizontal" 
+		name="addBodyPlaceForm" 
+		novalidate>
+		
+		<fieldset>
+			<div class="form-group">
+				<div class="col-md-offset-4 col-md-4" ng-show="success && addBodyPlaceForm.$pristine">
+					<div class="alert alert-success" >
+					    <strong> {{'commons.success' | translate}}!</strong> {{'bodyPlace.correct_add_body_place' | translate}}
+					</div>
+				</div>
+			</div>
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-offset-2 col-md-2 control-label" for="bodyNameField">
+			  {{'bodyPlace.body_place_name' | translate}}:<span style="color:red;">*</span></label>  
+			  <div class="col-md-4">
+			  <input 
+			  	id="bodyNameField" 
+			  	type="text"
+			  	ng-class="{submitted:addBodyPlaceForm.submitted}"  
+			  	name="bodyNameField" 
+			  	placeholder="{{'bodyPlace.body_place_name' | translate}}" 
+			  	class="form-control" 
+			  	required
+			  	ng-model="bodyPlace.bodyName">
+			  	<span 
+    				ng-show="addBodyPlaceForm.bodyNameField.$error.required && addBodyPlaceForm.submitted" 
+    				style="color : #f00; float:left;"
+    				>{{'commons.body_place_name_is_required' | translate}}
+    			</span>
+			  </div>
+			</div>
+			
+			<!-- Textarea --> 
+			<div class="form-group">
+			  <label class="col-md-offset-2 col-md-2 control-label" for="bodyPlaceDescription">
+			  	{{'commons.description' | translate}}:
+			  </label>
+			  <div class="col-md-4">                     
+			    <textarea 
+			    	name="bodyPlaceDescription"
+					class="form-control"
+					placeholder="{{'bodyPlace.body_place_description' | translate}}" 
+					id="bodyPlaceDescription" 
+					style="height: 61px; background: #f6f9fc;"
+					ng-model="bodyPlace.description"
+					>
+				</textarea>
+			  </div>
+			</div>
+			
+			<!-- Button (Double) -->
+			<div class="form-group">
+			  <label class="col-md-offset-2 col-md-2 control-label" for="addBodyPlaceButton"></label>
+			  <div class="col-md-8">
+			    <button 
+			    	id="addBodyPlaceButton" 
+			    	name="addBodyPlaceButton" 
+			    	class="btn btn-primary"
+			    	type="button"
+			    	ng-click="addBodyPlace(bodyPlace)"
+			    	>{{'commons.save' | translate}}
+			    </button>
+			    <button 
+			    	type="button" 
+			    	id="clearFormButton" 
+			    	name="clearFormButton" 
+			    	class="btn btn-danger" 
+			    	ng-click="clear()">
+			    	{{'commons.clear' | translate}}</button>
+			  </div>
+			</div>
+		</fieldset>
+	</form>
+	</div>
+</div>
+	
+	
+<style>
+	.overlay { background:transparent; width:100%; height:100%; position:absolute; top:0; left:0; }
+	
+	input.submitted.ng-invalid{
+	  border:2px solid #f00;
+	}
+	
+	textarea.submitted.ng-invalid{
+	  border:2px solid #f00;
+	}
+	
+	.selectize-input.submitted.ng-invalid{
+	  border:2px solid #f00;
+	}
+	
+	#selectedPatientId.submitted.ng-invalid, input.submitted.ng-invalid{
+	  border:2px solid #f00;
+		border-radius: 4px;
+	}
+    .select2 > .select2-choice.ui-select-match {
+        /* Because of the inclusion of Bootstrap */
+        height: 29px;
+    }
+
+    .selectize-control > .selectize-dropdown {
+        top: 36px;
+    }
+    /* Some additional styling to demonstrate that append-to-body helps achieve the proper z-index layering. */
+    .select-box {
+      background: #fff;
+      position: relative;
+      z-index: 1;
+    }
+    .alert-info.positioned {
+      margin-top: 1em;
+      position: relative;
+      z-index: 10000; /* The select2 dropdown has a z-index of 9999 */
+    }
+</style>

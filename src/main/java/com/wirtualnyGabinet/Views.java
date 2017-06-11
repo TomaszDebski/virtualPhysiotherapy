@@ -14,6 +14,8 @@ public class Views {
 	
 	public interface KindOfPain {}
 	
+	public interface BodyPlace {}
+	
 	public interface Service{}
 	
 	public interface VisitsPatient extends Visits,Patient,Service{}

@@ -29,7 +29,7 @@
 					
 				>
     			<ui-select-match 
-					placeholder="{{'commons.select_patient_from_list' | translate}}" >{{$select.selected.firstname}} {{$select.selected.lastname}}
+					placeholder="{{'commons.select_patient' | translate}}" >{{$select.selected.firstname}} {{$select.selected.lastname}}
 				</ui-select-match>
     			<ui-select-choices 
 					repeat="person in ctrl.people | propsFilter: {firstname: $select.search, lastname: $select.search, age: $select.search}" >
@@ -48,7 +48,7 @@
 						<span 
 	                 		 ng-show="addVisitForm.selectPatientId.$error.required && addVisitForm.submitted " 
 	                  		 style="color : #f00; float: left;"
-	                  		 >{{'commons.select_Patient' | translate}}
+	                  		 >{{'commons.select_patient' | translate}}
 	            		</span>
 					</div>
 				</div>
@@ -62,7 +62,7 @@
               <div class="row">
 					<!-------------------------left----------------------->
                  <div class="col-xs-6">
-              		<h4>Dane pacjenta</h4>
+              		<h4>{{'visit.patient_data' | translate}} </h4>
                        <div class="row">
 							<div class="col-xs-5">
 								<span style="color: #acacac; font-size: 9pt; text-align: left;"
@@ -146,6 +146,7 @@
 													close-text="Close" 
 													alt-input-formats="altInputFormats" 
 													required
+													placeholder="{{'commons.select_date' | translate}}"
 													name="dateField"
 													id="dateField"
 													ng-class="{submitted:addVisitForm.submitted}"
@@ -172,7 +173,7 @@
 									<div class="row vertical-align" style="padding-top: 6px;">
 										<div class="col-xs-4" style="justify-content: end;">
 											<span style="color: #acacac; font-size: 9pt; text-align: left;"
-												>Godzina:<span style="color:red;">*</span>
+												>{{'commons.hour' | translate}}:<span style="color:red;">*</span>
 											</span>  
 										</div>
 										<div class="col-xs-8">
@@ -210,6 +211,7 @@
 											class="form-control" 
 											ng-model="ctrl.visit.length"
 											required
+											placeholder="{{'visit.visit_length' | translate}}"
 											ng-class="{submitted:addVisitForm.submitted}"
 											type="text"
 											>
@@ -218,7 +220,7 @@
 									<div class="row col-md-offset-4" ng-show="addVisitForm.lengthField.$error.required && addVisitForm.submitted" >
 										<span 
 	                  						style="color : #f00; float: left;"
-	                  						>{{'commons.what_visit_length' | translate}}
+	                  						>{{'visit.what_visit_length' | translate}}
 	            						</span>
 									</div>
 

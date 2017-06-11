@@ -40,7 +40,7 @@
 					ng-class="{submitted:addVisitForm.submitted}"
 				>
     			<ui-select-match 
-					placeholder="Wybierz pacjenta z listy" >{{$select.selected.firstname}} {{$select.selected.lastname}}
+					placeholder="{{'commons.select_patient' | translate}}" >{{$select.selected.firstname}} {{$select.selected.lastname}}
 				</ui-select-match>
     			<ui-select-choices 
 					repeat="person in ctrl.people | propsFilter: {firstname: $select.search, lastname: $select.search, age: $select.search}" >
@@ -58,6 +58,15 @@
     			</span>
 			  </div>
 			</div>
+			
+			<style>
+				.select2-container .select2-choice {
+				height: 61px; background: #f6f9fc;font-size: 16px;padding-left: 10px;
+				}
+				.select2 > .select2-choice.ui-select-match {
+				    height: 31px;
+				}
+			</style>
 			
 			<!-- Text input-->
 			<div class="form-group">
@@ -77,6 +86,7 @@
 						ng-required="true" 
 						close-text="Close" 
 						alt-input-formats="altInputFormats" 
+						placeholder="{{'commons.select_date' | translate}}"
 						required
 						name="dateField"
 						ng-class="{submitted:addVisitForm.submitted}"
@@ -109,28 +119,18 @@
 			  	{{'commons.hour' | translate}}:<span style="color:red;">*</span>
 			  </label>  
 			  <div class="col-md-4">
-			  	<ui-select 
-					ng-model="visit.hour" 
-					theme="selectize" 
-					ng-disabled="ctrl.disabled"  
-					title="Choose a country"
-					on-select="ctrl.onSelectHour($item, $model)"
-					name="hourField"
-					id="hourField"
-					required
+			  	<select 
+					id="hourField" 
+					name="hourField" 
+					class="form-control" 
+					required="required"
+					ng-model="visit.hour"
 					ng-class="{submitted:addVisitForm.submitted}"
-				>
-					<ui-select-match 
-						id="hourField2" 
-						placeholder="{{'commons.select_hour' | translate}}"
-						allow-clear="true"
-						>{{$select.selected.name}}
-					</ui-select-match>
-					<ui-select-choices repeat="country in ctrl.countries | filter: $select.search" style="background: #f6f9fc;">
-								<span ng-bind-html="country.name | highlight: $select.search"></span>
-								<small ng-bind-html="country.code | highlight: $select.search"></small>
-					</ui-select-choices>
-				</ui-select>
+					ng-options="country.name for country in ctrl.countries"
+					style="background: #f6f9fc;"
+					>
+					<option style="display:none" value="">{{'commons.select_hour' | translate}}</option>
+				</select>
 				<span 
     				ng-show="addVisitForm.hourField.$error.required && addVisitForm.submitted" 
     				style="color : #f00; float:left;"
@@ -174,7 +174,24 @@
 			               	ng-options="service.id as service.serviceName + ' (' + service.price + ')' for service in services"
 			               	style="background: #f6f9fc; width:90%;float:left;" 
 		               >
+		               <option style="display:none;" value=""><span style="color:green;">{{'commons.select_service' | translate}}</span></option>
 		               </select>
+		               
+		               <style>
+
+						select.ng-dirty,select.ng-touched {
+						  color: black;
+						  font-size: 16px;
+						}
+						select.ng-pristine {
+						  color: #989595;
+						  padding-left: 5px;
+						  font-size: 16px;
+						}
+						option {
+							color: black;
+						}
+		               </style>
 		               
 	<!-- 	               <a href=""><span class="glyphicon glyphicon-plus" style="float:right;top:10px;right:10px;"></span></a> -->
 						<add-service-directive counter="counter" services-to-select="services"></add-service-directive>
@@ -200,7 +217,7 @@
 					class="form-control"
 					placeholder="{{'addVisit.visit_description' | translate}}" 
 					id="description" 
-					style="height: 61px; background: #f6f9fc;"
+					style="height: 61px; background: #f6f9fc;font-size: 16px;padding-left: 10px;"
 					ng-model="visit.description"
 					>
 				</textarea>
@@ -219,7 +236,7 @@
 			    	type="text" 
 					class="form-control"
 					placeholder="{{'addVisit.recommendations_after_the_visit' | translate}}" 
-					style="height: 61px; background: #f6f9fc;"
+					style="height: 61px; background: #f6f9fc;font-size: 16px;padding-left: 10px;"
 					ng-model="visit.recommendation"
 					>
 				</textarea>

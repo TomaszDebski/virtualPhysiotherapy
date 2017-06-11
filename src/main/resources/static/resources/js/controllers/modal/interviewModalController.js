@@ -4,12 +4,14 @@
 
 angular.module('app.controller.interviewModal', [])
 .controller('interviewModalController', function($scope,$http, $uibModalInstance , 
-		myParam,pains,interviewService,$filter) {
+		myParam,pains,interviewService,$filter,bodyPart) {
 	
 	var $translate = $filter('translate');
 	
 	$scope.interview = {};
-	
+	$scope.counter= 0;
+	$scope.pains = pains;
+	$scope.bodyPart = bodyPart;
 	
 	  $scope.ok = function () {
 //		  if ($scope.addInterview()){
@@ -20,15 +22,18 @@ angular.module('app.controller.interviewModal', [])
 				interview.date = $scope.interview.startDate;
 				console.log('interview.date ' + interview.date);
 				interview.uniqueId = '22222';
-				interview.description = $scope.interview.description
-				interview.pains = []
-				var pain = {};
-				pain.painName = $scope.interview.painInput;
-				var place = {};
-				place.bodyPlaceName = $scope.interview.bodyInput;
-				pain.painBodyPlaces = [];
-				pain.painBodyPlaces.push(place);
-				interview.pains.push(pain);
+//				interview.pains = []
+//				var pain = {};
+//				pain.painName = $scope.interview.painInput;
+//				var place = {};
+//				place.bodyPlaceName = $scope.interview.bodyInput;
+//				pain.painBodyPlaces = [];
+//				pain.painBodyPlaces.push(place);
+//				interview.pains.push(pain);
+				
+				addPainsAndPlaces(interview);
+				
+				
 				interviewService.save({patinet_id:myParam},interview,function(data){
 					console.log("udało się");
 //					$scope.successAddPatient = true;
@@ -37,16 +42,39 @@ angular.module('app.controller.interviewModal', [])
 					$uibModalInstance.close();
 				})
 			}else{
-				if($scope.interviewForm.painInput.$error.required){
-					makeRedBorder('drop1');
-				}
-				if($scope.interviewForm.bodyInput.$error.required){
-					makeRedBorder('drop2')
-				}
+//				if($scope.interviewForm.painInput.$error.required){
+//					makeRedBorder('drop1');
+//				}
+//				if($scope.interviewForm.bodyInput.$error.required){
+//					makeRedBorder('drop2')
+//				}
 				$scope.interviewForm.submitted=true;    
 				console.log('niepoprawny formularz')
 			} 
 	  };
+	  
+	  function addPainsAndPlaces(interview){
+		  var painCopy = angular.copy(pains);
+		  var bodyPartCopy = angular.copy(bodyPart);
+		  interview.pains = []
+		  for(var i = 0; i <= $scope.counter; i++){
+			  var findedPainValue = angular.element(document.querySelector('#selectPain_'+i)).val();
+			  var painValue = $filter('filter')(painCopy, {'id':findedPainValue})[0];
+			  var findedBodyPartValue = angular.element(document.querySelector('#selectBodyPart_'+i)).val();
+			  var bodyPartt = $filter('filter')(bodyPartCopy, {'id':findedBodyPartValue})[0];
+			  var pain = {};
+			  var bodyPlace = {};
+			  bodyPlace.bodyPlaceName = bodyPartt.bodyName;
+			  pain.painName = painValue.painName;
+			  pain.id = null;
+			  pain.painBodyPlaces = [];
+			  pain.painBodyPlaces.push(bodyPlace);
+			  var painDescription = angular.element(document.querySelector('#pain_description_'+i)).val();
+			  pain.description = painDescription;
+			  interview.pains.push(pain);
+			  console.log('interview ',interview);
+		  }
+	  }
 	  
 	  function makeRedBorder(drop){
 		  $("."+drop).css(
@@ -60,12 +88,12 @@ angular.module('app.controller.interviewModal', [])
 		  $uibModalInstance.dismiss('cancel');
 	  };
 	  
-	  $scope.pains = pains;
 	  
-	  $http.get("bodyPart")
-		.then(function(value) {
-			$scope.bodyPart = value.data;
-		})
+	  
+//	  $http.get("bodyPart")
+//		.then(function(value) {
+//			$scope.bodyPart = value.data;
+//		})
 		
 	  $scope.toggled = function(open,input,drop) {
 		  console.log('Dropdown is now: ', open);

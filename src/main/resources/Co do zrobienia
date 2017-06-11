@@ -1,11 +1,13 @@
 
+zabezpiecz update i remove dla pacjentów i visit
+ng-select dodaj pierwszą pozycję jako wybierz.... zrobione na dodawaniu wizyt
 
-przenieś do resolvów
-dodaj dyrektywe dla wywiadów
-usuwanie wizyty i informacje o usunięciach
-uzupełnij dane
+
+
+zabezpiecz przed wchodzeniem na nieodpowiednie linki
 dodawanie plików
 walidatory wizyt
+uzupełnij dane
 walidacja długości trwania wizyty tylko na liczby
 Gdy usunę fizjoterapeute usuwam wszystkie wizyty z nim związane
 zabezpiecz przed wejściem bezpośrednio linkiem

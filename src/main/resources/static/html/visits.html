@@ -8,7 +8,7 @@
 				</div>
 			
 				<div class="col-md-4">
-				 {{'commons.patient' | translate}}: 
+				 <span style="margin-right:5px;">{{'commons.patient' | translate}}:</span>  
 				 	<ui-select 
 						ng-model="ctrl.people.patientId" 
 						theme="select2" 
@@ -36,6 +36,20 @@
 			   			</ui-select-choices>
 					</ui-select>
 				</div>
+				
+				<style>
+				.select2-container .select2-choice {
+					height: 61px; 
+					background: #f6f9fc;
+					font-size: 16px;
+					padding-left: 10px;
+					padding-top: 2px;
+				}
+				.select2 > .select2-choice.ui-select-match {
+				    height: 31px;
+				}
+			</style>
+				
 				<div class="col-md-2 col-md-offset-1">
 					<div class="row">
 						<div class="row">
@@ -122,7 +136,6 @@
 						<th style="width:200px;">{{'commons.date' | translate}}</th>
 						<th>{{'commons.contents' | translate}}</th>
 						<th style="width:300px;">{{'commons.services' | translate}}</th>
-						<th style="width:100px;">{{'commons.price' | translate}}</th>
 						<th style="width:100px;">{{'commons.actions' | translate}}</th>
                    </tr>
                 </thead>
@@ -137,35 +150,22 @@
 								{{treatment.service.serviceName}}<span ng-if="!$last">,</span>
 							</span>
 						</td>
-						<td><span class="table_span">{{visit.cost}}</span></td>
 						<td class="actions-col">
-							<span class="masterTooltip table_span" title="{{'visits.finish_the_visit' | translate}}">
-								<a href="" class="icon">
+							<span class="masterTooltip table_span" title="{{'visits.finish_the_visit' | translate}}"
+								ng-show="visit.status === 'reservation'">
+								<a class="icon" ui-sref="visit({id:{{visit.id}}})">
 									<img src="/pics/checkmark.svg">
 								</a>
 							</span>
 		
+							<span class="masterTooltip table_span" title="{{'commons.send_email' | translate}}">
+								<a href="" class="icon" >
+									<img src="/pics/email.svg">
+								</a>
+							</span>
 							<span class="masterTooltip table_span" title="{{'visits.delete_the_visit' | translate}}">
 								<a ng-click="deleteVisit(visit)" href="" class="icon">
 									<img src="/pics/usun_szary.svg">
-								</a>
-							</span>
-		
-							<span class="masterTooltip table_span" title="{{'commons.send_email' | translate}}">
-								<a
-									href="#myModal" 
-									onclick="addData(event)" 
-									role="button"
-									class="icon" 
-									data-toggle="modal" 
-									attr.item-patient="11111 22222"
-									name="11111 22222" 
-									attr.item-opiszwizyte="1111"
-									attr.item-zalecenia="111" 
-									attr.item-zabiegi="1111"
-									attr.item-email="1111@o2.pl"
-								>
-									<img src="/pics/email.svg">
 								</a>
 							</span>
 						</td>

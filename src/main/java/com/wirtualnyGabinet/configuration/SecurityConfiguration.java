@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
@@ -95,7 +96,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	            .logoutSuccessHandler(ajaxLogoutSuccessHandler())
 	            .permitAll()
 //	        .exceptionHandling().accessDeniedPage("/Access_Denied")
-	        	.and().csrf().disable();
+	        	.and()
+	        		.csrf()
+	        	 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+//	        	.csrf().disable();
 //	        .addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class)
 //	        .csrf().csrfTokenRepository(csrfTokenRepository());
 	    }

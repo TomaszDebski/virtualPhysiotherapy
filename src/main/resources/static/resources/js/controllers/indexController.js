@@ -20,6 +20,7 @@ angular.module('app.controller.index', [])
 			$window.sessionStorage.user = "";
 			$window.sessionStorage.authenticated = false;
 			$window.sessionStorage.role = "";
+			$state.go("home");
 		})
 	}
 	

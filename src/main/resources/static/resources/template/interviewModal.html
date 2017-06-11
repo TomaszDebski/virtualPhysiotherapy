@@ -47,81 +47,62 @@
 			</div>
 
 
-
-
-
-
 </div>
-<div class="modal-body">
+<div class="modal-body" style="padding-bottom: 5px;">
 	<div class="row vertical-align">
 	 	<div class="col-md-2">
 			<span>{{'interview.kind_of_pain' | translate}}:</span>
 		</div>
 		<div class="col-md-3" style="justify-content: left;">
-			<div 
-				class="btn-group dropdown drop1" 
-				uib-dropdown="22" 
-				is-open="status.isopen" 
-				style=""  
-				on-toggle="toggled(open,interview.painInput,'drop1')">
 
-      			<button 
-					id="single-button" 
-					type="button" 
-					class="btn btn-primary dropdown-toggle" 
-					uib-dropdown-toggle="" 
-					ng-disabled="disabled" 
-					aria-haspopup="true" 
-					aria-expanded="false" 
-					uib-dropdown-toggle>
-       	 			{{painDisplay}}<span class="caret"></span>
-      			</button>
-      			<ul 
-					class="dropdown-menu" 
-					uib-dropdown-menu="22" 
-					role="menu" 
-					aria-labelledby="single-button"
-					style="min-width: 120px;">
-        			<li role="menuitem"> 
-          				<a href="" ng-click="change(pain.painName)" ng-repeat="pain in pains">{{pain.painName}}</a>
-					</li>
-     		 	</ul>
-   		 	</div>
-			<input type="hidden" name="painInput" required  ng-model="interview.painInput">
-			
+			<select 
+			    id="selectPain_0"
+			    name="selectPain_0" 
+			    class="form-control" 
+			    required="required"
+			    ng-model="interview.painInput_0"
+			    ng-class="{submitted:interviewForm.submitted}"
+			    ng-options="pain.painName for pain in pains track by pain.id"
+			    style="background: #f6f9fc;float:left;"
+				style="min-width: 150px;"
+		        >
+		   </select>
+
 		</div>
-
 		<div class="col-md-2">
 			<span>{{'interview.place_of_pain' | translate}}:</span>
 		</div>
 
 		<div class="col-md-3" style="justify-content: left;">
-			<div class="btn-group dropdown drop2" uib-dropdown="22" is-open="status2.isopen" style=""  on-toggle="toggled(open,interview.bodyInput,'drop2')">
-      			<button id="single-button2" type="button" class="btn btn-primary dropdown-toggle" uib-dropdown-toggle="" ng-disabled="disabled" aria-haspopup="true" aria-expanded="false" uib-dropdown-toggle>
-       	 			{{bodyDisplay}}<span class="caret"></span>
-      			</button>
-      			<ul class="dropdown-menu" uib-dropdown-menu="22" role="menu" aria-labelledby="single-button2" style="min-width: 120px;">
-        			<li role="menuitem"> 
-          				<a href="" ng-click="change2(body)" ng-repeat="body in bodyPart">{{body}}</a>
-					</li>
-     		 	</ul>
-   		 	</div>
-			<input type="hidden" name="bodyInput" required  ng-model="interview.bodyInput">
+
+			<select 
+			    id="selectBodyPart_0" 
+			    name="selectBodyPart_0" 
+			    class="form-control" 
+			    required="required"
+			    ng-model="interview.bodyInput_0"
+			    ng-class="{submitted:interviewForm.submitted}"
+			    ng-options="body.bodyName for body in bodyPart track by body.id"
+			    style="background: #f6f9fc;float:left;"
+				style="min-width: 150px;"
+		        >
+		   </select>
 		</div>
-	
+		<multiple-body-and-place-directive counter="counter" pains="pains" body-part="bodyPart"></multiple-body-and-place-directive>
+
 	</div>
 
 	<div class="row">
 		<div class="col-md-offset-2">
 			<span 
-		    	ng-show="interviewForm.painInput.$error.required  && interviewForm.submitted" 
-		    	style="color : #f00; float:left; margin-left: 15px;"
+		    	ng-show="interviewForm.selectPain_0.$error.required  && interviewForm.submitted" 
+		    	style="color : #f00; float:left; margin	-left: 15px;"
 		    	>{{'interview.choose_the_type_of_pain' | translate}}
 		    </span>
 		</div>
 		<div class="col-md-offset-7">
 			<span 
-		    	ng-show="interviewForm.bodyInput.$error.required  && interviewForm.submitted" 
+		    	ng-show="interviewForm.selectBodyPart_0.$error.required  && interviewForm.submitted" 
 		    	style="color : #f00; float:left; margin-left: 15px;"
 		    	>{{'interview.choose_a_place_of_pain' | translate}}
 		    </span>
@@ -138,15 +119,17 @@
 				<textarea name="description"
 					class="form-control" 
 					placeholder="{{'commons.additional_information' | translate}}"
-					id="description" 
-					style="height: 61px; 
+					id="pain_description_0" 
+					style="height: 54px; 
 					background: #f6f9fc;"
-					ng-model="interview.description">
+					ng-model="interview.description"
+					rows="1" cols="50">
 				</textarea>
 			</div>
 		</div>
 
 	</div> 
+	<div class="hidden_0"/>
  </div>     
 </form>
 
@@ -160,6 +143,10 @@
 }
 
 input.submitted.ng-invalid{
+  border:2px solid #f00;
+}
+
+select.submitted.ng-invalid{
   border:2px solid #f00;
 }
 </style>

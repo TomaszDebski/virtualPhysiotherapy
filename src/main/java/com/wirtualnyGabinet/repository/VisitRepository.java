@@ -30,5 +30,8 @@ public interface VisitRepository extends CrudRepository<Visit,Long>,JpaRepositor
 	Page<Visit> findByPhysiotherapist_idAndDateBetween(Pageable pageable,long id,Date startDate,Date endDate);
 	
 	Page<Visit> findByPhysiotherapist_idAndDateBetweenAndPatient_id(Pageable pageable,long phys_id,Date startDate,Date endDate,long patient_id);
+	
+	@Query( "from Visit v where v.physiotherapist.id = :physId and v.id = :visitId" )
+	Visit checkVisit(@Param("visitId") long visitId, @Param("physId") long physId);
 
 }

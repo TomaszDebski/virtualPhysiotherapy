@@ -1,11 +1,15 @@
 package com.wirtualnyGabinet.service.impl;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.wirtualnyGabinet.entity.FileUpload;
 import com.wirtualnyGabinet.entity.Physiotherapist;
 import com.wirtualnyGabinet.repository.PhysiotherapistRepository;
 import com.wirtualnyGabinet.service.IPhysiotherapistService;
@@ -15,6 +19,9 @@ public class PhysiotherapistService implements IPhysiotherapistService {
 
 	@Autowired
 	PhysiotherapistRepository physiotherapistRepository;
+	
+	@Autowired
+	FileUploadService fileUploadService;
 	
 	@Override
 	public Physiotherapist findOne(Long id) {
@@ -26,7 +33,7 @@ public class PhysiotherapistService implements IPhysiotherapistService {
 		physiotherapist.setPassword(new BCryptPasswordEncoder().encode(physiotherapist.getPassword()));
 		physiotherapist.setRole("ROLE_USER");
 		physiotherapistRepository.save(physiotherapist);
-		
+		addFileToUser(physiotherapist.getId());
 	}
 
 	@Override
@@ -59,5 +66,22 @@ public class PhysiotherapistService implements IPhysiotherapistService {
 	public void deletePhysiotherapist(long id) {
 		Physiotherapist physiotherapist = physiotherapistRepository.findOne(id);
 		physiotherapistRepository.delete(physiotherapist);
+	}
+	
+	private void addFileToUser(long id){
+		FileUpload file = new FileUpload();
+		file.setFilename("physiotherapistAvatar");
+		ClassLoader classLoader = getClass().getClassLoader();
+		File fileByte = new File(classLoader.getResource("static/pics/physiotherapists/PhysiotherapisAvatar.png").getFile());
+		try {
+			file.setFile(Files.readAllBytes(fileByte.toPath()));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		file.setMimeType("text/plain");
+		file.setObject_id(id);
+		file.setObjectType("physiotherapist");
+		fileUploadService.uploadFile(file);
 	}
 }

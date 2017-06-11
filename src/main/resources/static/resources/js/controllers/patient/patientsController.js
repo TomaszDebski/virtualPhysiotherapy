@@ -32,11 +32,9 @@ angular.module('app.controller.patients', [])
 			},
 			function(){
 				patientService.delete({id:patient.id},function(){
-					swal($translate('commons.removed'), $translate('patients.patient_was_removed'), "success");
 					$scope.pageChanged();
 				});
 			});
-		
 	}
 	
 	  $scope.setPage = function (pageNo) {

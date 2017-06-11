@@ -15,14 +15,14 @@ public class BodyPlace {
 
 	@Id
 	@GeneratedValue
-	@JsonView(Views.KindOfPain.class)
+	@JsonView(Views.BodyPlace.class)
 	public Long id;
 	
-	@JsonView(Views.KindOfPain.class)
+	@JsonView(Views.BodyPlace.class)
 	@Column(name="bodyName")
 	public String bodyName;
 	
-	@JsonView(Views.KindOfPain.class)
+	@JsonView(Views.BodyPlace.class)
 	@Column(name="description")
 	public String description;
 

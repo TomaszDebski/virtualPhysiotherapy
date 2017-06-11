@@ -9,11 +9,8 @@ angular.module('app.service.getFile',[])
     	      .success(function(result){
     	    	  console.log("udało się pobrać plik")
     	    	  return result;
-//				.success(function(data,status,headers,config){
-//					return data.content;
-//				}).error(function(data,status,headers,config){
-//					console.log("nie udało się");
-//				})
+				}).error(function(data,status,headers,config){
+					console.log("błąd z pobieraniem pliku w account.js");
     	      	})
     	    }
     	}

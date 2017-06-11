@@ -115,6 +115,11 @@ public class Interview implements Serializable {
 		this.uniqueId = uniqueId;
 	}
 
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	
 	
 	

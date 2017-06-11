@@ -4,32 +4,11 @@
 
 angular.module('app.controller.account', [])
 .controller('accountController', function($scope,$http,$rootScope,$log,$location,$window,physiotherapistService
-		,uiUploader,getFileService) {
-	
-//	$log.info('$window.sessionStorage.userModel', $window.sessionStorage.userModel);
-//	console.log($window.sessionStorage.userModel)
+		,uiUploader,getFileService,user,file) {
 	
 	$scope.editAccount = false;
-//	var oldUser = {};
-//	$scope.changeToEdit = function(isEdit){
-//		if (isEdit){
-//			$scope.editAccount = true;
-//			oldUser = angular.copy($scope.user);
-//		}else{
-//			$scope.editAccount = false;
-//			$scope.editUserForm.submitted = false;
-//			$scope.user = oldUser;
-//		}
-//	}
 	
-	physiotherapistService.get({id:$window.sessionStorage.id},function(data){
-		$scope.user = data;
-		var file = getFileService.getOneFile(data.id);
-		file.then(function(result){
-			$scope.avatar = result.data;
-		})
-	});
-	
+	$scope.user = user;
 	
 	$scope.successSave = false;
 	$scope.editUser = function(user){
