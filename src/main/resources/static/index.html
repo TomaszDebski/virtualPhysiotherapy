@@ -25,7 +25,6 @@
 <link rel="stylesheet" href="resources/js/libraries/jquery-ui.css">
 <link rel="stylesheet" href="resources/js/libraries/fullcalendar.css">
 
-<!-- <script src="resources/bootstrap/js/bootstrap.js"></script> -->
 <script src="resources/js/libraries/jQuery.js"></script>
 <script src="resources/js/libraries/jquery-ui.min.js"></script>
 <script src="resources/js/libraries/angular.js"></script>
@@ -39,13 +38,11 @@
 <script src="resources/js/libraries/angular-translate.js"></script>
 <script src="resources/js/libraries/angular-translate-loader-static-files.js"></script>
 <script src="resources/js/libraries/angular-translate-storage-cookie.js"></script>
-
 <script src="resources/js/libraries/angular-sanitize.js"></script>
-
+<script src="resources/js/libraries/components/cookies/angular-cookies.js"></script>
 <script src="resources/js/libraries/moment.min.js"></script>
 <script src="resources/js/libraries/fullcalendar.js"></script>
 <script src="resources/js/libraries/locale-all.js"></script>
-
 <script src="resources/js/libraries/components/jquery.timepicker.js"></script>
 <script src="resources/js/libraries/components/select/select.js"></script>
 <script src="resources/js/libraries/components/uploader/uploader.js"></script>
@@ -56,15 +53,12 @@
 <link rel="stylesheet" href="resources/js/libraries/components/bootstrap-sweetalert/sweetalert.css">
 <script src="resources/js/libraries/components/bootstrap-sweetalert/SweetAlert.min.js"></script>
 
-
-
 <link rel="stylesheet" href="css/components/select.css">
 <link rel="stylesheet" href="css/components/select2.css">
 
 <link rel="stylesheet" href="resources/js/libraries/components/jquery.timepicker.css">
 <link rel="stylesheet" href="css/components/selectize.default.css">
 
-<!-- Latest compiled and minified JavaScript -->
 <link href="css/fonts/font-awesome.min.css" rel="stylesheet">
 <link href="css/fonts/fontawesome-webfont.woff" rel="stylesheet">
 <link href="css/fonts/font-awesome.css" rel="stylesheet">
@@ -76,6 +70,89 @@
 <link rel="stylesheet" href="css/style-main-header.css">
 <link rel="stylesheet" href="css/style-common.css">
 
+	<style>
+		.row.vdivide [class*='col-']:not(:last-child):after {
+		  background: #e0e0e0;
+		  width: 1px;
+		  content: "";
+		  display:block;
+		  position: absolute;
+		  top:0;
+		  bottom: 0;
+		  right: 0;
+		  min-height: 70px;
+		}
+		
+		.navbar-collapse { padding: 0; } /* forces the nav to take full container with */
+		.navbar-nav > li:first-child { text-align: left; } /* alligns first element to the left border */
+		.navbar-nav > li:last-child { text-align: right; } /* similar for right border */
+		.navbar-nav { display: table; width: 100%; margin: 0; }
+		.navbar-nav > li { display: table-cell; text-align: center; float: none; }
+		
+		.navbar-default {
+		    background-color: #FFF;
+		    border-color: #E7E7E7;
+		    border-color: transparent;
+		}
+		
+		.navbar-default .navbar-nav > li > a {
+		    color: #0078ad;
+		    font-weight: bold;
+		    font-size: 16px;
+		}
+		
+		.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a {
+		 	text-align: center;
+		}
+		
+		.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+		    background-color: #eee;
+		    color: black;
+		}
+		
+		.navbar-custom .navbar-nav > .active > a,
+		.navbar-custom .navbar-nav > .active > a:hover,
+		.navbar-custom .navbar-nav > .active > a:focus {
+		    color: #c00;
+		    background-color: #fff;
+		}
+		
+		/* show the collapse when navbar toggle is checked */
+		#navbar-toggle-cbox:checked ~ .collapse {
+		    display: block;
+		}
+		
+		#navbar-toggle-cbox {
+		  display:none
+		}
+
+		.main.ng-enter {
+		  transition: 1.0s;
+		  opacity: 0; }
+		.main.ng-enter-active {
+		  opacity: 1; }
+			[ui-view] {
+		    position: inherit;
+		    }
+	  	html,body{
+			height:100%;
+			min-height: 100%;
+		}
+		
+		#main{
+			overflow:auto;
+			padding-bottom:150px; /* this needs to be bigger than footer height*/
+		}
+		
+		.footer{
+			position: relative;
+			margin-top: -150px; /* negative value of footer height */
+			height: 150px;
+			clear:both;
+			padding-top:20px;
+			color:#fff;
+		}
+  	</style>
 </head>
 
 <body ng-controller="indexController" >
@@ -194,83 +271,10 @@
       </nav>
     </div> 
 	</header>
-    
-    
-    
-	<style>
-	
-	.row.vdivide [class*='col-']:not(:last-child):after {
-  background: #e0e0e0;
-  width: 1px;
-  content: "";
-  display:block;
-  position: absolute;
-  top:0;
-  bottom: 0;
-  right: 0;
-  min-height: 70px;
-}
-	
-	.navbar-collapse { padding: 0; } /* forces the nav to take full container with */
-/* .navbar-nav > li > a { text-transform: uppercase; } */
-.navbar-nav > li:first-child { text-align: left; } /* alligns first element to the left border */
-.navbar-nav > li:last-child { text-align: right; } /* similar for right border */
-/* .navbar-nav > li:first-child > a, .navbar-nav > li:last-child > a { padding: 0; } */
-.navbar-nav { display: table; width: 100%; margin: 0; }
-.navbar-nav > li { display: table-cell; text-align: center; float: none; }
 
-.navbar-default {
-    background-color: #FFF;
-    border-color: #E7E7E7;
-    border-color: transparent;
-}
-
-.navbar-default .navbar-nav > li > a {
-    color: #0078ad;
-    font-weight: bold;
-    font-size: 16px;
-}
-
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a {
- 	text-align: center;
-}
-
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    background-color: #eee;
-    color: black;
-   
-}
-
-.navbar-custom .navbar-nav > .active > a,
-.navbar-custom .navbar-nav > .active > a:hover,
-.navbar-custom .navbar-nav > .active > a:focus {
-    color: #c00;
-    background-color: #fff;
-}
-
-/* show the collapse when navbar toggle is checked */
-#navbar-toggle-cbox:checked ~ .collapse {
-    display: block;
-}
-
-/* the checkbox used only internally; don't display it */
-#navbar-toggle-cbox {
-  display:none
-}
-	</style>
 	
 	<div ui-view class="main"></div>
 
-<style>
-
-.main.ng-enter {
-  transition: 1.0s;
-  opacity: 0; }
-.main.ng-enter-active {
-  opacity: 1; }
-	[ui-view] {
-    position: inherit;
-</style>
 
 <div class="">
   <hr style="margin-bottom: 12px;">
@@ -279,31 +283,6 @@
     </div>
   </div>
   
-  <style>
-  	html,body
-		{
-		height:100%;
-		min-height: 100%;
-		}
-		
-		#main
-		{
-		overflow:auto;
-		padding-bottom:150px; /* this needs to be bigger than footer height*/
-		}
-		
-		.footer
-		{
-		position: relative;
-		margin-top: -150px; /* negative value of footer height */
-		height: 150px;
-		clear:both;
-		padding-top:20px;
-		color:#fff;
-		}
-  
-  </style>
-
 	<script src="resources/js/app.js"></script>
 	<script src="resources/js/config.js"></script>
 	<script src="resources/js/run.js"></script>
@@ -314,22 +293,21 @@
 	<script src="resources/js/configuration/uibPaginationConfig.js"></script>
 	
 	<script src="resources/js/controllers/navigationController.js"></script>
-	<script src="resources/js/controllers/loginController.js"></script>
-	<script src="resources/js/controllers/logoutController.js"></script>
-	<script src="resources/js/controllers/registerController.js"></script>
-<!-- 	<script src="resources/js/controllers/allPhysiotherapistController.js"></script> -->
+	<script src="resources/js/controllers/user/loginController.js"></script>
+	<script src="resources/js/controllers/user/logoutController.js"></script>
+	<script src="resources/js/controllers/user/registerController.js"></script>
+	<script src="resources/js/controllers/user/accountController.js"></script>
 	<script src="resources/js/controllers/contactController.js"></script>
 	<script src="resources/js/controllers/patient/patientsController.js"></script>
 	<script src="resources/js/controllers/patient/addPatientController.js"></script>
 	<script src="resources/js/controllers/patient/patientController.js"></script>
-	<script src="resources/js/controllers/visitsController.js"></script>
-	<script src="resources/js/controllers/visitController.js"></script>
-	<script src="resources/js/controllers/addVisitController.js"></script>
+	<script src="resources/js/controllers/visit/visitsController.js"></script>
+	<script src="resources/js/controllers/visit/visitController.js"></script>
+	<script src="resources/js/controllers/visit/addVisitController.js"></script>
 	<script src="resources/js/controllers/modal/interviewModalController.js"></script>
 	<script src="resources/js/controllers/modal/addVisitInCalendarModelController.js"></script>
 	<script src="resources/js/controllers/modal/addHolidayInCalendarModelController.js"></script>
 	<script src="resources/js/controllers/calendarController.js"></script>
-	<script src="resources/js/controllers/accountController.js"></script>
 	<script src="resources/js/controllers/indexController.js"></script>
 	<script src="resources/js/controllers/addServiceController.js"></script>
 	<script src="resources/js/controllers/addKindOfPainController.js"></script>
@@ -351,7 +329,7 @@
 	
 	<script src="resources/js/directives/usernameAvailableDirective.js"></script>
 	<script src="resources/js/directives/compareToDirective.js"></script>
-	<script src="resources/js/directives/dropdownDirective.js"></script>
+<!-- 	<script src="resources/js/directives/dropdownDirective.js"></script> -->
 	<script src="resources/js/directives/newInterview/addNewInterviewDirective.js"></script>
 	<script src="resources/js/directives/addService/addServiceDirective.js"></script>
 	<script src="resources/js/directives/multipleBodyAndPlaceInInterview/multipleBodyAndPlaceDirective.js"></script>
@@ -363,6 +341,6 @@
 	<div ng-include="'resources/template/interviewModal.html'"></div>
 	<div ng-include="'resources/template/addHolidayInCalendarModal.html'"></div>
 	<div ng-include="'resources/template/addVisitInCalendarModal.html'"></div>
-	
+
 </body>
 </html>

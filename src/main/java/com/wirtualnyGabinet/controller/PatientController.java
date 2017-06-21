@@ -1,11 +1,8 @@
 package com.wirtualnyGabinet.controller;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,10 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.wirtualnyGabinet.Views;
 import com.wirtualnyGabinet.entity.Patient;
-import com.wirtualnyGabinet.entity.Physiotherapist;
-import com.wirtualnyGabinet.entity.Visit;
-import com.wirtualnyGabinet.repository.PatientRepository;
-import com.wirtualnyGabinet.repository.PhysiotherapistRepository;
 import com.wirtualnyGabinet.service.IPatinetService;
 
 
@@ -34,7 +27,7 @@ public class PatientController {
 	
 	@Autowired
 	IPatinetService patientService;
-
+	
 	@RequestMapping(method= RequestMethod.POST)
 	public void addPatient(@RequestBody Patient patient,Principal principal){
 		patientService.addPatient(patient, principal);
@@ -44,7 +37,7 @@ public class PatientController {
 	@JsonView(Views.Patients.class)
 	@RequestMapping(value="/{id}")
 	public ResponseEntity<Patient> getPatientById(@PathVariable("id") long id,Principal principal){
-		if (patientService.checkPatient(id, principal.getName())){
+		if (patientService.checkAuthorization(id, principal.getName())){
 			return new ResponseEntity<Patient>(patientService.getPatientById(id),HttpStatus.OK);
 		}else{
 			return new ResponseEntity<Patient>(HttpStatus.UNAUTHORIZED);
@@ -63,8 +56,7 @@ public class PatientController {
 		return patientService.getAllPatientsForPhysiotherapist(principal);
 	}
 	
-//	@JsonView(Views.Patient.class)
-	@RequestMapping("/cos")
+	@RequestMapping("/patientsPagination")
 	public Page<Patient> getAllPatientsList(Pageable pageable, @RequestParam("id") long id){
 		return patientService.getAllPatientsList(pageable, id);
 	}
@@ -76,13 +68,23 @@ public class PatientController {
 	
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
-	public void updatePatient(@PathVariable("id") long id,@RequestBody Patient patient){
-		patientService.updatePatient(id, patient);
+	public ResponseEntity<Void> updatePatient(@PathVariable("id") long id,@RequestBody Patient patient,Principal principal){
+		if (patientService.checkAuthorization(id, principal.getName())){
+			patientService.updatePatient(id, patient);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		}else{
+			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
+		}
 	}
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
-	public void deletePatient(@PathVariable("id") long id){
-		patientService.deletePatient(id);
+	public ResponseEntity<Void> deletePatient(@PathVariable("id") long id,Principal principal){
+		if (patientService.checkAuthorization(id, principal.getName())){
+			patientService.deletePatient(id);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		}else{
+			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
+		}
 	}
 	
 }

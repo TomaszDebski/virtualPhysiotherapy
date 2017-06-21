@@ -19,10 +19,6 @@ public interface VisitRepository extends CrudRepository<Visit,Long>,JpaRepositor
 	@Query( "from Visit v join fetch v.patient p where p.id = :id" )
 	List<Visit> findByPatientID(@Param("id") long id);
 	
-//	@Query( "from Visit v join fetch v.physiotherapist p where p.username = :name" )
-//	List<Visit> findByPhysiotherapistUsername(@Param("name") String name);
-	
-	//@Query( "from Visit v join fetch v.physiotherapist p where p.username = :name" )
 	List<Visit> findByPhysiotherapist_id(long id);
 	
 	List<Visit> findByPhysiotherapist_idAndDateBetween(long id, Date startDate, Date endDate);

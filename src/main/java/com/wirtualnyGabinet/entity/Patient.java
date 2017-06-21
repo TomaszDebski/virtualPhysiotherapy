@@ -16,18 +16,23 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import com.wirtualnyGabinet.Views;
+import com.wirtualnyGabinet.service.impl.EmailSenderService;
 
 @Entity
 @Table(name="patient")
 @JsonIgnoreProperties({"visits","phisiotherapistId"})
-//@JsonAppend(props = {@JsonAppend.Prop(value = "version")})
 public class Patient implements Serializable{
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(Patient.class);
 
 	@Id
 	@GeneratedValue
@@ -98,7 +103,6 @@ public class Patient implements Serializable{
 	@Column(name="description")
 	public String description;
 	
-//	@Transient
 	@Column(name="phisiotherapist_Id",nullable=true)
 	private String phisiotherapist_Id;
 	
@@ -113,7 +117,7 @@ public class Patient implements Serializable{
 			List<Date> dateVisits = visits.stream().map(Visit::getDate).collect(Collectors.toList());
 			return (Date) Collections.max(dateVisits);
 		}else{
-//			System.out.println("źle");
+			LOGGER.error("Error");
 		}
 		return null;
 	}
@@ -129,9 +133,6 @@ public class Patient implements Serializable{
 		this.age = age;
 	}
 
-
-
-
 	/* Relations */
 	@JsonView(Views.Patients.class)
 	@OneToMany(cascade=CascadeType.ALL,mappedBy = "patient",fetch=FetchType.LAZY,orphanRemoval=true)
@@ -140,7 +141,6 @@ public class Patient implements Serializable{
 			  property = "id")
 	private List<Visit> visits;
 	
-//	@JsonView(Views.Patient.class)
 	@OneToMany(cascade=CascadeType.ALL,mappedBy = "patient",fetch=FetchType.LAZY,orphanRemoval=true)
 	@JsonIdentityInfo(
 			  generator = ObjectIdGenerators.PropertyGenerator.class, 
@@ -149,8 +149,6 @@ public class Patient implements Serializable{
 	
 	/* Relations */
 	
-	
-
 	public String getFirstname() {
 		return firstname;
 	}
@@ -267,15 +265,9 @@ public class Patient implements Serializable{
 		this.country = country;
 	}
 
-
-
-
 	public int getAge() {
 		return age;
 	}
-
-
-
 
 	public void setAge(int age) {
 		this.age = age;
@@ -321,16 +313,4 @@ public class Patient implements Serializable{
 		this.number = number;
 	}
 
-//	public long getPhisiotherapist_Id() {
-//		return phisiotherapist_Id;
-//	}
-//
-//	public void setPhisiotherapist_Id(long phisiotherapist_Id) {
-//		this.phisiotherapist_Id = phisiotherapist_Id;
-//	}
-
-	
-	
-	
-	
 }

@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.wirtualnyGabinet.Views;
 import com.wirtualnyGabinet.DTO.InfForScheduler;
-import com.wirtualnyGabinet.entity.Physiotherapist;
 import com.wirtualnyGabinet.entity.Visit;
 import com.wirtualnyGabinet.service.IVisitService;
 
@@ -42,7 +41,7 @@ public class VisitController {
 	
 	@RequestMapping(value="/{id}")
 	public ResponseEntity<Visit> getVisitById(@PathVariable("id") long visitId, Principal principal){
-		if (visitService.checkVisit(visitId, principal.getName())){
+		if (visitService.checkAuthorization(visitId, principal.getName())){
 			return new ResponseEntity<Visit>(visitService.getVisitById(visitId),HttpStatus.OK);
 		}else{
 			return new ResponseEntity<Visit>(HttpStatus.UNAUTHORIZED);
@@ -67,26 +66,31 @@ public class VisitController {
 		return visitService.getVisitsByPhysiotherapistName(name);
 	}
 	
-//	@JsonView(Views.VisitsPatient.class)
 	@RequestMapping("/byDateBetween")
 	public Page<Visit> getVisitsByPhysiotherapistIAndDate(Pageable pageable,@RequestParam("startDate") String startDate,
 			@RequestParam("endDate") String endDate,@RequestParam("patient_id") long patient_id,Principal principal){
 		return visitService.getVisitsByPhysiotherapistIAndDate(pageable, startDate, endDate, patient_id, principal);
 	}
 	
-	
-	
-	
 	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
-	public void updateVisit(@PathVariable("id") long id,@RequestBody Visit visit){
-		visitService.updateVisit(id, visit);
+	public ResponseEntity<Void> updateVisit(@PathVariable("id") long id,@RequestBody Visit visit,Principal principal){
+		if (visitService.checkAuthorization(id, principal.getName())){
+			visitService.updateVisit(id, visit);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		}else{
+			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
+		}
 	}
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
-	public void deleteVisit(@PathVariable("id") long id){
-		visitService.deleteVisit(id);
+	public ResponseEntity<Void> deleteVisit(@PathVariable("id") long id, Principal principal){
+		if (visitService.checkAuthorization(id, principal.getName())){
+			visitService.deleteVisit(id);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		}else{
+			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
+		}
 	}
-	
 	
 	@RequestMapping("/forScheduler")
 	public InfForScheduler[] getForSheduler(@RequestParam("id") long id,@RequestParam("start") String start,

@@ -17,7 +17,6 @@ angular.module('app.directive.multipleBodyAndPlace', ['ui.select','ngSanitize'])
 	    		var $translate = $filter('translate');
 		    	scope.addNextPlaceAndPain = function(){
 		    		var result = document.getElementsByClassName('hidden_'+ scope.counter);
-		    		console.log('scope.bodyPart ' ,scope.bodyPart)
 		    		var wrappedResult = angular.element(result);
 		    		var counter = ++scope.counter;
 		    		var html = '';
@@ -66,7 +65,6 @@ angular.module('app.directive.multipleBodyAndPlace', ['ui.select','ngSanitize'])
 		    			'<div class="hidden_'+counter+'"></div>'
 		    		wrappedResult.after(html)
 		    		$compile(wrappedResult)(scope);
-		    		console.log('koniec dyrektywy')
 		    	}
 		    }
 	  }

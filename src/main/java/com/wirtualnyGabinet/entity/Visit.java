@@ -76,8 +76,6 @@ public class Visit implements Serializable {
 	
 	
 	/* Relations */
-//	@JsonView(Views.Visits.class)
-//	@JsonProperty
 	@JsonView(Views.VisitsPatient.class)
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "patient_id")
@@ -100,11 +98,8 @@ public class Visit implements Serializable {
 			  generator = ObjectIdGenerators.PropertyGenerator.class, 
 			  property = "id")
 	private List<Treatment> treatment;
-	
 
 	/* Relations */
-	
-	
 
 	public String getCost() {
 		return cost;
@@ -213,9 +208,6 @@ public class Visit implements Serializable {
 		this.paymentMethod = paymentMethod;
 	}
 	
-	
-
-
 	public String getStatus() {
 		return status;
 	}
@@ -234,6 +226,5 @@ public class Visit implements Serializable {
 	public void setTreatment(List<Treatment> treatment) {
 		this.treatment = treatment;
 	}
-
 
 }

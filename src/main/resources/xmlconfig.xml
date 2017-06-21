@@ -9,19 +9,19 @@
        http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
 
-	<util:map id="kindOfPain2" value-type="java.lang.String">
-		<entry key="0" value="miejscowy" />
-		<entry key="1" value="promieniujący" />
-		<entry key="2" value="miejscowy" />
-		<entry key="3" value="boczny" />
-	</util:map>
+<!-- 	<util:map id="kindOfPain2" value-type="java.lang.String"> -->
+<!-- 		<entry key="0" value="miejscowy" /> -->
+<!-- 		<entry key="1" value="promieniujący" /> -->
+<!-- 		<entry key="2" value="miejscowy" /> -->
+<!-- 		<entry key="3" value="boczny" /> -->
+<!-- 	</util:map> -->
 	
-	<util:map id="bodyPart" value-type="java.lang.String">
-		<entry key="0" value="Głowa		" />
-		<entry key="1" value="tułów		" />
-		<entry key="2" value="plecy		" />
-		<entry key="3" value="ręce		" />
-		<entry key="4" value="nogi		" />
-	</util:map>
+<!-- 	<util:map id="bodyPart" value-type="java.lang.String"> -->
+<!-- 		<entry key="0" value="Głowa		" /> -->
+<!-- 		<entry key="1" value="tułów		" /> -->
+<!-- 		<entry key="2" value="plecy		" /> -->
+<!-- 		<entry key="3" value="ręce		" /> -->
+<!-- 		<entry key="4" value="nogi		" /> -->
+<!-- 	</util:map> -->
 
 </beans>

@@ -38,12 +38,6 @@ public class Service {
 	@Column(name="description")
 	private String description;
 	
-	//Entities
-	
-	
-
-	//Entities
-	
 	public Long getId() {
 		return id;
 	}
@@ -76,12 +70,4 @@ public class Service {
 		this.description = description;
 	}
 
-//	public Visit getVisit() {
-//		return visit;
-//	}
-//
-//	public void setVisit(Visit visit) {
-//		this.visit = visit;
-//	}
-	
 }

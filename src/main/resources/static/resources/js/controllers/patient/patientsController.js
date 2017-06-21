@@ -7,7 +7,6 @@ angular.module('app.controller.patients', [])
 		patientPaginationService,$timeout,$q,$filter) {
 	
 	var $translate = $filter('translate');
-	console.log('patientsController')
 	$rootScope.id = $window.sessionStorage.id;
 	refreshMethod = function(){ 
 		patientService.query(function(data) {
@@ -42,14 +41,12 @@ angular.module('app.controller.patients', [])
 	  };
 
 	  $scope.pageChanged = function() {
-	    console.log('Page changed to: ' + $scope.currentPage);
 	    refreshGrid();
 	  };
 	  
 	  function refreshGrid(){
 		  var myPatients = patientPaginationService.getPatients(($scope.currentPage-1),10,$rootScope.id);
 		    myPatients.then(function(result){
-		    	console.log('result: ' , result);
 		    	$scope.patients = result.content;
 		    	$scope.totalItems = result.totalElements;
 		    });

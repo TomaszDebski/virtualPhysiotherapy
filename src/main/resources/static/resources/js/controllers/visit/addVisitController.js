@@ -4,18 +4,14 @@
 
 angular.module('app.controller.addVisit', [])
 .controller('addVisitController', function($scope,$http,$rootScope,$log,
-		$location,$window,visitService,patientService,$http,$stateParams,patients,$timeout,$interval,services,$parse,
+		$location,$window,visitService,patientService,$stateParams,patients,$timeout,$interval,services,$parse,
 		$filter) {
 	
 	var vm = this;
 	
-//	var servicesCopy = angular.copy(services);
 	$scope.success = false;
-	
 	$scope.counter= 0;
-	//$scope.counter.number = 1;
 	$scope.visit= {};
-//	$scope.visit.service = [];
 	$scope.addVisit = function(visit){
 		if (visit == undefined){
 			visit = {};
@@ -23,11 +19,9 @@ angular.module('app.controller.addVisit', [])
 		if ($scope.addVisitForm.$valid){
 			createTreatmentsForVisit(visit);
 			visit.hour = visit.hour.name;
-			console.log('vm.visit.hour ' ,visit.hour.name)
 			visit.date = vm.visit.date;
 			visit.isHoliday = false;
 			visitService.save({patientId:vm.visit.selectedPatientId},visit,function(){
-				console.log("udało się");
 				$scope.success = true;
 			})
 		}else{
@@ -54,7 +48,6 @@ angular.module('app.controller.addVisit', [])
 			treatment.service = service;
 			visit.treatment.push(treatment);
 		}
-		console.log('visit.treatment ' ,visit.treatment);
 		return visit;
 	}
 	
@@ -64,10 +57,6 @@ angular.module('app.controller.addVisit', [])
 		$scope.visit = {};
 		vm.people.patientId = {};
 		vm.visit.hour = undefined;
-//		vm.visit = {};
-//		vm.clear();
-//		vm.visit.selectedPatientId = {};
-//		visit.length = '';
 	}
 	
 ////////////////////////Select Patient///////////////////////
@@ -76,12 +65,10 @@ angular.module('app.controller.addVisit', [])
 			  vm.searchEnabled = undefined;
 
 			  vm.setInputFocus = function (){
-				console.log("function setInputFocus")
 			    $scope.$broadcast('UiSelectDemo1');
 			  };
 
 			  vm.enable = function() {
-				  console.log("function enable")
 			    vm.disabled = false;
 			  };
 
@@ -90,7 +77,6 @@ angular.module('app.controller.addVisit', [])
 			  };
 
 			  vm.enableSearch = function() {
-				  console.log("function enableSearch")
 			    vm.searchEnabled = true;
 			  };
 
@@ -99,12 +85,10 @@ angular.module('app.controller.addVisit', [])
 			  };
 
 			  vm.clear = function() {
-				  console.log("function clear")
 			    vm.person.selected = undefined;
 			  };
 
 			  vm.someGroupFn = function (item){
-				  console.log("function someGroupFn")
 			    if (item.name[0] >= 'A' && item.name[0] <= 'M')
 			        return 'From A - M';
 
@@ -128,7 +112,6 @@ angular.module('app.controller.addVisit', [])
 
 			  vm.counter = 0;
 			  vm.onSelectCallback = function (item, model){
-				  console.log("function onSelectCallback")
 			    vm.counter++;
 			    vm.eventResult = {item: item, model: model};
 			  };
@@ -141,7 +124,6 @@ angular.module('app.controller.addVisit', [])
 			  };
 
 			  vm.tagTransform = function (newTag) {
-				  console.log("function tagTransform")
 			    var item = {
 			        name: newTag,
 			        email: newTag.toLowerCase()+'@email.com',
@@ -151,33 +133,14 @@ angular.module('app.controller.addVisit', [])
 
 			    return item;
 			  };
-//			  vm.person = {};
 			  vm.people = patients;
 			  if ($stateParams != null && $stateParams.patientId != null){
-				  console.log(" vm.people", vm.people)
 				  vm.people.patientId = vm.people[$stateParams.patientId-1];
 			  }
-
-//			  vm.person.selectedSingle = 'Samantha';
-//			  vm.person.selectedSingleKey = '5';
-			  // To run the demos with a preselected person object, uncomment the line below.
-			  //vm.person.selected = vm.person.selectedValue;
-
-			  
-			  /////////////Dodataj tutaj $paramsa z id pacjenta
-//			   = vm.people[2];
-//			  vm.availableColors = ['Red','Green','Blue','Yellow','Magenta','Maroon','Umbra','Turquoise'];
 
 			  vm.singleDemo = {};
 			  vm.singleDemo.color = '';
 			  vm.multipleDemo = {};
-//			  vm.multipleDemo.colors = ['Blue','Red'];
-//			  vm.multipleDemo.colors2 = ['Blue','Red'];
-//			  vm.multipleDemo.selectedPeople = [vm.people[5], vm.people[4]];
-//			  vm.multipleDemo.selectedPeople2 = vm.multipleDemo.selectedPeople;
-//			  vm.multipleDemo.selectedPeopleWithGroupBy = [vm.people[8], vm.people[6]];
-//			  vm.multipleDemo.selectedPeopleSimple = ['samantha@email.com','wladimir@email.com'];
-//			  vm.multipleDemo.removeSelectIsFalse = [vm.people[2], vm.people[0]];
 
 			  vm.appendToBodyDemo = {
 			    remainingToggleTime: 0,
@@ -197,46 +160,10 @@ angular.module('app.controller.addVisit', [])
 			    }
 			  };
 
-//			  vm.address = {};
-//			  vm.refreshAddresses = function(address) {
-//				  console.log("function refreshAddresses")
-//			    var params = {address: address, sensor: false};
-//			    return $http.get(
-//			      'http://maps.googleapis.com/maps/api/geocode/json',
-//			      {params: params}
-//			    ).then(function(response) {
-//			      vm.addresses = response.data.results;
-//			    });
-//			  };
-
-//			  vm.addPerson = function(item, model){
-//				  console.log("function addPerson")
-//			    if(item.hasOwnProperty('isTag')) {
-//			      delete item.isTag;
-//			      vm.people.push(item);
-//			    }
-//			  }
-			  
-//			  var lastVisitForPatient = {};
 			  vm.visit = {};
 			  vm.choosedPatient = {};
 			  vm.onSelectPatient = function(item, model){
-				 // console.log("function someFunction")
-				 // console.log("item.id " , item.id);
-//				  var aa = [];
 				  vm.visit.selectedPatientId = item.id;
-//				  var aa = getVisitsService.getVisitsByPatientId(item.id);
-//				  aa.then(function(data){
-////					  var newObj = {};
-////					  angular.extend(vm.lastVisit,data);
-//					  vm.lastVisit = data[0];
-////					  $log.info("getVisitsByPatientId data " ,vm.lastVisit);
-//					  
-//				  })
-//				  vm.choosedPatient = item;
-//				  console.log("item" , item)
-//				  console.log("model " , model)
-				  
 			  }
 			  vm.patientPlaceholer = 'Wybierz pacjenta z listy';
 			  
@@ -260,15 +187,10 @@ angular.module('app.controller.addVisit', [])
 			
 			  $scope.inlineOptions = {
 					    customClass: getDayClass,
-//					    minDate: new Date(),
-//					    showWeeks: true
 					  };
 
 					  $scope.dateOptions = {
 					    dateDisabled: disabled,
-//					    formatYear: 'yy',
-//					    maxDate: new Date(2020, 5, 22),
-//					    minDate: new Date(),
 					    startingDay: 1
 					  };
 
@@ -277,22 +199,14 @@ angular.module('app.controller.addVisit', [])
 					    var date = data.date,
 					      mode = data.mode;
 					    return mode === 'day' &&  date.getDay() === 0;
-//					    return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
 					  }
 
 					  $scope.toggleMin = function() {
-						  console.log("zamykam");
-//					    $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
-//					    $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
 					  };
 
-//					  $scope.toggleMin();
 					  
 					  $scope.getDate = function(){
-//						  $log.info("mydate from getDate " , vm.visit.startDate)
 						  vm.visit.date = Date.parse(vm.visit.startDate);
-						  
-//						  refreshVisit(($scope.currentPage-1),10);
 					  }
 
 					  $scope.open1 = function() {
@@ -303,11 +217,6 @@ angular.module('app.controller.addVisit', [])
 					    $scope.popup2.opened = true;
 					  };
 
-//					  $scope.setDate = function(year, month, day) {
-//					    $scope.dt = new Date(year, month, day);
-//					  };
-
-//					  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 					  $scope.format = 'yyyy-MM-dd';
 					  $scope.altInputFormats = ['yyyy-MM-dd'];
 
@@ -355,11 +264,8 @@ angular.module('app.controller.addVisit', [])
 		///////////////////////////////////////////////////////////////////////////////////////////
 			
 					  
-					  ///////////////////////////////Timepicker//////////////////////////////////
+	///////////////////////////////Timepicker//////////////////////////////////
 					  
-
-		////////////////////////////////////////////////////////////////////
-		
 					  vm.country = {};
 					  vm.countries = [ 
 					    {name: '00:00'},
@@ -379,9 +285,6 @@ angular.module('app.controller.addVisit', [])
 					    {name: '15:00'},
 					    {name: '15:30'},
 					  ];
-				        
-				    
-				    
 				    
 				    ////////////////////////////////////////////////////////////	
 })

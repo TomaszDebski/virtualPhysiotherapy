@@ -38,32 +38,4 @@ public class BodyPlaceController {
 		return (List<BodyPlace>)bodyPlaceService.findAll();
 	}
 
-//	@JsonView(Views.User.class)
-//	@RequestMapping("/byUsername/{name}")
-//	public Physiotherapist getPhysiotherapistByUsername(@PathVariable("name") String name){
-//		return serviceRepository.findTop1ByUsername(name);
-//	}
-	
-//	@JsonView(Views.User.class)
-//	@RequestMapping("/dd")
-//	public Physiotherapist getddddd(Principal principal){
-//		if (principal == null){
-//			return null;
-//		}
-//		return physiotherapistRepository.findTop1ByUsername(principal.getName()	);
-//	}
-	
-//	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
-//	public void updatePhysiotherapist(@PathVariable("id") long id,@RequestBody Physiotherapist physiotherapist){
-//		Physiotherapist oldPhysiotheraphist = serviceRepository.findOne(id);
-//		oldPhysiotheraphist.setAddress(physiotherapist.getAddress());
-//		oldPhysiotheraphist.setCity(physiotherapist.getCity());
-//		serviceRepository.save(oldPhysiotheraphist);
-//	}
-	
-//	@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
-//	public void deletePhysiotherapist(@PathVariable("id") long id){
-//		KindOfPain kindOfPain = kindOfPainRepository.findOne(id);
-//		kindOfPainRepository.delete(kindOfPain);
-//	}
 }

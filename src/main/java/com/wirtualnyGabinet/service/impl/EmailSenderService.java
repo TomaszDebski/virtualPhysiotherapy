@@ -25,10 +25,6 @@ public class EmailSenderService implements IEmailSender {
     public EmailStatus sendPlainText(String to, EmailRequest emailRequest) {
         return sendM(to, emailRequest, false);
     }
-// 
-//    public EmailStatus sendHtml(String to, String subject, String htmlBody) {
-//        return sendM(to, subject, htmlBody, true);
-//    }
  
     private EmailStatus sendM(String to, EmailRequest emailRequest, Boolean isHtml) {
         try {

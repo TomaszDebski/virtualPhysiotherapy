@@ -70,7 +70,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	        .antMatchers("/index.html", "/home.html", "/login.html", "/").permitAll()
 	        .antMatchers("/register").permitAll()
 	        .antMatchers("/login").permitAll()
-//	        .antMatchers("/api/**").authenticated()
 	        .antMatchers("/physiotherapist/byUsername/**").permitAll()
 	        .antMatchers("/physiotherapist").permitAll()
 	        .antMatchers("/physiotherapist/**").access("hasRole('ROLE_USER')")
@@ -95,13 +94,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	            .logoutUrl("/logout")
 	            .logoutSuccessHandler(ajaxLogoutSuccessHandler())
 	            .permitAll()
-//	        .exceptionHandling().accessDeniedPage("/Access_Denied")
 	        	.and()
 	        		.csrf()
 	        	 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-//	        	.csrf().disable();
-//	        .addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class)
-//	        .csrf().csrfTokenRepository(csrfTokenRepository());
 	    }
 	    
 	    @Bean
@@ -115,6 +110,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			repository.setHeaderName("X-XSRF-TOKEN");
 			return repository;
 		}
-	    
 
 }

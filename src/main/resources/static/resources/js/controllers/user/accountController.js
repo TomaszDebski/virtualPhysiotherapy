@@ -14,7 +14,6 @@ angular.module('app.controller.account', [])
 	$scope.editUser = function(user){
 		if ($scope.editUserForm.$valid){
 			physiotherapistService.update({id:user.id},user,function(){
-				console.log("udało się zmienić dane konta");
 				$scope.successSave = true;
 				$window.scrollTo(0, 0);
 			})
@@ -23,7 +22,6 @@ angular.module('app.controller.account', [])
 		}
 	}
 	///////////////////////////////////UploadFile///////////////////////////////
-	
 	
 	 $scope.btn_remove = function(file) {
          $log.info('deleting=' + file);
@@ -40,6 +38,12 @@ angular.module('app.controller.account', [])
              url: '/upload?id=' + $scope.user.id,
              concurrency: 2,
              data : {'object' : 'physiotherapist'},
+             headers : {
+                 'Content-Type': 'application/x-www-form-urlencoded',
+                 xsrfHeaderName: 'XMLHttpRequest',
+             }
+     			,
+             
              onProgress: function(file) {
                  $log.info(file.name + '=' + file.humanSize);
                  $scope.$apply();

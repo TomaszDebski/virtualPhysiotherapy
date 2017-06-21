@@ -50,5 +50,4 @@ public class BodyPlace {
 		this.description = description;
 	}
 	
-	
 }

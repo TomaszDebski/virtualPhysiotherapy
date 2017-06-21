@@ -3,7 +3,7 @@
  */
 angular.module('app.controller.addVisitInCalendarModel', [])
 .controller('addVisitInCalendarModelController', function($scope,$rootScope,$http, $uibModalInstance , myParam,
-		allPatientsForPhysiotherapistService,patients,myParam,$timeout, $interval,getVisitsService,$log,visitService,
+		allPatientsForPhysiotherapistService,patients,$timeout, $interval,getVisitsService,$log,visitService,
 		services,$filter) {
 	
 	$scope.width = 1200;
@@ -14,13 +14,10 @@ angular.module('app.controller.addVisitInCalendarModel', [])
 		  if ($scope.addVisitForm.$valid){
 			  createTreatmentsForVisit(visit);
 			  visit.hour = vm.visit.hour.name;
-			  console.log('vm.visit.hour.name' , vm.visit.hour.name)
 			  visit.date = vm.visit.startDate;
 			  visit.isHoliday = false;
 			  visit.length = vm.visit.length;
 			  visitService.save({patientId:vm.visit.selectedPatientId},visit,function(){
-				  console.log("udało się");
-				  //vm.people.push({title: 'Random 1', start: new Date(), allDay: true})
 			  })
 			  $uibModalInstance.close();
 		  }else{
@@ -47,7 +44,6 @@ angular.module('app.controller.addVisitInCalendarModel', [])
 				treatment.service = service;
 				visit.treatment.push(treatment);
 			}
-			console.log('visit.treatment ' ,visit.treatment);
 			return visit;
 		}
 	  
@@ -56,14 +52,6 @@ angular.module('app.controller.addVisitInCalendarModel', [])
 	  $scope.cancel = function () {
 		  $uibModalInstance.dismiss('cancel');
 	  };
-//	var patients = allPatientsForPhysiotherapistService.getPatients($rootScope.user);
-//	patients.then(function(result){
-//    	console.log('result: ' , result);
-////    	$scope.items = result;
-//    	
-//    })
-//	console.log("myPatients " , patients);
-//	console.log("myParam " , myParam);
 	
 	////////////////////////Select Patient///////////////////////
     
@@ -73,12 +61,10 @@ angular.module('app.controller.addVisitInCalendarModel', [])
 	  vm.searchEnabled = undefined;
 
 	  vm.setInputFocus = function (){
-		console.log("function setInputFocus")
 	    $scope.$broadcast('UiSelectDemo1');
 	  };
 
 	  vm.enable = function() {
-		  console.log("function enable")
 	    vm.disabled = false;
 	  };
 
@@ -87,7 +73,6 @@ angular.module('app.controller.addVisitInCalendarModel', [])
 	  };
 
 	  vm.enableSearch = function() {
-		  console.log("function enableSearch")
 	    vm.searchEnabled = true;
 	  };
 
@@ -96,14 +81,12 @@ angular.module('app.controller.addVisitInCalendarModel', [])
 	  };
 
 	  vm.clear = function() {
-		  console.log("function clear")
 	    vm.person.selected = undefined;
 	    vm.address.selected = undefined;
 	    vm.country.selected = undefined;
 	  };
 
 	  vm.someGroupFn = function (item){
-		  console.log("function someGroupFn")
 	    if (item.name[0] >= 'A' && item.name[0] <= 'M')
 	        return 'From A - M';
 
@@ -129,7 +112,6 @@ angular.module('app.controller.addVisitInCalendarModel', [])
 
 	  vm.counter = 0;
 	  vm.onSelectCallback = function (item, model){
-		  console.log("function onSelectCallback")
 	    vm.counter++;
 	    vm.eventResult = {item: item, model: model};
 	  };
@@ -142,7 +124,6 @@ angular.module('app.controller.addVisitInCalendarModel', [])
 	  };
 
 	  vm.tagTransform = function (newTag) {
-		  console.log("function tagTransform")
 	    var item = {
 	        name: newTag,
 	        email: newTag.toLowerCase()+'@email.com',
@@ -160,12 +141,7 @@ angular.module('app.controller.addVisitInCalendarModel', [])
 	  vm.person.selectedValue = vm.peopleObj[3];
 	  vm.person.selectedSingle = 'Samantha';
 	  vm.person.selectedSingleKey = '5';
-	  // To run the demos with a preselected person object, uncomment the line below.
-	  //vm.person.selected = vm.person.selectedValue;
-
 	  vm.people = patients;
-
-//	  vm.availableColors = ['Red','Green','Blue','Yellow','Magenta','Maroon','Umbra','Turquoise'];
 
 	  vm.singleDemo = {};
 	  vm.singleDemo.color = '';
@@ -199,21 +175,13 @@ angular.module('app.controller.addVisitInCalendarModel', [])
 	  vm.visit = {};
 	  vm.choosedPatient = {};
 	  vm.onSelectPatient = function(item, model){
-		 // console.log("function someFunction")
-		 // console.log("item.id " , item.id);
-//		  var aa = [];
 		  vm.visit.selectedPatientId = item.id;
 		  var aa = getVisitsService.getVisitsByPatientId(item.id);
 		  aa.then(function(data){
-//			  var newObj = {};
-//			  angular.extend(vm.lastVisit,data);
 			  vm.lastVisit = data[0];
-//			  $log.info("getVisitsByPatientId data " ,vm.lastVisit);
 			  
 		  })
 		  vm.choosedPatient = item;
-//		  console.log("item" , item)
-//		  console.log("model " , model)
 		  
 	  }
 	  
@@ -221,13 +189,6 @@ angular.module('app.controller.addVisitInCalendarModel', [])
 	  
 	  /////////////////////select Hour///////////////////////////////////
 
-//	  vm.onSelectHour = function(item, model){
-//		  $log.info("item hour " , item)
-//		  $("#hourField").css({"border-color": "", 
-//	             "border-width":"", 
-//	             "border-style":""})
-//		  vm.visit.hour = item.name;
-//	  }
 	  vm.country = {};
 	  vm.countries = [ 
 	    {name: '00:00'},
@@ -247,40 +208,9 @@ angular.module('app.controller.addVisitInCalendarModel', [])
 	    {name: '15:00'},
 	    {name: '15:30'},
 	  ];
-    
-    
-    
-    
-    
-    
     ////////////////////////////////////////////////////////////
 	
 	
-//	$scope.items = patients;
-//	console.log("$scope.items" ,$scope.items)
-//
-//	              $scope.status = {
-//	                isopen: false
-//	              };
-//
-//	              $scope.toggled = function(open) {
-//	                $log.log('Dropdown is now: ', open);
-//	              };
-//
-//	              $scope.toggleDropdown = function($event) {
-//	                $event.preventDefault();
-//	                $event.stopPropagation();
-//	                $scope.status.isopen = !$scope.status.isopen;
-//	              };
-//
-//	              $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));
-	
-	
-	//////////////////////////////////////////////////////
-	 
-	
-	  
-	  
 	//////////////////////////datapicker///////////////// 
 	  
 	  $scope.myParam = myParam;
@@ -288,37 +218,25 @@ angular.module('app.controller.addVisitInCalendarModel', [])
 	  
 	  $scope.inlineOptions = {
 			    customClass: getDayClass,
-//			    minDate: new Date(),
-//			    showWeeks: true
 			  };
 
 			  $scope.dateOptions = {
 			    dateDisabled: disabled,
-//			    formatYear: 'yy',
-//			    maxDate: new Date(2020, 5, 22),
-//			    minDate: new Date(),
 			    startingDay: 1
 			  };
 
-			  // Disable weekend selection
 			  function disabled(data) {
 			    var date = data.date,
 			      mode = data.mode;
 			    return mode === 'day' &&  date.getDay() === 0;
-//			    return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
 			  }
 
 			  $scope.toggleMin = function() {
-				  console.log("zamykam");
-//			    $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
-//			    $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
 			  };
 
 			  $scope.getDate = function(){
 				  vm.visit.startDate = Date.parse(vm.visit.startDate);
-//				  $('#lengthField').val('30');
 				  vm.visit.length = '30';
-				  console.log("vm.visit.length",vm.visit.length)
 			  }
 
 			  $scope.open1 = function() {
@@ -329,13 +247,7 @@ angular.module('app.controller.addVisitInCalendarModel', [])
 			    $scope.popup2.opened = true;
 			  };
 
-//			  $scope.setDate = function(year, month, day) {
-//			    $scope.dt = new Date(year, month, day);
-//			  };
-
-//			  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 			  $scope.format = 'yyyy/MM/dd';
-//			  $scope.altInputFormats = ['M!/d!/yyyy'];
 
 			  $scope.popup1 = {
 			    opened: false

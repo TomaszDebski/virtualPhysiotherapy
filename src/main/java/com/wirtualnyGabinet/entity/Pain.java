@@ -39,7 +39,6 @@ public class Pain {
 	
 	/* Relations */
 	
-//	@JsonView(Views.Visits.class)
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "interview_id")
 	@JsonIdentityInfo(
@@ -96,11 +95,5 @@ public class Pain {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
-	
-	
-	
-	
 	
 }

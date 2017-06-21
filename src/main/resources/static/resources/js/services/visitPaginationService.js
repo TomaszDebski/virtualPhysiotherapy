@@ -1,9 +1,6 @@
 /**
  * 
  */
-/**
- * 
- */
 
 angular.module('app.service.visitPagination',[])
     .factory('visitPaginationService',['$http', function($http, $rootScope) {
@@ -15,13 +12,7 @@ angular.module('app.service.visitPagination',[])
     	    	var url = "startDate=" + startDate + '&endDate=' + Date.parse(endDate);
     	      return $http.get('visit/byDateBetween?page=' + page+'&size=' +size+ '&' + url + '&patient_id='+ id)
     	      .then(function(result){
-    	    	  	console.log("result.data 	" ,result.data.content)
     	    	  	return result.data;
-//				.success(function(data,status,headers,config){
-//					return data.content;
-//				}).error(function(data,status,headers,config){
-//					console.log("nie udało się");
-//				})
     	      	})
     	    }
     	}

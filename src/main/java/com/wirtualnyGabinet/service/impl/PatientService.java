@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import com.wirtualnyGabinet.entity.Patient;
 import com.wirtualnyGabinet.entity.Physiotherapist;
-import com.wirtualnyGabinet.entity.Visit;
 import com.wirtualnyGabinet.repository.PatientRepository;
 import com.wirtualnyGabinet.repository.PhysiotherapistRepository;
 import com.wirtualnyGabinet.service.IPatinetService;
@@ -30,7 +29,7 @@ public class PatientService implements IPatinetService {
 	
 	@Autowired
 	PatientRepository patientRepository;
-
+	
 	@Override
 	public void addPatient(Patient patient, Principal principal) {
 		Physiotherapist phys = physiotherapistRepository.findTop1ByUsername(principal.getName());
@@ -111,12 +110,12 @@ public class PatientService implements IPatinetService {
 	}
 
 	@Override
-	public boolean checkPatient(long patientId, String physiotherapistName) {
-		Physiotherapist phys = physiotherapistRepository.findTop1ByUsername(physiotherapistName);
+	public boolean checkAuthorization(long id, String name) {
+		Physiotherapist phys = physiotherapistRepository.findTop1ByUsername(name);
 		if (phys == null){
 			return false;
 		}
-		Patient isPatient = patientRepository.checkPatient(patientId, Long.toString(phys.getId()));
+		Patient isPatient = patientRepository.checkPatient(id, Long.toString(phys.getId()));
 		if (isPatient != null){
 			return true;
 		}else{

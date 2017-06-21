@@ -88,8 +88,6 @@ public class PhysiotherapistController {
 	                    Physiotherapist phys = physiotherapistRepository.findOne(id);
 	                    phys.setFile(bytes);
 	                    phys.setMimeType(mimeType);
-//	                    physiotherapistRepository.save(phys);
-//	                    fileUploadService.uploadFile(newFile);
 	                }
 	            }
 	            catch (Exception e) {

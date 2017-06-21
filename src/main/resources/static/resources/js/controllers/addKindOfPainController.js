@@ -8,7 +8,6 @@ angular.module('app.controller.addKindOfPain', [])
 		var painVar = pain;
 		if ($scope.addKindOfPainForm.$valid){
 			kindOfPainService.save(pain,function(){
-				console.log("udało się");
 				$scope.success = true;
 				painVar.painName = "";
 				painVar.description = "";

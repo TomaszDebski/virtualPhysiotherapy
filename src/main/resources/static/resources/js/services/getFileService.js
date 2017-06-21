@@ -7,7 +7,6 @@ angular.module('app.service.getFile',[])
     	    getOneFile: function(object_id) {
     	      return $http.get('/download?object_id=' + object_id)
     	      .success(function(result){
-    	    	  console.log("udało się pobrać plik")
     	    	  return result;
 				}).error(function(data,status,headers,config){
 					console.log("błąd z pobieraniem pliku w account.js");

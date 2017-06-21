@@ -4,23 +4,15 @@
 angular.module('app.controller.addHolidayInCalendarModel', [])
 .controller('addHolidayInCalendarModelController', function($scope,$rootScope,$http, $uibModalInstance,$timeout, $interval,$log,
 		visitService){
-		
 	
 	var vm = this;
-//	vm.holiday = {};
 	$scope.ok = function () {
 		  if ($scope.holidayForm.$valid){
-//			  console.log("holiday.startdate" ,vm.holiday.startdate)
-			  console.log("vm.holiday.startDate " , vm.holiday.startDate)
-			  console.log("vm.holiday.endDate " , vm.holiday.endDate)
 			  holiday = {};
 			  holiday.date = vm.holiday.startDate;
 			  holiday.endDate = vm.holiday.endDate;
 			  holiday.isHoliday = "true";
-//			  visit.date = vm.visit.startDate;
 			  visitService.save({patientId:0},holiday,function(){
-				  console.log("udało się");
-				  //vm.people.push({title: 'Random 1', start: new Date(), allDay: true})
 			  })
 			  $uibModalInstance.close();
 		  }else{
@@ -38,36 +30,22 @@ angular.module('app.controller.addHolidayInCalendarModel', [])
 	
 	/////////////////////////////////////////datePickers////////////////////////
 	
-//	$scope.myParam = myParam;
-	
-	  
-	  
 	  $scope.inlineOptions = {
 			    customClass: getDayClass,
-//			    minDate: new Date(),
-//			    showWeeks: true
 			  };
 
 			  $scope.dateOptions = {
 			    dateDisabled: disabled,
-//			    formatYear: 'yy',
-//			    maxDate: new Date(2020, 5, 22),
-//			    minDate: new Date(),
 			    startingDay: 1
 			  };
 
-			  // Disable weekend selection
 			  function disabled(data) {
 			    var date = data.date,
 			      mode = data.mode;
 			    return mode === 'day' &&  date.getDay() === 0;
-//			    return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
 			  }
 
 			  $scope.toggleMin = function() {
-				  console.log("zamykam");
-//			    $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
-//			    $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
 			  };
 
 			  $scope.getStartDate = function(){

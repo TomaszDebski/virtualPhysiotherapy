@@ -29,5 +29,6 @@ public interface IPatinetService {
 	
 	void deletePatient(long id);
 	
-	boolean checkPatient(long patientId,String physiotherapistName);
+	boolean checkAuthorization(long id, String name);
+	
 }

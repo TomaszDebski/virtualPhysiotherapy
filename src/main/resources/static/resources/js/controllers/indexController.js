@@ -4,13 +4,11 @@
 angular.module('app.controller.index', [])
 .controller('indexController',function($scope,$http,$rootScope,$location,$window,$translate,
 		authService,$state) {
-	console.log("indexController")
 	
 	$scope.logout = function(authh){
 		var logout = authService.logout();
 		$scope.authenticated = logout.then(function(data){return data});
 		logout.then(function(data){
-			console.log("udało się wylogować");
 			$scope.authenticated = false;
 			$rootScope.authenticated = false;
 			$rootScope.user = "";

@@ -4,8 +4,9 @@
 
 angular.module('app.controller.calendar', [])
 .controller('CalendarCtrl', function($scope,$rootScope, $compile, $timeout, uiCalendarConfig,$http,
-		$window,$uibModal,$log,visitService) {
+		$window,$uibModal,$log,visitService,$filter) {
 	
+	var $translate = $filter('translate');
 	$scope.addVisit = function(){
 		$scope.showModalVisit();
 	}
@@ -26,13 +27,11 @@ angular.module('app.controller.calendar', [])
             	  patients : function(allPatientsForPhysiotherapistService,$rootScope){
             		  return allPatientsForPhysiotherapistService.getPatients()
             		  .then(function(result){
-//            	    	console.log('result addVisitInCalendarModelController: ' , result);
             	    	return result;
             	    })
             	  },
             	  services : function(serviceService){
             	  		return serviceService.query(function(data) {
-            	  			console.log("services data " ,data);
             	  			return data;
             	  		});
             	  	},
@@ -43,7 +42,14 @@ angular.module('app.controller.calendar', [])
          })
         .result.then(
             function () {
-                alert("OK");
+            	swal({
+      			  title: $translate('addVisit.correct_add_visit'),
+      			  type: "success",
+      			  showCancelButton: false,
+      			  confirmButtonClass: "btn-primary",
+      			  confirmButtonText: $translate('commons.close'),
+      			  closeOnConfirm: true
+      			})
                 $('#calendar').fullCalendar('refetchEvents')
             	
             }, 
@@ -61,34 +67,19 @@ angular.module('app.controller.calendar', [])
               controller: 'addHolidayInCalendarModelController as ctrl', 
               windowClass: 'app-modal-window',
               resolve :{
-//            	  patients : function(allPatientsForPhysiotherapistService,$rootScope){
-//            		  return allPatientsForPhysiotherapistService.getPatients($rootScope.user)
-//            		  .then(function(result){
-////            	    	console.log('result addVisitInCalendarModelController: ' , result);
-//            	    	return result;
-//            	    })
-//            	  },
-//            	  myParam : function(){
-//            		  return 'myParam'
-//            	  }
               }
          })
         .result.then(
             function () {
-                alert("OK");
                 $('#calendar').fullCalendar('refetchEvents')
             	
             }, 
             function () {
-//                alert("Cancel");
             }
         );
     };
 ///////////////////////////////////////////////////////
-    
-    ///////////////////////////////////////////////////////
-///////////////////////////////////////////////////////
-    
+/////////////////////////////////////////////////////
     
     ////////////////////////////FullCalendar/////////////////////
 	
@@ -99,9 +90,6 @@ angular.module('app.controller.calendar', [])
         
         $scope.changeTo = 'Hungarian';
         $scope.eventSource = {
-//                url: "http://www.google.com/calendar/feeds/usa__en%40holiday.calendar.google.com/public/basic",
-//                className: 'gcal-event',           // an option!
-//                currentTimezone: 'America/Chicago' // an option!
         };
         /* event source that contains custom events on the scope */
         $scope.events =  {
@@ -111,15 +99,12 @@ angular.module('app.controller.calendar', [])
                  		return $window.sessionStorage.id;
                  	}
                  },
-// 				                    color: 'yellow',    // an option!
-//                 textColor: 'black',  // an option!
                  	 error: function() {
                           alert('There was an error while fetching events.');
                       }
              };
         /* event source that calls a function on every view switch */
         $scope.eventsF = function (start, end, timezone, callback) {
-        	console.log("eventsF")
           var s = new Date(start).getTime() / 1000;
           var e = new Date(end).getTime() / 1000;
           var m = new Date(start).getMonth();
@@ -139,7 +124,6 @@ angular.module('app.controller.calendar', [])
         };
         /* alert on eventClick */
         $scope.alertOnEventClick = function( date, jsEvent, view){
-        	console.log("alertOnEventClick")
             $scope.alertMessage = (date.title + ' was clicked ');
         };
         /* alert on Drop */
@@ -148,7 +132,6 @@ angular.module('app.controller.calendar', [])
         	 visitService.update($scope.Reader,function(){
 					refreshFunction();
 });
-           //$scope.alertMessage = ('Event Droped to make dayDelta ' + delta);
         };
         /* alert on Resize */
         $scope.alertOnResize = function(event, delta, revertFunc, jsEvent, ui, view ){
@@ -169,7 +152,6 @@ angular.module('app.controller.calendar', [])
         };
         /* add custom event*/
         $scope.addEvent = function() {
-        	console.log("addEventtt")
           $scope.events.push({
             title: 'Open Sesame',
             start: new Date(y, m, 28),
@@ -183,19 +165,16 @@ angular.module('app.controller.calendar', [])
         };
         /* Change View */
         $scope.changeView = function(view,calendar) {
-        	console.log("changeView")
           uiCalendarConfig.calendars[calendar].fullCalendar('changeView',view);
         };
         /* Change View */
         $scope.renderCalender = function(calendar) {
-        	console.log("renderCalender")
           if(uiCalendarConfig.calendars[calendar]){
             uiCalendarConfig.calendars[calendar].fullCalendar('render');
           }
         };
          /* Render Tooltip */
         $scope.eventRender = function( event, element, view ) { 
-        	console.log("eventRender")
             element.attr({'tooltip': event.title,
                          'tooltip-append-to-body': true});
             $compile(element)($scope);
@@ -238,20 +217,6 @@ angular.module('app.controller.calendar', [])
         /* event sources array*/
         $scope.eventSources = [$scope.events, $scope.eventSource, $scope.eventsF];
         $scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
-        
-//        $scope.select = function(start, end, allDay) {
-////		        endtime = $.fullCalendar.formatDate(end,'h:mm tt');
-////		        starttime = $.fullCalendar.formatDate(start,'ddd, MMM d, h:mm tt');
-////		        var mywhen = starttime + ' - ' + endtime;
-//		        console.log("jestem w selectcie")
-////// 		        var element = angular.element('#CalendarCtrl');
-////// 		        element.scope().showModal();
-////// 		        $('#createEventModal #apptStartTime').val(start);
-////// 		        $('#createEventModal #apptEndTime').val(end);
-////// 		        $('#createEventModal #apptAllDay').val(allDay);
-////// 		        $('#createEventModal #when').text(mywhen);
-////		        jQuery('#myModal').modal('show');
-//		     }
         
 //////////////////////////////////////////////////////////////////        
         

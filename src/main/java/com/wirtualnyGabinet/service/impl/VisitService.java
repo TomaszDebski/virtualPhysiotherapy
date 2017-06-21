@@ -5,7 +5,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +20,6 @@ import org.springframework.data.domain.Pageable;
 import com.wirtualnyGabinet.DTO.InfForScheduler;
 import com.wirtualnyGabinet.entity.Patient;
 import com.wirtualnyGabinet.entity.Physiotherapist;
-import com.wirtualnyGabinet.entity.Service;
 import com.wirtualnyGabinet.entity.Treatment;
 import com.wirtualnyGabinet.entity.Visit;
 import com.wirtualnyGabinet.repository.PatientRepository;
@@ -87,14 +85,6 @@ private final Logger log = LoggerFactory.getLogger(this.getClass());
 			for (Treatment treatment : visit.getTreatment()) {
 				treatment.setVisit(visit);
 			}
-//			Service service = serviceRepository.findOne(serviceId);
-//			if (service != null){
-//				Treatment tretment = new Treatment();
-//				tretment.setService(service);
-//				tretment.setVisit(visit);
-//				visit.setTreatment(Arrays.asList(tretment));
-//			}
-			
 			
 		} catch (ParseException e) {
 			log.error("Problem z parsowaniem daty w addVisit method w VisitController");
@@ -203,12 +193,12 @@ private final Logger log = LoggerFactory.getLogger(this.getClass());
 	}
 
 	@Override
-	public boolean checkVisit(long visitId,String physiotherapistName) {
-		Physiotherapist phys = physiotherapisRepository.findTop1ByUsername(physiotherapistName);
+	public boolean checkAuthorization(long id, String name) {
+		Physiotherapist phys = physiotherapisRepository.findTop1ByUsername(name);
 		if (phys == null){
 			return false;
 		}
-		Visit isVisit = visitRepository.checkVisit(visitId, phys.getId());
+		Visit isVisit = visitRepository.checkVisit(id, phys.getId());
 		if (isVisit != null){
 			return true;
 		}else{

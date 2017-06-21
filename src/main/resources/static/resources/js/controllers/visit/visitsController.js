@@ -9,10 +9,6 @@ angular.module('app.controller.visits', [])
 	var vm = this;
 	var curr = new Date();
 	var $translate = $filter('translate');
-//	var first = curr.getDate() - curr.getDay() + 1; // First day is the day of the month - the day of the week
-//	var last = first + 6; // last day is the first day + 6
-//	var firstday = new Date(curr.setDate(first));
-//	var lastday = new Date(curr.setDate(firstday.getDate()+6));
 	var earlierDay = curr.setDate(curr.getDate()-7);
 	$scope.startDate = earlierDay;
 	$scope.endDate = new Date();
@@ -20,11 +16,8 @@ angular.module('app.controller.visits', [])
 	$rootScope.id = $window.sessionStorage.id;
 	refreshVisit = function(page,size){
 		if ($scope.searchVisitForm.$valid){
-			console.log('popranwy')
-			console.log('vm.visit.selectedPatientId ',vm.visit.selectedPatientId)
 			var vis = visitPaginationService.getVisit(page,size,$scope.startDate,$scope.endDate,vm.visit.selectedPatientId);
 			vis.then(function(result){
-		    	console.log('result: ' , result);
 		    	$scope.visits = result.content;
 		    	$scope.totalItems = result.totalElements;
 		    	$scope.currentPage = result.number+1;
@@ -40,7 +33,6 @@ angular.module('app.controller.visits', [])
 		  };
 		  
 	  $scope.pageChanged = function() {
-		  console.log('pageChange')
 		  refreshVisit(($scope.currentPage-1),10);
 		  };
 	
@@ -64,15 +56,10 @@ angular.module('app.controller.visits', [])
 	
 	  $scope.inlineOptions = {
 	    customClass: getDayClass,
-//	    minDate: new Date(),
-//	    showWeeks: true
 	  };
 
 	  $scope.dateOptions = {
 	    dateDisabled: disabled,
-//	    formatYear: 'yy',
-//	    maxDate: new Date(2020, 5, 22),
-//	    minDate: new Date(),
 	    startingDay: 1
 	  };
 
@@ -81,17 +68,11 @@ angular.module('app.controller.visits', [])
 	    var date = data.date,
 	      mode = data.mode;
 	    return mode === 'day' &&  date.getDay() === 0;
-//	    return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
 	  }
 
 	  $scope.toggleMin = function() {
-		  console.log("zamykam");
-//	    $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
-//	    $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
 	  };
 
-//	  $scope.toggleMin();
-	  
 	  $scope.getDate = function(){
 		  refreshVisit(($scope.currentPage-1),10);
 	  }
@@ -104,11 +85,6 @@ angular.module('app.controller.visits', [])
 	    $scope.popup2.opened = true;
 	  };
 
-//	  $scope.setDate = function(year, month, day) {
-//	    $scope.dt = new Date(year, month, day);
-//	  };
-
-//	  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 	  $scope.format = 'yyyy-MM-dd';
 	  $scope.altInputFormats = ['yyyy-MM-dd'];
 
@@ -167,12 +143,10 @@ angular.module('app.controller.visits', [])
 	  vm.searchEnabled = undefined;
 
 	  vm.setInputFocus = function (){
-		console.log("function setInputFocus")
 	    $scope.$broadcast('UiSelectDemo1');
 	  };
 
 	  vm.enable = function() {
-		  console.log("function enable")
 	    vm.disabled = false;
 	  };
 
@@ -181,7 +155,6 @@ angular.module('app.controller.visits', [])
 	  };
 
 	  vm.enableSearch = function() {
-		  console.log("function enableSearch")
 	    vm.searchEnabled = true;
 	  };
 
@@ -190,12 +163,10 @@ angular.module('app.controller.visits', [])
 	  };
 
 	  vm.clear = function() {
-		  console.log("function clear")
 	    vm.person.selected = undefined;
 	  };
 
 	  vm.someGroupFn = function (item){
-		  console.log("function someGroupFn")
 	    if (item.name[0] >= 'A' && item.name[0] <= 'M')
 	        return 'From A - M';
 
@@ -220,7 +191,6 @@ angular.module('app.controller.visits', [])
 
 	  vm.counter = 0;
 	  vm.onSelectCallback = function (item, model){
-		  console.log("function onSelectCallback")
 	    vm.counter++;
 	    vm.eventResult = {item: item, model: model};
 	  };
@@ -233,7 +203,6 @@ angular.module('app.controller.visits', [])
 	  };
 
 	  vm.tagTransform = function (newTag) {
-		  console.log("function tagTransform")
 	    var item = {
 	        name: newTag,
 	        email: newTag.toLowerCase()+'@email.com',
@@ -247,12 +216,9 @@ angular.module('app.controller.visits', [])
 	  vm.person = {};
 	  vm.people = patients;
 	  if ($stateParams != null && $stateParams.patient_id != null && vm.people.length > 0){
-		  console.log(" vm.people", vm.people)
 		  vm.people.patient = search($stateParams.patient_id,vm.people);
-		  console.log('vm.people.patient ',vm.people.patient);
 		  vm.visit.selectedPatientId = vm.people.patient.id; 
 		  vm.people.patientId = vm.people.patient;
-//		  vm.patientPlaceholer = 'Wybierz pacjenta z listy';
 	  }else{
 		  vm.people.patientId = vm.people[0];
 		  if (vm.people.length == 0){
@@ -300,7 +266,6 @@ angular.module('app.controller.visits', [])
 	  vm.choosedPatient = {};
 	  vm.onSelectPatient = function(item, model){
 		  vm.visit.selectedPatientId = item.id;
-		  console.log("odpalam ",vm.visit.selectedPatientId);
 		  refreshVisit(($scope.currentPage-1),10);
 	  }
 	  

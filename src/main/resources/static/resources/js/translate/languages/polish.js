@@ -180,6 +180,7 @@ angular.module('app.translate-config-pl', ['pascalprecht.translate'])
 			"success" : "Sukces",
 			"save" : "Zapisz",
 			"cancel" : "Anuluj",
+			"close" : "Zamknij",
 			"clear" : "Wyczyść",
 			"name" : "Nazwa",
 			"login": "Login",

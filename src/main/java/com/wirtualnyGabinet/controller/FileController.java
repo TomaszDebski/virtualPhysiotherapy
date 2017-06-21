@@ -29,7 +29,6 @@ public class FileController {
     @Autowired
     FileUploadService fileUploadService;
 
-    // Download a file
     @RequestMapping(
         value = "/download",
         method = RequestMethod.GET
@@ -38,16 +37,13 @@ public class FileController {
 
         FileUpload fileUpload = fileUploadService.findById(object_id);
 
-        // No file found based on the supplied filename
         if (fileUpload == null) {
             return new ResponseEntity<>("{}", HttpStatus.NOT_FOUND);
         }
 
-        // Generate the http headers with the file properties
         HttpHeaders headers = new HttpHeaders();
         headers.add("content-disposition", "attachment; filename=" + fileUpload.getFilename());
 
-        // Split the mimeType into primary and sub types
         String primaryType, subType;
         try {
             primaryType = fileUpload.getMimeType().split("/")[0];

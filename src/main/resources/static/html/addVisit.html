@@ -178,10 +178,10 @@
 		               </select>
 		               
 		               <style>
-
 						select.ng-dirty,select.ng-touched {
 						  color: black;
 						  font-size: 16px;
+						  padding-left: 5px;
 						}
 						select.ng-pristine {
 						  color: #989595;
@@ -193,7 +193,6 @@
 						}
 		               </style>
 		               
-	<!-- 	               <a href=""><span class="glyphicon glyphicon-plus" style="float:right;top:10px;right:10px;"></span></a> -->
 						<add-service-directive counter="counter" services-to-select="services"></add-service-directive>
 						<span 
 		                   	ng-show="addVisitForm.selectService.$error.required && addVisitForm.submitted " 
@@ -224,7 +223,7 @@
 			  </div>
 			</div>
 			
-			<!-- Textarea -->
+			
 			<div class="form-group">
 			  <label class="col-md-offset-2 col-md-2 control-label" for="recommendations">
 			  	{{'addVisit.recommendations_after_the_visit' | translate}}: 
@@ -243,7 +242,7 @@
 			  </div>
 			</div>
 			
-			<!-- Button (Double) -->
+			
 			<div class="form-group">
 			  <label class="col-md-offset-2 col-md-2 control-label" for="button1id"></label>
 			  <div class="col-md-8">
@@ -269,7 +268,14 @@
 	
 	
 <style>
-	.overlay { background:transparent; width:100%; height:100%; position:absolute; top:0; left:0; }
+	.overlay { 
+		background:transparent; 
+		width:100%; 
+		height:100%; 
+		position:absolute; 
+		top:0; 
+		left:0; 
+	}
 	
 	input.submitted.ng-invalid{
 	  border:2px solid #f00;
@@ -295,14 +301,12 @@
 		border-radius: 4px;
 	}
     .select2 > .select2-choice.ui-select-match {
-        /* Because of the inclusion of Bootstrap */
         height: 29px;
     }
 
     .selectize-control > .selectize-dropdown {
         top: 36px;
     }
-    /* Some additional styling to demonstrate that append-to-body helps achieve the proper z-index layering. */
     .select-box {
       background: #fff;
       position: relative;
@@ -311,6 +315,6 @@
     .alert-info.positioned {
       margin-top: 1em;
       position: relative;
-      z-index: 10000; /* The select2 dropdown has a z-index of 9999 */
+      z-index: 10000; 
     }
 </style>

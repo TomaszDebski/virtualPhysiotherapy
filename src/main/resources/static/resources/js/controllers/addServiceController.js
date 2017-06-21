@@ -7,7 +7,6 @@ angular.module('app.controller.addService', [])
 	$scope.addService = function(service){
 		if ($scope.addServiceForm.$valid){
 			serviceService.save(service,function(){
-				console.log("udało się");
 				$scope.success = true;
 			})
 		}else{

@@ -14,40 +14,18 @@ angular.module('app.controller.interviewModal', [])
 	$scope.bodyPart = bodyPart;
 	
 	  $scope.ok = function () {
-//		  if ($scope.addInterview()){
-//			  $uibModalInstance.close();
-//		  }
 		  if($scope.interviewForm.$valid) {
 				var interview = {};
 				interview.date = $scope.interview.startDate;
-				console.log('interview.date ' + interview.date);
 				interview.uniqueId = '22222';
-//				interview.pains = []
-//				var pain = {};
-//				pain.painName = $scope.interview.painInput;
-//				var place = {};
-//				place.bodyPlaceName = $scope.interview.bodyInput;
-//				pain.painBodyPlaces = [];
-//				pain.painBodyPlaces.push(place);
-//				interview.pains.push(pain);
 				
 				addPainsAndPlaces(interview);
 				
 				
 				interviewService.save({patinet_id:myParam},interview,function(data){
-					console.log("udało się");
-//					$scope.successAddPatient = true;
-//					$window.scrollTo(0, 0);
-////					$location.path("/allPatients");
 					$uibModalInstance.close();
 				})
 			}else{
-//				if($scope.interviewForm.painInput.$error.required){
-//					makeRedBorder('drop1');
-//				}
-//				if($scope.interviewForm.bodyInput.$error.required){
-//					makeRedBorder('drop2')
-//				}
 				$scope.interviewForm.submitted=true;    
 				console.log('niepoprawny formularz')
 			} 
@@ -72,7 +50,6 @@ angular.module('app.controller.interviewModal', [])
 			  var painDescription = angular.element(document.querySelector('#pain_description_'+i)).val();
 			  pain.description = painDescription;
 			  interview.pains.push(pain);
-			  console.log('interview ',interview);
 		  }
 	  }
 	  
@@ -88,15 +65,7 @@ angular.module('app.controller.interviewModal', [])
 		  $uibModalInstance.dismiss('cancel');
 	  };
 	  
-	  
-	  
-//	  $http.get("bodyPart")
-//		.then(function(value) {
-//			$scope.bodyPart = value.data;
-//		})
-		
 	  $scope.toggled = function(open,input,drop) {
-		  console.log('Dropdown is now: ', open);
 		 if (input != undefined){
 			 $("."+drop).css(
 					  {"border-color": "", 
@@ -104,7 +73,6 @@ angular.module('app.controller.interviewModal', [])
 		             "border-style":""})
 		 }
 		 
-	    console.log("interview.painInput " ,$scope.interview.bodyInput)
 	  };
 	  $scope.toggleDropdown = function($event) {
 		    $event.preventDefault();
@@ -126,72 +94,27 @@ angular.module('app.controller.interviewModal', [])
 			$scope.interview.bodyInput = item;
 		}
 		
-//		$scope.addInterview = function(){
-//			if($scope.interviewForm.$valid) {
-//				var interview = {};
-//				interview.date = new Date();
-//				interview.uniqueId = '22222';
-//				interview.description = $scope.interview.description
-//				interview.pains = []
-//				var pain = {};
-//				pain.painName = $scope.interview.painInput;
-//				var place = {};
-//				place.bodyPlaceName = $scope.interview.bodyInput;
-//				pain.painBodyPlaces = [];
-//				pain.painBodyPlaces.push(place);
-//				interview.pains.push(pain);
-//				interviewService.save({patinet_id:myParam},interview,function(data){
-//					console.log("udało się");
-////					$scope.successAddPatient = true;
-////					$window.scrollTo(0, 0);
-//////					$location.path("/allPatients");
-//				})
-//				return true;
-//			}else{
-//				$scope.interviewForm.submitted=true;    
-//				console.log('niepoprawny formularz')
-//				return false;
-//			} 
-			
-//		}
-		
 ////////////////////////////////////////Datepicker//////////////////////////////////////////
 		
 		  $scope.inlineOptions = {
 				    customClass: getDayClass,
-//				    minDate: new Date(),
-//				    showWeeks: true
 				  };
 
 				  $scope.dateOptions = {
 				    dateDisabled: disabled,
-//				    formatYear: 'yy',
-//				    maxDate: new Date(2020, 5, 22),
-//				    minDate: new Date(),
 				    startingDay: 1
 				  };
 
-				  // Disable weekend selection
 				  function disabled(data) {
 				    var date = data.date,
 				      mode = data.mode;
 				    return mode === 'day' &&  date.getDay() === 0;
-//				    return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
 				  }
 
 				  $scope.toggleMin = function() {
-					  console.log("zamykam");
-//				    $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
-//				    $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
 				  };
 
-//				  $scope.toggleMin();
-				  
 				  $scope.getDate = function(){
-//					  $log.info("mydate from getDate " , vm.visit.startDate)
-//					  vm.visit.date = Date.parse(vm.visit.startDate);
-					  
-//					  refreshVisit(($scope.currentPage-1),10);
 				  }
 
 				  $scope.open1 = function() {
@@ -202,11 +125,6 @@ angular.module('app.controller.interviewModal', [])
 				    $scope.popup2.opened = true;
 				  };
 
-//				  $scope.setDate = function(year, month, day) {
-//				    $scope.dt = new Date(year, month, day);
-//				  };
-
-//				  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 				  $scope.format = 'yyyy-MM-dd';
 				  $scope.altInputFormats = ['yyyy-MM-dd'];
 

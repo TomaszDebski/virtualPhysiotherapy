@@ -1,21 +1,2 @@
-
-zabezpiecz update i remove dla pacjentów i visit
-ng-select dodaj pierwszą pozycję jako wybierz.... zrobione na dodawaniu wizyt
-
-
-
-zabezpiecz przed wchodzeniem na nieodpowiednie linki
-dodawanie plików
-walidatory wizyt
+przetłumacz rejestracje
 uzupełnij dane
-walidacja długości trwania wizyty tylko na liczby
-Gdy usunę fizjoterapeute usuwam wszystkie wizyty z nim związane
-zabezpiecz przed wejściem bezpośrednio linkiem
-opcja zmiany hasła
-ruchomy panel menu
-w kalendarzu dodaj opcje zaznaczania długości urlopu przez przeciągnięcie
-W pacjencie dodaj nr lokalu(kolumne) i daty urodzenia(teraz to nulle), postcode(nulle)
-sprawdź który kontroler odpowiada za upload plików
-
-Zamiast usuwania pacjenta przełączanie na nieaktywny
-alert o usunięciu pacjenta

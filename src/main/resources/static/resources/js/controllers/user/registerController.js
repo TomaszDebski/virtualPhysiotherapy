@@ -5,7 +5,6 @@
 angular.module('app.controller.register', [])
 .controller('registerController',
 		function($rootScope,$scope, $http,$window,physiotherapistService,$timeout,$state) {
-	console.log('registerController');
 	$scope.successAddPhys = false;
 	$scope.createUser = function(user){
 		$scope.notEqual = false;
@@ -25,7 +24,6 @@ angular.module('app.controller.register', [])
     	    	}else{
     	    		 if (isPasswordEqual){
     	 				physiotherapistService.save(user,function(){
-    	 					console.log("udało się");
     	 					$scope.successAddPhys = true;
     	 					 $scope.registerForm.submitted=false;
     	 					$window.scrollTo(0, 0);

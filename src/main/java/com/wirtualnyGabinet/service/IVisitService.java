@@ -33,5 +33,5 @@ public interface IVisitService {
 	
 	InfForScheduler[] getForSheduler(long id,String start, String end,String _);
 	
-	boolean checkVisit(long visitId,String physiotherapistName);
+	boolean checkAuthorization(long id, String name);
 }

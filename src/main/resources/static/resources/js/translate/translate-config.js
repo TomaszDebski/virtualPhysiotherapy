@@ -10,13 +10,7 @@ angular.module('app.translate-config', ['pascalprecht.translate'])
 	    'pl-*': 'pl'
 	  })
   
-//  $translateProvider.useStaticFilesLoader({
-//      prefix: '/resources/languages/',
-//      suffix: '.json'
-//    });
   $translateProvider.forceAsyncReload(true);
-//  $translateProvider.useSanitizeValueStrategy(null);
-//  $translateProvider.useCookieStorage();
   $translateProvider.useSanitizeValueStrategy('escapeParameters');
 })
 

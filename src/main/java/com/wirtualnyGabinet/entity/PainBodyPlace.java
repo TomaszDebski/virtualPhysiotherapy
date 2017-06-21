@@ -31,7 +31,6 @@ public class PainBodyPlace {
 	
 	/* Relations */
 	
-//	@JsonView(Views.Visits.class)
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "pain_id")
 	@JsonIdentityInfo(
@@ -49,8 +48,6 @@ public class PainBodyPlace {
 		this.id = id;
 	}
 
-	
-
 	public String getBodyPlaceName() {
 		return bodyPlaceName;
 	}
@@ -66,8 +63,4 @@ public class PainBodyPlace {
 	public void setPain(Pain pain) {
 		this.pain = pain;
 	}
-
-	
-
-	
 }

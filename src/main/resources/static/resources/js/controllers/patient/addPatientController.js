@@ -4,28 +4,15 @@
 
 angular.module('app.controller.addPatient', [])
 .controller('addPatientController', function($scope,$http,$rootScope,$location,$window,patientService) {
-//	$scope.deletePatient = function(patient){
-//		console.log("patient.id " , patient.id)
-//		patientService.delete({id:patient.id},function(){
-//			refreshMethod();
-//		});
-//	}
-//	
-//	console.log('patient Controllerrrr');
 	$scope.successAddPatient = false;
 	$scope.addPatient = function(patient){
 		if($scope.addPatientForm.$valid) {
 			patientService.save(patient,function(){
-				console.log("udało się");
 				$scope.successAddPatient = true;
 				$window.scrollTo(0, 0);
-//				$location.path("/allPatients");
 			})
 		}else{
 			$scope.addPatientForm.submitted=true;    
-//			angular.forEach($scope.addPatientForm.$error.required, function(field) {
-//			    field.$setDirty();
-//			});
 			console.log('niepoprawny formularz')
 		} 
 		
@@ -35,39 +22,23 @@ angular.module('app.controller.addPatient', [])
 	
 	  $scope.inlineOptions = {
 			    customClass: getDayClass,
-//			    minDate: new Date(),
-//			    showWeeks: true
 			  };
 
 			  $scope.dateOptions = {
 			    dateDisabled: disabled,
-//			    formatYear: 'yy',
-//			    maxDate: new Date(2020, 5, 22),
-//			    minDate: new Date(),
 			    startingDay: 1
 			  };
 
-			  // Disable weekend selection
 			  function disabled(data) {
 			    var date = data.date,
 			      mode = data.mode;
 			    return mode === 'day' &&  date.getDay() === 0;
-//			    return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
 			  }
 
 			  $scope.toggleMin = function() {
-				  console.log("zamykam");
-//			    $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
-//			    $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
 			  };
 
-//			  $scope.toggleMin();
-			  
 			  $scope.getDate = function(){
-//				  $log.info("mydate from getDate " , vm.visit.startDate)
-//				  vm.visit.date = Date.parse(vm.visit.startDate);
-				  
-//				  refreshVisit(($scope.currentPage-1),10);
 			  }
 
 			  $scope.open1 = function() {
@@ -78,11 +49,6 @@ angular.module('app.controller.addPatient', [])
 			    $scope.popup2.opened = true;
 			  };
 
-//			  $scope.setDate = function(year, month, day) {
-//			    $scope.dt = new Date(year, month, day);
-//			  };
-
-//			  $scope.formats = ['yyyy/MM/dd'];
 			  $scope.format = 'yyyy/MM/dd';
 			  $scope.altInputFormats = ['yyyy/MM/dd'];
 

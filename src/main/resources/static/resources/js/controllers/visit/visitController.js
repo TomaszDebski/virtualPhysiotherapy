@@ -7,19 +7,6 @@ angular.module('app.controller.visit', ['ui.bootstrap'])
 	
 	var $translate = $filter('translate');
 	
-//	visitService.get({id:$stateParams.id},function(data){
-//		$scope.visit = data;
-//		console.log("data visit: "  ,data);
-//		var cash = 0;
-//		angular.forEach($scope.visit.treatment,function(key,value){
-//			cash += key.service.price;
-//		})
-//		$scope.visit.cost = cash;
-//		$scope.firstName_lastName = data.patient.firstname + ' ' + data.patient.lastname;
-//		$scope.isFinishVar = $scope.visit.status == 'reservation';
-//	});
-	
-	console.log('visit ', visit)
 	$scope.visit = visit;
 	var cash = 0;
 	angular.forEach($scope.visit.treatment,function(key,value){
@@ -33,10 +20,6 @@ angular.module('app.controller.visit', ['ui.bootstrap'])
 	$scope.goToVisits = function(){
 		$state.go('visits');
 	}
-	
-//	$scope.isFinish = function(){
-//		$scope.isFinishVar = $scope.visit.status == 'reservation';
-//	}
 	
 	$scope.successEndVisit = false;
 	$scope.endVisit = function(){
@@ -63,14 +46,12 @@ angular.module('app.controller.visit', ['ui.bootstrap'])
 		var visit={};
 		visit.recommendation = $scope.visit.recommendation;
 		visit.paymentMethod = $scope.visit.paymentMethod;
-		console.log('$scope.visit.paymentMethod ' +$scope.visit.paymentMethod);
 		visit.length = $scope.visit.length
 		visit.date = $scope.visit.date
 		visit.cost = $scope.visit.cost
 		visit.description = $scope.visit.description
 		visit.status = 'finish';
 		visitService.update({id:$stateParams.id},visit,function(){
-			  console.log("zakończono");
 			  $scope.visit.status = visit.status;
 			  $scope.isFinishVar = $scope.visit.status == 'reservation'
 		  })
@@ -81,7 +62,6 @@ angular.module('app.controller.visit', ['ui.bootstrap'])
 	$scope.editUser = function(user){
 		if ($scope.editUserForm.$valid){
 			physiotherapistService.update({id:user.id},user,function(){
-				console.log("udało się zmienić dane konta");
 				$scope.successSave = true;
 				$window.scrollTo(0, 0);
 			})
@@ -90,24 +70,14 @@ angular.module('app.controller.visit', ['ui.bootstrap'])
 		}
 	}
 	
-	
-	
-	
-	
-	
 ////////////////////////////////////////Datepicker//////////////////////////////////////////
 	
 	  $scope.inlineOptions = {
 			    customClass: getDayClass,
-//			    minDate: new Date(),
-//			    showWeeks: true
 			  };
 
 			  $scope.dateOptions = {
 			    dateDisabled: disabled,
-//			    formatYear: 'yy',
-//			    maxDate: new Date(2020, 5, 22),
-//			    minDate: new Date(),
 			    startingDay: 1
 			  };
 
@@ -116,22 +86,13 @@ angular.module('app.controller.visit', ['ui.bootstrap'])
 			    var date = data.date,
 			      mode = data.mode;
 			    return mode === 'day' &&  date.getDay() === 0;
-//			    return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
 			  }
 
 			  $scope.toggleMin = function() {
-				  console.log("zamykam");
-//			    $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
-//			    $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
 			  };
 
-//			  $scope.toggleMin();
-			  
 			  $scope.getDate = function(){
-//				  $log.info("mydate from getDate " , vm.visit.startDate)
 				  vm.visit.date = Date.parse(vm.visit.startDate);
-				  
-//				  refreshVisit(($scope.currentPage-1),10);
 			  }
 
 			  $scope.open1 = function() {
@@ -141,12 +102,7 @@ angular.module('app.controller.visit', ['ui.bootstrap'])
 			  $scope.open2 = function() {
 			    $scope.popup2.opened = true;
 			  };
-
-//			  $scope.setDate = function(year, month, day) {
-//			    $scope.dt = new Date(year, month, day);
-//			  };
-
-//			  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+			  
 			  $scope.format = 'yyyy-MM-dd';
 			  $scope.altInputFormats = ['yyyy-MM-dd'];
 

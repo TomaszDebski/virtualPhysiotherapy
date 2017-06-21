@@ -11,7 +11,6 @@ angular.module('app.controller.patient', ['ui.bootstrap'])
 		
 		$http.get("interview/allInterviewForPatient" + "?patient_id=" + $stateParams.id)
 		.then(function(value) {
-			console.log('value.data ' ,value.data)
 			$scope.interviews = value.data;
 		})
 		
@@ -25,7 +24,6 @@ angular.module('app.controller.patient', ['ui.bootstrap'])
 			if ($scope.editPatientForm.$valid){
 				$log.info("patient.birthDate " , patient.birthDate);
 				patientService.update({id:$scope.patient.id},patient,function(){
-					console.log("udało się zmienić dane pacjenta")
 					$scope.successEditPatient = true;
 				})
 			}else{
@@ -52,11 +50,9 @@ angular.module('app.controller.patient', ['ui.bootstrap'])
 				});
 		}
 		
-		
-		
-		$scope.saveInterview = function(ddd,ee){
-			console.log("ddd " , ddd);
-		}
+//		$scope.saveInterview = function(ddd,ee){
+//			console.log("ddd " , ddd);
+//		}
 		
 		
 		$scope.genereateUniqueId = function()
@@ -74,39 +70,23 @@ angular.module('app.controller.patient', ['ui.bootstrap'])
 		
 		  $scope.inlineOptions = {
 				    customClass: getDayClass,
-//				    minDate: new Date(),
-//				    showWeeks: true
 				  };
 
 				  $scope.dateOptions = {
 				    dateDisabled: disabled,
-//				    formatYear: 'yy',
-//				    maxDate: new Date(2020, 5, 22),
-//				    minDate: new Date(),
 				    startingDay: 1
 				  };
 
-				  // Disable weekend selection
 				  function disabled(data) {
 				    var date = data.date,
 				      mode = data.mode;
 				    return mode === 'day' &&  date.getDay() === 0;
-//				    return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
 				  }
 
 				  $scope.toggleMin = function() {
-					  console.log("zamykam");
-//				    $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
-//				    $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
 				  };
 
-//				  $scope.toggleMin();
-				  
 				  $scope.getDate = function(){
-//					  $log.info("mydate from getDate " , vm.visit.startDate)
-//					  vm.visit.date = Date.parse(vm.visit.startDate);
-					  
-//					  refreshVisit(($scope.currentPage-1),10);
 				  }
 
 				  $scope.open1 = function() {
@@ -117,11 +97,6 @@ angular.module('app.controller.patient', ['ui.bootstrap'])
 				    $scope.popup2.opened = true;
 				  };
 
-//				  $scope.setDate = function(year, month, day) {
-//				    $scope.dt = new Date(year, month, day);
-//				  };
-
-//				  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 				  $scope.format = 'yyyy/MM/dd';
 				  $scope.altInputFormats = ['yyyy/MM/dd'];
 
@@ -179,13 +154,11 @@ angular.module('app.controller.patient', ['ui.bootstrap'])
 	            	  },
 	            	  pains : function(kindOfPainService){
 	            	  		return kindOfPainService.query(function(data) {
-	            	  			console.log("pains data " ,data);
 	            	  			return data;
 	            	  		});
 	            	  },
 	            	  bodyPart : function(bodyPlaceService){
 	            		  return bodyPlaceService.query(function(data) {
-	            	  			console.log("bodyPlace data " ,data);
 	            	  			return data;
 	            	  		});
 	            	  }
@@ -193,11 +166,9 @@ angular.module('app.controller.patient', ['ui.bootstrap'])
 	         })
 	        .result.then(
 	            function () {
-	            	console.log("ok")
 	            	$timeout(getAllInterviewForPatient(),5000);
 	            }, 
 	            function () {
-	            	console.log("wyjście")
 	            }
 	        );
 	    }
@@ -205,7 +176,6 @@ angular.module('app.controller.patient', ['ui.bootstrap'])
 		getAllInterviewForPatient = function(){
 			$http.get("interview/allInterviewForPatient" + "?patient_id=" + $stateParams.id)
 			.then(function(value) {
-				console.log('value.data ' ,value.data)
 				$scope.interviews = value.data;
 			})
 		}

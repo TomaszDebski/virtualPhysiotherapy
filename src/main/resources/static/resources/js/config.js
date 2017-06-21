@@ -47,7 +47,7 @@ angular.module('app.config', [])
 	resolve: {
 		patients: function($http,$rootScope,$window){
 			$rootScope.id = $window.sessionStorage.id;
-			return $http.get('patient/cos?page=0&size=10&id=' + $rootScope.id)
+			return $http.get('patient/patientsPagination?page=0&size=10&id=' + $rootScope.id)
 				.success(function(data,status,headers,config){
 					return data;
 				}).error(function(data,status,headers,config){
@@ -64,11 +64,9 @@ angular.module('app.config', [])
 			visits : function($rootScope,visitPaginationService,$stateParams){
 				var curr = new Date; 
 				var earlierDay = curr.setDate(curr.getDate()-7);
-				console.log('earlierDay ',earlierDay)
 				if ($stateParams.patient_id != null){
 					return visitPaginationService.getVisit(0,10,earlierDay,new Date(),$stateParams.patient_id)
 					.then(function(result){
-				    	console.log('result: ' , result);
 				    	return result.content;
 				    })
 				}
@@ -77,7 +75,6 @@ angular.module('app.config', [])
 				$rootScope.user = $window.sessionStorage.user;
       		  return allPatientsForPhysiotherapistService.getPatients()
       		  .then(function(result){
-      	    	console.log('result addVisitController: ' , result);
       	    	return result;
       	    })
       	  }
@@ -93,7 +90,6 @@ angular.module('app.config', [])
 		resolve : {
 			visit : function(visitService,$stateParams){
 				return visitService.get({id:$stateParams.id}).$promise.then(function(data){
-					console.log("data visit: "  ,data);
 					return data;
 				});
 			}
@@ -108,13 +104,11 @@ angular.module('app.config', [])
 				$rootScope.user = $window.sessionStorage.user;
       		  return allPatientsForPhysiotherapistService.getPatients()
       		  .then(function(result){
-      	    	console.log('result addVisitController: ' , result);
       	    	return result;
       	    })
       	  },
       	  	services : function(serviceService){
       	  		return serviceService.query(function(data) {
-      	  			console.log("services data " ,data);
       	  			return data;
       	  		});
       	  	}
@@ -130,7 +124,6 @@ angular.module('app.config', [])
 		resolve : {
 			patient : function($stateParams,patientService){
 				return patientService.get({id:$stateParams.id}).$promise.then(function(data){
-					console.log("dataaa "  ,data.firstname);
 					return data;
 				});
 			}
@@ -176,13 +169,13 @@ angular.module('app.config', [])
 		templateUrl : 'html/addBodyPlace.html',
 		controller : 'addBodyPlaceController',
 	})
+	.state('401', {
+		templateUrl : 'html/utils/401.html',
+	})
 	
 	$urlRouterProvider.otherwise("/");
 
-//	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 	
-//	 $locationProvider.html5Mode(true);
-//	$compileProvider.debugInfoEnabled(false);
-
 })
 

@@ -8,7 +8,6 @@ angular.module('app.controller.addBodyPlace', [])
 		var bodyPlaceVar = bodyPlace;
 		if ($scope.addBodyPlaceForm.$valid){
 			bodyPlaceService.save(bodyPlace,function(){
-				console.log("udało się");
 				$scope.success = true;
 				bodyPlaceVar.bodyName = "";
 				bodyPlaceVar.description = "";

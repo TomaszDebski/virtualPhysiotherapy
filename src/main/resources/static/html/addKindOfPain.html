@@ -19,9 +19,9 @@
 					    <strong> {{'commons.success' | translate}}!</strong> {{'kindOfPain.correct_add_kindOfPain' | translate}}
 					</div>
 				</div>
-	<!-- 			    <br><br> -->
 			</div>
-			<!-- Text input-->
+			
+			
 			<div class="form-group">
 			  <label class="col-md-offset-2 col-md-2 control-label" for="painNameField">
 			  {{'kindOfPain.pain_name' | translate}}:<span style="color:red;">*</span></label>  
@@ -43,7 +43,7 @@
 			  </div>
 			</div>
 			
-			<!-- Textarea --> 
+			
 			<div class="form-group">
 			  <label class="col-md-offset-2 col-md-2 control-label" for="painDescription">
 			  	{{'commons.description' | translate}}:
@@ -62,35 +62,6 @@
 			</div>
 			
 			
-<!-- 			<div class="form-group"> -->
-<!-- 			  <label class="col-md-offset-2 col-md-2 control-label" for="servicePriceField"> -->
-<!-- 			  {{'commons.price' | translate}}:<span style="color:red;">*</span></label>   -->
-<!-- 			  <div class="col-md-4"> -->
-			  
-<!-- 			  <input id="servicePriceField"  -->
-<!-- 			  	type="text" -->
-<!-- 			  	ng-class="{submitted:addServiceForm.submitted}"   -->
-<!-- 			  	name="servicePriceField"  -->
-<!-- 			  	placeholder="{{'commons.price' | translate}}"  -->
-<!-- 			  	class="form-control"  -->
-<!-- 			  	ng-pattern="/^\d+(\.\d{1,2})?$/" -->
-<!-- 			  	required -->
-<!-- 			  	ng-model="service.price"> -->
-<!-- 			  	<span  -->
-<!--     				ng-show="addServiceForm.servicePriceField.$error.required && addServiceForm.submitted"  -->
-<!--     				style="color : #f00; float:left;" -->
-<!--     				>{{'commons.price_is_required' | translate}} -->
-<!--     			</span> -->
-<!--     			<span  -->
-<!--    					ng-show="addServiceForm.servicePriceField.$error.pattern && addServiceForm.submitted" -->
-<!--    					style="color : #f00; float:left;" -->
-<!--    					>{{'addService.please_correct_price' | translate}} -->
-<!--    				</span> -->
-<!-- 			  </div> -->
-<!-- 			</div> -->
-			
-			
-			<!-- Button (Double) -->
 			<div class="form-group">
 			  <label class="col-md-offset-2 col-md-2 control-label" for="addKindOfPainButton"></label>
 			  <div class="col-md-8">
@@ -118,7 +89,14 @@
 	
 	
 <style>
-	.overlay { background:transparent; width:100%; height:100%; position:absolute; top:0; left:0; }
+	.overlay { 
+		background:transparent; 
+		width:100%; 
+		height:100%; 
+		position:absolute; 
+		top:0; 
+		left:0; 
+	}
 	
 	input.submitted.ng-invalid{
 	  border:2px solid #f00;
@@ -137,14 +115,12 @@
 		border-radius: 4px;
 	}
     .select2 > .select2-choice.ui-select-match {
-        /* Because of the inclusion of Bootstrap */
         height: 29px;
     }
 
     .selectize-control > .selectize-dropdown {
         top: 36px;
     }
-    /* Some additional styling to demonstrate that append-to-body helps achieve the proper z-index layering. */
     .select-box {
       background: #fff;
       position: relative;
@@ -153,6 +129,6 @@
     .alert-info.positioned {
       margin-top: 1em;
       position: relative;
-      z-index: 10000; /* The select2 dropdown has a z-index of 9999 */
+      z-index: 10000; 
     }
 </style>

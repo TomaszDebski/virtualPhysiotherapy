@@ -43,7 +43,6 @@ public class Interview implements Serializable {
 	
 	
 	/* Relations */
-//	@JsonView(Views.Visits.class)
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "patient_id")
 	@JsonIdentityInfo(
@@ -51,7 +50,6 @@ public class Interview implements Serializable {
 			  property = "id")
 	public Patient patient;
 
-//	@JsonView(Views.Patient.class)
 	@JsonView(Views.Interview.class)
 	@OneToMany(cascade=CascadeType.ALL,mappedBy = "interview",fetch=FetchType.LAZY,orphanRemoval=true)
 	@JsonIdentityInfo(
@@ -120,10 +118,4 @@ public class Interview implements Serializable {
 		this.id = id;
 	}
 
-	
-	
-	
-	
-	
-	
 }

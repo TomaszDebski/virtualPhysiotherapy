@@ -24,14 +24,6 @@ public class Treatment {
 	@JsonView(Views.VisitTreatments.class)
 	public Long id;
 	
-//	@JsonView(Views.VisitServices.class)
-//	@Column(name="treatmentName")
-//	private String treatmentName;
-	
-//	@JsonView(Views.VisitServices.class)
-//	@Column(name="price")
-//	private double price;
-	
 	@JsonView(Views.VisitTreatments.class)
 	@Column(name="description")
 	private String description;
@@ -60,14 +52,6 @@ public class Treatment {
 		this.id = id;
 	}
 
-//	public double getPrice() {
-//		return price;
-//	}
-//
-//	public void setPrice(double price) {
-//		this.price = price;
-//	}
-
 	public String getDescription() {
 		return description;
 	}
@@ -92,15 +76,4 @@ public class Treatment {
 		this.service = service;
 	}
 
-//	public String getTreatmentName() {
-//		return treatmentName;
-//	}
-//
-//	public void setTreatmentName(String treatmentName) {
-//		this.treatmentName = treatmentName;
-//	}
-	
-	
-	
-	
 }
