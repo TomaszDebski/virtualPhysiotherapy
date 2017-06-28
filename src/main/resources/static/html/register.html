@@ -11,25 +11,24 @@
 					name="registerForm"
 					id="registerForm"
 					novalidate>
-						<h1>Utwórz nowe konto</h1>
-						<p>Aby korzystać z aplikacji należy rozpocząć od utworzenia
-							konta logowania.</p>
+						<h1>{{'login.create_new_account' | translate}}</h1>
+						<p>{{'registration.use_application' | translate}}</p>
 						<p>
-							<span class="required">* Oznaczenie wymaganych pól</span>
+							<span class="required">* {{'registration.marking_required_fields' | translate}}</span>
 						</p>
 						
 						<div class="alert alert-success" ng-show="successAddPhys">
-							  <strong>Sukces!</strong> Utworzono nowego użytkownika
+							  <strong>{{'commons.success' | translate}}!</strong> {{'registration.create_new_user' | translate}}
 						</div>
 						
 						<div class="form-group">
 							<label for="name">
-							Imię<span class="required">*</span>
+							{{'commons.firstname' | translate}}<span class="required">*</span>
 							</label> 
 							<input 
 								id="name" 
 								name="name"
-								value="" type="text" 
+								type="text" 
 								ng-model="user.firstName"
 								ng-class="{submitted:registerForm.submitted}"
 								required
@@ -37,12 +36,12 @@
 							<span 
 								ng-show="registerForm.name.$error.required  && registerForm.submitted" 
 								style="color : #f00; float:left;"
-								>Imię jest wymagane
+								>{{'commons.firstname_is_required' | translate}}
 							</span>
 						</div>
 						
 						<div class="form-group" style="padding-top:15px;">
-							<label for="field_family_name">Nazwisko<span class="required">*</span>
+							<label for="field_family_name">{{'commons.lastName' | translate}}<span class="required">*</span>
 							</label>
 							<input 
 							required 
@@ -54,12 +53,12 @@
 							>
 							<span 
 								ng-show="registerForm.lastName.$error.required && registerForm.submitted" 
-								style="color : #f00; float:left;">Nazwisko jest wymagane</span>
+								style="color : #f00; float:left;">{{'commons.lastname_is_required' | translate}}</span>
 						</div>
 						
 						
 						<div class="form-group" style="padding-top:15px;">
-							<label for="field_address">Email<span class="required">*</span>
+							<label for="field_address">E-mail<span class="required">*</span>
 							</label>
 							<input 
 								required 
@@ -71,17 +70,17 @@
 							>
 							<span 
 								ng-show="registerForm.email.$error.required && registerForm.submitted" 
-								style="color : #f00; float:left;">Email jest wymagany
+								style="color : #f00; float:left;">{{'commons.email_is_required' | translate}}
 							</span>
 							<span 
 	        					ng-show="registerForm.email.$error.email && registerForm.submitted" 
 	        					style="color : #f00; float:left;"
-	        					>Nieprawidłowy adres e-mail
+	        					>{{'commons.incorrect_email' | translate}}
 	        				</span>
 						</div>
 						
 						<div class="form-group" style="padding-top:15px;">
-							<label for="field_given_name">login<span class="required">*</span>
+							<label for="field_given_name">{{'commons.login' | translate}}<span class="required">*</span>
 							</label> 
 							<input required="" 
 								id="field_given_name" 
@@ -94,17 +93,17 @@
 							<span 
 								ng-if="registerForm.username.$error.required && registerForm.submitted" 
 								style="color : #f00; float:left;">
-								Login jest wymagany</span>
+								{{'login.login_is_required' | translate}}</span>
 							<span 
 								ng-if="registerForm.$error.usernameExists && registerForm.submitted" 
 								style="color : #f00; float:left;">
-								Nazwa usera została już zarezerwowana</span>
+								{{'registration.username_already_reserved' | translate}}</span>
 						</div>
 						
 						
 						<div class="form-group" style="padding-top:15px;">
 							<label for="field_password">
-								Hasło<span class="required">*</span>
+								{{'login.password' | translate}}<span class="required">*</span>
 							</label>
 							<input 
 								required 
@@ -118,12 +117,12 @@
 							<span 
 								ng-show="registerForm.password.$error.required && registerForm.submitted" 
 								style="color : #f00; float:left;"
-								>Hasło jest wymagane
+								>{{'login.password_is_required' | translate}}
 							</span>
 						</div>
 						
 						<div class="form-group" style="padding-top:15px;">
-							<label for="passwordConfirm">Potwierdź hasło<span class="required">*</span>
+							<label for="passwordConfirm">{{'registration.confirm_your_password' | translate}}<span class="required">*</span>
 							</label>
 							<input 
 								required 
@@ -138,17 +137,17 @@
 							<span 
 								ng-show="registerForm.passwordConfirm.$error.required && registerForm.submitted" 
 								 style="color : #f00; float:left;"
-								 >Potwierdzenie hasła jest wymagane
+								 >{{'registration.password_confirmation_required' | translate}}
 							</span>
 							 <span 
 							 	ng-show="registerForm.passwordConfirm.$error.passwordVerify && registerForm.submitted"
 							 	style="color : #f00; float:left;"
-							 	>Hasłą nie są identyczne
+							 	>{{'registration.passwords_not_identical' | translate}}
 							 </span>
 						</div>
 						
 						<div class="form-group" style="padding-top:15px;">
-							<input value="Stwórz" type="submit" ng-click="createUser(user)"> 
+							<input value="{{'registration.create' | translate}}" type="submit" ng-click="createUser(user)"> 
 						</div>
 					</form>
 				</div>

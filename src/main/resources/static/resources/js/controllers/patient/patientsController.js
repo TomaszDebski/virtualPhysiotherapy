@@ -20,12 +20,12 @@ angular.module('app.controller.patients', [])
 	
 	$scope.deletePatient = function(patient){
 		swal({
-			  title: $translate('patients.remove_patient'),
-			  text: $translate('patients.are_you_sure_remove_patient'),
+			  title: $translate('patients.remove_the_patient'),
+			  text: $translate('patients.want_to_remove_the_patient'),
 			  type: "warning",
 			  showCancelButton: true,
 			  confirmButtonClass: "btn-danger",
-			  confirmButtonText: $translate('patients.remove'),
+			  confirmButtonText: $translate('commons.remove'),
 			  cancelButtonText: $translate('commons.cancel'),
 			  closeOnConfirm: true
 			},

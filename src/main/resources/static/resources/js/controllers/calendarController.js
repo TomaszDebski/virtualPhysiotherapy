@@ -185,7 +185,9 @@ angular.module('app.controller.calendar', [])
             height: 900,
             editable: true,
             locale: 'pl',
-            slotLabelFormat:"HH:mm",
+//            slotLabelFormat:"HH:mm",
+            weekMode:'liquid',
+            timeFormat:'HH:mm',
             dayClick: function(event) {
             	$('#calendar').fullCalendar( 'changeView', 'agendaDay' );
             	$('#calendar').fullCalendar('gotoDate', event._d);
@@ -199,7 +201,10 @@ angular.module('app.controller.calendar', [])
             eventClick: $scope.alertOnEventClick,
             eventDrop: $scope.alertOnDrop,
             eventResize: $scope.alertOnResize,
-            eventRender: $scope.eventRender
+            eventRender: $scope.eventRender,
+//            minTime : "07:00:00",
+//            maxTime : "20:00:00",
+          
           }
         };
 

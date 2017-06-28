@@ -174,6 +174,16 @@ angular.module('app.translate-config-en', ['pascalprecht.translate'])
 			"correct_add_body_place": "A new body area has been added",
 			"": "",
 		},
+		"registration" : {
+			"use_application" : "To use the application you need to start by creating a login account.",
+			"marking_required_fields" : "Marking the required fields",
+			"create_new_user" : "Create a new user",
+			"username_already_reserved" : "User name already reserved",
+			"password_confirmation_required" : "Password confirmation is required",
+			"passwords_not_identical" : "Passwords are not identical",
+			"confirm_your_password" : "Confirm your password",
+			"create" : "Create",
+		},
 		"commons" : {
 			"physiotherapy_room" : "Physiotherapy room",
 			"our_email" :"Our e-mail",
@@ -240,6 +250,7 @@ angular.module('app.translate-config-en', ['pascalprecht.translate'])
 			"personal_info" : "Personal info",
 			"Search" : "Search",
 			"search" : "search",
+			"remove" : "Remove",
 		}
 	 })
 })

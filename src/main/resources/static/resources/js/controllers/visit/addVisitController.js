@@ -268,8 +268,6 @@ angular.module('app.controller.addVisit', [])
 					  
 					  vm.country = {};
 					  vm.countries = [ 
-					    {name: '00:00'},
-					    {name: '01:30'},
 					    {name: '09:00'},
 					    {name: '09:30'},
 					    {name: '10:00'},

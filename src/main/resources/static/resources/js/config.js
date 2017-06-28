@@ -51,7 +51,7 @@ angular.module('app.config', [])
 				.success(function(data,status,headers,config){
 					return data;
 				}).error(function(data,status,headers,config){
-					console.log("nie udało się");
+					console.log("error");
 				})
 			}
 		  }

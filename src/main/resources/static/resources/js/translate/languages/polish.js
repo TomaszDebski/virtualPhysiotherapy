@@ -174,6 +174,16 @@ angular.module('app.translate-config-pl', ['pascalprecht.translate'])
 			"correct_add_body_place": "Prawidłowo dodano nowy obszar ciała",
 			"": "",
 		},
+		"registration" : {
+			"use_application" : "Aby korzystać z aplikacji należy rozpocząć od utworzenia konta logowania.",
+			"marking_required_fields" : "Oznaczenie wymaganych pól",
+			"create_new_user" : "Utworzono nowego użytkownika",
+			"username_already_reserved" : "Nazwa usera została już zarezerwowana",
+			"password_confirmation_required" : "Potwierdzenie hasła jest wymagane",
+			"passwords_not_identical" : "Hasła nie są identyczne",
+			"confirm_your_password" : "Potwierdź hasło",
+			"create" : "Stwórz",
+		},
 		"commons" : {
 			"physiotherapy_room" : "Gabinet fizjoterapii",
 			"our_email" :"Nasz e-mail",
@@ -240,6 +250,7 @@ angular.module('app.translate-config-pl', ['pascalprecht.translate'])
 			"personal_info" : "Dane osobiste",
 			"Search" : "Wyszukaj",
 			"search" : "wyszukaj",
+			"remove" : "Usuń",
 		}
 	 })
 })
