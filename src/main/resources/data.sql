@@ -2,11 +2,11 @@ insert into physiotherapist (id,username,password,first_name,last_name,phone,sec
 
 insert into patient (id,address, city, country, email, first_name, last_name,gender,age,phone,description,pesel,phisiotherapist_id,birth_date) values ( 1,'Krakowska', 'Kraków', 'Polska', 'PiotrNowak@o2.pl', 'Piotr', 'Nowak','m',34,'699254436','Przykładowy opis pacjenta','61081702122','1',DATE '1982-04-02');
 insert into visit (id,cost, date, description, hour, length, recommendation,status, patient_id , physiotherapist_id) values(1,'100','2017-07-20 09:30:00','opis','1','30','recomendation','reservation',1,1);
-insert into service (id,description,price,service_name) values (1,'opis',10.0,'zabieg1');
-insert into service (id,description,price,service_name) values (2,'opis',20.0,'zabieg2');
-insert into service (id,description,price,service_name) values (3,'opis',30.0,'zabieg3');
-insert into service (id,description,price,service_name) values (4,'opis',40.0,'zabieg4');
-insert into service (id,description,price,service_name) values (5,'opis',50.0,'zabieg5');
+insert into service (id,description,price,service_name) values (1,'opis',60.0,'Igły');
+insert into service (id,description,price,service_name) values (2,'opis',30.0,'Kinezjotaping');
+insert into service (id,description,price,service_name) values (3,'opis',120.0,'Masaż całego ciała');
+insert into service (id,description,price,service_name) values (4,'opis',80.0,'Masaż częściowy');
+insert into service (id,description,price,service_name) values (5,'opis',100.0,'Wizyta');
 insert into treatment (id, description, service_id, visit_id) values (1,'opis',1,1);
 insert into treatment (id, description, service_id, visit_id) values (2,'opis',2,1);
 insert into treatment (id, description, service_id, visit_id) values (3,'opis',3,1);
@@ -31,8 +31,8 @@ insert into pain_body_place (id, body_place_name,pain_id) values (3, 'Klatka pie
 --insert into pain (pain_name, interview_id) values ('Ból nogi',3);
 --insert into pain (pain_name, interview_id) values ('Ból tułowia',3);
 --insert into pain (pain_name, interview_id) values ('Ból ramienia',3);
---insert into pain (pain_name, interview_id) values ('Ból nogi',3);
---insert into pain (pain_name, interview_id) values ('Ból tułowia',3);
+--insert into pain (pain_name, interview_id) values ('Ból kostki',3);
+--insert into pain (pain_name, interview_id) values ('Ból pleców',3);
 
 insert into patient (id,address, city, country, email, first_name, last_name,gender,age, phone,description,pesel,phisiotherapist_id,birth_date) values (2, 'Sandomierska', 'Sandomierz', 'Polska', 'Gustowski@o2.pl', 'Bernard', 'Gustowski','m',56,'737654753','Przykładowy opis pacjenta','98102107842','1',DATE '1982-04-02');
 insert into visit (id,cost, date, description, hour, length, recommendation, patient_id , physiotherapist_id) values(7,'100',TIMESTAMP '2017-07-07 10:00:00','opis','1','60','recomendation',2,1);
@@ -99,7 +99,7 @@ insert into visit (id,cost, date, description, hour, length, recommendation, pat
 
 insert into kind_of_pain (id,pain_name,description) values (1,'miejscowy','');
 insert into kind_of_pain (id,pain_name,description) values (2,'promieniujący','');
-insert into kind_of_pain (id,pain_name,description) values (3,'miejscowy','');
+insert into kind_of_pain (id,pain_name,description) values (3,'kłujący','');
 insert into kind_of_pain (id,pain_name,description) values (4,'boczny','');
 
 insert into body_place (id,body_name,description) values (1,'Głowa','');

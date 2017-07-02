@@ -73,4 +73,5 @@ angular.module('app',
 		  
 		  'anim-in-out',
 		  'oitozero.ngSweetAlert',
+		  'app.directive.pesel'
 ]);

@@ -141,7 +141,7 @@ angular.module('app.translate-config-pl', ['pascalprecht.translate'])
 		},
 		"login" : {
 			"welcome_login_page" : "Witaj na stronie logowania",
-			"access_to_virtual_physiotherapy" : "Dostęp do wirtualnego gabinetu fizjoterapii. Jeśli masz konto, wpisz adres email i hasło poniżej, a jeśli nie masz",
+			"access_to_virtual_physiotherapy" : "Dostęp do wirtualnego gabinetu fizjoterapii. Jeśli masz konto, wpisz login i hasło poniżej, a jeśli nie masz",
 			"create_new_account" : "Stwórz nowe konto",
 			"error" : "Błąd",
 			"incorrect_login_or_password" : "Nieprawidłowy login lub hasło",

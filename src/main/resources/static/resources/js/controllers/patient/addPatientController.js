@@ -5,6 +5,7 @@
 angular.module('app.controller.addPatient', [])
 .controller('addPatientController', function($scope,$http,$rootScope,$location,$window,patientService) {
 	$scope.successAddPatient = false;
+	$scope.peselIncorrect = false;
 	$scope.addPatient = function(patient){
 		if($scope.addPatientForm.$valid) {
 			patientService.save(patient,function(){
@@ -12,10 +13,34 @@ angular.module('app.controller.addPatient', [])
 				$window.scrollTo(0, 0);
 			})
 		}else{
+			if (!checkNip(patient.pesel)){
+				$scope.peselIncorrect = true;
+			}
 			$scope.addPatientForm.submitted=true;    
 			console.log('niepoprawny formularz')
 		} 
 		
+	}
+	
+	function checkNip(pesel){
+		 var reg = /^[0-9]{11}$/;
+	        if (reg.test(pesel) === false) {
+	            return false;
+	        } else {
+
+	            var dig = ("" + pesel).split("");
+	            var control = (1 * parseInt(dig[0]) + 3 * parseInt(dig[1]) + 7 * parseInt(dig[2]) + 9 * parseInt(dig[3]) + 1 * parseInt(dig[4]) + 3 * parseInt(dig[5]) + 7 * parseInt(dig[6]) + 9 * parseInt(dig[7]) + 1 * parseInt(dig[8]) + 3 * parseInt(dig[9])) % 10;
+	            if (control === 0) {
+	                control = 10;
+	            }
+	            control = 10 - control;
+	            if (parseInt(dig[10]) === control) {
+	                return true;
+	            } else {
+	                return false;
+	            }
+
+	        }
 	}
 	
 ////////////////////////////////////////Datepicker//////////////////////////////////////////
@@ -116,3 +141,39 @@ angular.module('app.controller.addPatient', [])
             }    
         };
     })
+    angular.module('app.directive.pesel', [])
+    .directive("pesel", function() {
+    return {
+        restrict: "A",
+         
+        require: "ngModel",
+         
+        link: function(scope, element, attributes, ngModel) {
+            ngModel.$validators.pesel = function(pesel) { 
+            	console.log('modelValue ' ,pesel); 
+            	var reg = /^[0-9]{11}$/;
+    	        if (reg.test(pesel) === false) {
+    	        	console.log("return false")
+    	            return false;
+    	        } else {
+
+    	            var dig = ("" + pesel).split("");
+    	            var control = (1 * parseInt(dig[0]) + 3 * parseInt(dig[1]) + 7 * parseInt(dig[2]) + 9 * parseInt(dig[3]) + 1 * parseInt(dig[4]) + 3 * parseInt(dig[5]) + 7 * parseInt(dig[6]) + 9 * parseInt(dig[7]) + 1 * parseInt(dig[8]) + 3 * parseInt(dig[9])) % 10;
+    	            if (control === 0) {
+    	                control = 10;
+    	            }
+    	            control = 10 - control;
+    	            if (parseInt(dig[10]) === control) {
+    	            	console.log("return true")
+    	                return true;
+    	            } else {
+    	            	console.log("return false")
+    	                return false;
+    	            }
+
+    	        }
+//                return modelValue % 2 === 1;
+            }
+        }
+    };
+});

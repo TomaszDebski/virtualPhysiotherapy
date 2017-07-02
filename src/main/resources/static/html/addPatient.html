@@ -140,11 +140,18 @@
 									type="text"
 									ng-model="patient.pesel"
 									ng-class="{submitted:addPatientForm.submitted}"
+									ng-pattern="/^[0-9]{11}$/"
 									required
+									pesel
 								>
 								<span 
 									ng-show="addPatientForm.pesel.$error.required  && addPatientForm.submitted" 
 									style="color : #f00; float:left;">{{'commons.pesel_is_required' | translate}}
+								</span>
+								<span 
+									ng-show="addPatientForm.pesel.$error.pesel && addPatientForm.submitted && !addPatientForm.pesel.$error.required"
+									style="color : #f00; float:left;"
+									>{{'commons.incorrect_pesel' | translate}}
 								</span>
 						</div>
 							
